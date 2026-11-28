@@ -32,7 +32,7 @@ The rules are the [managed service account standard](service-account-migration.m
 
 ## Download
 
-**[msa-request-pack.zip](../../../downloads/msa-request-pack.zip)**: six Word forms in `forms/`, `request_template.csv`, five worked examples in `examples.csv`, the checker `Test-MsaRequest.ps1` with its `standard.json`, the Copilot prompt sheet `copilot-prompts.md`, and the tests. It also carries the Non-Person Identity kit's Chapter 12 module, because the checker runs that chapter's request check. The same files are in the repository's [`examples/msa-request-pack`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/msa-request-pack) folder.
+**[msa-request-pack.zip](../../../downloads/msa-request-pack.zip)**: six Word forms in `forms/`, `request_template.csv`, five worked examples in `examples.csv`, the checker `Test-MsaRequest.ps1` with its `standard.json`, the Copilot prompt sheet `copilot-prompts.md`, and the tests. It also carries the Non-Person Identity kit's Chapter 12 module, because the checker runs that chapter's request check, and the [production proposal](#production-proposal) in `proposal/`. The same files are in the repository's [`examples/msa-request-pack`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/msa-request-pack) folder.
 
 ## Two sides, one direction
 
@@ -156,9 +156,24 @@ So the program keeps one short name for a system everywhere *(design guidance, [
 
 The AD name doesn't carry the environment or the region: 15 characters leave no room, and the forest already says which environment an account is in. The tags carry them.
 
+## Proposing it for production {#production-proposal}
+
+The pack's `proposal/` folder is a neutral proposal to take the standard into production, for the authorizing official and the change advisory board, with a technical appendix for engineers. It restates nothing new: each part summarizes and links the page that holds it.
+
+| File | What it holds |
+|---|---|
+| `msa-production-proposal.docx` | The problem; the decided design as one table of decisions ([WD-123 to WD-176](../../about/decision-register.md#wd-159)); the flow from the agency's system access management tool through SailPoint, ServiceNow and the pipeline to certification; the lifecycle; the naming standard and its [five enforcement layers](service-account-migration.md#msa-standard-enforcement); rollout by the guide's [change-safety rings](service-account-migration.md#sam-control-states) with a 30-day parallel run; the controls the evidence supports, from [the standard's steps](service-account-migration.md#msa-standard-steps); the [dangers](service-account-migration.md#dangers) and their guards; the prerequisites; open items; the decisions requested; and one table of placeholders |
+| `msa-production-proposal.pptx` | The same story in 12 slides, with speaker notes |
+| `day2-test-script.md`, `Invoke-MsaDay2ReadOnly.ps1` | Day 2 at work: read-only production checks (the KDS root key's age, never its value; domain controller versions and functional levels; user accounts used as services and their SPNs; existing managed accounts; who can create in the service-account OU), each saving an evidence file that fills a placeholder; then one gMSA in a test domain, [Module 15](../../training/non-person-identity/15-your-first-gmsa.md)'s steps, installed, tested and backed out |
+| `proposal-prompts.md` | Copilot prompts: fill the placeholders from the evidence, review the proposal for gaps, draft the board's summary |
+
+: The production proposal {.striped .hover}
+
+It proposes gMSAs now and dMSAs once the domain controllers reach Windows Server 2025: a dMSA needs at least one Windows Server 2025 domain controller that the hosts can discover, and every host that uses it on Windows Server 2025.[^mrp-dmsa-faq] The workbook assumes a Windows Server 2016 baseline with Windows Server 2019 as the minimum, so the Day 2 read of the domain controllers confirms or corrects that. A test OU inside the production domain is still production: every production write goes through the approved Chapter 06 plan ([WD-168](../../about/decision-register.md#wd-168)), so the script's one write runs only in a test domain. The Change request kind and the name suggester it describes are pending approval.
+
 ## Using Copilot at work
 
-`copilot-prompts.md` has four prompts: draft a row from what you know, find the SPNs a workload needs, check a row against the rules, and explain a finding. Use Microsoft 365 Copilot Chat signed in with your work account, follow your agency's AI-use policy on what you may paste, and run the checker on every row Copilot drafts: a suggestion isn't an approval, and it isn't evidence.
+`copilot-prompts.md` has four prompts: draft a row from what you know, find the SPNs a workload needs, check a row against the rules, and explain a finding. `proposal/proposal-prompts.md` has four for the [production proposal](#production-proposal). Use Microsoft 365 Copilot Chat signed in with your work account, follow your agency's AI-use policy on what you may paste, and run the checker on every row Copilot drafts: a suggestion isn't an approval, and it isn't evidence.
 
 ## What couldn't be verified {#what-couldnt-be-verified}
 
@@ -178,6 +193,7 @@ This guide has not been published in an edition yet. Each edition is kept, with 
 
 <!-- revisions:end -->
 
+[^mrp-dmsa-faq]: Microsoft Learn, "Delegated Managed Service Accounts FAQ" (at least one Windows Server 2025 domain controller, discoverable by the client or member server; every client and server on a dMSA-supported operating system), <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/delegated-managed-service-accounts/delegated-managed-service-accounts-faq>, and "Setting up delegated Managed Service Accounts (dMSA) in Windows Server 2025," <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/delegated-managed-service-accounts/delegated-managed-service-accounts-set-up-dmsa> (accessed Nov 28, 2026).
 [^mrp-csa]: Microsoft Learn, "What are custom security attributes in Microsoft Entra ID?" (users and service principals; free in all editions; limits: 64-character values, 50 values per object, 100 predefined values), <https://learn.microsoft.com/entra/fundamentals/custom-security-attributes-overview> (accessed Nov 25, 2026).
 [^mrp-csa-role]: Microsoft Learn, "Microsoft Entra built-in roles," Attribute Assignment Administrator (`microsoft.directory/azureManagedIdentities/customSecurityAttributes/update`), <https://learn.microsoft.com/entra/identity/role-based-access-control/permissions-reference> (accessed Nov 25, 2026).
 [^mrp-azure-tags]: Microsoft Learn, "Use tags to organize your Azure resources and management hierarchy" (50 tag pairs per resource; tags aren't inherited from a resource group or subscription), <https://learn.microsoft.com/azure/azure-resource-manager/management/tag-resources> (accessed Nov 25, 2026).
