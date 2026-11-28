@@ -6,7 +6,7 @@ doc-type: reference
 fmw-eyebrow: "Reference"
 date-modified: 2026-11-09
 review-status: approved
-reviewed-sha256: c4b3c5907bc916acff96262df6a4e27b77ea9574a8affdab831e373b253e641e
+reviewed-sha256: aeecefcd090d67cbc7dd601f49d2b771f4cc17068034b88fb5a5d7f7588efd6c
 last-reviewed: 2026-11-27
 ---
 # Learn Coverage Map {.unnumbered}
@@ -56,11 +56,11 @@ The data lives in [`data/learn-coverage/`](https://github.com/WhalerMike/moderni
 | Side | Pages | Cited | Covered, not cited | Not covered | Out of scope | Not reviewed yet |
 |---|---:|---:|---:|---:|---:|---:|
 | Windows Server identity | 561 | 167 | 22 | 12 | 360 | 0 |
-| Microsoft Entra | 2,511 | 1,033 | 441 | 364 | 671 | 2 |
+| Microsoft Entra | 2,511 | 1,034 | 440 | 364 | 671 | 2 |
 | Windows Server releases | 45 | 6 | 4 | 6 | 29 | 0 |
 | Windows Server security | 47 | 8 | 15 | 10 | 14 | 0 |
 | Windows Server file server and SMB | 26 | 3 | 1 | 11 | 11 | 0 |
-| **All sides** | 3,190 | 1,217 | 483 | 403 | 1,085 | 2 |
+| **All sides** | 3,190 | 1,218 | 482 | 403 | 1,085 | 2 |
 
 ## Windows Server identity {#windows-server-identity}
 
