@@ -32,6 +32,7 @@ Every **Reads only** run, grouped by the identity that runs it against productio
 | [SQL Server Identity](#sql-server-identity) | 3 | 2 | 1 | — |
 | [Help Desk Automation](#help-desk-automation) | 11 | 5 | 6 | `ConsentRequest.Read.All`<br>`DeviceManagementRBAC.Read.All`<br>`Organization.Read.All`<br>`RoleManagement.Read.Directory`<br>`ServiceHealth.Read.All`<br>`User.Read.All` |
 | [Microsoft Automation](#ms-automation) | 10 | 10 | 0 | `Application.Read.All`<br>`AuditLog.Read.All`<br>`DeviceManagementConfiguration.Read.All`<br>`DeviceManagementManagedDevices.Read.All`<br>`DeviceManagementServiceConfig.Read.All`<br>`Policy.Read.All`<br>`RoleAssignmentSchedule.Read.Directory`<br>`RoleEligibilitySchedule.Read.Directory`<br>`RoleManagement.Read.Directory`<br>`User.Read.All` |
+| [AD retirement evidence (gate G5)](#ad-retirement-evidence) | 1 | 1 | 0 | — |
 
 ## Non-Person Identity {#non-person-identity}
 
@@ -246,6 +247,14 @@ From [`examples/ms-automation/graph-calls.json`](https://github.com/WhalerMike/m
 | `stale-checkin` | — | Reads only | `DeviceManagementManagedDevices.Read.All` | — | — | Not scheduled: a learning path's labs |
 | `stale-users` | — | Reads only | `AuditLog.Read.All`<br>`User.Read.All` | — | — | Not scheduled: a learning path's labs |
 
+## AD retirement evidence (gate G5) {#ad-retirement-evidence}
+
+From [`examples/ad-retirement-evidence/config/calls.json`](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/ad-retirement-evidence/config/calls.json). Taught in [AD retirement evidence (gate G5)](../../docs/books/b19-developer-workbook/11-proving-ad-is-retired.md).
+
+| Run | Chapter or runbook | Reads or changes | Microsoft Graph permissions | Roles | Other rights | On the platform host (WD-181) |
+|---|---|---|---|---|---|---|
+| `g5-evidence` | 11 | Reads only | — | Log Analytics Data Reader | None (a DNS query)<br>Read (default for authenticated domain users)<br>Read (default) | Not scheduled: run at gate G5 by the person who writes the packet, with the workspace role at the workspace only for the run |
+
 ## Assessments you can run against production {#production-assessments}
 
 Every **Reads only** run on this page, grouped by the identity that runs it against the production forest, tenant and subscriptions under [WD-181](../about/decision-register.md#wd-181): the assessment gMSA, `gmsa-fmpassess$`, with default read in the forest, and for Microsoft Graph and Azure the reader app of the run's assessment set, which holds only that set's read rows and no write permission. A run here changes nothing. Its rights are the same as in its kit's table above; the chapter linked teaches it. **Changes** runs aren't listed here.
@@ -413,6 +422,7 @@ These runs change nothing, but no scheduled read-only identity can run them: eac
 | Microsoft Automation | `pim-report` | [Microsoft Automation](../../docs/training/ms-automation-foundations.md) | `RoleAssignmentSchedule.Read.Directory`<br>`RoleEligibilitySchedule.Read.Directory`<br>`RoleManagement.Read.Directory` | — | — | Not scheduled: a learning path's labs |
 | Microsoft Automation | `stale-checkin` | [Microsoft Automation](../../docs/training/ms-automation-foundations.md) | `DeviceManagementManagedDevices.Read.All` | — | — | Not scheduled: a learning path's labs |
 | Microsoft Automation | `stale-users` | [Microsoft Automation](../../docs/training/ms-automation-foundations.md) | `AuditLog.Read.All`<br>`User.Read.All` | — | — | Not scheduled: a learning path's labs |
+| AD retirement evidence (gate G5) | `g5-evidence` | [AD retirement evidence (gate G5)](../../docs/books/b19-developer-workbook/11-proving-ad-is-retired.md) | — | Log Analytics Data Reader | None (a DNS query)<br>Read (default for authenticated domain users)<br>Read (default) | Not scheduled: run at gate G5 by the person who writes the packet, with the workspace role at the workspace only for the run |
 
 ## Kits that state their needs in prose {#in-prose}
 

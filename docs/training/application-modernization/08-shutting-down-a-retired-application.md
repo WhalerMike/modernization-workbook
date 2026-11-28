@@ -21,10 +21,12 @@ An application switched off in one change still has DNS records, certificates, a
 | Requirement | KSI | Evidence |
 |---|---|---|
 | CM-8, System Component Inventory | KSI-PIY-GIV | The footprint's items, each flagged until removed |
-| AC-2, Account Management | KSI-IAM-AAM | The switch-off and the accounts on the removal list |
+| AC-2, Account Management | — | The accounts and registration on the removal list |
+| AC-2(3), Disable Accounts | KSI-IAM-AAM | The switch-off: sign-in and the service accounts disabled when no longer needed |
 | CA-3, Information Exchange | — | The dependents checked against the quiet date |
 | SR-12, Component Disposal | — | The removal commands and each team's record |
 | SI-12, Information Management and Retention | — | The records officer's confirmation at R3 |
+| CM-3, Configuration Change Control | KSI-CMT-LMC | Each removal command, run in its own change at its gate |
 
 KSIs are FedRAMP 20x indicators for cloud service providers. The agency lines this evidence up with what its providers report against them; it doesn't report KSIs itself. Which file supports which indicator is the program's mapping *(design guidance)*.
 
@@ -259,7 +261,7 @@ The run's date is only the folder's name. The data's dates are the fixture's and
     Expected output:
 
     ```text
-    Controls: CM-8, AC-2, CA-3, SR-12, SI-12
+    Controls: CM-8, AC-2, AC-2(3), CA-3, SR-12, SI-12, CM-3
     KSIs: KSI-PIY-GIV, KSI-IAM-AAM, KSI-CMT-LMC
     True
 

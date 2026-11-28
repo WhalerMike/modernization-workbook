@@ -19,7 +19,7 @@ Searched by topic and by the terms retire, retirement, decommission, shut down, 
 
 No guide covers application retirement. Facts that recur elsewhere agree: the 30-day restore of a deleted application or service principal (Book 04, Chapter 09; Book 01, Chapter 11 for users and groups).
 
-**One pairing held, not resolved.** The kit's `config/requirements.json` names KSI-CMT-LMC but none of the controls the other pages pair it with: Book 18, Appendix B pairs it with CM-3 ("each change"), which the config doesn't list; Book 14, Appendix I pairs it with CA-5 and CA-7, which the config doesn't list either. The chapter lists the KSI as the manifest does and pairs it with no control until the owner decides.
+**Pairings settled, November 28, 2026.** The kit's `config/requirements.json` named KSI-CMT-LMC but none of the controls the other pages pair it with (Book 18, Appendix B pairs it with CM-3, "each change"), and Book 18, Appendix B paired AC-2 with KSI-IAM-AAM, where Book 13, Appendix A maps that indicator to AC-2(2), AC-2(3) and AC-2(13), not AC-2. The workbook owner approved the fix: the config now lists CM-3 (paired with KSI-CMT-LMC) and AC-2(3) (paired with KSI-IAM-AAM, for the accounts disabled at the switch-off), AC-2 carries no KSI, and Book 18, Appendix B and this chapter say the same. Book 14, Appendix I still pairs KSI-CMT-LMC with CA-5 and CA-7, and AC-2 with KSI-IAM-AAM; that page is outside this change and is listed in its pull request.
 
 ## Claims log
 
@@ -36,10 +36,11 @@ No guide covers application retirement. Facts that recur elsewhere agree: the 30
 | 9 | `Remove-DnsServerResourceRecord`, `Disable-ADAccount` | Verified facts | carried (Book 18, Appendix B) | `am08-dns`, `am08-disable-ad` |
 | 10 | The plan, the findings, the gates before the switch-off, ART-04 and ART-05, the manifest and the edit found, 15 tests | Lab 1 | verified by running the lab | `data/kit-captures/am/08-*.txt` |
 | 11 | The 30-day window and the gate order | Start with | design (Book 18, Appendix B) | Book 18 |
+| 12 | KSI-IAM-AAM's related controls include AC-2(3) and not AC-2; KSI-CMT-LMC's include CM-3 | Federal requirements | carried (Book 13, Appendix A, indicator lists re-read November 20, 2026) | Book 13, Appendix A |
 
 ## Federal requirements and evidence
 
-Controls and KSIs are only the kit's `config/requirements.json`, step `retirement-plan`. The pairs shown, CM-8 with KSI-PIY-GIV and AC-2 with KSI-IAM-AAM, are the ones Book 18 Appendix B, Book 14 Appendix I and this workbook's Chapter 07 already use; CA-3, SR-12 and SI-12 have no KSI, as in Appendix B. Claim language: "supports", never "satisfies"; KSIs framed as FedRAMP 20x indicators for cloud service providers.
+Controls and KSIs are only the kit's `config/requirements.json`, step `retirement-plan`. The pairs shown are Book 13, Appendix A's, as Book 18, Appendix B uses them: CM-8 with KSI-PIY-GIV, AC-2(3) with KSI-IAM-AAM, CM-3 with KSI-CMT-LMC; AC-2, CA-3, SR-12 and SI-12 have no KSI. AC-2(3) is in the NIST Moderate baseline and FedRAMP Classes C and D, as Book 13, Appendix A records (FedRAMP control reference read November 20, 2026); CM-3 likewise (Moderate; Classes C and D). Claim language: "supports", never "satisfies"; KSIs framed as FedRAMP 20x indicators for cloud service providers.
 
 ## Review gate
 

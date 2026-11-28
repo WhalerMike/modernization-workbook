@@ -1,7 +1,7 @@
 {
   "_comment": "Everything the G5 evidence run reads, with the right each needs. Read only: it writes nothing to Active Directory, DNS or the workspace. docs/reference/permissions-by-run.md reads this file.",
   "tasks": {
-    "g5-evidence": { "mode": "read", "chapter": "", "graphPermissions": [], "azureRoles": ["Log Analytics Reader"], "adRights": ["Read (default for authenticated domain users)"] }
+    "g5-evidence": { "mode": "read", "chapter": "11", "graphPermissions": [], "azureRoles": ["Log Analytics Data Reader"], "adRights": ["Read (default for authenticated domain users)"] }
   },
   "calls": [
     { "id": "ad-dcs", "api": "ad", "method": "GET", "cmdlet": "Get-ADDomainController -Filter *", "adRight": "Read (default)", "tasks": ["g5-evidence"], "learn": "https://learn.microsoft.com/powershell/module/activedirectory/get-addomaincontroller" },
@@ -10,6 +10,6 @@
     { "id": "ad-spns", "api": "ad", "method": "GET", "cmdlet": "Get-ADObject -LDAPFilter (servicePrincipalName=*) -Properties servicePrincipalName, objectClass", "adRight": "Read (default)", "tasks": ["g5-evidence"], "learn": "https://learn.microsoft.com/powershell/module/activedirectory/get-adobject" },
     { "id": "ad-computers", "api": "ad", "method": "GET", "cmdlet": "Get-ADComputer -Filter 'Enabled -eq $true' -Properties lastLogonTimestamp, operatingSystem", "adRight": "Read (default)", "tasks": ["g5-evidence"], "learn": "https://learn.microsoft.com/powershell/module/activedirectory/get-adcomputer" },
     { "id": "dns-dc-srv", "api": "dns", "method": "GET", "cmdlet": "Resolve-DnsName -Type SRV _ldap._tcp.dc._msdcs.<domain>", "adRight": "None (a DNS query)", "tasks": ["g5-evidence"], "learn": "https://learn.microsoft.com/powershell/module/dnsclient/resolve-dnsname" },
-    { "id": "law-dc-auth", "api": "loganalytics", "method": "POST", "path": "/v1/workspaces/{workspaceId}/query", "azureRole": "Log Analytics Reader", "tasks": ["g5-evidence"], "learn": "https://learn.microsoft.com/azure/azure-monitor/logs/api/overview", "note": "queries/dc-authentication.kql: Kerberos 4768 and 4769 and NTLM 4776 on the domain controllers, by account and client, over the window" }
+    { "id": "law-dc-auth", "api": "loganalytics", "method": "POST", "path": "/v1/workspaces/{workspaceId}/query", "azureRole": "Log Analytics Data Reader", "tasks": ["g5-evidence"], "learn": "https://learn.microsoft.com/azure/azure-monitor/logs/api/overview", "note": "queries/dc-authentication.kql: Kerberos 4768 and 4769 and NTLM 4776 on the domain controllers, by account and client, over the window. Log Analytics Data Reader is the bare minimum to run queries (Learn, Manage access to Log Analytics workspaces), assigned at the workspace" }
   ]
 }

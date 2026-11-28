@@ -44,10 +44,11 @@ Describe 'A Kerberos island with leftovers' {
         foreach ($f in $m.files) { $f.sha256 | Should -Be (Get-AreSha256 (Join-Path $script:Out $f.path)) }
         $m.register.sha256 | Should -Match '^[0-9a-f]{64}$'
         $m.ksis | Should -Contain 'KSI-PIY-GIV'
+        $m.ksis | Should -Not -Contain 'KSI-IAM-AAM'
         $m.ready | Should -BeFalse
     }
     It 'writes the same bytes in Windows PowerShell 5.1 and PowerShell 7, so the manifest hash is the same in both' {
-        $script:R.ManifestSha256 | Should -Be '2b33945cbd54c146a7a9e32047cfd27160b7a01afc8543e358e546db3fd5fd3e'
+        $script:R.ManifestSha256 | Should -Be '6999d6280426a946da7b16b2cef32e887261e9d36240386e637551fa4a3d2566'
         Get-Content (Join-Path $script:Out 'trusts.json') -Raw | Should -Match '"Direction": "Outbound"'
     }
     It 'AD-G5-02: an island past its end of life' {
@@ -56,6 +57,22 @@ Describe 'A Kerberos island with leftovers' {
         $p = Join-Path $script:Tmp 'expired.json'; $reg | ConvertTo-Json -Depth 5 | Set-Content -Path $p -Encoding UTF8
         $e = Get-AreEstate -Domain corp.contoso.example -FixturePath (Join-Path $script:Fx 'island')
         @(Test-AreG5 -Estate $e -Register (Get-AreIslandRegister -Path $p) -AsOf $script:AsOf | Where-Object { $_.Rule -eq 'AD-G5-02' }).Count | Should -Be 1
+    }
+}
+
+Describe 'An empty authentication export' {
+    It 'AD-G5-09: no rows while domain controllers still run is a finding, and the runner exits non-zero' {
+        $fx = Join-Path $script:Tmp 'no-auth'
+        Copy-Item -Recurse (Join-Path $script:Fx 'island') $fx
+        Set-Content -Path (Join-Path $fx 'auth.json') -Value '[]' -Encoding ASCII
+        $e = Get-AreEstate -Domain corp.contoso.example -FixturePath $fx
+        $g9 = @(Test-AreG5 -Estate $e -Register (Get-AreIslandRegister) -AsOf $script:AsOf | Where-Object { $_.Rule -eq 'AD-G5-09' })
+        $g9.Count | Should -Be 1
+        $g9[0].Severity | Should -Be 'Finding'
+        $g9[0].Issue | Should -Match '^No authentication rows were read while 2 domain controller'
+        & (Join-Path $script:Kit 'Invoke-AreEvidence.ps1') -Domain corp.contoso.example -FixturePath $fx -OutputPath (Join-Path $script:Tmp 'no-auth-out') -AsOf $script:AsOf | Out-Null
+        $LASTEXITCODE | Should -Be 2
+        Get-Content (Join-Path $script:Tmp 'no-auth-out/summary.md') -Raw | Should -Match 'Authentication rows read: 0'
     }
 }
 

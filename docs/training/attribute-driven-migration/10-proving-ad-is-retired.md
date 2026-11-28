@@ -27,7 +27,7 @@ G5 is the program's gate, not the implementation guide's Gate 5: the guide's ten
 |---|---|---|
 | CM-8 System Component Inventory: every domain controller is decommissioned or in the register, and no metadata or DC locator record outlives its server | KSI-PIY-GIV | `dcs.json`, `ntds.json`, `srv.json` and `findings.json` in the evidence repository |
 | SA-22 Unsupported System Components: the island and each workload have an end-of-life date that hasn't passed | None in the kit's config | `findings.json` |
-| IA-2; AU-6: nothing outside the register still authenticates through the domain controllers | None in the kit's config | `auth.json`; the SIEM |
+| IA-2; AU-6: nothing outside the register still authenticates through the domain controllers, and the export isn't empty while domain controllers run (AD-G5-09) | None in the kit's config | `auth.json`; the SIEM |
 | CA-7 Continuous Monitoring: the packet hashes every file and the register, and an edit after it was written shows | KSI-MLA-EVC | `manifest.json`, and its hash in the SIEM |
 
 : Chapter 11's requirements, KSIs and evidence for this module {.striped .hover}
@@ -185,7 +185,7 @@ The kit runs the same in PowerShell 7, with the same packet, byte for byte. In a
    Ready          : False
    Findings       : 7
    Warnings       : 1
-   ManifestSha256 : aa9fad972135cf1d700b86fb63ae850fbbb922fb4d043212ff115bbdb7e82631
+   ManifestSha256 : 2b0a5f1133c9d73cb00a7ed8cb7939d9bd252383de40b3bf2695b1bf74528817
    OutputPath     : C:\FMWLabs\results\attribute-driven-migration-10-proving-ad-is-retired\lab1\<run>\g5
 
    2
@@ -249,7 +249,7 @@ The kit runs the same in PowerShell 7, with the same packet, byte for byte. In a
    summary.md      True
    trusts.json     True
    True
-   CM-8, AC-2, IA-2, AU-6, CA-7, SA-22 | KSI-PIY-GIV, KSI-IAM-AAM, KSI-MLA-EVC
+   CM-8, AC-2, IA-2, AU-6, CA-7, SA-22 | KSI-PIY-GIV, KSI-MLA-EVC
    ```
 
 5. **Break it on purpose.** Add a line to the findings, then list the files whose hash no longer matches:
@@ -279,7 +279,7 @@ The kit runs the same in PowerShell 7, with the same packet, byte for byte. In a
    Ready          : False
    Findings       : 9
    Warnings       : 0
-   ManifestSha256 : 60c89510a4ac39fd2c148a0617ede837c4080baa2236b1001289aacdb29244c1
+   ManifestSha256 : 3bafa9556d919674cec02d86550791a6e422bdc17269b5fd3eef7d8c3553cf66
    OutputPath     : C:\FMWLabs\results\attribute-driven-migration-10-proving-ad-is-retired\lab1\<run>\g5-late
 
    - AD-G5-02 (Finding) corp.contoso.example: The island's end of life, 2028-09-30, has passed
@@ -302,7 +302,7 @@ The kit runs the same in PowerShell 7, with the same packet, byte for byte. In a
    Ready          : True
    Findings       : 0
    Warnings       : 0
-   ManifestSha256 : 3af07ec0c556128fccd457a57d8aa598545330b545bf31ee77463467e2594baf
+   ManifestSha256 : 7079229195a63138e4b4012092266b7ac9ae97529a600e611d47d9c57234a755
    OutputPath     : C:\FMWLabs\results\attribute-driven-migration-10-proving-ad-is-retired\lab1\<run>\g5-retired
 
    0
@@ -319,7 +319,7 @@ The kit runs the same in PowerShell 7, with the same packet, byte for byte. In a
    ```text
    PassedCount FailedCount
    ----------- -----------
-            14           0
+            15           0
    ```
 
 **Check your work:** given a packet, you can say which Phase 5 step each finding sends you back to, and show that its files are the ones the kit wrote.
@@ -343,7 +343,7 @@ The chapter's steps say what each command does and what to look for.
 # Step 1: Grant the read
 # In PowerShell 7
 Connect-AzAccount -Environment AzureCloud -Tenant <tenant-id> -Subscription <subscription-id>
-New-AzRoleAssignment -SignInName <your-upn> -RoleDefinitionName 'Log Analytics Reader' -Scope <workspace-resource-id>
+New-AzRoleAssignment -SignInName <your-upn> -RoleDefinitionName 'Log Analytics Data Reader' -Scope <workspace-resource-id>
 
 # Step 2: Export the authentication rows
 # In PowerShell 7
@@ -380,7 +380,7 @@ Remove-Item -Force .\dc-auth.csv, .\island-register.json
 
 # Step 7: Back it out
 # In PowerShell 7
-Remove-AzRoleAssignment -SignInName <your-upn> -RoleDefinitionName 'Log Analytics Reader' -Scope <workspace-resource-id>
+Remove-AzRoleAssignment -SignInName <your-upn> -RoleDefinitionName 'Log Analytics Data Reader' -Scope <workspace-resource-id>
 ```
 :::
 
@@ -399,7 +399,7 @@ Remove-AzRoleAssignment -SignInName <your-upn> -RoleDefinitionName 'Log Analytic
    c. A warning for the device track.
 2. The authentication export has no rows at all. What does that show?
    a. Nothing signs in through the domain controllers any more.
-   b. Nothing yet: the events may not be reaching the workspace, so check auditing and forwarding before relying on AD-G5-07.
+   b. Nothing yet: the events aren't reaching the workspace. While domain controllers still run, the kit reports AD-G5-09 and exits 2; fix auditing and forwarding and export again.
    c. The island has ended.
 3. Why does the manifest record the island register's SHA-256?
    a. So a register widened to make findings disappear is visible as a changed register.

@@ -57,4 +57,4 @@ Invoke-Pester -Path tests
 
 ## The plan
 
-`plan.md` (the gates, the findings and the commands), `plan.json`, `findings.json`, and `manifest.json` with each file's SHA-256, the footprint's SHA-256, the controls (CM-8, AC-2, CA-3, SR-12, SI-12) and the KSIs (KSI-PIY-GIV, KSI-IAM-AAM, KSI-CMT-LMC). The evidence supports those controls; the assessor decides them. KSIs are FedRAMP's provider indicators, which the agency lines its own evidence up with.
+`plan.md` (the gates, the findings and the commands), `plan.json`, `findings.json`, and `manifest.json` with each file's SHA-256, the footprint's SHA-256, the controls (CM-8, AC-2, AC-2(3), CA-3, SR-12, SI-12, CM-3) and the KSIs (KSI-PIY-GIV, KSI-IAM-AAM, KSI-CMT-LMC). The KSIs pair as Book 18, Appendix B pairs them, from Book 13, Appendix A's mapping: KSI-PIY-GIV with CM-8, KSI-IAM-AAM with AC-2(3) (disabling accounts no longer needed; AC-2 itself carries no KSI), and KSI-CMT-LMC with CM-3 (each removal is its own change). The evidence supports those controls; the assessor decides them. KSIs are FedRAMP's provider indicators, which the agency lines its own evidence up with.

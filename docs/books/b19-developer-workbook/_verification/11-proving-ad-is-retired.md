@@ -21,14 +21,14 @@ Searched by topic and key terms ("AD retired", "AD Retired", "G5", "Kerberos isl
 | 5 | 4768 and 4769 only on domain controllers; 4776 on the authoritative computer (the domain controller for domain accounts); their audit subcategories | Learn table; Lab 2 step 2; Dangers | verified Nov 27, 2026 | Learn, events 4768, 4769, 4776 |
 | 6 | `SecurityEvent` collected by Defender for Cloud or Microsoft Sentinel; its columns | Learn table; Lab 2 | verified Nov 27, 2026 | Learn, SecurityEvent table reference |
 | 7 | `Invoke-AzOperationalInsightsQuery -WorkspaceId -Query`, rows in `.Results` | Lab 2 step 2 | verified Nov 27, 2026 | Learn, cmdlet reference |
-| 8 | Log Analytics Reader includes `*/read`; Log Analytics Data Reader is the bare minimum for queries | Lab 2 step 1; Verified facts | verified Nov 27, 2026; see open item 1 | Learn, Manage access to Log Analytics workspaces |
+| 8 | Log Analytics Data Reader is the bare minimum for queries (`workspaces/query/read`, `workspaces/read`, data action `workspaces/tables/data/read`), assignable at the workspace alone; Log Analytics Reader includes `*/read` | Lab 2 step 1; Verified facts; the kit's `config/calls.json` | verified Nov 28, 2026 (built-in roles and scopes reread) | Learn, Manage access to Log Analytics workspaces |
 | 9 | `lastLogonTimestamp` updated only past the sync interval; 14 days minus a random part of 5 after a functional level raise | Learn table; The checks; Dangers | verified Nov 27, 2026 | Learn, Last-Logon-Timestamp attribute |
 | 10 | RSAT through Optional features on Windows 10 1809 and later | Lab 2 | verified Nov 27, 2026 | Learn, Remote Server Administration Tools |
 | 11 | `New-AzRoleAssignment` / `Remove-AzRoleAssignment` with `-SignInName -RoleDefinitionName -Scope` | Lab 2 steps 1 and 7 | as cited in Chapter 09 (Nov 27, 2026); `Remove-AzRoleAssignment` with the same parameters not reread | Learn, Assign Azure roles using Azure PowerShell |
 | 12 | Get-ADObject, Get-ADTrust, Get-ADComputer pages | Learn table | links from the kit's `config/calls.json`, not reread | Learn |
 | 13 | Microsoft supports AD DS; retirement is the agency's decision | Where the kit sits | verified against WD-014 | decision register |
 | 14 | Windows Server 2019 minimum, 2016 upgrades done | Where the kit sits | stated as an assumption about the estate | the workbook owner's baseline decision, November 5, 2026 |
-| 15 | Lab 1 outputs: 7 findings and 1 warning, manifest `aa9fad97…`; 9 hashes true; `findings.json` caught; 9 findings, 0 warnings after 2028-10-01; full retirement ready; 14 tests | Lab 1 | verified by `scripts/kit_captures.py adm` in Windows PowerShell 5.1, and the same packet hashes in PowerShell 7 | local run, Nov 27, 2026 |
+| 15 | Lab 1 outputs: 7 findings and 1 warning, manifest `2b0a5f11…`; 9 hashes true; `findings.json` caught; 9 findings, 0 warnings after 2028-10-01; full retirement ready; 15 tests | Lab 1 | verified by `scripts/kit_captures.py adm` in Windows PowerShell 5.1, and the same packet hashes in PowerShell 7 | local run, Nov 27, 2026; recaptured Nov 28, 2026 after the changes below |
 | 16 | The register's workloads come from the island list; the platform host's objects stay in the register until WD-183 ends; the manifest hash goes to the SIEM | Where the kit sits; The packet; Checklist | restated-as-design (labeled) | — |
 
 ## Kit changes in this pull request
@@ -41,9 +41,16 @@ Searched by topic and key terms ("AD retired", "AD Retired", "G5", "Kerberos isl
 
 Tests: 14 passed in Windows PowerShell 5.1.26100 (Pester 5.9.0) and PowerShell 7 (Pester 5.9.0), November 27, 2026.
 
+## Kit changes, November 28, 2026
+
+The workbook owner approved three changes to the kit and this chapter ("proceed with all"):
+
+- **Workspace role.** `config/calls.json` declares Log Analytics Data Reader, not Log Analytics Reader, for the workspace query; Lab 2 grants and removes it at the workspace scope, and `docs/reference/permissions-by-run.md` was regenerated. Learn reread November 28, 2026 (claim 8).
+- **KSI pairing for AC-2.** `config/requirements.json` no longer lists KSI-IAM-AAM. Book 13, Appendix A maps it to AC-2(2), AC-2(3) and AC-2(13), not AC-2, and the packet supports none of the three: it shows accounts still in use (AD-G5-06, AD-G5-07), not accounts disabled, removed or managed automatically. AC-2 carries no KSI. The fixture manifest hash changed with the config, and the test pins the new one.
+- **Empty authentication export.** New check AD-G5-09: no authentication rows while domain controllers still run is a finding, so the packet isn't ready and `Invoke-AreEvidence.ps1` exits `2`. With `-NoDomain`, or no domain controller left, an empty export is expected and isn't a finding. The kit checks the total, not each domain controller, so the checklist still asks for rows from each one. A new Pester test covers it: 15 tests.
+
+Tests: 15 passed in Windows PowerShell 5.1.26100 (Pester 5.9.0) and PowerShell 7 (Pester 5.9.0), November 28, 2026.
+
 ## Open items
 
-1. **Workspace role.** The kit's `config/calls.json` declares Log Analytics Reader; Learn names Log Analytics Data Reader as the bare minimum for queries. The chapter grants the declared role at the workspace scope and says so. Changing the declaration is a kit decision for the owner.
-2. **KSI pairing for AC-2.** The kit's `config/requirements.json` lists KSI-IAM-AAM, and Book 18, Appendix B pairs AC-2 with it; Book 13, Appendix A maps KSI-IAM-AAM to AC-2's enhancements (AC-2(2), AC-2(3), AC-2(13)) and not to AC-2. The chapter claims no KSI for AC-2 until the owner settles which reading holds. AU-6's indicator in Book 13, Appendix A (KSI-MLA-RVL) isn't in the kit's config, so AU-6 carries none here either.
-3. **Zero authentication rows.** The kit doesn't fail when the export is empty while domain controllers remain; the chapter's guard is the checklist and Lab 2's stop. A check in the kit is a possible change.
-4. **Not run against a live forest or workspace.** Lab 2 is written from Learn's commands and the kit's code.
+1. **Not run against a live forest or workspace.** Lab 2 is written from Learn's commands and the kit's code.

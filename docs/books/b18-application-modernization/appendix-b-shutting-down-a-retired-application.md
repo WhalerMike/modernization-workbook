@@ -98,12 +98,13 @@ It checks the gates (ART-01 to ART-07, set out in the kit's README) and writes `
 |---|---|---|
 | R2 Quiet, R5 exchanges | CA-3 (agreements reviewed and ended) | — |
 | R3 Records | SI-12 (information management and retention), with the records schedule | — |
-| R4, R5 accounts and registrations | AC-2 | KSI-IAM-AAM |
+| R4, R5 accounts and registrations | AC-2 | — |
+| R4 switch-off, R5 accounts disabled | AC-2(3) (disable accounts no longer needed) | KSI-IAM-AAM |
 | R5 components and certificates | SR-12 | — |
 | R5, R6 the CMDB item | CM-8 | KSI-PIY-GIV |
 | Each change | CM-3 | KSI-CMT-LMC |
 
-The evidence supports those controls; the assessor decides them.
+KSI-IAM-AAM is paired with AC-2(3), not AC-2: [Book 13, Appendix A](../b13-governance/appendix-a-requirements-mapping.md) records that the indicator lists AC-2(2), AC-2(3) and AC-2(13) among its related controls, not AC-2 itself. The evidence supports those controls; the assessor decides them.
 
 ## What is requirement and what is design
 
