@@ -1,0 +1,33 @@
+PS> Get-Content out/queue-apply/RITM0010004/evidence.json
+{
+  "number": "RITM0010004",
+  "item": "Authenticator reset",
+  "task": "authenticator-reset",
+  "accessRequestId": "AR-4",
+  "mode": "apply",
+  "runUtc": "2026-11-27T12:00:00Z",
+  "result": {
+    "userId": "a1000000-0000-4000-8000-000000000104",
+    "removed": [
+      "authenticator:m1",
+      "phone:3179e48a-750b-4051-897c-87b9720928f7"
+    ],
+    "temporaryAccessPass": {
+      "lifetimeInMinutes": 60,
+      "isUsableOnce": true
+    },
+    "delivered": "restricted field, read to the person by the verified agent"
+  },
+  "state": "done",
+  "reason": null,
+  "controls": [
+    "IA-5",
+    "IA-2",
+    "IA-12",
+    "SI-4"
+  ],
+  "ksis": [
+    "KSI-IAM-JIT",
+    "KSI-IAM-SUS"
+  ]
+}

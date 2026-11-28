@@ -21889,6 +21889,7 @@ pages:
   - docs/books/b04-access/05-applications-and-workload-identities.md
   - docs/books/b04-access/06-who-decides-access.md
   - docs/books/guides/ttm-task-catalog.md
+  - docs/project-plans/developer-workbooks/help-desk-automation/02-the-consent-request-review.md
   - docs/reference/graph-practice-crosswalk.md
 - path: docs/identity/enterprise-apps/configure-app-management-policies.md
   url: https://learn.microsoft.com/entra/identity/enterprise-apps/configure-app-management-policies
@@ -25120,6 +25121,7 @@ pages:
   - docs/books/b15-day2-operations/12-the-day-two-runbook.md
   - docs/books/b15-day2-operations/_verification/12-the-day-two-runbook.md
   - docs/books/b15-day2-operations/appendix-a-help-desk-task-reference.md
+  - docs/project-plans/developer-workbooks/help-desk-automation/03-scheduled-checks-sync-roles-and-logs.md
 - path: docs/identity/hybrid/connect/how-to-connect-sync-recycle-bin.md
   url: https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-sync-recycle-bin
   title: 'Microsoft Entra Connect Sync: Enable AD recycle bin'

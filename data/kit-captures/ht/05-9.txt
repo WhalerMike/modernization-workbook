@@ -1,0 +1,10 @@
+PS> ./deploy/Register-HtRequestPipeline.ps1 -SettingsPath tests/fixtures/requests-settings.fixture.json | Format-List Task, When, RunAs, Registered
+Task       : FMW Help Desk - Request pipeline
+When       : every 5 minutes
+RunAs      : CONTOSO\gmsa-fmphelpdesk$
+Registered : False
+PS> $s = Get-Content tests/fixtures/requests-settings.fixture.json -Raw | ConvertFrom-Json
+PS> $s.runAs = 'CONTOSO\gmsa-fmpassess$'
+PS> $s | ConvertTo-Json | Set-Content out/assess-settings.json
+PS> try { ./deploy/Register-HtRequestPipeline.ps1 -SettingsPath out/assess-settings.json } catch { $_.Exception.Message }
+The request pipeline writes; it never runs as the assessment gMSA (WD-181, WD-182).

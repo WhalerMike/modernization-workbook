@@ -1742,6 +1742,7 @@ pages:
   - docs/books/guides/non-person-identity-implementation.md
   - docs/books/guides/platform-host-implementation.md
   - docs/books/guides/service-account-migration.md
+  - docs/project-plans/developer-workbooks/help-desk-automation/06-deploying-to-test-and-production.md
   - docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md
   - docs/project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.md
   - docs/project-plans/developer-workbooks/non-person-identity/12-the-managed-service-account-standard.md

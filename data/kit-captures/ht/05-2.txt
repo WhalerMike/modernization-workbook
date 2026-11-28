@@ -1,0 +1,13 @@
+PS> Invoke-HtRequestQueue -OutputPath out/queue -FixturePath tests/fixtures -AsOf 2026-11-27T12:00:00Z | Format-Table Number, Task, State, Reason -AutoSize | Out-String -Width 250
+Number      Task                State   Reason
+------      ----                -----   ------
+RITM0010001 typed-change        dry-run
+RITM0010002 password-reset      dry-run
+RITM0010003 authenticator-reset manual  HT-RQ-04: the user holds a directory role; a Privileged Authentication Administrator acts by hand
+RITM0010004 authenticator-reset dry-run
+RITM0010005 password-reset      failed  HT-RQ-01: no identity verification recorded (who verified, and how)
+RITM0010006 account-create      dry-run
+RITM0010007 typed-change        failed  HT-RQ-02: SailPoint shows the request REJECTED
+RITM0010008 typed-change        failed  HT-RQ-03: the requester approved their own request
+RITM0010009                     manual  HT-RQ-05: 'Run this PowerShell for me' isn't one of the pipeline's catalog items
+RITM0010011 typed-change        waiting An approval is still pending in SailPoint

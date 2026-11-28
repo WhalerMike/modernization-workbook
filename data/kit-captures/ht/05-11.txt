@@ -1,0 +1,4 @@
+PS> Invoke-Pester -Path tests -FullNameFilter 'The approved-request pipeline*', 'The request pipeline on the platform host*' -Output None -PassThru | Select-Object PassedCount, FailedCount
+PassedCount FailedCount
+----------- -----------
+         20           0

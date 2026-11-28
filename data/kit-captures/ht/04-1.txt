@@ -1,0 +1,9 @@
+PS> Import-Module ./powershell/HelpDeskAutomation/HelpDeskAutomation.psm1 -Force
+PS> $cfg = Get-HtConfig request-items
+PS> $cfg.items.Keys | Sort-Object | ForEach-Object { [pscustomobject]@{ Item = $_; Task = $cfg.items[$_].task; Variables = $cfg.items[$_].variables -join ', '; Verification = $cfg.items[$_].verification } } | Format-Table -AutoSize | Out-String -Width 200
+Item                                    Task                Variables                                                         Verification
+----                                    ----                ---------                                                         ------------
+Authenticator reset                     authenticator-reset user_principal_name                                                       True
+Cloud account for a partner or lab user account-create      given_name, surname, user_principal_name, usage_location, profile        False
+Password reset                          password-reset      user_principal_name                                                       True
+Typed user change                       typed-change        user_principal_name, change_id, value                                    False

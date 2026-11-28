@@ -1,0 +1,4 @@
+PS> Invoke-Pester -Path tests -FullNameFilter 'Typed change*', 'Declared calls only*' -Output None -PassThru | Select-Object PassedCount, FailedCount
+PassedCount FailedCount
+----------- -----------
+         17           0

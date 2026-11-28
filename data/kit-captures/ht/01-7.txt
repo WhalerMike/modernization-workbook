@@ -1,0 +1,2 @@
+PS> try { Invoke-HtTypedChange -PlanPath $p.PlanPath -ApprovedPlanSha256 ('0' * 64) -OutputPath out/apply -FixturePath tests/fixtures -Apply } catch { $_.Exception.Message }
+HT-08: the plan's SHA-256 is dd84334337d48e28b4db41c5e8fdab5dfb64df39a54584bea126af1904696a57, not the approved 0000000000000000000000000000000000000000000000000000000000000000. Nothing was changed.

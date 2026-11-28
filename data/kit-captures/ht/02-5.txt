@@ -1,0 +1,15 @@
+PS> Get-Content out/consent/findings.json
+[
+  {
+    "Rule": "HT-CR-01",
+    "Severity": "Finding",
+    "AppId": "f3000000-0000-4000-8000-000000000302",
+    "Issue": "Waiting 15 days, more than 5: decide it or decline it"
+  },
+  {
+    "Rule": "HT-CR-02",
+    "Severity": "Warn",
+    "AppId": "f3000000-0000-4000-8000-000000000302",
+    "Issue": "Broad permissions requested (Files.ReadWrite.All): the identity governance approver decides, after the service's authorization is recorded"
+  }
+]

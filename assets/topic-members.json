@@ -9,6 +9,10 @@
    "title": "Attribute-Driven Migration"
   },
   {
+   "id": "help-desk-automation",
+   "title": "Help Desk Automation"
+  },
+  {
    "id": "privileged-access",
    "title": "Privileged Access"
   },
@@ -1385,6 +1389,10 @@
    "title": "Provider Notices"
   },
   {
+   "id": "help-desk-automation",
+   "title": "Help Desk Automation"
+  },
+  {
    "id": "ticket-to-machine",
    "title": "Ticket-to-Machine"
   },
@@ -1615,6 +1623,10 @@
  ],
  "docs/books/b15-day2-operations/04-help-desk-authority-in-entra.md": [
   {
+   "id": "help-desk-automation",
+   "title": "Help Desk Automation"
+  },
+  {
    "id": "compliance-evidence",
    "title": "Compliance and Evidence"
   }
@@ -1666,6 +1678,10 @@
   }
  ],
  "docs/books/b15-day2-operations/12-the-day-two-runbook.md": [
+  {
+   "id": "help-desk-automation",
+   "title": "Help Desk Automation"
+  },
   {
    "id": "ticket-to-machine",
    "title": "Ticket-to-Machine"
@@ -2247,6 +2263,10 @@
  ],
  "docs/books/guides/platform-host-implementation.md": [
   {
+   "id": "help-desk-automation",
+   "title": "Help Desk Automation"
+  },
+  {
    "id": "platform-host",
    "title": "Platform Host"
   }
@@ -2613,6 +2633,48 @@
   {
    "id": "global-secure-access",
    "title": "Global Secure Access"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/help-desk-automation/01-the-typed-change.md": [
+  {
+   "id": "help-desk-automation",
+   "title": "Help Desk Automation"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/help-desk-automation/02-the-consent-request-review.md": [
+  {
+   "id": "help-desk-automation",
+   "title": "Help Desk Automation"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/help-desk-automation/03-scheduled-checks-sync-roles-and-logs.md": [
+  {
+   "id": "help-desk-automation",
+   "title": "Help Desk Automation"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/help-desk-automation/04-requests-in-servicenow-and-sailpoint.md": [
+  {
+   "id": "help-desk-automation",
+   "title": "Help Desk Automation"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/help-desk-automation/05-the-request-pipeline-and-the-one-time-secret.md": [
+  {
+   "id": "help-desk-automation",
+   "title": "Help Desk Automation"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/help-desk-automation/06-deploying-to-test-and-production.md": [
+  {
+   "id": "help-desk-automation",
+   "title": "Help Desk Automation"
+  }
+ ],
+ "docs/project-plans/developer-workbooks/help-desk-automation/index.md": [
+  {
+   "id": "help-desk-automation",
+   "title": "Help Desk Automation"
   }
  ],
  "docs/project-plans/developer-workbooks/hr-driven-identity/01-the-writer-register-as-code.md": [
@@ -3049,6 +3111,10 @@
  ],
  "docs/project-plans/developer-workbooks/ticket-to-machine/index.md": [
   {
+   "id": "help-desk-automation",
+   "title": "Help Desk Automation"
+  },
+  {
    "id": "ticket-to-machine",
    "title": "Ticket-to-Machine"
   }
@@ -3133,6 +3199,12 @@
   {
    "id": "microsoft-automation",
    "title": "Microsoft Automation"
+  }
+ ],
+ "docs/reference/permissions-by-run.md": [
+  {
+   "id": "help-desk-automation",
+   "title": "Help Desk Automation"
   }
  ],
  "docs/reference/rmf-map.md": [
@@ -3525,6 +3597,48 @@
   {
    "id": "global-secure-access",
    "title": "Global Secure Access"
+  }
+ ],
+ "docs/training/help-desk-automation/01-parameters-travel-commands-dont.md": [
+  {
+   "id": "help-desk-automation",
+   "title": "Help Desk Automation"
+  }
+ ],
+ "docs/training/help-desk-automation/02-consent-requests-and-the-approver.md": [
+  {
+   "id": "help-desk-automation",
+   "title": "Help Desk Automation"
+  }
+ ],
+ "docs/training/help-desk-automation/03-the-morning-checks-on-a-schedule.md": [
+  {
+   "id": "help-desk-automation",
+   "title": "Help Desk Automation"
+  }
+ ],
+ "docs/training/help-desk-automation/04-from-catalog-item-to-approval.md": [
+  {
+   "id": "help-desk-automation",
+   "title": "Help Desk Automation"
+  }
+ ],
+ "docs/training/help-desk-automation/05-the-pipeline-and-the-separate-channel.md": [
+  {
+   "id": "help-desk-automation",
+   "title": "Help Desk Automation"
+  }
+ ],
+ "docs/training/help-desk-automation/06-deploying-to-test-and-production.md": [
+  {
+   "id": "help-desk-automation",
+   "title": "Help Desk Automation"
+  }
+ ],
+ "docs/training/help-desk-automation/index.md": [
+  {
+   "id": "help-desk-automation",
+   "title": "Help Desk Automation"
   }
  ],
  "docs/training/hr-driven-identity/01-one-writer-per-state.md": [

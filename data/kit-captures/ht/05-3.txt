@@ -1,0 +1,23 @@
+PS> Get-Content out/queue/RITM0010002/evidence.json
+{
+  "number": "RITM0010002",
+  "item": "Password reset",
+  "task": "password-reset",
+  "accessRequestId": "AR-2",
+  "mode": "dry-run",
+  "runUtc": "2026-11-27T12:00:00Z",
+  "result": {
+    "userId": "a1000000-0000-4000-8000-000000000104",
+    "forceChangePasswordNextSignIn": true,
+    "delivered": "restricted field, read to the person by the verified agent"
+  },
+  "state": "dry-run",
+  "reason": null,
+  "controls": [
+    "IA-5",
+    "AC-2"
+  ],
+  "ksis": [
+    "KSI-IAM-JIT"
+  ]
+}

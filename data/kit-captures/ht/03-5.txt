@@ -1,0 +1,32 @@
+PS> Invoke-HtRoleReview -OutputPath out/roles -FixturePath tests/fixtures -AsOf 2026-11-27T12:00:00Z | Format-List
+CustomRoles : 3
+Findings    : 3
+Warnings    : 1
+OutputPath  : out/roles
+PS> Get-Content out/roles/findings.json
+[
+  {
+    "Rule": "HT-RR-03",
+    "Severity": "Finding",
+    "Object": "d4000000-0000-4000-8000-000000000401",
+    "Issue": "Last reviewed 2026-07-15, more than 90 days ago"
+  },
+  {
+    "Rule": "HT-RR-04",
+    "Severity": "Warn",
+    "Object": "a1000000-0000-4000-8000-000000000101",
+    "Issue": "Holds 'Help Desk Password Reset Tier 2 (fictional)' directly, not through GRP-HelpDesk-Tier2"
+  },
+  {
+    "Rule": "HT-RR-01",
+    "Severity": "Finding",
+    "Object": "d4000000-0000-4000-8000-000000000402",
+    "Issue": "Custom directory role 'Temporary Contractor Admin (fictional)' isn't in the register"
+  },
+  {
+    "Rule": "HT-RR-02",
+    "Severity": "Finding",
+    "Object": "b6000000-0000-4000-8000-000000000601",
+    "Issue": "Permissions differ from the register: added Microsoft.Intune_RemoteTasks_Wipe; missing "
+  }
+]

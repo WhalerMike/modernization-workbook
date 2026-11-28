@@ -52,6 +52,7 @@ WORKBOOKS = {
     "sql": ("docs/project-plans/developer-workbooks/sql-server-identity", "examples/sql-server-identity"),
     "am": ("docs/project-plans/developer-workbooks/application-modernization", "examples/app-modernization"),
     "hr": ("docs/project-plans/developer-workbooks/hr-driven-identity", "examples/hr-lifecycle"),
+    "ht": ("docs/project-plans/developer-workbooks/help-desk-automation", "examples/help-desk-automation"),
     "adm": ("docs/books/b19-developer-workbook", "examples"),
 }
 # Per chapter ("<workbook>-<NN>"): "cwd" overrides the lab's folder; "text" lists the ```text blocks of the

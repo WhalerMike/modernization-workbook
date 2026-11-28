@@ -1,0 +1,4 @@
+PS> Invoke-Pester -Path tests -FullNameFilter 'Morning synchronization check*', 'Custom role review*', 'Event-log forwarding check*', 'The platform host jobs*' -Output None -PassThru | Select-Object PassedCount, FailedCount
+PassedCount FailedCount
+----------- -----------
+         22           0

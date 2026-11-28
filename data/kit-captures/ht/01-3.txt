@@ -1,0 +1,7 @@
+PS> $p = New-HtTypedChangePlan -RequestId REQ-2026-0501 -User avery.lane@contoso.example -ChangeId set-records-flag -Value RetainAll -OutputPath out/plan -FixturePath tests/fixtures -AsOf 2026-11-27T12:00:00Z
+PS> $p | Format-List
+RequestId  : REQ-2026-0501
+Ready      : True
+Findings   : 0
+PlanPath   : out/plan/REQ-2026-0501/plan.json
+PlanSha256 : dd84334337d48e28b4db41c5e8fdab5dfb64df39a54584bea126af1904696a57

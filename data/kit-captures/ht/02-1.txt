@@ -1,0 +1,6 @@
+PS> Import-Module ./powershell/HelpDeskAutomation/HelpDeskAutomation.psm1 -Force
+PS> Get-HtRequiredPermission -Task consent-requests | Format-List
+Task             : consent-requests
+Mode             : read
+GraphPermissions : {ConsentRequest.Read.All}
+AzureRoles       : {}

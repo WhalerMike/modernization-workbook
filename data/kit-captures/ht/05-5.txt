@@ -1,0 +1,2 @@
+PS> 'Files holding the pass: ' + @(Get-ChildItem out/queue-apply -Recurse -File | Select-String -Pattern 'FIXTURE-TAP' -List).Count
+Files holding the pass: 0

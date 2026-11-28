@@ -1,0 +1,34 @@
+PS> Invoke-HtTypedChange -PlanPath $p.PlanPath -ApprovedPlanSha256 $p.PlanSha256 -OutputPath out/apply -FixturePath tests/fixtures -Apply -AsOf 2026-11-27T12:05:00Z | Format-List
+RequestId      : REQ-2026-0501
+Mode           : apply
+Before         :
+After          : RetainAll
+Verified       : True
+EvidenceSha256 : d4260bf2d3038d25138c2d4fd494462fc5be3678c7ad6940f1c10345932cc549
+PS> Get-Content out/apply/REQ-2026-0501/evidence.json
+{
+  "requestId": "REQ-2026-0501",
+  "mode": "apply",
+  "planSha256": "dd84334337d48e28b4db41c5e8fdab5dfb64df39a54584bea126af1904696a57",
+  "userId": "a1000000-0000-4000-8000-000000000101",
+  "changeId": "set-records-flag",
+  "before": "",
+  "requested": "RetainAll",
+  "after": "RetainAll",
+  "verified": true,
+  "body": {
+    "onPremisesExtensionAttributes": {
+      "extensionAttribute10": "RetainAll"
+    }
+  },
+  "runUtc": "2026-11-27T12:05:00Z",
+  "controls": [
+    "AC-2",
+    "AC-6",
+    "CM-3"
+  ],
+  "ksis": [
+    "KSI-CMT-LMC",
+    "KSI-IAM-JIT"
+  ]
+}

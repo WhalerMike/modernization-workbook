@@ -1,0 +1,8 @@
+PS> (Get-HtConfig typed-changes).changes | ForEach-Object { [pscustomobject]$_ } | Format-Table id, property, extension, allowed, pattern -AutoSize | Out-String -Width 200
+id                  property                      extension            allowed                                 pattern
+--                  --------                      ---------            -------                                 -------
+set-department      department                                                                                 ^[A-Za-z0-9 &,.'()/-]{1,64}$
+set-job-title       jobTitle                                                                                   ^[A-Za-z0-9 &,.'()/-]{1,128}$
+set-office-location officeLocation                                                                             ^[A-Za-z0-9 &,.'()/#-]{1,128}$
+set-employee-type   employeeType                                       {Employee, Contractor, Intern, Partner}
+set-records-flag    onPremisesExtensionAttributes extensionAttribute10 {RetainAll, }

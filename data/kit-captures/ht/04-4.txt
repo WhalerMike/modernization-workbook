@@ -1,0 +1,4 @@
+PS> Select-String -Path servicenow/business-rule-hand-off-to-access-management.js -Pattern 'u_automation_state = ' | ForEach-Object { $_.Line.Trim() }
+current.u_automation_state = 'awaiting-approval';
+current.u_automation_state = 'failed';
+current.u_automation_state = 'ready';                     // the pipeline acts only once SailPoint approves

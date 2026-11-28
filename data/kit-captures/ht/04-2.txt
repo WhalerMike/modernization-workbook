@@ -1,0 +1,5 @@
+PS> $ci = Get-Content servicenow/catalog-items.json -Raw | ConvertFrom-Json
+PS> 'Items in both: ' + @(Compare-Object ($ci.items.name | Sort-Object) ($cfg.items.Keys | Sort-Object) -IncludeEqual -ExcludeDifferent).Count
+Items in both: 4
+PS> 'Variables named command: ' + @($ci.items.variables.name | Where-Object { $_ -eq 'command' }).Count
+Variables named command: 0

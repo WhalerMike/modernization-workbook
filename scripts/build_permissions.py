@@ -47,7 +47,7 @@ KITS = [
      "docs/project-plans/developer-workbooks/information-protection/index.md"),
     ("provider-notices", "Provider Notices", "docs/project-plans/developer-workbooks/provider-notices/index.md"),
     ("sql-server-identity", "SQL Server Identity", "docs/project-plans/developer-workbooks/sql-server-identity/index.md"),
-    ("help-desk-automation", "Help desk automation", "docs/books/b15-day2-operations/12-the-day-two-runbook.md"),
+    ("help-desk-automation", "Help Desk Automation", "docs/project-plans/developer-workbooks/help-desk-automation/index.md"),
     ("ms-automation", "Microsoft Automation", "docs/training/ms-automation-foundations.md"),
 ]
 # Which identity runs each kit's read runs on the platform host (WD-181). A run that changes something,

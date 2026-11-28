@@ -1,0 +1,6 @@
+PS> Get-Content config/consent-review.json
+{
+  "_comment": "What the pending admin consent review flags. A request older than maxAgeDays is a finding: someone is waiting and no one has decided. A requested permission that matches a broadScopes pattern is a warning: the identity governance approver decides it, never the help desk (Book 04, Chapter 06). Copy and edit at work.",
+  "maxAgeDays": 5,
+  "broadScopes": ["*.ReadWrite.All", "Directory.*", "RoleManagement.*", "Mail.*", "Files.ReadWrite*", "Sites.FullControl.All", "full_access_as_app"]
+}

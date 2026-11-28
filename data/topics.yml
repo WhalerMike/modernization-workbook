@@ -180,6 +180,45 @@ topics:
         Not needed, because the implementation guide's seven gates and the developer workbook's
         chapters already sequence the work, and it runs inside day-two operations (Book 15).
 
+  - id: help-desk-automation
+    title: Help Desk Automation
+    subject: help desk automation
+    workbook: ht
+    kit: help-desk-automation
+    summary: >-
+      The everyday help desk and audit tasks of Book 15, Chapter 12, moved from emails under
+      standing administrator rights to typed requests and read-only schedules: a typed change
+      applied only with its approved hash, the pending admin consent review, the morning
+      synchronization, role and log-forwarding checks on the platform host, and ServiceNow
+      requests approved in SailPoint and worked by a pipeline that hands a one-time secret to one
+      person on a separate channel.
+    sections:
+      understand:
+        - page: docs/books/b15-day2-operations/12-the-day-two-runbook.md
+        - page: docs/books/b15-day2-operations/04-help-desk-authority-in-entra.md
+          note: The scoped roles, the high-risk tasks and the Temporary Access Pass the tasks rely on.
+        - page: docs/books/b13-governance/10-ticket-to-machine.md
+          note: The pattern the request-driven tasks follow.
+      plan:
+        - page: docs/about/decision-register.md#wd-181
+          note: Where the read-only jobs run, and as which identities.
+        - page: docs/about/decision-register.md#wd-182
+          note: Where an approved help desk request runs, and as which identity.
+        - page: docs/about/decision-register.md#wd-183
+          note: The platform host's Active Directory exception, which covers both gMSAs.
+      build:
+        - page: docs/project-plans/developer-workbooks/ticket-to-machine/index.md
+          note: The ServiceNow and SailPoint clients and the re-read rule the pipeline reuses.
+        - page: docs/books/guides/platform-host-implementation.md
+          note: The host the jobs and the pipeline run on.
+      evidence:
+        - page: docs/reference/permissions-by-run.md#help-desk-automation
+          note: Every run's least privilege, from the kit's call file.
+    gaps:
+      plan: >-
+        Not needed, because the help desk's work is day-two operations (Book 15), decisions WD-181
+        to WD-183 settle where it runs, and the developer workbook's runbook sequences the rollout.
+
   - id: privileged-access
     title: Privileged Access
     workbook: pa

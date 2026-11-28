@@ -1,0 +1,4 @@
+PS> Invoke-Pester -Path tests -FullNameFilter '*templates parse*' -Output None -PassThru | Select-Object PassedCount, FailedCount
+PassedCount FailedCount
+----------- -----------
+          1           0

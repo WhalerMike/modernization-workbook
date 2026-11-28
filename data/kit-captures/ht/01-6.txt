@@ -1,0 +1,7 @@
+PS> Invoke-HtTypedChange -PlanPath $p.PlanPath -ApprovedPlanSha256 $p.PlanSha256 -OutputPath out/dry -FixturePath tests/fixtures -AsOf 2026-11-27T12:05:00Z | Format-List
+RequestId      : REQ-2026-0501
+Mode           : dry-run
+Before         :
+After          :
+Verified       : False
+EvidenceSha256 : a49a62244cc61a8b025725ed310b83da640f58eccb463c5a289d8a23fda97ce8

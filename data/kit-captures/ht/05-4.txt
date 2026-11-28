@@ -1,0 +1,13 @@
+PS> Invoke-HtRequestQueue -OutputPath out/queue-apply -FixturePath tests/fixtures -Apply -AsOf 2026-11-27T12:00:00Z | Format-Table Number, Task, State, SecretIssued -AutoSize | Out-String -Width 200
+Number      Task                State   SecretIssued
+------      ----                -----   ------------
+RITM0010001 typed-change        done           False
+RITM0010002 password-reset      done            True
+RITM0010003 authenticator-reset manual         False
+RITM0010004 authenticator-reset done            True
+RITM0010005 password-reset      failed         False
+RITM0010006 account-create      done            True
+RITM0010007 typed-change        failed         False
+RITM0010008 typed-change        failed         False
+RITM0010009                     manual         False
+RITM0010011 typed-change        waiting        False

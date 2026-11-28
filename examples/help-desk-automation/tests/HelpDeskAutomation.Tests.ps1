@@ -23,6 +23,7 @@ Describe 'Typed change: planning' {
         $plan.extension | Should -Be 'extensionAttribute10'
         $r.PlanSha256 | Should -Be (Get-HtSha256 $r.PlanPath)
         $plan.controls | Should -Contain 'CM-3'
+        Get-Content $r.PlanPath -Raw | Should -Match '"plannedUtc": "2026-11-27T12:00:00Z"'
     }
     It '<Rule>: <Why>' -TestCases @(
         @{ Rule = 'HT-01'; Why = 'a change that is not in the list'; User = 'avery.lane@contoso.example'; Change = 'set-mail'; Value = 'x' }
@@ -37,6 +38,16 @@ Describe 'Typed change: planning' {
         $r.Ready | Should -BeFalse
         (Get-Content (Join-Path $out 'REQ-2026-0502/findings.json') -Raw | ConvertFrom-Json).Rule | Should -Contain $Rule
         Join-Path $out 'REQ-2026-0502/plan.json' | Should -Not -Exist
+    }
+    It 'writes a relative output path under the PowerShell location, not the process directory' {
+        $here = Join-Path $script:Tmp ([guid]::NewGuid())
+        New-Item -ItemType Directory -Force $here | Out-Null
+        Push-Location $here
+        try {
+            $r = New-HtTypedChangePlan -RequestId REQ-2026-0501 -User avery.lane@contoso.example -ChangeId set-records-flag -Value RetainAll -OutputPath out/plan -FixturePath $script:Fx -AsOf $script:AsOf
+        } finally { Pop-Location }
+        Join-Path $here 'out/plan/REQ-2026-0501/plan.json' | Should -Exist
+        $r.PlanSha256 | Should -Be (Get-HtSha256 (Join-Path $here 'out/plan/REQ-2026-0501/plan.json'))
     }
     It 'HT-06: a request id that is not a ticket number' {
         $out = Join-Path $script:Tmp ([guid]::NewGuid())
@@ -215,6 +226,11 @@ Describe 'The platform host jobs' {
         & pwsh -NoProfile -File $script:Run -Job sync -SettingsPath $bad -FixturePath $script:Fx 2>&1 | Out-Null
         $LASTEXITCODE | Should -Not -Be 0
     }
+    It 'names the settings still to fill in, and not the template''s comment' {
+        $msg = try { & $script:Run -Job sync -SettingsPath (Join-Path $script:Kit 'deploy/settings.template.json') } catch { $_.Exception.Message }
+        $msg | Should -Match 'Fill in the settings first: clientId, runAs, subscriptionId, tenantId.'
+        $msg | Should -Not -Match '_comment'
+    }
     It 'registering is a dry run by default, under the gMSA' {
         $r = & (Join-Path $script:Kit 'deploy/Register-HtScheduledJobs.ps1') -SettingsPath $script:Settings
         $r.Count | Should -Be 4
@@ -289,6 +305,9 @@ Describe 'The approved-request pipeline (WD-182)' {
         @($script:QStore.Updates | Where-Object { $_.uri -like '*/sc_req_item/*' }).Count | Should -Be 9
         @($script:QStore.Updates | Where-Object { $_.attachment }).Count | Should -Be 9
     }
+    It 'the evidence keeps its KSIs as a list, even when the task has one' {
+        Get-Content (Join-Path $script:QOut 'RITM0010002/evidence.json') -Raw | Should -Match '"ksis": \[\s*"KSI-IAM-JIT"\s*\]'
+    }
     It 'a dry run changes nothing and writes nothing back' {
         $store = New-HtFixtureStore -Path $script:Fx
         Mock -ModuleName HelpDeskAutomation New-HtFixtureStore { $store }
@@ -313,6 +332,10 @@ Describe 'The request pipeline on the platform host' {
         & pwsh -NoProfile -File (Join-Path $script:Kit 'deploy/Invoke-HtRequestPipeline.ps1') -SettingsPath $script:RSettings -FixturePath $script:Fx -DryRun -AsOf '2026-11-27T12:00:00Z' *>&1 | Out-Null
         $LASTEXITCODE | Should -Be 2
         Join-Path $script:Tmp 'request-runs/2026-11-27T120000Z/queue.json' | Should -Exist
+    }
+    It 'names the settings still to fill in before it signs in to anything' {
+        $msg = try { & (Join-Path $script:Kit 'deploy/Invoke-HtRequestPipeline.ps1') -SettingsPath (Join-Path $script:Kit 'deploy/requests-settings.template.json') -DryRun } catch { $_.Exception.Message }
+        $msg | Should -Be 'Fill in the settings first: clientId, iscApiUrl, iscClientId, runAs, serviceNowClientId, serviceNowUrl, tenantId.'
     }
     It 'registering is a dry run by default, under the pipeline''s own gMSA' {
         $r = & (Join-Path $script:Kit 'deploy/Register-HtRequestPipeline.ps1') -SettingsPath $script:RSettings

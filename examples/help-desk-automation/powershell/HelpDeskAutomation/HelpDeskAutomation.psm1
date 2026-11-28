@@ -48,10 +48,21 @@ function Get-HtSha256 {
     -join ([Security.Cryptography.SHA256]::HashData($bytes) | ForEach-Object { $_.ToString('x2') })
 }
 
-function Write-HtJson([object]$Value, [string]$Path) {
-    $dir = Split-Path -Parent $Path
+function Resolve-HtPath([string]$Path) {
+    # .NET resolves a relative path against the process's directory, which Set-Location doesn't change;
+    # PowerShell's own location is what a reader means by out/plan.
+    $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($Path)
+}
+
+function Write-HtText([string]$Path, [string]$Text) {
+    $full = Resolve-HtPath $Path
+    $dir = Split-Path -Parent $full
     if ($dir) { New-Item -ItemType Directory -Force $dir | Out-Null }
-    [IO.File]::WriteAllText($Path, (($Value | ConvertTo-Json -Depth 8) -replace "`r`n", "`n") + "`n")
+    [IO.File]::WriteAllText($full, $Text)
+}
+
+function Write-HtJson([object]$Value, [string]$Path) {
+    Write-HtText $Path ((($Value | ConvertTo-Json -Depth 8) -replace "`r`n", "`n") + "`n")
 }
 
 function Invoke-HtGraph {
@@ -246,15 +257,15 @@ function New-HtTypedChangePlan {
     $plan = [ordered]@{
         requestId = $RequestId; changeId = $ChangeId; userId = $u.id; userPrincipalName = $u.userPrincipalName
         property = $change.property; extension = $(if ($change.ContainsKey('extension')) { $change.extension } else { $null })
-        before = $before; after = $Value; plannedUtc = $AsOf.ToString('yyyy-MM-ddTHH:mm:ssZ')
+        before = $before; after = $Value; plannedUtc = $AsOf.ToUniversalTime().ToString('yyyy-MM-ddTHH:mm:ssZ')
         controls = $req.controls; ksis = $req.ksis
         note = 'Applies only with this file''s SHA-256 as -ApprovedPlanSha256, and only if the value is still the one recorded in before.'
     }
     $planPath = Join-Path $dir 'plan.json'
     Write-HtJson $plan $planPath
     $sha = Get-HtSha256 $planPath
-    [IO.File]::WriteAllText((Join-Path $dir 'plan.sha256'), "$sha  plan.json`n")
-    [pscustomobject]@{ RequestId = $RequestId; Ready = $true; Findings = 0; PlanPath = $planPath; PlanSha256 = $sha }
+    Write-HtText (Join-Path $dir 'plan.sha256') "$sha  plan.json`n"
+    [pscustomobject]@{ RequestId = $RequestId; Ready = $true; Findings = 0; PlanPath = ($planPath -replace '\\', '/'); PlanSha256 = $sha }
 }
 
 function Invoke-HtTypedChange {
@@ -298,7 +309,7 @@ function Invoke-HtTypedChange {
         requestId = $plan.requestId; mode = $(if ($Apply) { 'apply' } else { 'dry-run' }); planSha256 = $sha
         userId = $plan.userId; changeId = $plan.changeId; before = $now; requested = $plan.after; after = $after
         verified = [bool]($Apply -and $after -ceq [string]$plan.after); body = $body
-        runUtc = $AsOf.ToString('yyyy-MM-ddTHH:mm:ssZ'); controls = $plan.controls; ksis = $plan.ksis
+        runUtc = $AsOf.ToUniversalTime().ToString('yyyy-MM-ddTHH:mm:ssZ'); controls = $plan.controls; ksis = $plan.ksis
     }
     $path = Join-Path $OutputPath $plan.requestId 'evidence.json'
     Write-HtJson $evidence $path
@@ -351,7 +362,7 @@ function Get-HtPendingConsentRequest {
     New-Item -ItemType Directory -Force $OutputPath | Out-Null
     Write-HtJson @($rows) (Join-Path $OutputPath 'register.json')
     $csv = Join-Path $OutputPath 'register.csv'
-    if ($rows.Count) { $rows | Export-Csv -LiteralPath $csv -NoTypeInformation -UseQuotes AsNeeded } else { [IO.File]::WriteAllText($csv, "AppId,Application,Permissions,Requesters,OldestUtc,AgeDays,Broad`n") }
+    if ($rows.Count) { $rows | Export-Csv -LiteralPath $csv -NoTypeInformation -UseQuotes AsNeeded } else { Write-HtText $csv "AppId,Application,Permissions,Requesters,OldestUtc,AgeDays,Broad`n" }
     Write-HtJson @($findings) (Join-Path $OutputPath 'findings.json')
     $req = (Get-HtConfig requirements).steps['consent-requests']
     $files = foreach ($f in 'register.json', 'register.csv', 'findings.json') { [ordered]@{ path = $f; sha256 = Get-HtSha256 (Join-Path $OutputPath $f) } }
@@ -365,7 +376,7 @@ function Write-HtRun([string]$Step, [string]$OutputPath, [hashtable]$Files, [dat
     New-Item -ItemType Directory -Force $OutputPath | Out-Null
     foreach ($name in $Files.Keys) {
         $path = Join-Path $OutputPath $name
-        if ($name -like '*.md') { [IO.File]::WriteAllText($path, (($Files[$name] -join "`n") + "`n")) } else { Write-HtJson $Files[$name] $path }
+        if ($name -like '*.md') { Write-HtText $path (($Files[$name] -join "`n") + "`n") } else { Write-HtJson $Files[$name] $path }
     }
     $req = (Get-HtConfig requirements).steps[$Step]
     $list = foreach ($name in ($Files.Keys | Sort-Object)) { [ordered]@{ path = $name; sha256 = Get-HtSha256 (Join-Path $OutputPath $name) } }
@@ -689,7 +700,7 @@ function Invoke-HtRequestQueue {
         }
         $req = if ($item) { (Get-HtConfig requirements).steps[$item.task] } else { $null }
         $evidence.state = $outcome.state; $evidence.reason = $outcome.reason
-        $evidence.controls = $(if ($req) { $req.controls } else { @() }); $evidence.ksis = $(if ($req) { $req.ksis } else { @() })
+        $evidence.controls = @(if ($req) { $req.controls }); $evidence.ksis = @(if ($req) { $req.ksis })
         $evPath = Join-Path $OutputPath $r.number 'evidence.json'
         Write-HtJson $evidence $evPath
         $sha = Get-HtSha256 $evPath
