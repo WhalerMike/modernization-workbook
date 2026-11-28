@@ -54,6 +54,59 @@ Describe 'A fixture run (Lab 1)' {
         Add-Content -LiteralPath (Join-Path $copy 'privileged-access/inventory.csv') -Value 'x'
         Test-EiRun -Path $copy | Should -Contain 'Changed: privileged-access/inventory.csv'
     }
+    It 'writes an environment profile that matches its schema' {
+        $json = Get-Content -LiteralPath (Join-Path $script:Run 'EnvironmentProfile.json') -Raw
+        Test-Json -Json $json -SchemaFile (Join-Path (Split-Path -Parent $PSScriptRoot) 'config/environment-profile.schema.json') | Should -BeTrue
+        $script:Manifest.environmentProfile.path | Should -Be 'EnvironmentProfile.json'
+        $script:Manifest.environmentProfile.ksi | Should -Be @('KSI-PIY-GIV')
+    }
+    It 'takes the forest from the Start Kit''s recorded run, and names the file' {
+        $p = Get-Content -LiteralPath (Join-Path $script:Run 'EnvironmentProfile.json') -Raw | ConvertFrom-Json
+        $p.provenance.label | Should -Be 'fixture'
+        $p.fields.'ad.forestRootDomain'.value | Should -Be 'contoso.example'
+        $p.fields.'ad.forestRootDomain'.sources[0].file | Should -Be 'start-kit/recorded-run-nov/contoso.example/Forest/ForestTopology.json'
+        $p.fields.'ad.rootDomain.pdcEmulator'.value | Should -Be 'dc01.contoso.example'
+        @($p.fields.'ad.domainControllers'.value.hostName) | Should -Be @('cdc01.child.contoso.example', 'dc01.contoso.example', 'dc02.contoso.example')
+        @($p.fields.'ad.trusts'.value.name) | Should -Contain 'partner.example'
+        @($p.fields.'azure.subscriptionIds'.value) | Should -Be @('11111111-1111-4111-8111-111111111111')
+        $p.fields.graphEnvironment.value | Should -Be 'Global'
+        $p.fields.azureEnvironment.value | Should -Be 'AzureCloud'
+    }
+    It 'shows the kits'' fixture tenants as a conflict instead of picking one' {
+        $p = Get-Content -LiteralPath (Join-Path $script:Run 'EnvironmentProfile.json') -Raw | ConvertFrom-Json
+        $p.fields.tenantId.status | Should -Be 'conflict'
+        $p.fields.tenantId.value | Should -BeNullOrEmpty
+        @($p.fields.tenantId.sources.step) | Should -Be @('non-person-identity', 'validation-kit')
+    }
+    It 'reads only files in the run folder, and holds no user, address or SID' {
+        $p = Get-Content -LiteralPath (Join-Path $script:Run 'EnvironmentProfile.json') -Raw
+        $doc = $p | ConvertFrom-Json
+        foreach ($s in $doc.provenance.sources) { Join-Path $script:Run $s.file | Should -Exist; $s.file | Should -Not -Match '\\' }
+        $p | Should -Not -Match '@'
+        $p | Should -Not -Match '\b10\.\d+\.\d+\.\d+\b'
+        $p | Should -Not -Match 'S-1-5-21'
+    }
+    It 'hashes the manifest, and SHA256SUMS covers the profile' {
+        $doc = Get-Content -LiteralPath (Join-Path $script:Run 'EnvironmentProfile.json') -Raw | ConvertFrom-Json
+        $doc.provenance.manifestSha256 | Should -Be (Get-FileHash -LiteralPath (Join-Path $script:Run 'EstateInventoryManifest.json') -Algorithm SHA256).Hash.ToLowerInvariant()
+        Get-Content -LiteralPath (Join-Path $script:Run 'SHA256SUMS') | Should -Contain ('{0}  EnvironmentProfile.json' -f (Get-FileHash -LiteralPath (Join-Path $script:Run 'EnvironmentProfile.json') -Algorithm SHA256).Hash.ToLowerInvariant())
+    }
+    It 'prints the profile line' {
+        ($script:Result.Output -join "`n") | Should -Match 'environment-profile\s+fixture\s+EnvironmentProfile\.json: 18 filled, 1 in conflict, 0 not collected'
+    }
+    It 'is accepted by the loader as a fixture profile, and refused as a test one' {
+        Import-Module (Join-Path (Split-Path -Parent $PSScriptRoot) 'powershell/FmpEnvironment/FmpEnvironment.psd1') -Force
+        { Import-FmpEnvironment -Path $script:Run } | Should -Throw '*labelled ''fixture''*'
+        (Import-FmpEnvironment -Path $script:Run -Expect fixture).Conflict | Should -Be @('tenantId')
+        Get-FmpEnvironmentValue '<test-domain>' | Should -Be 'contoso.example'
+    }
+    It 'is read the same by the loader in Windows PowerShell 5.1' -Skip:(-not $IsWindows) {
+        $module = Join-Path (Split-Path -Parent $PSScriptRoot) 'powershell/FmpEnvironment/FmpEnvironment.psd1'
+        $cmd = "`$ErrorActionPreference = 'Stop'; Import-Module '$module'; `$null = Import-FmpEnvironment -Path '$($script:Run)' -Expect fixture; " +
+            "'{0}|{1}|{2}' -f `$PSVersionTable.PSEdition, (Get-FmpEnvironmentValue '<test-dc>'), (Expand-FmpPlaceholder 'Get-ADDomain -Server <test-domain>')"
+        $out = & (Join-Path $env:SystemRoot 'System32/WindowsPowerShell/v1.0/powershell.exe') -NoProfile -NonInteractive -Command $cmd
+        "$out" | Should -Be 'Desktop|dc01.contoso.example|Get-ADDomain -Server contoso.example'
+    }
     It 'keeps both runs when run again' {
         $again = Invoke-Entry -SettingsPath $script:Settings -Fixture
         $again.ExitCode | Should -Be 0
@@ -74,6 +127,9 @@ Describe 'Settings it refuses' {
         $r = Invoke-Entry -SettingsPath $s
         $r.ExitCode | Should -Be 1
         ($r.Output -join "`n") | Should -Match 'placeholders'
+    }
+    It 'refuses an environment label other than test or production' {
+        { Read-EiSettings -Path (New-TestSettings @{ cloud = 'gcc'; environmentLabel = 'staging' }) -Fixture } | Should -Throw '*environmentLabel must be test or production*'
     }
     It 'refuses an unknown cloud' {
         { Read-EiSettings -Path (New-TestSettings @{ cloud = 'gcchigh' }) -Fixture } | Should -Throw '*cloud must be gcc or global*'
@@ -111,6 +167,14 @@ Describe 'A live run without a forest or a certificate' -Skip:(-not $IsWindows) 
         }
         $script:LiveResult.ExitCode | Should -Be 2
         Test-EiRun -Path $script:LiveRun | Should -BeNullOrEmpty
+    }
+    It 'writes a profile of what it could read: no cloud field, since every cloud step failed' {
+        $p = Get-Content -LiteralPath (Join-Path $script:LiveRun 'EnvironmentProfile.json') -Raw | ConvertFrom-Json
+        $p.provenance.mode | Should -Be 'Live'
+        $p.provenance.label | Should -Be 'unlabelled'
+        $p.fields.tenantId.status | Should -Be 'notCollected'
+        $p.fields.tenantId.reason | Should -Match 'No cloud kit finished'
+        $p.fields.'ad.forestName'.status | Should -Be 'notCollected'
     }
 }
 
