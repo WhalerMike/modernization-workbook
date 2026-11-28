@@ -1,7 +1,7 @@
 ---
 title: "Building Application Modernization"
 subtitle: "A developer workbook for Book 18's reference implementation and its identity remediation work packages"
-description: "A developer workbook for Book 18, Application Modernization: a code-first companion for the developers who build a modernized application and move its data. It walks through the reference implementation in examples/app-modernization one step at a time: the API contract and the schema the service owns, the Db2 or Oracle data loaded into PostgreSQL by stated transform rules, the move proved three ways, an AI agent that can only propose, the React front end with an automated Section 508 rule check and the containers, then the application's own Microsoft Entra identity through Book 18 Appendix A's work packages: redirect URIs with DNS proof and an OAuth regression test, assignment enforcement, and the post-change test that seals one evidence pack. Each chapter runs a lab against fixtures on a laptop, then a step in a test environment, and lists the verified facts, the federal requirements and KSIs, the dangers and a checklist."
+description: "A developer workbook for Book 18, Application Modernization: a code-first companion for the developers who build a modernized application and move its data. It walks through the reference implementation in examples/app-modernization one step at a time: the API contract and the schema the service owns, the Db2 or Oracle data loaded into PostgreSQL by stated transform rules, the move proved three ways, an AI agent that can only propose, the React front end with an automated Section 508 rule check and the containers, then the application's own Microsoft Entra identity through Book 18 Appendix A's work packages: redirect URIs with DNS proof and an OAuth regression test, assignment enforcement, and the post-change test that seals one evidence pack; and, at the end of an application's life, Book 18 Appendix B's six shutdown gates and the decommission plan the app-retirement kit writes. Each chapter runs a lab against fixtures on a laptop, then a step in a test environment, and lists the verified facts, the federal requirements and KSIs, the dangers and a checklist."
 doc-type: section-landing
 fmw-eyebrow: "Projects · Developer workbook"
 audience: [Technical]
@@ -28,10 +28,10 @@ last-reviewed: 2026-11-25
 
 ::: {.callout-important appearance="default"}
 ## Status: written, waiting for review
-All seven chapters are written and wait for the owner's review. Every Lab 1 was run as printed on November 24, 2026, and its output is shown. No Lab 2 has been run by the authors. The code is illustrative: its tests pass against fictional fixtures, an embedded PostgreSQL 18 server and an H2 stand-in for Db2 and Oracle, and it hasn't been run against a real Db2 or Oracle database, a real model or a production tenant.
+All eight chapters are written and wait for the owner's review. Every Lab 1 was run as printed, Chapters 01 to 07 on November 24, 2026 and Chapter 08 on November 27, and its output is shown. No Lab 2 has been run by the authors. The code is illustrative: its tests pass against fictional fixtures, an embedded PostgreSQL 18 server and an H2 stand-in for Db2 and Oracle, and it hasn't been run against a real Db2 or Oracle database, a real model or a production tenant.
 :::
 
-[Book 18](../../../books/b18-application-modernization/index.md) argues for modernizing a portfolio one application at a time, onto one target architecture, with the data moved and proved, AI that proposes rather than acts, and compliance built in. Its [Chapter 08](../../../books/b18-application-modernization/08-the-reference-implementation.md) ships a small, runnable slice of that architecture in [`examples/app-modernization`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/app-modernization), and its [Appendix A](../../../books/b18-application-modernization/appendix-a-identity-remediation-work-packages.md) gives the six identity work packages each application goes through. Neither teaches a developer to run the code step by step, see what each step proves, and keep the evidence.
+[Book 18](../../../books/b18-application-modernization/index.md) argues for modernizing a portfolio one application at a time, onto one target architecture, with the data moved and proved, AI that proposes rather than acts, and compliance built in. Its [Chapter 08](../../../books/b18-application-modernization/08-the-reference-implementation.md) ships a small, runnable slice of that architecture in [`examples/app-modernization`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/app-modernization), and its [Appendix A](../../../books/b18-application-modernization/appendix-a-identity-remediation-work-packages.md) gives the six identity work packages each application goes through. Its [Appendix B](../../../books/b18-application-modernization/appendix-b-shutting-down-a-retired-application.md) gives the six gates for shutting down an application the portfolio retires or replaces, with the [`examples/app-retirement`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/app-retirement) kit that checks them. None teaches a developer to run the code step by step, see what each step proves, and keep the evidence.
 
 This workbook does. It follows the reference implementation in the order an application moves: its contract and schema, its data, its agent, its front end, then its identity. Every chapter walks through code that exists and is tested, runs a lab on a laptop against fixtures, then names the smallest step in a test environment. Where a chapter needed a step no code covered, the kit gained it in the same change, with tests: lab report writers for the Java tests, an automated accessibility check, and a PowerShell module for Appendix A's WP4 to WP6 and the evidence records.
 
@@ -42,9 +42,11 @@ The target estate is a civilian agency at FedRAMP Moderate, in Microsoft 365 GCC
 | Piece | What it is | Where |
 |---|---|---|
 | The book | Why and what: triage, the target architecture, moving the data, AI, compliance, governance, waves, and the identity work packages | [Book 18 — Application Modernization](../../../books/b18-application-modernization/index.md) |
-| This workbook | How, in code: seven chapters, each with a lab on fixtures and a lab in a test environment | This page and its chapters |
-| Training path | Seven modules, one per chapter, each with the chapter's Lab 1 and a knowledge check | [Learning path: Application Modernization](../../../training/application-modernization/index.md) |
+| This workbook | How, in code: eight chapters, each with a lab on fixtures and a lab in a test environment | This page and its chapters |
+| Training path | Eight modules, one per chapter, each with the chapter's Lab 1 and a knowledge check | [Learning path: Application Modernization](../../../training/application-modernization/index.md) |
 | Code | `examples/app-modernization`: the Spring Boot service, the migration CLI and the React front end (28 service, 15 migration and 10 web tests), and the `AppModernization` PowerShell module with `Invoke-AmIdentityApply.ps1` (37 Pester tests) | [`examples/app-modernization`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/app-modernization) · [app-modernization.zip](../../../../downloads/app-modernization.zip) |
+| Code for Chapter 08 | `examples/app-retirement`: the `AppRetirement` PowerShell module and `Invoke-ArtPlan.ps1`, read only (15 Pester tests) | [`examples/app-retirement`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/app-retirement) · [app-retirement.zip](../../../../downloads/app-retirement.zip) |
+| Closing the authorization | The ten closure steps and the authorizing official's closing decision a retirement's last gate waits for | [Book 14, Appendix I](../../../books/b14-compliance/appendix-i-closing-a-systems-authorization.md) |
 | The application's identity, WP1 to WP3 | Owners and the orphan rule, least privilege, and the secret-to-managed-identity conversion, already built by another kit | [*Building Non-Person Identity*](../non-person-identity/index.md), Chapters [02](../non-person-identity/02-ownership-and-the-orphan-rule.md), [07](../non-person-identity/07-least-privilege-for-service-principals.md) and [05](../non-person-identity/05-workload-identity-federation-and-managed-identities.md) |
 | The governance record | Where each application's owners, permissions, secrets and exceptions are kept | [Book 13, Chapter 14](../../../books/b13-governance/14-application-secret-and-configuration-governance.md) |
 
@@ -70,7 +72,7 @@ There is no implementation guide for this topic, and none is needed: Book 18's C
 
 ## Chapters
 
-Chapters 01 to 05 follow the application; read them in order. Chapters 06 and 07 are the application's identity and can be read on their own once Chapter 01 is done.
+Chapters 01 to 05 follow the application; read them in order. Chapters 06 and 07 are the application's identity and can be read on their own once Chapter 01 is done. Chapter 08 is the end of an application's life, retired or replaced, and stands on its own.
 
 | # | Chapter | Book 18 | What you build or run | Status |
 |---|---|---|---|---|
@@ -81,6 +83,7 @@ Chapters 01 to 05 follow the application; read them in order. Chapters 06 and 07
 | 05 | [The front end, its accessibility check and the containers](05-the-front-end-its-accessibility-check-and-the-containers.md) | [Ch 03](../../../books/b18-application-modernization/03-the-target-reference-architecture.md), [06](../../../books/b18-application-modernization/06-compliance-by-design.md) | The React tests, an automated WCAG 2.0 A and AA rule check of each screen state, the build, and the containers | Written |
 | 06 | [The application's identity: redirect URIs and assignment](06-the-applications-identity-redirect-uris-and-assignment.md) | [Appendix A](../../../books/b18-application-modernization/appendix-a-identity-remediation-work-packages.md), WP1 to WP5 | The before snapshot, which work packages apply, WP4's redirect check with DNS proof and the OAuth regression test, WP5's assignment plan, the gated write path and the rollback | Written |
 | 07 | [The post-change test and the evidence pack](07-the-post-change-test-and-the-evidence-pack.md) | [Appendix A](../../../books/b18-application-modernization/appendix-a-identity-remediation-work-packages.md), WP6 | The sign-ins since the change and the backout trigger, the test record, the sealed pack, and the chain of every step's evidence record | Written |
+| 08 | [Shutting down a retired or replaced application](08-shutting-down-a-retired-application.md) | [Appendix B](../../../books/b18-application-modernization/appendix-b-shutting-down-a-retired-application.md), R1 to R6 | The application's footprint checked against the six shutdown gates, the decommission plan with each owning team's commands, and the manifest filed with the authorization closure | Written |
 
 : Chapters of Building Application Modernization {.striped .hover}
 
@@ -92,8 +95,9 @@ Chapters 01 to 05 follow the application; read them in order. Chapters 06 and 07
 - **Developers who build services:** Chapters 01, 04 and 05.
 - **Data engineers moving a database:** Chapters 02 and 03, with Book 18's [Chapter 04](../../../books/b18-application-modernization/04-moving-the-data.md).
 - **Identity engineers running the remediation factory:** Chapters 06 and 07, with *Building Non-Person Identity* for WP1 to WP3.
-- **ISSOs and reviewers of the code:** each chapter's federal requirements and checklist, then Chapter 07.
-- **Learners:** the [Application Modernization learning path](../../../training/application-modernization/index.md), seven modules, one per chapter, each with the chapter's Lab 1 as its exercise and a knowledge check.
+- **Application owners retiring or replacing an application:** Chapter 08, with Book 18's Appendix B and Book 14's Appendix I.
+- **ISSOs and reviewers of the code:** each chapter's federal requirements and checklist, then Chapters 07 and 08.
+- **Learners:** the [Application Modernization learning path](../../../training/application-modernization/index.md), eight modules, one per chapter, each with the chapter's Lab 1 as its exercise and a knowledge check.
 
 ## Where this workbook sits
 

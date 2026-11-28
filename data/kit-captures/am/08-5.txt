@@ -1,0 +1,10 @@
+PS> Import-Module ./powershell/AppRetirement/AppRetirement.psm1 -Force
+PS> $fp = Get-ArtFootprint -Path tests/fixtures/footprint.json
+PS> $fp.entraApps[0].accountEnabled = $true
+PS> $fp.entraApps[0].lastSignIn = '2026-10-25T09:00:00Z'
+PS> (Test-ArtRetirement -Footprint $fp -AsOf 2026-12-10).Findings | Where-Object Gate -in 'R2', 'R4' | Format-Table Rule, Gate, Object, Issue
+Rule   Gate Object                       Issue
+----   ---- ------                       -----
+ART-03 R2   Payments Gateway (fictional) Called the application on 2026-10-28, after the quiet date 2026-10-20
+ART-04 R2   Grants Tracker (fictional)   Signed in to on 2026-10-25T09:00:00Z, after the quiet date
+ART-05 R4   Grants Tracker (fictional)   Sign-in is still enabled after the switch-off date

@@ -40,6 +40,18 @@ Describe 'After the removal date' {
         $m.footprint.sha256 | Should -Be (Get-ArtSha256 $script:Fp)
         $m.controls | Should -Contain 'CM-8'
     }
+    It 'a date with no time zone is the manifest''s UTC date, on any machine' {
+        Get-Content (Join-Path $script:Out 'manifest.json') -Raw | Should -Match '"asOfUtc": "2026-12-10T00:00:00Z"'
+    }
+}
+
+Describe 'A relative output path' {
+    It 'is written under PowerShell''s current location, after Set-Location' {
+        Push-Location $script:Tmp
+        try { New-ArtDecommissionPlan -FootprintPath $script:Fp -OutputPath 'rel/plan' -AsOf '2026-12-10' | Out-Null }
+        finally { Pop-Location }
+        foreach ($n in 'plan.md', 'plan.json', 'findings.json', 'manifest.json') { Join-Path $script:Tmp "rel/plan/$n" | Should -Exist }
+    }
 }
 
 Describe 'Before the switch-off' {

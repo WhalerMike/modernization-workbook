@@ -11,6 +11,9 @@ Workbook folder: `docs/project-plans/developer-workbooks/application-modernizati
 | `05-the-front-end-its-accessibility-check-and-the-containers.md` | Chapter 05 — The Front End, Its Accessibility Check and the Containers | Ch 03, 06 | `web/`: `App.test.jsx`, `a11y.test.jsx`, `fakeService.js`; `docker-compose.yml` |
 | `06-the-applications-identity-redirect-uris-and-assignment.md` | Chapter 06 — The Application's Identity: Redirect URIs and Assignment | Appendix A, WP1 to WP5 | `AppModernization.psm1` (snapshot, WP4, WP5, rollback), `Invoke-AmIdentityApply.ps1` |
 | `07-the-post-change-test-and-the-evidence-pack.md` | Chapter 07 — The Post-Change Test and the Evidence Pack | Appendix A, WP6 | `AppModernization.psm1` (WP6, evidence records), `config/requirements.json` |
+| `08-shutting-down-a-retired-application.md` | Chapter 08 — Shutting Down a Retired or Replaced Application | Appendix B, R1 to R6 | `examples/app-retirement`: `AppRetirement.psm1`, `Invoke-ArtPlan.ps1`, `config/requirements.json`, `config/calls.json`; `AppRetirement.Tests.ps1` |
+
+Chapter 08 works in a second kit, `examples/app-retirement` (added November 27, 2026): its Lab 1 is captured by the same `python scripts/kit_captures.py am`, which runs it from the folder the lab names, and it ends with the plan's `manifest.json` rather than `Write-AmEvidenceRecord`, because that kit writes its own manifest. Book 18's Appendix B holds the gates, who signs them and the commands; Book 14's Appendix I holds the authorization closure. Link both, never restate them.
 
 ## Link, don't repeat
 

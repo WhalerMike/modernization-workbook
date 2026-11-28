@@ -299,6 +299,28 @@ Replace each `<placeholder>` with your test environment's value.
 The chapter's steps say what each command does and what to look for.
 
 ```powershell
+# Step 1: Send the logs
+Connect-AzAccount -Environment AzureCloud -Tenant <tenant-id>
+$body = @{ properties = @{ workspaceId = '<workspace-resource-id>'; logs = @(foreach ($c in 'AuditLogs', 'SignInLogs', 'NonInteractiveUserSignInLogs') { @{ category = $c; enabled = $true } }) } }
+Invoke-AzRestMethod -Method PUT -Path '/providers/microsoft.aadiam/diagnosticSettings/pa-lab-entra-logs?api-version=2017-04-01' -Payload ($body | ConvertTo-Json -Depth 5) | Format-List StatusCode
+
+# Step 1: Send the logs
+$ws = (Get-AzResource -ResourceId '<workspace-resource-id>').Properties.customerId
+(Invoke-AzOperationalInsightsQuery -WorkspaceId $ws -Query 'union isfuzzy=true withsource=Table AuditLogs, SigninLogs, AADNonInteractiveUserSignInLogs | summarize Rows = count() by Table' -Timespan (New-TimeSpan -Days 1)).Results | Format-Table Table, Rows
+
+# Step 2: Register the reader app
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes 'Application.ReadWrite.All', 'AppRoleAssignment.ReadWrite.All' -NoWelcome
+$cert = New-SelfSignedCertificate -Subject 'CN=pa-lab-emergency-reader' -CertStoreLocation Cert:\CurrentUser\My -KeyExportPolicy NonExportable -KeySpec Signature -NotAfter (Get-Date).AddDays(30)
+$app = New-MgApplication -DisplayName 'pa-lab-emergency-reader' -SignInAudience AzureADMyOrg -KeyCredentials @(@{ Type = 'AsymmetricX509Cert'; Usage = 'Verify'; Key = $cert.RawData })
+$sp = New-MgServicePrincipal -AppId $app.AppId
+Start-Sleep -Seconds 15
+$graph = Get-MgServicePrincipal -Filter "appId eq '00000003-0000-0000-c000-000000000000'"
+foreach ($p in 'GroupMember.ReadBasic.All', 'Policy.Read.All', 'RoleAssignmentSchedule.Read.Directory', 'User.Read.All', 'User.ReadBasic.All', 'UserAuthenticationMethod.Read.All') {
+    $role = $graph.AppRoles | Where-Object { $_.Value -eq $p -and $_.AllowedMemberTypes -contains 'Application' }
+    New-MgServicePrincipalAppRoleAssignment -ServicePrincipalId $sp.Id -PrincipalId $sp.Id -ResourceId $graph.Id -AppRoleId $role.Id | Format-Table AppRoleId, ResourceDisplayName
+}
+[pscustomobject]@{ AppId = $app.AppId; Thumbprint = $cert.Thumbprint; ServicePrincipalId = $sp.Id } | Format-List
+
 # Step 3: Run the check
 $ea = Get-Content tests/fixtures/inputs/emergency-access.json -Raw | ConvertFrom-Json
 $ea.accounts[0].id = '<ea1-object-id>'; $ea.accounts[0].userPrincipalName = '<ea1-upn>'
@@ -328,11 +350,6 @@ New-AzResourceGroupDeployment -ResourceGroupName <test-rg> -TemplateFile out/eme
 # Step 6: Back it out
 Remove-Item -Recurse -Force out/emergency-test
 ```
-
-Steps with no command, done in the portal or by hand as the chapter's step says:
-
-- **Step 1:** Send the logs
-- **Step 2:** Register the reader app
 :::
 
 <!-- labs:end -->

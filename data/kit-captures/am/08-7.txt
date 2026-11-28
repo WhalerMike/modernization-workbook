@@ -1,0 +1,7 @@
+PS> Add-Content out/retire/plan.md 'R5 met (edited)'
+PS> $m.files | ForEach-Object { [pscustomobject]@{ File = $_.path; Matches = $_.sha256 -eq (Get-ArtSha256 "out/retire/$($_.path)") } }
+File          Matches
+----          -------
+findings.json    True
+plan.json        True
+plan.md         False

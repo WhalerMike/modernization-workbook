@@ -298,11 +298,12 @@ Invoke-RestMethod -Method Post "http://localhost:8080/api/proposals/$id/decision
 
 # Step 3: Read the audit table
 psql -h <pg-host> -U <db-user> -d <database> -c 'select agent_id, tool, case_number, allowed, detail, at from agent_audit order by id'
+
+# Step 4: Back it out
+Stop-Process -Id $svc.Id
+psql -h <pg-host> -U <db-user> -d postgres -c 'DROP DATABASE <database>'
+Remove-Item service-test.log; Remove-Item Env:DB_URL, Env:DB_USER, Env:DB_PASSWORD
 ```
-
-Steps with no command, done in the portal or by hand as the chapter's step says:
-
-- **Step 4:** Back it out
 :::
 
 <!-- labs:end -->

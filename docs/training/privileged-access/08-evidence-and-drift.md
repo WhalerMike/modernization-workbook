@@ -489,6 +489,39 @@ The chapter's steps say what each command does and what to look for.
 In PowerShell 7:
 
 ```powershell
+# Step 1: Register the reader app
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes 'Application.ReadWrite.All', 'AppRoleAssignment.ReadWrite.All' -NoWelcome
+$cert = New-SelfSignedCertificate -Subject 'CN=pa-lab-evidence-reader' -CertStoreLocation Cert:\CurrentUser\My -KeyExportPolicy NonExportable -KeySpec Signature -NotAfter (Get-Date).AddDays(30)
+$app = New-MgApplication -DisplayName 'pa-lab-evidence-reader' -SignInAudience AzureADMyOrg -KeyCredentials @(@{ Type = 'AsymmetricX509Cert'; Usage = 'Verify'; Key = $cert.RawData })
+$sp = New-MgServicePrincipal -AppId $app.AppId
+Start-Sleep -Seconds 15
+$graph = Get-MgServicePrincipal -Filter "appId eq '00000003-0000-0000-c000-000000000000'"
+foreach ($p in 'AuditLog.Read.All', 'GroupMember.ReadBasic.All', 'Policy.Read.All', 'RoleAssignmentSchedule.Read.Directory', 'RoleEligibilitySchedule.Read.Directory', 'RoleManagement.Read.Directory', 'User.Read.All', 'User.ReadBasic.All', 'UserAuthenticationMethod.Read.All') {
+    $role = $graph.AppRoles | Where-Object { $_.Value -eq $p -and $_.AllowedMemberTypes -contains 'Application' }
+    New-MgServicePrincipalAppRoleAssignment -ServicePrincipalId $sp.Id -PrincipalId $sp.Id -ResourceId $graph.Id -AppRoleId $role.Id | Format-Table AppRoleId, ResourceDisplayName
+}
+Connect-AzAccount -Environment AzureCloud -Tenant <tenant-id>
+New-AzRoleAssignment -ObjectId $sp.Id -ObjectType ServicePrincipal -RoleDefinitionName Reader -Scope /subscriptions/<test-subscription-id> | Format-Table Scope, RoleDefinitionName
+[pscustomobject]@{ AppId = $app.AppId; Thumbprint = $cert.Thumbprint; ServicePrincipalId = $sp.Id } | Format-List
+
+# Step 2: Make one activation to see
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes 'RoleEligibilitySchedule.ReadWrite.Directory', 'RoleAssignmentSchedule.ReadWrite.Directory' -NoWelcome
+New-MgRoleManagementDirectoryRoleEligibilityScheduleRequest -BodyParameter @{
+    action = 'adminAssign'; principalId = '<test-user-object-id>'; roleDefinitionId = '729827e3-9c14-49f7-bb1b-9608f156bbb8'; directoryScopeId = '/'
+    justification = 'Lab: one activation for the evidence run'
+    scheduleInfo = @{ startDateTime = (Get-Date).ToUniversalTime(); expiration = @{ type = 'afterDuration'; duration = 'P7D' } }
+} | Format-List Id, Status
+
+# Step 2: Make one activation to see
+Disconnect-MgGraph
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes 'RoleAssignmentSchedule.ReadWrite.Directory' -NoWelcome
+$me = Invoke-MgGraphRequest -Method GET -Uri 'v1.0/me?$select=id'
+New-MgRoleManagementDirectoryRoleAssignmentScheduleRequest -BodyParameter @{
+    action = 'selfActivate'; principalId = $me.id; roleDefinitionId = '729827e3-9c14-49f7-bb1b-9608f156bbb8'; directoryScopeId = '/'
+    justification = 'Lab: one activation for the evidence run'; ticketInfo = @{ ticketNumber = '<ticket>'; ticketSystem = 'Lab' }
+    scheduleInfo = @{ startDateTime = (Get-Date).ToUniversalTime(); expiration = @{ type = 'afterDuration'; duration = 'PT1H' } }
+} | Format-List Id, Status
+
 # Step 3: Run twice
 Connect-MgGraph -Environment Global -TenantId <tenant-id> -ClientId <app-id> -CertificateThumbprint <thumbprint>
 Connect-AzAccount -ServicePrincipal -Environment AzureCloud -Tenant <tenant-id> -ApplicationId <app-id> -CertificateThumbprint <thumbprint>
@@ -505,6 +538,18 @@ $since = (Get-Content (Join-Path $first.FullName 'run.json') -Raw | ConvertFrom-
 $second = Get-ChildItem out/runs-test -Directory | Sort-Object Name | Select-Object -Last 1
 Get-Content (Join-Path $second.FullName 'pim-audit/events.json') -Raw | ConvertFrom-Json | Format-Table Activity, Service, RequestId, RoleId
 Get-Content (Join-Path $second.FullName 'pim-audit/requests.json') -Raw | ConvertFrom-Json | Format-Table RequestId, RoleId, @{ n = 'States'; e = { $_.States -join ', ' } }
+
+# Step 5: Cross-check against Learn's procedure
+$second = Get-ChildItem out/runs-test -Directory | Sort-Object Name | Select-Object -Last 1
+$req = @(Get-Content (Join-Path $second.FullName 'pim-audit/requests.json') -Raw | ConvertFrom-Json)
+$req | Format-Table RequestId, RoleId, @{ n = 'States'; e = { $_.States -join ', ' } }
+
+# Step 5: Cross-check against Learn's procedure
+Connect-AzAccount -Environment AzureCloud -Tenant <tenant-id>
+$ws = (Get-AzResource -ResourceId '<workspace-resource-id>').Properties.customerId
+$id = ($req | Where-Object { $_.States -contains 'Activated' } | Select-Object -First 1).RequestId
+$q = "let roleAssignmentRequestId = `"$id`";`nAuditLogs`n| where AdditionalDetails has roleAssignmentRequestId"
+(Invoke-AzOperationalInsightsQuery -WorkspaceId $ws -Query $q -Timespan (New-TimeSpan -Days 30)).Results | Format-Table TimeGenerated, OperationName, CorrelationId
 ```
 
 In a POSIX shell (Git Bash on Windows):
@@ -539,12 +584,6 @@ In a POSIX shell (Git Bash on Windows):
 # Step 7: Back it out
 rm -rf out/test-day1 out/test-day2 out/test-evidence
 ```
-
-Steps with no command, done in the portal or by hand as the chapter's step says:
-
-- **Step 1:** Register the reader app
-- **Step 2:** Make one activation to see
-- **Step 5:** Cross-check against Learn's procedure
 :::
 
 <!-- labs:end -->

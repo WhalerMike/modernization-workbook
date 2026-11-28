@@ -311,6 +311,17 @@ Replace each `<placeholder>` with your test environment's value.
 The chapter's steps say what each command does and what to look for.
 
 ```powershell
+# Step 1: Prepare the identity
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes 'Application.ReadWrite.All' -NoWelcome
+$cert = New-SelfSignedCertificate -Subject 'CN=pa-lab-azure-pim' -CertStoreLocation Cert:\CurrentUser\My -KeyExportPolicy NonExportable -KeySpec Signature -NotAfter (Get-Date).AddDays(30)
+$app = New-MgApplication -DisplayName 'pa-lab-azure-pim' -SignInAudience AzureADMyOrg -KeyCredentials @(@{ Type = 'AsymmetricX509Cert'; Usage = 'Verify'; Key = $cert.RawData })
+$sp = New-MgServicePrincipal -AppId $app.AppId
+Connect-AzAccount -Environment AzureCloud -Tenant <tenant-id>
+foreach ($scope in '/providers/Microsoft.Management/managementGroups/<test-mg-id>', '/subscriptions/<test-subscription-id>', '/subscriptions/<test-subscription-id>/resourceGroups/<test-rg>') {
+    New-AzRoleAssignment -ObjectId $sp.Id -ObjectType ServicePrincipal -RoleDefinitionName Reader -Scope $scope | Format-Table Scope, RoleDefinitionName
+}
+[pscustomobject]@{ AppId = $app.AppId; AppObjectId = $sp.Id; Thumbprint = $cert.Thumbprint } | Format-List
+
 # Step 2: Write the desired state
 $d = Get-Content tests/fixtures/ch06/desired.json -Raw | ConvertFrom-Json
 $d.scopes = @('/providers/Microsoft.Management/managementGroups/<test-mg-id>', '/subscriptions/<test-subscription-id>', '/subscriptions/<test-subscription-id>/resourceGroups/<test-rg>')
@@ -334,14 +345,47 @@ Connect-AzAccount -ServicePrincipal -Environment AzureCloud -Tenant <tenant-id> 
 ./Invoke-PaAzurePim.ps1 -Cloud gcc -DesiredPath desired-test.json -CallerPrincipalId <app-object-id> -OutputPath out/ch06-test-apply -TenantId <tenant-id> -Apply
 Get-Content out/ch06-test-apply/diff-after.txt
 
+# Step 5: Try the narrower role
+Connect-AzAccount -Environment AzureCloud -Tenant <tenant-id>
+$mg = '/providers/Microsoft.Management/managementGroups/<test-mg-id>'
+$api = 'api-version=2020-10-01'
+$start = (Get-Date).ToUniversalTime().ToString('o')
+$assign = @{ properties = @{ principalId = '<app-object-id>'; roleDefinitionId = "$mg/providers/Microsoft.Authorization/roleDefinitions/f58310d9-a9f6-439a-9e8d-f62e7b41a168"; requestType = 'AdminAssign'
+    justification = 'Lab: try the narrower role (research gaps, row 62)'; scheduleInfo = @{ startDateTime = $start; expiration = @{ type = 'AfterDuration'; duration = 'P1D' } } } }
+$remove = @{ properties = @{ principalId = '<app-object-id>'; roleDefinitionId = "$mg/providers/Microsoft.Authorization/roleDefinitions/18d7d88d-d35e-4fb5-a5c3-7773c20a72d9"; requestType = 'AdminRemove' } }
+foreach ($b in $assign, $remove) {
+    $r = Invoke-AzRestMethod -Method PUT -Path "$mg/providers/Microsoft.Authorization/roleAssignmentScheduleRequests/$(New-Guid)?$api" -Payload ($b | ConvertTo-Json -Depth 5)
+    [pscustomobject]@{ Request = $b.properties.requestType; StatusCode = $r.StatusCode; Status = ($r.Content | ConvertFrom-Json).properties.status }
+}
+
+# Step 5: Try the narrower role
+Connect-AzAccount -ServicePrincipal -Environment AzureCloud -Tenant <tenant-id> -ApplicationId <app-id> -CertificateThumbprint <thumbprint>
+$rg = '/subscriptions/<test-subscription-id>/resourceGroups/<test-rg>'
+foreach ($scope in $mg, $rg) {
+    $b = @{ properties = @{ principalId = '<eligible-group-id>'; roleDefinitionId = "$scope/providers/Microsoft.Authorization/roleDefinitions/acdd72a7-3385-48ef-bd42-f606fba81ae7"; requestType = 'AdminAssign'
+        justification = 'Lab: research gaps, rows 62 and 63'; scheduleInfo = @{ startDateTime = (Get-Date).ToUniversalTime().ToString('o'); expiration = @{ type = 'AfterDuration'; duration = 'P1D' } } } }
+    $r = Invoke-AzRestMethod -Method PUT -Path "$scope/providers/Microsoft.Authorization/roleEligibilityScheduleRequests/$(New-Guid)?$api" -Payload ($b | ConvertTo-Json -Depth 5)
+    [pscustomobject]@{ Scope = $scope; StatusCode = $r.StatusCode; Status = ($r.Content | ConvertFrom-Json).properties.status; Error = ($r.Content | ConvertFrom-Json).error.code }
+}
+
+# Step 5: Try the narrower role
+Connect-AzAccount -Environment AzureCloud -Tenant <tenant-id>
+$back = @(
+    @{ scope = $mg; kind = 'roleAssignmentScheduleRequests'; principalId = '<app-object-id>'; role = '18d7d88d-d35e-4fb5-a5c3-7773c20a72d9'; type = 'AdminAssign' }
+    @{ scope = $mg; kind = 'roleAssignmentScheduleRequests'; principalId = '<app-object-id>'; role = 'f58310d9-a9f6-439a-9e8d-f62e7b41a168'; type = 'AdminRemove' }
+    @{ scope = $mg; kind = 'roleEligibilityScheduleRequests'; principalId = '<eligible-group-id>'; role = 'acdd72a7-3385-48ef-bd42-f606fba81ae7'; type = 'AdminRemove' }
+    @{ scope = $rg; kind = 'roleEligibilityScheduleRequests'; principalId = '<eligible-group-id>'; role = 'acdd72a7-3385-48ef-bd42-f606fba81ae7'; type = 'AdminRemove' }
+)
+foreach ($x in $back) {
+    $p = @{ principalId = $x.principalId; roleDefinitionId = "$($x.scope)/providers/Microsoft.Authorization/roleDefinitions/$($x.role)"; requestType = $x.type }
+    if ($x.type -eq 'AdminAssign') { $p.justification = 'Lab: restore User Access Administrator for step 6'; $p.scheduleInfo = @{ startDateTime = (Get-Date).ToUniversalTime().ToString('o'); expiration = @{ type = 'AfterDuration'; duration = 'P1D' } } }
+    $r = Invoke-AzRestMethod -Method PUT -Path "$($x.scope)/providers/Microsoft.Authorization/$($x.kind)/$(New-Guid)?$api" -Payload (@{ properties = $p } | ConvertTo-Json -Depth 5)
+    [pscustomobject]@{ Scope = $x.scope; Request = "$($x.kind) $($x.type)"; StatusCode = $r.StatusCode }
+}
+
 # Step 6: Back it out
 Remove-Item -Recurse -Force out/ch06-test-*
 ```
-
-Steps with no command, done in the portal or by hand as the chapter's step says:
-
-- **Step 1:** Prepare the identity
-- **Step 5:** Try the narrower role
 :::
 
 <!-- labs:end -->

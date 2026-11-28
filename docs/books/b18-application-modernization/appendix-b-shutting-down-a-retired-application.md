@@ -90,7 +90,7 @@ From the `app-retirement` folder, the decommission plan for the fictional applic
 ./Invoke-ArtPlan.ps1 -FootprintPath tests/fixtures/footprint.json -OutputPath out/retire -AsOf 2026-12-10
 ```
 
-It checks the gates (ART-01 to ART-07, set out in the kit's README) and writes `plan.md` with each gate's state, the findings and the commands for the footprint, and a manifest with each file's SHA-256. Run it at each gate; file the last plan's manifest with the authorization closure at R6.
+It checks the gates (ART-01 to ART-07, set out in the kit's README) and writes `plan.md` with each gate's state, the findings and the commands for the footprint, and a manifest with each file's SHA-256. Run it at each gate; file the last plan's manifest with the authorization closure at R6. [*Building Application Modernization*, Chapter 08](../../project-plans/developer-workbooks/application-modernization/08-shutting-down-a-retired-application.md) runs it step by step, on the fixture and in a test tenant, with the [learning path's Module 8](../../training/application-modernization/08-shutting-down-a-retired-application.md).
 
 ## What the gates support, and the evidence
 

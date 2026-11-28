@@ -330,6 +330,16 @@ Replace each `<placeholder>` with your test environment's value.
 The chapter's steps say what each command does and what to look for.
 
 ```powershell
+# Step 1: Grant the two application permissions
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes Application.Read.All, AppRoleAssignment.ReadWrite.All -NoWelcome
+$sp = Get-MgServicePrincipal -Filter "appId eq '<app-id>'"
+$graph = Get-MgServicePrincipal -Filter "appId eq '00000003-0000-0000-c000-000000000000'"
+foreach ($p in 'LicenseAssignment.Read.All', 'User.Read.All') {
+    $role = $graph.AppRoles | Where-Object { $_.Value -eq $p -and $_.AllowedMemberTypes -contains 'Application' }
+    New-MgServicePrincipalAppRoleAssignedTo -ServicePrincipalId $graph.Id -BodyParameter @{ principalId = $sp.Id; resourceId = $graph.Id; appRoleId = $role.Id } | Out-Null
+}
+Get-MgServicePrincipalAppRoleAssignment -ServicePrincipalId $sp.Id | ForEach-Object { $id = $_.AppRoleId; ($graph.AppRoles | Where-Object Id -eq $id).Value }
+
 # Step 2: Write the inputs
 New-Item -ItemType Directory -Force <inputs> | Out-Null
 foreach ($f in 'workloads', 'dispositions', 'waves') { Get-Content tests/fixtures/ch03/inputs/$f.csv -TotalCount 1 | Set-Content <inputs>/$f.csv }
@@ -356,7 +366,6 @@ Remove-Item -Recurse -Force out/matrix-test
 
 Steps with no command, done in the portal or by hand as the chapter's step says:
 
-- **Step 1:** Grant the two application permissions
 - **Step 5:** Check eligibility against the admin center
 :::
 

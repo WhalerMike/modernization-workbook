@@ -391,7 +391,7 @@ KSIs are FedRAMP 20x indicators for cloud service providers; the agency lines it
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Chapter 06 — The Application's Identity: Redirect URIs and Assignment](06-the-applications-identity-redirect-uris-and-assignment.md) · [Workbook index](index.md)
+[← Previous: Chapter 06 — The Application's Identity: Redirect URIs and Assignment](06-the-applications-identity-redirect-uris-and-assignment.md) · [Workbook index](index.md) · [Next: Chapter 08 — Shutting Down a Retired or Replaced Application →](08-shutting-down-a-retired-application.md)
 :::
 
 [^am07-signin]: Microsoft Learn, "signIn resource type" (Graph beta; P1 or P2 to read sign-in logs through Graph; `clientCredentialType` values; `servicePrincipalCredentialKeyId`; `signInEventTypes` filter), <https://learn.microsoft.com/graph/api/resources/signin?view=graph-rest-beta> (accessed Nov 11, 2026; carried from Book 18, Appendix A).

@@ -1,0 +1,13 @@
+PS> ./Invoke-ArtPlan.ps1 -FootprintPath tests/fixtures/footprint.json -OutputPath out/retire-early -AsOf 2026-10-30
+Application : Grants Tracker (fictional)
+Gates       : R1=met R2=blocked R3=met R4=pending R5=pending R6=pending
+Findings    : 1
+Warnings    : 1
+OutputPath  : out/retire-early
+
+(exit code 2)
+PS> Get-Content out/retire-early/findings.json | ConvertFrom-Json | Format-Table Rule, Severity, Gate, Object
+Rule   Severity Gate Object
+----   -------- ---- ------
+ART-03 Finding  R2   Payments Gateway (fictional)
+ART-06 Warn     R5   Firewall rule: FW-2291 Users to grants:443

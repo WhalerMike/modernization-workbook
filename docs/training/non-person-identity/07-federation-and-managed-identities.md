@@ -339,10 +339,51 @@ Replace each `<placeholder>` with your test environment's value.
 
 The chapter's steps say what each command does and what to look for.
 
+In PowerShell 7:
+
 ```powershell
 # Step 1: Make a test conversion
 Get-Content tests/fixtures/ch05/cutover-log.csv -TotalCount 1 | Set-Content <cutover-log>
+```
 
+In a POSIX shell (Git Bash on Windows):
+
+```bash
+# Step 2: Capture the claims
+cd <repo-clone>
+mkdir -p .github/workflows
+cat > .github/workflows/npi-claims.yml <<'EOF'
+name: npi-claims
+on: workflow_dispatch
+permissions:
+  id-token: write
+  contents: read
+jobs:
+  claims:
+    runs-on: ubuntu-latest
+    environment: test
+    steps:
+      - name: Print the token's iss and sub, never the token
+        run: |
+          TOKEN=$(curl -sS -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=api://AzureADTokenExchange" | jq -r .value)
+          echo "$TOKEN" | cut -d. -f2 | python3 -c "import base64, json, sys; p = sys.stdin.read().strip(); c = json.loads(base64.urlsafe_b64decode(p + '=' * (-len(p) % 4))); print('iss=' + c['iss']); print('sub=' + c['sub'])"
+EOF
+git add .github/workflows/npi-claims.yml
+git commit -m "Add the NPI lab's claims workflow"
+git push
+gh workflow run npi-claims.yml --repo <owner>/<repo>
+sleep 15
+RUN=$(gh run list --repo <owner>/<repo> --workflow npi-claims.yml --limit 1 --json databaseId --jq '.[0].databaseId')
+gh run watch "$RUN" --repo <owner>/<repo> --exit-status
+gh run view "$RUN" --repo <owner>/<repo> --log | grep -E ' (iss|sub)=[a-z]'
+git rm .github/workflows/npi-claims.yml
+git commit -m "Remove the NPI lab's claims workflow"
+git push
+```
+
+In PowerShell 7:
+
+```powershell
 # Step 3: Plan
 Connect-MgGraph -Environment Global -TenantId <tenant-id> -ClientId <app-id> -CertificateThumbprint <thumbprint>
 Connect-AzAccount -ServicePrincipal -Environment AzureCloud -Tenant <tenant-id> -ApplicationId <app-id> -CertificateThumbprint <thumbprint>
@@ -389,10 +430,6 @@ Get-ADUser -Identity <test-account> | Select-Object SamAccountName, Enabled
 Enable-ADAccount -Identity <test-account>
 Remove-Item -Recurse -Force out/federation-test*
 ```
-
-Steps with no command, done in the portal or by hand as the chapter's step says:
-
-- **Step 2:** Capture the claims
 :::
 
 <!-- labs:end -->

@@ -420,4 +420,4 @@ You rebuilt the pack, compared the snapshots, flagged and explained the one new 
 
 **The evidence an ISSO keeps** from this module: the sealed pack with `SHA256SUMS.txt`, the technical owner's signed test record, and the `WP6` evidence record in the chain with every other step's. Before shipping, work through the chapter's [Checklist](../../project-plans/developer-workbooks/application-modernization/07-the-post-change-test-and-the-evidence-pack.md#checklist).
 
-**Next:** the workbook's [reading paths](../../project-plans/developer-workbooks/application-modernization/index.md#reading-paths), and the path's [summary](index.md#what-youll-be-able-to-do).
+**Next:** [Module 8: Shutting down a retired application](08-shutting-down-a-retired-application.md), the workbook's [reading paths](../../project-plans/developer-workbooks/application-modernization/index.md#reading-paths), and the path's [summary](index.md#what-youll-be-able-to-do).

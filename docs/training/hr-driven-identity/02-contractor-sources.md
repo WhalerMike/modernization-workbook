@@ -333,6 +333,31 @@ Replace each `<placeholder>` with your test environment's value.
 
 The chapter's steps say what each command does and what to look for.
 
+In PowerShell 7:
+
+```powershell
+# Step 1: Set up the contractor provisioning app
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes 'Application.ReadWrite.All', 'Synchronization.ReadWrite.All', 'AppRoleAssignment.ReadWrite.All', 'Directory.Read.All' -NoWelcome
+$tpl = Get-MgApplicationTemplate -Filter "startswith(displayName, 'API-driven')" | Where-Object { $_.DisplayName -match 'Microsoft Entra ID' -and $_.DisplayName -notmatch 'Active Directory' }
+$tpl | Format-Table Id, DisplayName
+$new = Invoke-MgInstantiateApplicationTemplate -ApplicationTemplateId $tpl.Id -BodyParameter @{ displayName = 'hrlc-contractor-provisioning-test' }
+$provId = $new.ServicePrincipal.Id
+do { Start-Sleep -Seconds 15; $jobTpl = Get-MgServicePrincipalSynchronizationTemplate -ServicePrincipalId $provId -ErrorAction SilentlyContinue } until ($jobTpl)
+$jobTpl | Format-Table Id, FactoryTag
+$job = New-MgServicePrincipalSynchronizationJob -ServicePrincipalId $provId -BodyParameter @{ templateId = ($jobTpl | Where-Object Id -eq 'API2AAD').Id }
+$mw = Get-MgServicePrincipal -Filter "appId eq '<middleware-app-id>'"
+New-MgServicePrincipalOwnerByRef -ServicePrincipalId $provId -BodyParameter @{ '@odata.id' = "https://graph.microsoft.com/v1.0/directoryObjects/$($mw.Id)" }
+$graph = Get-MgServicePrincipal -Filter "appId eq '00000003-0000-0000-c000-000000000000'"
+$role = $graph.AppRoles | Where-Object { $_.Value -eq 'SynchronizationData-User.Upload.OwnedBy' -and $_.AllowedMemberTypes -contains 'Application' }
+New-MgServicePrincipalAppRoleAssignment -ServicePrincipalId $mw.Id -PrincipalId $mw.Id -ResourceId $graph.Id -AppRoleId $role.Id
+"https://graph.microsoft.com/v1.0/servicePrincipals/$provId/synchronization/jobs/$($job.Id)/bulkUpload"
+
+# Step 1: Set up the contractor provisioning app
+../third_party/csv2scim/src/CSV2SCIM.ps1 -Path ../hcm-entra/tests/fixtures/hcm_extract_sample.csv `
+    -ScimSchemaNamespace 'urn:ietf:params:scim:schemas:extension:contoso:1.0:User' `
+    -TenantId <tenant-id> -ServicePrincipalId $provId -UpdateSchema
+```
+
 In a POSIX shell (Git Bash on Windows):
 
 ```bash
@@ -382,10 +407,6 @@ In a POSIX shell (Git Bash on Windows):
 # Step 5: Back it out
 rm -rf exports/ch02 out/ch02-test out/ch02-test-extract out/ch02-test-scim out/ch02-test-review policy-before.json policy-new.json policy-portal.json
 ```
-
-Steps with no command, done in the portal or by hand as the chapter's step says:
-
-- **Step 1:** Set up the contractor provisioning app
 :::
 
 <!-- labs:end -->

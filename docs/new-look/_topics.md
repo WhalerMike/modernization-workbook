@@ -105,7 +105,7 @@
   <li class="nl-tile">
     <p class="nl-tile-title" role="heading" aria-level="3"><a href="../topics/application-modernization.html">Application Modernization</a></p>
     <p class="nl-tile-desc">Modernizing an application portfolio, not rewriting it</p>
-    <p class="nl-tile-count">31 pages</p>
+    <p class="nl-tile-count">33 pages</p>
   </li>
 </ul>
 <p class="nl-more"><a href="../topics/index.html">Every topic, and what each one lacks</a></p></div>

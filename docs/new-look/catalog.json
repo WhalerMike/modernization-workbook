@@ -124,11 +124,11 @@
    "id": "docs/training/application-modernization/index.md",
    "type": "Learning path",
    "title": "Learning path: Application Modernization",
-   "description": "Seven modules, one per chapter of Building Application Modernization: the contract and the schema, moving and proving the data, an agent that only proposes, the front end and Section 508, and the application's own identity through to a…",
+   "description": "Eight modules, one per chapter of Building Application Modernization: the contract and the schema, moving and proving the data, an agent that only proposes, the front end and Section 508, the application's own identity through to a…",
    "url": "docs/training/application-modernization/index.html",
-   "count": 7,
+   "count": 8,
    "unit": "modules",
-   "reading_minutes": 385,
+   "reading_minutes": 430,
    "reading_source": "page",
    "videos": 0,
    "video_minutes": 0,
@@ -137,7 +137,8 @@
    "roles": [
     "Identity engineer",
     "Developer",
-    "ISSO and assessor"
+    "ISSO and assessor",
+    "Program lead and service owner"
    ],
    "topics": [
     "Application modernization"
@@ -1334,9 +1335,9 @@
    "title": "Building Application Modernization",
    "description": "A developer workbook for Book 18's reference implementation and its identity remediation work packages",
    "url": "docs/project-plans/developer-workbooks/application-modernization/index.html",
-   "count": 7,
+   "count": 8,
    "unit": "chapters",
-   "reading_minutes": 91,
+   "reading_minutes": 111,
    "reading_source": "estimate",
    "videos": 0,
    "video_minutes": 0,
@@ -2448,9 +2449,9 @@
    "id": "docs/training/labs.md#am",
    "type": "Lab",
    "title": "Labs: Building Application Modernization",
-   "description": "14 hands-on labs across 7 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. Building Application Modernization.",
+   "description": "16 hands-on labs across 8 chapters or modules: Lab 1 runs on the kit's fixtures with no tenant, Lab 2 in a test tenant. Building Application Modernization.",
    "url": "docs/training/labs.html#am",
-   "count": 14,
+   "count": 16,
    "unit": "labs",
    "reading_minutes": null,
    "reading_source": null,
@@ -2461,7 +2462,8 @@
    "roles": [
     "Identity engineer",
     "Developer",
-    "ISSO and assessor"
+    "ISSO and assessor",
+    "Program lead and service owner"
    ],
    "topics": [
     "Application modernization"
