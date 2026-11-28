@@ -388,6 +388,7 @@ website:
             - docs/training/attribute-driven-migration/07-lifecycle-workflows-extensions.md
             - docs/training/attribute-driven-migration/08-drift-and-evidence.md
             - docs/training/attribute-driven-migration/09-deploying-to-test-and-production.md
+            - docs/training/attribute-driven-migration/10-proving-ad-is-retired.md
         - section: "Non-Person Identity learning path"
           href: docs/training/non-person-identity/index.md
           contents:

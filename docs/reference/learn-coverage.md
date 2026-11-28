@@ -56,11 +56,11 @@ The data lives in [`data/learn-coverage/`](https://github.com/WhalerMike/moderni
 | Side | Pages | Cited | Covered, not cited | Not covered | Out of scope | Not reviewed yet |
 |---|---:|---:|---:|---:|---:|---:|
 | Windows Server identity | 561 | 167 | 22 | 12 | 360 | 0 |
-| Microsoft Entra | 2,511 | 1,033 | 441 | 364 | 671 | 2 |
+| Microsoft Entra | 2,511 | 1,034 | 440 | 364 | 671 | 2 |
 | Windows Server releases | 45 | 6 | 4 | 6 | 29 | 0 |
 | Windows Server security | 47 | 8 | 15 | 10 | 14 | 0 |
 | Windows Server file server and SMB | 26 | 3 | 1 | 11 | 11 | 0 |
-| **All sides** | 3,190 | 1,217 | 483 | 403 | 1,085 | 2 |
+| **All sides** | 3,190 | 1,218 | 482 | 403 | 1,085 | 2 |
 
 ## Windows Server identity {#windows-server-identity}
 
@@ -134,11 +134,11 @@ From [MicrosoftDocs/windowsserverdocs](https://github.com/MicrosoftDocs/windowss
 | [Active Directory DC Locator performance counters in Windows Server](https://learn.microsoft.com/windows-server/identity/ad-ds/dc-locator-performance-counters) | — | Out of scope |
 | [AD DS Deployment](https://learn.microsoft.com/windows-server/identity/ad-ds/deploy/ad-ds-deployment) | — | Out of scope |
 | [AD DS Configuration Wizard Page Descriptions](https://learn.microsoft.com/windows-server/identity/ad-ds/deploy/ad-ds-installation-and-removal-wizard-page-descriptions) | — | Out of scope |
-| [Clean up AD DS server metadata](https://learn.microsoft.com/windows-server/identity/ad-ds/deploy/ad-ds-metadata-cleanup) | [Book 02, Chapter 08 — Assessing the Forest](../books/b02-identity/08-assessing-the-forest.md); [Book 00, Chapter 10 — Retirement, Steady State and Measuring Success](../books/b00-orientation/10-retirement-steady-state-and-success.md); and 3 more | Cited |
+| [Clean up AD DS server metadata](https://learn.microsoft.com/windows-server/identity/ad-ds/deploy/ad-ds-metadata-cleanup) | [Book 02, Chapter 08 — Assessing the Forest](../books/b02-identity/08-assessing-the-forest.md); [Book 00, Chapter 10 — Retirement, Steady State and Measuring Success](../books/b00-orientation/10-retirement-steady-state-and-success.md); and 4 more | Cited |
 | [Changes Made by Adprep.exe](https://learn.microsoft.com/windows-server/identity/ad-ds/deploy/adprep/changes-made-by-adprep) | — | Out of scope |
 | [DNS for AD DS Owner Role](https://learn.microsoft.com/windows-server/identity/ad-ds/deploy/assigning-the-dns-for-ad-ds-owner-role) | [Book 08, Chapter 09 — Who Owns DNS, DHCP and IPAM](../books/b08-ddi/09-who-owns-dns.md) | Cited |
 | [DCPROMO answer file syntax](https://learn.microsoft.com/windows-server/identity/ad-ds/deploy/dcpromo) | — | Out of scope |
-| [Demote Domain Controllers and Domains](https://learn.microsoft.com/windows-server/identity/ad-ds/deploy/demoting-domain-controllers-and-domains--level-200-) | [Book 00, Chapter 10 — Retirement, Steady State and Measuring Success](../books/b00-orientation/10-retirement-steady-state-and-success.md); [Book 01, Chapter 12 — The Migration Roadmap](../books/b01-transformation-arc/12-migration-roadmap.md); and 2 more | Cited |
+| [Demote Domain Controllers and Domains](https://learn.microsoft.com/windows-server/identity/ad-ds/deploy/demoting-domain-controllers-and-domains--level-200-) | [Book 00, Chapter 10 — Retirement, Steady State and Measuring Success](../books/b00-orientation/10-retirement-steady-state-and-success.md); [Book 01, Chapter 12 — The Migration Roadmap](../books/b01-transformation-arc/12-migration-roadmap.md); and 3 more | Cited |
 | [Active Directory domain-wide schema updates](https://learn.microsoft.com/windows-server/identity/ad-ds/deploy/domain-wide-updates) | — | Out of scope |
 | [Find the Current Active Directory Schema Version](https://learn.microsoft.com/windows-server/identity/ad-ds/deploy/find-active-directory-schema) | [Book 02, Chapter 08 — Assessing the Forest](../books/b02-identity/08-assessing-the-forest.md); [Book 00, Chapter 08 — Pre-Flight: Platform and Assessment](../books/b00-orientation/08-pre-flight-and-assessment.md) | Cited |
 | [Install a New Windows Server 2012 Active Directory Child or Tree Domain (Level 200)](https://learn.microsoft.com/windows-server/identity/ad-ds/deploy/install-a-new-windows-server-2012-active-directory-child-or-tree-domain--level-200-) | — | Out of scope |

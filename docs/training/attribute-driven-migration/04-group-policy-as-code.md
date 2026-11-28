@@ -13,7 +13,7 @@ last-reviewed: 2026-11-25
 ---
 # Attribute-Driven Migration, Module 4: Move Group Policy as Code {.unnumbered}
 
-**Learning path:** [Building the Attribute-Driven Migration](index.md) · Module 4 of 9 · 50 minutes · Guide [Gate 0](../../books/guides/attribute-driven-migration-implementation.md#gate-0-read-the-ou-tree), [Gate 5](../../books/guides/attribute-driven-migration-implementation.md#gate-5-personas-and-targeting-conventions) and [Gate 8](../../books/guides/attribute-driven-migration-implementation.md#gate-8-cut-over-and-retire-the-ou-tree) · Workbook [Chapter 06](../../books/b19-developer-workbook/06-group-policy-as-code.md)
+**Learning path:** [Building the Attribute-Driven Migration](index.md) · Module 4 of 10 · 50 minutes · Guide [Gate 0](../../books/guides/attribute-driven-migration-implementation.md#gate-0-read-the-ou-tree), [Gate 5](../../books/guides/attribute-driven-migration-implementation.md#gate-5-personas-and-targeting-conventions) and [Gate 8](../../books/guides/attribute-driven-migration-implementation.md#gate-8-cut-over-and-retire-the-ou-tree) · Workbook [Chapter 06](../../books/b19-developer-workbook/06-group-policy-as-code.md)
 
 **Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.5/Training_ADM_Module_4.pptx) · [▶ Watch](../../presentations/watch.html?v=Training_ADM_Module_4_Narrated) (about 15 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_ADM_Module_4_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-adm-module-4/Training_ADM_Module_4_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-adm-module-4/Training_ADM_Module_4_Narrated.vtt).
 
@@ -400,6 +400,15 @@ Replace each `<placeholder>` with your test environment's value.
 The chapter's steps say what each command does and what to look for.
 
 ```powershell
+# Step 1: Import a test GPO into Group Policy analytics
+New-Item -ItemType Directory -Force ./out/gpa | Out-Null
+Get-GPOReport -Name '<test-gpo-name>' -ReportType Xml -Path ./out/gpa/test-gpo.xml
+(Get-Item ./out/gpa/test-gpo.xml).Length -lt 4MB
+Connect-MgGraph -Environment Global -TenantId <test-tenant-id> -Scopes DeviceManagementConfiguration.ReadWrite.All -NoWelcome
+$file = @{ ouDistinguishedName = '<ou-distinguished-name>'; content = [Convert]::ToBase64String([IO.File]::ReadAllBytes("$PWD/out/gpa/test-gpo.xml")); roleScopeTagIds = @('<scope-tag-id>') }
+Invoke-MgGraphRequest -Method POST -Uri '/beta/deviceManagement/groupPolicyMigrationReports/createMigrationReport' -Body (@{ groupPolicyObjectFile = $file } | ConvertTo-Json -Depth 5) -ContentType 'application/json'
+(Invoke-MgGraphRequest -Method GET -Uri '/beta/deviceManagement/groupPolicyMigrationReports').value | Select-Object displayName, migrationReadiness
+
 # Step 2: Run the gate live
 pwsh -File ../validation-kit/Invoke-ValidationKit.ps1 -OutputPath ./out/vk -Track INT -CheckId VK-INT-07 -IncludeBeta
 
@@ -435,10 +444,6 @@ foreach ($id in $ids) { Invoke-MgGraphRequest -Method DELETE -Uri "/beta/deviceM
 # Step 8: Back it out
 pwsh ./powershell/Invoke-GpcSync.ps1 -Cloud gcc -TenantId <test-tenant-id> -WithPlan
 ```
-
-Steps with no command, done in the portal or by hand as the chapter's step says:
-
-- **Step 1:** Import a test GPO into Group Policy analytics
 :::
 
 <!-- labs:end -->

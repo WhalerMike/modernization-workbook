@@ -14,7 +14,8 @@ Describe 'A Kerberos island with leftovers' {
     BeforeAll {
         $script:Out = Join-Path $script:Tmp 'island'
         $script:R = New-AreEvidencePacket -Domain corp.contoso.example -FixturePath (Join-Path $script:Fx 'island') -OutputPath $script:Out -AsOf $script:AsOf
-        $script:F = @(Get-Content (Join-Path $script:Out 'findings.json') -Raw | ConvertFrom-Json)
+        # Windows PowerShell 5.1's ConvertFrom-Json writes a JSON array as one object; ForEach-Object unrolls it.
+        $script:F = @(Get-Content (Join-Path $script:Out 'findings.json') -Raw | ConvertFrom-Json | ForEach-Object { $_ })
         function Get-Rule($r) { @($script:F | Where-Object { $_.Rule -eq $r }) }
     }
     It 'is not ready: seven findings and one warning' {
@@ -44,6 +45,10 @@ Describe 'A Kerberos island with leftovers' {
         $m.register.sha256 | Should -Match '^[0-9a-f]{64}$'
         $m.ksis | Should -Contain 'KSI-PIY-GIV'
         $m.ready | Should -BeFalse
+    }
+    It 'writes the same bytes in Windows PowerShell 5.1 and PowerShell 7, so the manifest hash is the same in both' {
+        $script:R.ManifestSha256 | Should -Be '2b33945cbd54c146a7a9e32047cfd27160b7a01afc8543e358e546db3fd5fd3e'
+        Get-Content (Join-Path $script:Out 'trusts.json') -Raw | Should -Match '"Direction": "Outbound"'
     }
     It 'AD-G5-02: an island past its end of life' {
         $reg = Get-Content (Join-Path $script:Kit 'config/island-register.json') -Raw | ConvertFrom-Json

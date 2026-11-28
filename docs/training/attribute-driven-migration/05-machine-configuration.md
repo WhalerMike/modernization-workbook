@@ -13,7 +13,7 @@ last-reviewed: 2026-11-25
 ---
 # Attribute-Driven Migration, Module 5: Build Machine Configuration Packages {.unnumbered}
 
-**Learning path:** [Building the Attribute-Driven Migration](index.md) · Module 5 of 9 · 45 minutes · Guide [Gate 5](../../books/guides/attribute-driven-migration-implementation.md#gate-5-personas-and-targeting-conventions) · Workbook [Chapter 07](../../books/b19-developer-workbook/07-machine-configuration-packages.md)
+**Learning path:** [Building the Attribute-Driven Migration](index.md) · Module 5 of 10 · 45 minutes · Guide [Gate 5](../../books/guides/attribute-driven-migration-implementation.md#gate-5-personas-and-targeting-conventions) · Workbook [Chapter 07](../../books/b19-developer-workbook/07-machine-configuration-packages.md)
 
 **Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.5/Training_ADM_Module_5.pptx) · [▶ Watch](../../presentations/watch.html?v=Training_ADM_Module_5_Narrated) (about 14 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_ADM_Module_5_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-adm-module-5/Training_ADM_Module_5_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-adm-module-5/Training_ADM_Module_5_Narrated.vtt).
 
@@ -436,16 +436,34 @@ Get-AzStorageBlobContent -Container <container> -Blob TlsServerProtocols_1.0.0.z
 (Get-FileHash ./lab/download/TlsServerProtocols_1.0.0.zip -Algorithm SHA256).Hash.ToLowerInvariant()
 (Get-Content ./out/TlsServerProtocols_1.0.0/provenance.json -Raw | ConvertFrom-Json).package.sha256
 
+# Step 4: Grant read access to the machines, not a token
+$principalId = (Get-AzResource -ResourceGroupName <resource-group> -ResourceType Microsoft.HybridCompute/machines -Name <server-name>).Identity.PrincipalId
+$sa = Get-AzStorageAccount -ResourceGroupName <resource-group> -Name <storage-account>
+New-AzRoleAssignment -ObjectId $principalId -RoleDefinitionName 'Storage Blob Data Reader' -Scope $sa.Id
+
 # Step 5: Publish the definition
 New-AzPolicyDefinition -Name ca593085-dfcb-425d-ac9c-12870a55bbaa -Policy ./out/TlsServerProtocols_1.0.0/policy/TlsServerProtocols_1.0.0_AuditIfNotExists.json
+
+# Step 6: Assign it to the test resource group with IncludeArcMachines set to true
+$rg = Get-AzResourceGroup -Name <resource-group>
+$definition = Get-AzPolicyDefinition -Name ca593085-dfcb-425d-ac9c-12870a55bbaa
+New-AzPolicyAssignment -Name lab-tls-server-protocols -DisplayName 'Lab: TLS server protocols (audit)' -Scope $rg.ResourceId -PolicyDefinition $definition -PolicyParameterObject @{ IncludeArcMachines = 'true' }
+
+# Step 7: Read the result
+$gcName = (Get-Content ./out/TlsServerProtocols_1.0.0/policy/TlsServerProtocols_1.0.0_AuditIfNotExists.json -Raw | ConvertFrom-Json).properties.metadata.guestConfiguration.name
+Search-AzGraph -Query "guestconfigurationresources | where type =~ 'microsoft.guestconfiguration/guestconfigurationassignments' and name =~ '$gcName' | project name, machine = tostring(properties.targetResourceId), complianceStatus = tostring(properties.complianceStatus), contentHash = tostring(properties.guestConfiguration.contentHash)"
+(Get-Content ./out/TlsServerProtocols_1.0.0/provenance.json -Raw | ConvertFrom-Json).package.sha256
+
+# Step 8: Back it out
+$rg = Get-AzResourceGroup -Name <resource-group>
+Remove-AzPolicyAssignment -Name lab-tls-server-protocols -Scope $rg.ResourceId
+Remove-AzPolicyDefinition -Name ca593085-dfcb-425d-ac9c-12870a55bbaa -Force
+$ctx = New-AzStorageContext -StorageAccountName <storage-account> -UseConnectedAccount
+Remove-AzStorageBlob -Container <container> -Blob TlsServerProtocols_1.0.0.zip -Context $ctx
+$principalId = (Get-AzResource -ResourceGroupName <resource-group> -ResourceType Microsoft.HybridCompute/machines -Name <server-name>).Identity.PrincipalId
+$sa = Get-AzStorageAccount -ResourceGroupName <resource-group> -Name <storage-account>
+Remove-AzRoleAssignment -ObjectId $principalId -RoleDefinitionName 'Storage Blob Data Reader' -Scope $sa.Id
 ```
-
-Steps with no command, done in the portal or by hand as the chapter's step says:
-
-- **Step 4:** Grant read access to the machines, not a token
-- **Step 6:** Assign it to the test resource group with IncludeArcMachines set to true
-- **Step 7:** Read the result
-- **Step 8:** Back it out
 :::
 
 <!-- labs:end -->

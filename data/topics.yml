@@ -135,8 +135,12 @@ topics:
       learn:
         - page: docs/training/ms-automation-foundations.md
           note: Teaches Book 19's Chapter 02, the Graph client for government clouds.
+        - page: docs/training/attribute-driven-migration/10-proving-ad-is-retired.md
+          note: Writes the program G5 evidence packet in Windows PowerShell 5.1.
       evidence:
         - page: docs/books/b19-developer-workbook/09-drift-pipelines-and-evidence.md
+        - page: docs/books/b19-developer-workbook/11-proving-ad-is-retired.md
+          note: The G5 AD Retired packet, from the AD retirement evidence kit.
         - page: docs/books/b03-hr-identity/11-drift-metrics-and-evidence.md
     downloads:
       - attribute-driven-migration-implementation-guide.docx

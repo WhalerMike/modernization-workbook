@@ -30,7 +30,7 @@ last-reviewed: 2026-11-18
 
 ::: {.callout-important appearance="default"}
 ## Status: approved
-All ten chapters are written, and the owner had approved every page by November 3, 2026. A page that changes after its approval goes back on the weekly source watch list until it is approved again. Chapters 01 to 09 each have a narrated deck and video, listed under [Narrated chapter tours](#narrated-chapter-tours). Every external claim was checked against Microsoft Learn or a workbook chapter between October 30 and November 2, 2026 and carries a note, and each chapter keeps its verification log in the repository. The code is illustrative. Its tests pass against fixtures, but it has not been run against a production tenant.
+Chapters 01 to 10 are written, and the owner had approved every page by November 3, 2026. Chapter 11, proving AD is retired at program gate G5, was added on November 27, 2026 and awaits review. A page that changes after its approval goes back on the weekly source watch list until it is approved again. Chapters 01 to 09 each have a narrated deck and video, listed under [Narrated chapter tours](#narrated-chapter-tours). Every external claim was checked against Microsoft Learn or a workbook chapter between October 30 and November 2, 2026 and carries a note, and each chapter keeps its verification log in the repository. The code is illustrative. Its tests pass against fixtures, but it has not been run against a production tenant.
 :::
 
 The [Attribute-Driven Migration](../guides/attribute-driven-migration.md) moves an agency from Active Directory to Microsoft Entra ID by placing every person, device and server in policy through attributes instead of OU placement. Its operator material already exists: the companion guide, the [implementation guide](../guides/attribute-driven-migration-implementation.md) with its ten gates, the [project plan](../../project-plans/attribute-driven-migration.md) and the narrated decks. Those tell an operator what to do and how to prove it was done. They don't teach anyone to build the software the migration runs on: the middleware between the HR system and Entra ID, the Graph clients, the checks that prove each gate, the rule library, the workflow extensions, and the pipelines that catch drift and hand evidence to the ISSO.
@@ -45,7 +45,7 @@ The project has two long documents, and they do different jobs. [Attribute-Drive
 |---|---|---|
 | Reader | Operators, migration leads and ISSOs | Developers and platform engineers |
 | Question it answers | What has to be true at each gate, and how do I prove it? | How do I build, test and ship the code that makes it true? |
-| Shape | Ten gates, from reading the OU tree (Gate 0) to keeping attributes true (Gate 9). Each has prerequisites, steps, a **Validate** step, rollback and evidence | Nine code chapters, each starting from code in the `examples` folder, with a lab against fixtures, a test-tenant step, verified Graph and Azure facts, dangers and a checklist |
+| Shape | Ten gates, from reading the OU tree (Gate 0) to keeping attributes true (Gate 9). Each has prerequisites, steps, a **Validate** step, rollback and evidence | Ten code chapters, each starting from code in the `examples` folder, with a lab against fixtures, a test-tenant step, verified Graph and Azure facts, dangers and a checklist |
 | You finish with | A migrated estate and the evidence package for each gate | Middleware, Graph clients, validation checks, rule libraries, workflow extensions and drift pipelines, with passing tests |
 | Download | [attribute-driven-migration-implementation-guide.docx](../../../downloads/attribute-driven-migration-implementation-guide.docx) | [attribute-driven-migration-code.zip](../../../downloads/attribute-driven-migration-code.zip) |
 
@@ -61,12 +61,12 @@ They meet at the **Validate** step. Each gate in the guide names a validation ki
 |---|---|---|
 | Project plan | The phases, owners, dates and exit criteria the gates are scheduled against | [Attribute-Driven Migration project plan](../../project-plans/attribute-driven-migration.md) |
 | Implementation guide | The operator's guide: ten gates, each with steps, a **Validate** step, rollback and evidence. It says what has to be true at each gate; this workbook builds the software that makes it true | [Attribute-Driven Migration: An Implementation Guide](../guides/attribute-driven-migration-implementation.md) |
-| Developer workbook | This workbook: nine code chapters, each building on code in the repository, with labs and tests, and a deployment runbook | [Chapters](#chapters-table) below |
+| Developer workbook | This workbook: ten code chapters, each building on code in the repository, with labs and tests, and a deployment runbook | [Chapters](#chapters-table) below |
 | Presentations | The two-part technical deep dive and the three-part deeper dive follow the guide's gates. Chapters 01 to 09 also have a narrated tour: a deck and a video | [Presentations](../../presentations/index.md) · [Narrated chapter tours](#narrated-chapter-tours) |
 | Code | The `examples` folders the chapters build on, and the Microsoft samples they start from, pinned unmodified under `third_party` with their licenses | [`examples` on GitHub](https://github.com/WhalerMike/modernization-workbook/tree/main/examples) |
-| Code download | Every folder the nine code chapters use, in one zip, with its tests and fixtures. Each script also has a `.txt` copy for mail systems that block scripts | [attribute-driven-migration-code.zip](../../../downloads/attribute-driven-migration-code.zip) |
+| Code download | Every folder the ten code chapters use, in one zip, with its tests and fixtures. Each script also has a `.txt` copy for mail systems that block scripts | [attribute-driven-migration-code.zip](../../../downloads/attribute-driven-migration-code.zip) |
 
-The zip holds `hcm-entra` (Chapters 01, 02 and 09), `ms-automation` (02), `validation-kit` (02, 03, 04, 06 and 09), `dynamic-rules` (02, 04 and 09), `lifecycle-extensions` (05), `group-policy-as-code` (06), `machine-configuration` (07 and 09), `ansible` (08) and `drift-pipeline` (09), and the pinned samples each chapter starts from.
+The zip holds `hcm-entra` (Chapters 01, 02 and 09), `ms-automation` (02), `validation-kit` (02, 03, 04, 06 and 09), `dynamic-rules` (02, 04 and 09), `lifecycle-extensions` (05), `group-policy-as-code` (06), `machine-configuration` (07 and 09), `ansible` (08), `drift-pipeline` (09) and `ad-retirement-evidence` (11), and the pinned samples each chapter starts from.
 
 ## How each chapter is built
 
@@ -96,6 +96,7 @@ The zip holds `hcm-entra` (Chapters 01, 02 and 09), `ms-automation` (02), `valid
 | 08 | [Ansible beside Arc](08-ansible-beside-arc.md) | Microsoft's `azure_arc` role (pinned in `examples/third_party/azure-arc-role`), then `examples/ansible` | Start from Microsoft's role, then add what it leaves to you: the `patch_owner` column and a CMDB inventory that reads both owners into the `ConfigOwner` and `PatchOwner` tags, a wave plan before every run, a dry run the role can't do, canary batches, and commercial Azure for a GCC estate | Approved |
 | 09 | [Drift pipelines and evidence to the ISSO](09-drift-pipelines-and-evidence.md) | Learn's Azure Login OIDC sample workflows (pinned in `examples/third_party/azure-login-oidc-sample`), then the kits' run outputs in `examples/drift-pipeline` | Start from Learn's sample, then add what it leaves to you: a schedule, pinned actions, sign-in and Graph host for GCC, a comparison of each run with the last that never treats a failed read as a fix, findings opened and closed by fingerprint without names, and an evidence package with a SHA-256 per file, the other kits' provenance and a hash chain | Approved |
 | 10 | [Deploying to test and production](10-deploying-to-test-and-production.md) | `examples/drift-pipeline/deploy`, and the commands of Chapters 01 to 09 | A runbook in exact commands from the chapters' test-tenant steps to a live test environment, then production in waves: one settings file per stage with no secrets, a pre-flight check, a smoke test that says go or no-go, a recorded rollback, and the evidence the ISSO keeps. Not run against a live tenant | Approved |
+| 11 | [Proving AD is retired](11-proving-ad-is-retired.md) | `examples/ad-retirement-evidence` | Program gate G5 as evidence: start from Learn's demotion, metadata cleanup, DC locator and event pages, then add what they leave to you: every domain controller, NTDS Settings object, DC locator record, trust, SPN and sign-in compared with the island register, end-of-life dates that fail when they pass, and a packet with a SHA-256 per file that is the same bytes in Windows PowerShell 5.1 and PowerShell 7 | Draft, review pending |
 
 Chapter 02 is the foundation the other chapters lean on: read it before you build a new Graph or Azure client of your own. Chapters 01, 03 and 04 were written first, because their code already existed.
 
@@ -133,6 +134,7 @@ Chapters 01 to 09 each have a narrated tour: a deck in Why, What, Who and How or
 - **Developers extending the validation kit:** Chapter 03, then Chapter 04.
 - **Platform and pipeline engineers:** Chapter 07, then 08 and 09.
 - **ISSOs and reviewers of the code:** the checklists at the end of each chapter, and Chapter 09.
+- **Gate owners for program G5:** Chapter 11, after [Book 00, Chapter 10](../b00-orientation/10-retirement-steady-state-and-success.md#phase-5-ad-ds-retirement).
 
 ## Where this workbook sits
 

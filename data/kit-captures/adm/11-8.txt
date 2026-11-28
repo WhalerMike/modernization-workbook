@@ -1,0 +1,12 @@
+PS> Invoke-Pester -Path tests
+Starting discovery in 1 files.
+Discovery found 14 tests.
+Running tests.
+[+] AdRetirementEvidence.Tests.ps1
+Tests completed
+Tests Passed: 14,
+Failed: 0,
+Skipped: 0,
+Inconclusive: 0,
+
+NotRun: 0

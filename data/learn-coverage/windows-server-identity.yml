@@ -634,6 +634,7 @@ pages:
   - docs/books/b02-identity/04-the-hidden-migration-surface.md
   - docs/books/b02-identity/_verification/04-the-hidden-migration-surface.md
   - docs/books/b14-compliance/appendix-h-ad-forest-recovery.md
+  - docs/books/b19-developer-workbook/11-proving-ad-is-retired.md
 - path: WindowsServerDocs/identity/ad-ds/deploy/adprep/Changes-Made-by-Adprep.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/deploy/adprep/changes-made-by-adprep
   title: Changes Made by Adprep.exe
@@ -679,6 +680,7 @@ pages:
   - docs/books/b01-transformation-arc/12-migration-roadmap.md
   - docs/books/b02-identity/04-the-hidden-migration-surface.md
   - docs/books/b02-identity/_verification/04-the-hidden-migration-surface.md
+  - docs/books/b19-developer-workbook/11-proving-ad-is-retired.md
 - path: WindowsServerDocs/identity/ad-ds/deploy/Domain-Wide-Updates.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/deploy/domain-wide-updates
   title: Active Directory domain-wide schema updates

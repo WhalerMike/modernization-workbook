@@ -1,7 +1,7 @@
 ---
 title: "Learning path: Building the Attribute-Driven Migration"
-subtitle: "Nine modules that teach you to build, test and evidence the software the Attribute-Driven Migration runs on, one Book 19 chapter at a time, in the order of the implementation guide's gates"
-description: "A learning path in nine modules for developers, platform engineers, identity engineers and ISSO reviewers. Each module maps one chapter of Book 19, Building the Attribute-Driven Migration, to the implementation guide's gates it serves, runs the chapter's Lab 1 on the kit's fixtures with no tenant (Chapter 10 has the fixture dry run instead), points to Lab 2 in a non-production environment, names the federal requirement with its KSI and evidence, and ends with a knowledge check. Chapter 02 is taught by the Microsoft Automation path's Module 1."
+subtitle: "Ten modules that teach you to build, test and evidence the software the Attribute-Driven Migration runs on, one Book 19 chapter at a time, in the order of the implementation guide's gates"
+description: "A learning path in ten modules for developers, platform engineers, identity engineers and ISSO reviewers. Each module maps one chapter of Book 19, Building the Attribute-Driven Migration, to the implementation guide's gates it serves, runs the chapter's Lab 1 on the kit's fixtures with no tenant (Chapter 10 has the fixture dry run instead; Module 10 runs in Windows PowerShell 5.1), points to Lab 2 in a non-production environment, names the federal requirement with its KSI and evidence, and ends with a knowledge check. Chapter 02 is taught by the Microsoft Automation path's Module 1."
 doc-type: training-path
 research-status: draft
 research-type: training module
@@ -35,8 +35,8 @@ This path teaches Book 19 in the order of the guide's gates. Each module takes o
 | **Roles** | Developer, platform engineer, identity engineer, endpoint (Intune) engineer, ISSO reviewer |
 | **Products** | Microsoft Entra ID and its API-driven inbound provisioning, Lifecycle Workflows, Microsoft Intune, Azure Arc, Azure Policy machine configuration, GitHub Actions; Microsoft Graph throughout |
 | **Scope** | A civilian agency at FedRAMP Moderate, usually in Microsoft 365 GCC with commercial Azure, as the [guide](../../books/guides/attribute-driven-migration-implementation.md#how-to-use-this-guide) sets out |
-| **Modules** | 9, and Microsoft Automation's Module 1 for Chapter 02 |
-| **Time** | About 7 hours 25 minutes, not counting the Lab 2 exercises or the prerequisite Microsoft Automation Module 1 (85 minutes) |
+| **Modules** | 10, and Microsoft Automation's Module 1 for Chapter 02 |
+| **Time** | About 8 hours 10 minutes, not counting the Lab 2 exercises or the prerequisite Microsoft Automation Module 1 (85 minutes) |
 
 ## What you'll be able to do
 
@@ -50,17 +50,18 @@ When you finish this path, you'll be able to:
 - plan an Arc onboarding wave from a CMDB export, with both owners tagged, before anything runs;
 - build a Lifecycle Workflows custom extension that calls back honestly, in the right cloud, and blocks before it revokes;
 - run the drift pipeline, read what changed since the last run, and hand the ISSO a package `sha256sum` verifies;
-- dry-run the deployment runbook's pre-flight check, smoke test, rollback plan and evidence check.
+- dry-run the deployment runbook's pre-flight check, smoke test, rollback plan and evidence check;
+- write the program G5 evidence packet that shows AD is retired, or kept only as a dated Kerberos island, and check its hashes.
 
 ## Prerequisites
 
 - **The migration.** Read the guide's [path on one page](../../books/guides/attribute-driven-migration-implementation.md#the-path-on-one-page) and its [one identifier through every gate](../../books/guides/attribute-driven-migration-implementation.md#one-identifier-through-every-gate): ten minutes, and every module refers back to them. [This workbook or the implementation guide?](../../books/b19-developer-workbook/index.md#workbook-or-guide) says how the two documents divide the work.
 - **Microsoft Graph in GCC.** Work through [Microsoft Automation, Module 1: Graph and Azure Foundations](../ms-automation-foundations.md) first. It is this path's lesson for [Book 19, Chapter 02](../../books/b19-developer-workbook/02-graph-clients-for-government-clouds.md): see [Chapter 02 is taught elsewhere](#chapter-02-is-taught-elsewhere).
-- **Code.** You can read PowerShell 7 and Python, run commands in a terminal, and read JSON. Module 6 also reads Ansible playbooks, and Module 8 a GitHub Actions workflow.
+- **Code.** You can read PowerShell 7 (and, for Module 10, Windows PowerShell 5.1) and Python, run commands in a terminal, and read JSON. Module 6 also reads Ansible playbooks, and Module 8 a GitHub Actions workflow.
 
 ## Get the code {#get-the-code}
 
-Download [attribute-driven-migration-code.zip](../../../downloads/attribute-driven-migration-code.zip) to your Downloads folder. It holds every folder the chapters use: `hcm-entra`, `ms-automation`, `validation-kit`, `dynamic-rules`, `lifecycle-extensions`, `group-policy-as-code`, `machine-configuration`, `ansible` and `drift-pipeline`, and in `third_party` the Microsoft samples they start from, pinned unmodified. Each module names the folder it works in, `examples/<folder>` in a clone; in the zip it's `C:\FMWLabs\attribute-driven-migration-code\<folder>`. The commands below go to Module 1's, `hcm-entra`. Module 3's steps also call `git`, so they need Git for Windows. Modules use Python and PowerShell 7.2 or later with Pester 5, as each one says. [Get a path's code](../index.md#get-the-code) says why each step is there.
+Download [attribute-driven-migration-code.zip](../../../downloads/attribute-driven-migration-code.zip) to your Downloads folder. It holds every folder the chapters use: `hcm-entra`, `ms-automation`, `validation-kit`, `dynamic-rules`, `lifecycle-extensions`, `group-policy-as-code`, `machine-configuration`, `ansible`, `drift-pipeline` and `ad-retirement-evidence`, and in `third_party` the Microsoft samples they start from, pinned unmodified. Each module names the folder it works in, `examples/<folder>` in a clone; in the zip it's `C:\FMWLabs\attribute-driven-migration-code\<folder>`. The commands below go to Module 1's, `hcm-entra`. Module 3's steps also call `git`, so they need Git for Windows. Modules use Python and PowerShell 7.2 or later with Pester 5, as each one says. [Get a path's code](../index.md#get-the-code) says why each step is there.
 
 In PowerShell (Windows PowerShell 5.1 or PowerShell 7):
 
@@ -117,6 +118,7 @@ Work through the modules in order. The times are estimates for the reading, the 
 | 7 | [Extend Lifecycle Workflows](07-lifecycle-workflows-extensions.md) | [G7](../../books/guides/attribute-driven-migration-implementation.md#gate-7-prove-a-mover-across-the-tracks), [G8](../../books/guides/attribute-driven-migration-implementation.md#gate-8-cut-over-and-retire-the-ou-tree) | [05](../../books/b19-developer-workbook/05-lifecycle-workflows-custom-extensions.md) | 50 min |
 | 8 | [Run the drift pipeline and hand over the evidence](08-drift-and-evidence.md) | [G9](../../books/guides/attribute-driven-migration-implementation.md#gate-9-keep-the-attributes-true) | [09](../../books/b19-developer-workbook/09-drift-pipelines-and-evidence.md) | 55 min |
 | 9 | [Deploy to test, then production](09-deploying-to-test-and-production.md) | Gates 2 to 5 and 7 to 9, through the [step-to-gate map](../../books/b19-developer-workbook/10-deploying-to-test-and-production.md#step-to-gate-map) | [10](../../books/b19-developer-workbook/10-deploying-to-test-and-production.md) | 50 min |
+| 10 | [Prove AD is retired](10-proving-ad-is-retired.md) | None: program gate [G5](../../books/b00-orientation/10-retirement-steady-state-and-success.md#phase-5-ad-ds-retirement), after the guide's gates | [11](../../books/b19-developer-workbook/11-proving-ad-is-retired.md) | 45 min |
 
 : The modules in order {.striped .hover}
 
@@ -127,6 +129,7 @@ The path follows Book 19's chapters, not the guide's gates, for four reasons:
 - **The labs live in the chapters.** Chapters 01 to 09 each have a Lab 1 on fixtures and a Lab 2 in a non-production environment, written as exact commands. Chapter 10, the deployment runbook, has no Lab 1 or Lab 2: it has "Try the scripts against fixtures first" and Stage 1. The guide's gates have none: their Validate steps run the validation kit against a live tenant.
 - **So do the federal tables.** Each chapter has a *Federal requirements and evidence* table with a KSI where one applies. The gates name their evidence but not their controls.
 - **The gates and chapters don't line up one to one.** Gate 5 needs three chapters (06, 07 and 08). Gate 8 draws on three (05, 06 and 08). Gates 1 and 6 have no chapter at all.
+- **Module 10 comes last because its gate does.** Book 19's Chapter 11 serves the program's gate G5, *AD Retired*, which follows the guide's ten gates, so it has no place in the step-to-gate map and is taught after the deployment runbook. The guide's Gate 5 is a different gate.
 - **The order still follows the gates.** The modules are sorted by the first gate each chapter has in [Chapter 10's step-to-gate map](../../books/b19-developer-workbook/10-deploying-to-test-and-production.md#step-to-gate-map). That's why Chapter 05, which serves Gates 7 and 8, comes after Chapters 06 to 08, and why Module 4's G0, which comes from a Validate step and not from the map, is listed first in its row but doesn't set its place.
 
 Each module's *Guide gates* column comes from that map, or from the gate's own Validate step: Module 2's check, VK-SYNC-02, is named for Gate 3's match-blocking check in [Where the kits stop](../../books/guides/attribute-driven-migration-implementation.md#where-the-kits-stop) (Gate 3's Validate step doesn't list it), and Module 4's first step runs VK-INT-07, which [Gate 0's Validate step](../../books/guides/attribute-driven-migration-implementation.md#gate-0-read-the-ou-tree) names.
@@ -150,14 +153,14 @@ Every module has two exercises.
 
 **Lab 1: fixtures, no tenant.** Every Lab 1 runs on a laptop against the kits' fictional fixtures, and nothing signs in. Clone the repository and work in the `examples` folder each module names, or download [attribute-driven-migration-code.zip](../../../downloads/attribute-driven-migration-code.zip), which holds every folder the chapters use. Module 3 needs a Git clone, not the zip, because its steps 4 and 5 call `git` (`-BaseRef HEAD`). You need:
 
-- PowerShell 7 with Pester 5, for Modules 2, 3, 4 and 5 (Module 5 needs Windows);
+- PowerShell 7 with Pester 5, for Modules 2, 3, 4 and 5 (Module 5 needs Windows), and Windows PowerShell 5.1 with Pester 5 for Module 10;
 - Python 3.10 or later with pytest, for Modules 1, 8 and 9 (Module 8 also needs PyYAML); Module 7 needs only Python and a POSIX shell, and its tests run with `unittest`;
 - a POSIX shell, such as Git Bash on Windows, for the `bash` blocks;
 - for Module 6, a disposable Linux control node or WSL with Python 3.10 or later, `pytest`, `ansible-core`, `ansible-lint` and `yamllint`.
 
 Module 5's first step and Module 6's first step download pinned modules and collections, from the PowerShell Gallery and from Ansible Galaxy. Each chapter says which versions.
 
-**Lab 2: a non-production environment.** Each Lab 2 is a short pointer to the chapter's Lab 2. **The authors haven't run them.** Depending on the module you need a test Entra tenant, never production, with fictional users; Entra ID Governance licenses for Module 7; Intune licenses for Module 4; a test Azure subscription for Modules 5 to 9, a disposable server for Modules 5 and 6, and Arc-enabled test servers and a test AD forest for Module 9; and a private test repository for Module 8. Every Lab 2 ends with a back-out step. Do it before you leave the module.
+**Lab 2: a non-production environment.** Each Lab 2 is a short pointer to the chapter's Lab 2. **The authors haven't run them.** Depending on the module you need a test Entra tenant, never production, with fictional users; Entra ID Governance licenses for Module 7; Intune licenses for Module 4; a test Azure subscription for Modules 5 to 9, a disposable server for Modules 5 and 6, and Arc-enabled test servers and a test AD forest for Module 9; a test forest whose domain controllers forward their Security log to a test Log Analytics workspace for Module 10; and a private test repository for Module 8. Every Lab 2 ends with a back-out step. Do it before you leave the module.
 
 ## Where this path sits
 
@@ -165,7 +168,7 @@ This path is the training piece of the Attribute-Driven Migration project. The d
 
 ## Status and review
 
-**Draft.** The path, its framing and its knowledge checks are new writing; every fact they rely on is on a linked page and carries that page's verification. Where a module shows output, it is the kit's real output, from the captures in [`data/kit-captures/adm`](https://github.com/WhalerMike/modernization-workbook/tree/main/data/kit-captures/adm) or from the chapter's own text, and the Lab 1 commands of Modules 1 to 4, 7, 8 and 9 were run again on November 2, 2026. To move this path to **In review**, a reviewer works through it end to end and confirms each knowledge-check answer against the linked section. What each status means is in [Status labels](../../about/sources-and-verification.md#status-labels).
+**Draft.** The path, its framing and its knowledge checks are new writing; every fact they rely on is on a linked page and carries that page's verification. Where a module shows output, it is the kit's real output, from the captures in [`data/kit-captures/adm`](https://github.com/WhalerMike/modernization-workbook/tree/main/data/kit-captures/adm) or from the chapter's own text, and the Lab 1 commands of Modules 1 to 4, 7, 8 and 9 were run again on November 2, 2026, and Module 10's in Windows PowerShell 5.1 on November 27, 2026. To move this path to **In review**, a reviewer works through it end to end and confirms each knowledge-check answer against the linked section. What each status means is in [Status labels](../../about/sources-and-verification.md#status-labels).
 
 ## Modules in this path
 

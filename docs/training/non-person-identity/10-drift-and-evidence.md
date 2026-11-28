@@ -455,6 +455,16 @@ Connect-AzAccount -ServicePrincipal -Environment AzureCloud -Tenant <tenant-id> 
 # Step 1: Register the reader app
 (Get-FileHash out/runs-test/<baseline-run>/drift/baseline-candidate.json -Algorithm SHA256).Hash.ToLower()
 
+# Step 2: Make three changes to see
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes Application.ReadWrite.All, DelegatedPermissionGrant.ReadWrite.All -NoWelcome
+foreach ($a in '<first-test-app-id>', '<second-test-app-id>') {
+    $app = Get-MgApplication -Filter "appId eq '$a'"
+    Add-MgApplicationPassword -ApplicationId $app.Id -BodyParameter @{ passwordCredential = @{ displayName = 'npi-drift-test' } } | Select-Object KeyId, EndDateTime
+}
+$graph = Get-MgServicePrincipal -Filter "appId eq '00000003-0000-0000-c000-000000000000'"
+$third = Get-MgServicePrincipal -Filter "appId eq '<third-test-app-id>'"
+New-MgOauth2PermissionGrant -BodyParameter @{ clientId = $third.Id; consentType = 'AllPrincipals'; resourceId = $graph.Id; scope = 'User.Read' } | Select-Object Id, ConsentType, Scope
+
 # Step 3: Run the drift run
 Connect-MgGraph -Environment Global -TenantId <tenant-id> -ClientId <app-id> -CertificateThumbprint <thumbprint>
 Connect-AzAccount -ServicePrincipal -Environment AzureCloud -Tenant <tenant-id> -ApplicationId <app-id> -CertificateThumbprint <thumbprint>
@@ -465,6 +475,20 @@ Connect-AzAccount -ServicePrincipal -Environment AzureCloud -Tenant <tenant-id> 
 Get-Content out/runs-test/<drift-run>/drift/events.json -Raw | ConvertFrom-Json | Format-Table ActivityDateTime, Activity, TargetType, TargetId, @{ n = 'KeysAdded'; e = { $_.KeysAdded.KeyId -join ' ' } } -Wrap
 Get-Content out/runs-test/<drift-run>/drift/findings.json -Raw | ConvertFrom-Json | Where-Object Rule -in 'NPI-DRF-07', 'NPI-DRF-08' | Format-Table Rule, Object, Issue -Wrap
 Get-Content out/runs-test/<drift-run>/drift/signin-activity.json -Raw | ConvertFrom-Json | ConvertTo-Json -Depth 5
+
+# Step 5: Cross-check against Learn's procedure
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes AuditLog.Read.All -NoWelcome
+$w = (Get-Content out/runs-test/<drift-run>/run.json -Raw | ConvertFrom-Json).auditWindow
+$since = ([datetime]$w.since).ToUniversalTime().ToString('yyyy-MM-ddTHH:mm:ssZ'); $until = ([datetime]$w.until).ToUniversalTime().ToString('yyyy-MM-ddTHH:mm:ssZ')
+$ids = @((Get-Content out/runs-test/<drift-run>/drift/events.json -Raw | ConvertFrom-Json).Id)
+$log = Get-MgAuditLogDirectoryAudit -All -Filter "activityDateTime ge $since and activityDateTime le $until" | Where-Object Category -eq 'ApplicationManagement'
+$log | Where-Object Id -notin $ids | Format-Table ActivityDateTime, ActivityDisplayName, Id -Wrap
+
+# Step 5: Cross-check against Learn's procedure
+Connect-AzAccount -Environment AzureCloud -Tenant <tenant-id>
+$yaml = Get-Content ../third_party/sentinel-app-credential-rule/NewAppOrServicePrincipalCredential.yaml -Raw
+$query = ([regex]::Match($yaml, '(?ms)^query: \|\r?\n(.*?)(?=^\S)').Groups[1].Value -split '\r?\n' | ForEach-Object { $_ -replace '^  ', '' }) -join "`n"
+(Invoke-AzOperationalInsightsQuery -WorkspaceId <workspace-id> -Query $query -Timespan (New-TimeSpan -Start ([datetime]$w.since) -End (Get-Date))).Results | Format-List
 ```
 
 In a POSIX shell (Git Bash on Windows):
@@ -493,11 +517,6 @@ In a POSIX shell (Git Bash on Windows):
 # Step 7: Back it out
 rm -rf out/evidence-test
 ```
-
-Steps with no command, done in the portal or by hand as the chapter's step says:
-
-- **Step 2:** Make three changes to see
-- **Step 5:** Cross-check against Learn's procedure
 :::
 
 <!-- labs:end -->

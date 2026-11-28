@@ -1,0 +1,21 @@
+PS> Get-Content out/g5/summary.md
+# G5 evidence packet: corp.contoso.example, 2026-11-27
+
+- Mode: Kerberos island (DC-ISLAND01, end of life 2028-09-30)
+- Domain controllers read: 2; DC locator SRV records: 2; trusts: 1
+- Authentication rows read: 4 over 30 days
+- Findings: 7; warnings: 1
+- Ready for the gate owner: no
+
+## Findings
+
+- AD-G5-01 (Finding) DC02: A domain controller that is neither decommissioned nor in the island register
+- AD-G5-03 (Finding) DC03: An NTDS Settings object for a server that is no longer a domain controller: clean up its metadata
+- AD-G5-04 (Finding) DC03.corp.contoso.example: A DC locator SRV record pointing at a host that is not an island domain controller
+- AD-G5-05 (Finding) partner.fabrikam.example: A trust the register doesn't list (direction: Outbound)
+- AD-G5-06 (Finding) svc-reports MSSQLSvc/rpt-sql01.corp.contoso.example:1433: An SPN on an account the register does not list: a service still depends on Kerberos from the domain
+- AD-G5-07 (Finding) jlee: 14 authentication events on the domain controllers in the window from an account the register does not list
+- AD-G5-07 (Finding) svc-reports: 96 authentication events on the domain controllers in the window from an account the register does not list
+- AD-G5-08 (Warn) FIN-PC-0442: An enabled computer that signed in to the domain in the window and is not a listed host
+
+The packet supports CM-8, AC-2, IA-2, AU-6, CA-7 and SA-22; the gate owner checks it and the assessor decides each control.

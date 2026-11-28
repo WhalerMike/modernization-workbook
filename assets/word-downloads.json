@@ -1614,6 +1614,11 @@
   "page": "10-deploying-to-test-and-production.docx",
   "title": "Book 19 — Building the Attribute-Driven Migration"
  },
+ "docs/books/b19-developer-workbook/11-proving-ad-is-retired.md": {
+  "bundle": "b19-developer-workbook-bundle.docx",
+  "page": "11-proving-ad-is-retired.docx",
+  "title": "Book 19 — Building the Attribute-Driven Migration"
+ },
  "docs/books/b19-developer-workbook/index.md": {
   "bundle": "b19-developer-workbook-bundle.docx",
   "page": "index.docx",
@@ -2637,6 +2642,11 @@
  "docs/training/attribute-driven-migration/09-deploying-to-test-and-production.md": {
   "bundle": "training-attribute-driven-migration-bundle.docx",
   "page": "09-deploying-to-test-and-production.docx",
+  "title": "Learning path: Building the Attribute-Driven Migration"
+ },
+ "docs/training/attribute-driven-migration/10-proving-ad-is-retired.md": {
+  "bundle": "training-attribute-driven-migration-bundle.docx",
+  "page": "10-proving-ad-is-retired.docx",
   "title": "Learning path: Building the Attribute-Driven Migration"
  },
  "docs/training/attribute-driven-migration/index.md": {

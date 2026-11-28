@@ -370,6 +370,33 @@ Replace each `<placeholder>` with your test environment's value.
 The chapter's steps say what each command does and what to look for.
 
 ```powershell
+# Step 1: Register two apps
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes 'Application.ReadWrite.All', 'AppRoleAssignment.ReadWrite.All' -NoWelcome
+$graph = Get-MgServicePrincipal -Filter "appId eq '00000003-0000-0000-c000-000000000000'"
+$apps = [ordered]@{
+    'pa-lab-access-reviews-reader' = @('AccessReview.Read.All')
+    'pa-lab-access-reviews-applier' = @('AccessReview.ReadWrite.All')
+}
+foreach ($name in $apps.Keys) {
+    $cert = New-SelfSignedCertificate -Subject "CN=$name" -CertStoreLocation Cert:\CurrentUser\My -KeyExportPolicy NonExportable -KeySpec Signature -NotAfter (Get-Date).AddDays(30)
+    $app = New-MgApplication -DisplayName $name -SignInAudience AzureADMyOrg -KeyCredentials @(@{ Type = 'AsymmetricX509Cert'; Usage = 'Verify'; Key = $cert.RawData })
+    $sp = New-MgServicePrincipal -AppId $app.AppId
+    Start-Sleep -Seconds 15
+    foreach ($p in $apps[$name]) {
+        $role = $graph.AppRoles | Where-Object { $_.Value -eq $p -and $_.AllowedMemberTypes -contains 'Application' }
+        $null = New-MgServicePrincipalAppRoleAssignment -ServicePrincipalId $sp.Id -PrincipalId $sp.Id -ResourceId $graph.Id -AppRoleId $role.Id
+    }
+    [pscustomobject]@{ App = $name; AppId = $app.AppId; Thumbprint = $cert.Thumbprint; Permissions = $apps[$name] -join ', ' } | Format-List
+}
+
+# Step 1: Register two apps
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes 'Group.ReadWrite.All', 'GroupMember.ReadWrite.All' -NoWelcome
+foreach ($g in @(@{ name = 'PAR-Lab-Reviewers'; member = '<reviewer-user-object-id>' }, @{ name = 'PAR-Lab-Fallback'; member = '<fallback-user-object-id>' })) {
+    $grp = New-MgGroup -DisplayName $g.name -MailEnabled:$false -MailNickname $g.name -SecurityEnabled
+    New-MgGroupMember -GroupId $grp.Id -DirectoryObjectId $g.member
+    [pscustomobject]@{ Group = $g.name; Id = $grp.Id } | Format-List
+}
+
 # Step 2: Write a test JSON
 $c = Get-Content tests/fixtures/ch07/access-reviews.json -Raw | ConvertFrom-Json
 $c.emergencyAccountIds = @('<ea1-object-id>', '<ea2-object-id>')
@@ -400,6 +427,19 @@ $c.defaults.instanceDurationInDays = 2
 $c | ConvertTo-Json -Depth 8 | Set-Content test-reviews.json
 ./Invoke-PaAccessReviews.ps1 -Cloud gcc -Mode Plan -ConfigPath test-reviews.json -OutputPath out/t-apply2 -SkipAzure -TenantId <tenant-id> -Apply
 
+# Step 4: Review and close one instance
+$defId = (Get-Content out/t-plan2/plan.json -Raw | ConvertFrom-Json | Where-Object name -EQ 'PAR-RO-ReportsReader-Lab').id
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes 'AccessReview.ReadWrite.All' -NoWelcome
+$base = "v1.0/identityGovernance/accessReviews/definitions/$defId/instances"
+$inst = (Invoke-MgGraphRequest -Method GET -Uri "$base/filterByCurrentUser(on='reviewer')").value | Where-Object { $_.status -eq 'InProgress' } | Select-Object -First 1
+$dec = (Invoke-MgGraphRequest -Method GET -Uri "$base/$($inst.id)/decisions/filterByCurrentUser(on='reviewer')").value | Where-Object { $_.principal.id -eq '<test-user-object-id>' }
+Invoke-MgGraphRequest -Method PATCH -Uri "$base/$($inst.id)/decisions/$($dec.id)" -Body (@{ decision = 'Approve'; justification = 'Lab: the test user still needs Reports Reader' } | ConvertTo-Json)
+
+# Step 4: Review and close one instance
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -ClientId <applier-app-id> -CertificateThumbprint <thumbprint>
+Invoke-MgGraphRequest -Method POST -Uri "$base/$($inst.id)/stop"
+(Invoke-MgGraphRequest -Method GET -Uri "$base/$($inst.id)").status
+
 # Step 5: Read the evidence
 Connect-MgGraph -Environment Global -TenantId <tenant-id> -ClientId <reader-app-id> -CertificateThumbprint <thumbprint>
 ./Invoke-PaAccessReviews.ps1 -Cloud gcc -Mode Evidence -ConfigPath test-reviews.json -OutputPath out/t-evidence -SkipAzure -TenantId <tenant-id>
@@ -413,11 +453,6 @@ Connect-MgGraph -Environment Global -TenantId <tenant-id> -ClientId <applier-app
 # Step 7: Back out
 Remove-Item -Recurse -Force out/t-*
 ```
-
-Steps with no command, done in the portal or by hand as the chapter's step says:
-
-- **Step 1:** Register two apps
-- **Step 4:** Review and close one instance
 :::
 
 <!-- labs:end -->

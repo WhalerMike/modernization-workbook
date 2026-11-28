@@ -13,7 +13,7 @@ last-reviewed: 2026-11-25
 ---
 # Attribute-Driven Migration, Module 3: Keep Dynamic Rules as Code {.unnumbered}
 
-**Learning path:** [Building the Attribute-Driven Migration](index.md) · Module 3 of 9 · 50 minutes · Guide [Gate 4](../../books/guides/attribute-driven-migration-implementation.md#gate-4-the-dynamic-group-library-and-administrative-units) · Workbook [Chapter 04](../../books/b19-developer-workbook/04-dynamic-rules-as-code.md)
+**Learning path:** [Building the Attribute-Driven Migration](index.md) · Module 3 of 10 · 50 minutes · Guide [Gate 4](../../books/guides/attribute-driven-migration-implementation.md#gate-4-the-dynamic-group-library-and-administrative-units) · Workbook [Chapter 04](../../books/b19-developer-workbook/04-dynamic-rules-as-code.md)
 
 **Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.5/Training_ADM_Module_3.pptx) · [▶ Watch](../../presentations/watch.html?v=Training_ADM_Module_3_Narrated) (about 14 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_ADM_Module_3_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-adm-module-3/Training_ADM_Module_3_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-adm-module-3/Training_ADM_Module_3_Narrated.vtt).
 

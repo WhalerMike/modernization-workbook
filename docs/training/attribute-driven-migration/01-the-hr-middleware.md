@@ -13,7 +13,7 @@ last-reviewed: 2026-11-25
 ---
 # Attribute-Driven Migration, Module 1: Send HR Records through a Middleware that Fails Closed {.unnumbered}
 
-**Learning path:** [Building the Attribute-Driven Migration](index.md) · Module 1 of 9 · 55 minutes · Guide [Gate 2](../../books/guides/attribute-driven-migration-implementation.md#gate-2-prove-the-attributes) and [Gate 3](../../books/guides/attribute-driven-migration-implementation.md#gate-3-map-the-attributes-through-sync) · Workbook [Chapter 01](../../books/b19-developer-workbook/01-the-hr-to-entra-middleware.md)
+**Learning path:** [Building the Attribute-Driven Migration](index.md) · Module 1 of 10 · 55 minutes · Guide [Gate 2](../../books/guides/attribute-driven-migration-implementation.md#gate-2-prove-the-attributes) and [Gate 3](../../books/guides/attribute-driven-migration-implementation.md#gate-3-map-the-attributes-through-sync) · Workbook [Chapter 01](../../books/b19-developer-workbook/01-the-hr-to-entra-middleware.md)
 
 **Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.5/Training_ADM_Module_1.pptx) · [▶ Watch](../../presentations/watch.html?v=Training_ADM_Module_1_Narrated) (about 14 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_ADM_Module_1_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-adm-module-1/Training_ADM_Module_1_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-adm-module-1/Training_ADM_Module_1_Narrated.vtt).
 
@@ -334,10 +334,42 @@ The chapter's steps say what each command does and what to look for.
 In PowerShell 7:
 
 ```powershell
+# Step 1: Create the provisioning app
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes 'Application.ReadWrite.All', 'Synchronization.ReadWrite.All' -NoWelcome
+$template = (Invoke-MgGraphRequest -Method GET -Uri "/v1.0/applicationTemplates?`$filter=displayName eq 'API-driven provisioning to Microsoft Entra ID'").value[0]
+$created = Invoke-MgGraphRequest -Method POST -Uri "/v1.0/applicationTemplates/$($template.id)/instantiate" -Body @{ displayName = 'Lab - HR inbound provisioning' }
+$spId = $created.servicePrincipal.id
+Start-Sleep -Seconds 30
+$jobTemplate = (Invoke-MgGraphRequest -Method GET -Uri "/v1.0/servicePrincipals/$spId/synchronization/templates").value[0].id
+$job = Invoke-MgGraphRequest -Method POST -Uri "/v1.0/servicePrincipals/$spId/synchronization/jobs" -Body @{ templateId = $jobTemplate }
+"provisioning-app-object-id: $spId"
+"provisioning-api-endpoint:  https://graph.microsoft.com/v1.0/servicePrincipals/$spId/synchronization/jobs/$($job.id)/bulkUpload"
+
 # Step 2: Extend its schema with Microsoft's sample
 ./third_party/csv2scim/src/CSV2SCIM.ps1 -Path ./hcm-entra/tests/fixtures/hcm_extract_sample.csv `
     -ScimSchemaNamespace 'urn:ietf:params:scim:schemas:extension:contoso:1.0:User' `
     -TenantId <tenant-id> -ServicePrincipalId <provisioning-app-object-id> -UpdateSchema
+
+# Step 3: Grant the least privilege to the sender
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes 'Application.ReadWrite.All', 'AppRoleAssignment.ReadWrite.All', 'Directory.Read.All' -NoWelcome
+$cert = New-SelfSignedCertificate -Subject 'CN=lab-hcm-entra-sender' -CertStoreLocation Cert:\CurrentUser\My -KeyExportPolicy NonExportable -KeySpec Signature -NotAfter (Get-Date).AddDays(30)
+$app = New-MgApplication -DisplayName 'lab-hcm-entra-sender' -SignInAudience AzureADMyOrg -KeyCredentials @(@{ Type = 'AsymmetricX509Cert'; Usage = 'Verify'; Key = $cert.RawData })
+$sp = New-MgServicePrincipal -AppId $app.AppId
+New-MgServicePrincipalOwnerByRef -ServicePrincipalId <provisioning-app-object-id> -OdataId "https://graph.microsoft.com/v1.0/directoryObjects/$($sp.Id)"
+$graph = Get-MgServicePrincipal -Filter "appId eq '00000003-0000-0000-c000-000000000000'"
+$role = $graph.AppRoles | Where-Object { $_.Value -eq 'SynchronizationData-User.Upload.OwnedBy' -and $_.AllowedMemberTypes -contains 'Application' }
+New-MgServicePrincipalAppRoleAssignment -ServicePrincipalId $sp.Id -PrincipalId $sp.Id -ResourceId $graph.Id -AppRoleId $role.Id
+"sender client ID: $($app.AppId)  certificate thumbprint: $($cert.Thumbprint)"
+
+# Step 4: Start the job and set its safety nets
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes 'Synchronization.ReadWrite.All' -NoWelcome
+$spId = '<provisioning-app-object-id>'
+$jobId = (Invoke-MgGraphRequest -Method GET -Uri "/v1.0/servicePrincipals/$spId/synchronization/jobs").value[0].id
+$notify = @{ Enabled = $true; Recipients = '<notification-email>'; DeleteThresholdEnabled = $true; DeleteThresholdValue = 10 } | ConvertTo-Json -Compress
+$secrets = @((Invoke-MgGraphRequest -Method GET -Uri "/beta/servicePrincipals/$spId/synchronization/secrets").value | Where-Object { $_.key -ne 'SyncNotificationSettings' }) + @(@{ key = 'SyncNotificationSettings'; value = $notify })
+Invoke-MgGraphRequest -Method PUT -Uri "/beta/servicePrincipals/$spId/synchronization/secrets" -Body (@{ value = $secrets } | ConvertTo-Json -Depth 5) -ContentType 'application/json'
+Start-MgServicePrincipalSynchronizationJob -ServicePrincipalId $spId -SynchronizationJobId $jobId
+(Invoke-MgGraphRequest -Method GET -Uri "/v1.0/servicePrincipals/$spId/synchronization/jobs/$jobId").schedule.state
 ```
 
 In a POSIX shell (Git Bash on Windows):
@@ -369,12 +401,6 @@ python -c "import csv; rows = list(csv.DictReader(open('five.csv', encoding='utf
 python python/hcm_to_scim.py --extract five-leavers.csv --as-of 2026-10-25 --settings config/settings.json --out out-backout --apply
 unset HCM_ENTRA_BEARER_TOKEN
 ```
-
-Steps with no command, done in the portal or by hand as the chapter's step says:
-
-- **Step 1:** Create the provisioning app
-- **Step 3:** Grant the least privilege to the sender
-- **Step 4:** Start the job and set its safety nets
 :::
 
 <!-- labs:end -->

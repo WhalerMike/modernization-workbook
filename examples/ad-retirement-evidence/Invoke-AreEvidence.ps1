@@ -26,4 +26,5 @@ $ErrorActionPreference = 'Stop'
 Import-Module (Join-Path $PSScriptRoot 'powershell/AdRetirementEvidence/AdRetirementEvidence.psm1') -Force
 $r = New-AreEvidencePacket -Domain $Domain -OutputPath $OutputPath -FixturePath $FixturePath -AuthPath $AuthPath -WorkspaceId $WorkspaceId -RegisterPath $RegisterPath -NoDomain:$NoDomain -AsOf $AsOf
 $r
-if (-not $r.Ready) { exit 2 }
+# Set the exit code either way, so $LASTEXITCODE never holds an earlier run's.
+if (-not $r.Ready) { exit 2 } else { exit 0 }

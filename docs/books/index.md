@@ -17,11 +17,11 @@ The workbook grew as separate whitepapers, guides, series and case studies. The 
 ::: {.fmw-books-table}
 | Book | Topic | Opening question | Status | Chapters | Pages | Last updated |
 |---|---|---|---|---:|---:|---|
-| **B00** | **[Orientation & Program](b00-orientation/index.md)** | **Why modernize, and why now?** | **Draft** | 10 + 4 app. | 235 | 2026-11-25 |
+| **B00** | **[Orientation & Program](b00-orientation/index.md)** | **Why modernize, and why now?** | **Draft** | 10 + 4 app. | 235 | 2026-11-27 |
 | **B01** | **[The Transformation Arc: Client-Server to Hybrid Cloud](b01-transformation-arc/index.md)** | **Why is modernization so hard?** | **Baseline** | 12 + 2 app. | 170 | 2026-11-27 |
 | **B02** | **[Identity & Directory: AD to Entra ID](b02-identity/index.md)** | **Why does identity matter?** | **Draft** | 11 + 4 app. | 415 | 2026-11-26 |
 | **B03** | **[HR-Driven Identity](b03-hr-identity/index.md)** | **Why should HR, not IT, decide who exists?** | **Baseline** | 15 + 4 app. | 250 | 2026-11-25 |
-| **B04** | **[Access & Privilege](b04-access/index.md)** | **Why is every access decision a policy decision?** | **Draft** | 10 + 4 app. | 380 | 2026-11-25 |
+| **B04** | **[Access & Privilege](b04-access/index.md)** | **Why is every access decision a policy decision?** | **Draft** | 10 + 4 app. | 380 | 2026-11-27 |
 | **B05** | **[Devices & Endpoints: GPO to Intune and Arc](b05-devices/index.md)** | **Why can't Group Policy come to the cloud?** | **Baseline** | 10 + 1 app. | 340 | 2026-11-23 |
 | **B06** | **[Data Platform: SQL Server Identity](b06-data-platform/index.md)** | **Why is the database where legacy authentication hides?** | **Baseline** | 33 + 3 app. | 320 | 2026-11-25 |
 | **B07** | **[PKI & Certificates](b07-pki/index.md)** | **Why do certificates outlive every migration?** | **Baseline** | 9 + 3 app. | 230 | 2026-11-26 |
@@ -31,12 +31,12 @@ The workbook grew as separate whitepapers, guides, series and case studies. The 
 | **B11** | **[Zero Trust & Assessment](b11-zero-trust/index.md)** | **Why is Zero Trust a whole-agency property, not a product?** | **Baseline** | 10 + 1 app. | 165 | 2026-11-25 |
 | **B12** | **[Security Operations & Telemetry](b12-security-operations/index.md)** | **Why can't you defend what you can't see?** | **Draft** | 12 + 2 app. | 345 | 2026-11-22 |
 | **B13** | **[Governance, Drift & Evidence](b13-governance/index.md)** | **Why does compliance decay the day after the audit?** | **Draft** | 14 + 2 app. | 280 | 2026-11-27 |
-| **B14** | **[Federal Compliance & Authorization](b14-compliance/index.md)** | **Why does every control need proof, not a promise?** | **Draft** | 12 + 8 app. | 420 | 2026-11-25 |
+| **B14** | **[Federal Compliance & Authorization](b14-compliance/index.md)** | **Why does every control need proof, not a promise?** | **Draft** | 12 + 9 app. | 435 | 2026-11-27 |
 | **B15** | **[Compliance Automation & Day-2 Operations](b15-day2-operations/index.md)** | **Why does modernization succeed or fail at the help desk?** | **Draft** | 14 + 2 app. | 335 | 2026-11-27 |
-| **B16** | **[People: Training & Education](b16-people/index.md)** | **Why do people, not tools, close the gap?** | **Baseline** | 10 + 1 app. | 200 | 2026-11-25 |
+| **B16** | **[People: Training & Education](b16-people/index.md)** | **Why do people, not tools, close the gap?** | **Baseline** | 10 + 1 app. | 200 | 2026-11-27 |
 | **B17** | **[AI Identity Governance](b17-ai-identity/index.md)** | **Why do AI agents need identities and owners?** | **Baseline** | 10 + 1 app. | 230 | 2026-11-25 |
-| **B18** | **[Application Modernization](b18-application-modernization/index.md)** | **Why is application modernization a portfolio decision, not a rewrite?** | **Draft** | 10 + 1 app. | 185 | 2026-11-20 |
-| **B19** | **[Building the Attribute-Driven Migration](b19-developer-workbook/index.md)** | **Why does the migration need code with tests, not only runbooks?** | **Baseline** | 10 | 385 | 2026-11-27 |
+| **B18** | **[Application Modernization](b18-application-modernization/index.md)** | **Why is application modernization a portfolio decision, not a rewrite?** | **Draft** | 10 + 2 app. | 190 | 2026-11-27 |
+| **B19** | **[Building the Attribute-Driven Migration](b19-developer-workbook/index.md)** | **Why does the migration need code with tests, not only runbooks?** | **Draft** | 11 | 425 | 2026-11-27 |
 | **B20** | **[Information Protection & Microsoft Purview](b20-information-protection/index.md)** | **Why does protection have to travel with the data?** | **Draft** | 12 + 1 app. | 230 | 2026-11-23 |
 :::
 
@@ -69,7 +69,7 @@ Each row names the three books this book's chapters cite or link most often, and
 | **B16** [People](b16-people/index.md) | [B14 Federal Compliance & Authorization](b14-compliance/index.md), [B15 Compliance Automation & Day-2 Operations](b15-day2-operations/index.md), [B01 The Transformation Arc](b01-transformation-arc/index.md) | [B14 Federal Compliance & Authorization](b14-compliance/index.md), [B00 Orientation & Program](b00-orientation/index.md), [B20 Information Protection & Microsoft Purview](b20-information-protection/index.md) |
 | **B17** [AI Identity Governance](b17-ai-identity/index.md) | [B04 Access & Privilege](b04-access/index.md), [B12 Security Operations & Telemetry](b12-security-operations/index.md), [B14 Federal Compliance & Authorization](b14-compliance/index.md) | [B18 Application Modernization](b18-application-modernization/index.md), [B20 Information Protection & Microsoft Purview](b20-information-protection/index.md), [B16 People](b16-people/index.md) |
 | **B18** [Application Modernization](b18-application-modernization/index.md) | [B13 Governance, Drift & Evidence](b13-governance/index.md), [B14 Federal Compliance & Authorization](b14-compliance/index.md), [B17 AI Identity Governance](b17-ai-identity/index.md) | [B13 Governance, Drift & Evidence](b13-governance/index.md), [B16 People](b16-people/index.md), [B11 Zero Trust & Assessment](b11-zero-trust/index.md) |
-| **B19** [Building the Attribute-Driven Migration](b19-developer-workbook/index.md) | [B03 HR-Driven Identity](b03-hr-identity/index.md), [B13 Governance, Drift & Evidence](b13-governance/index.md), [B05 Devices & Endpoints](b05-devices/index.md) | [B13 Governance, Drift & Evidence](b13-governance/index.md), [B16 People](b16-people/index.md), [B00 Orientation & Program](b00-orientation/index.md) |
+| **B19** [Building the Attribute-Driven Migration](b19-developer-workbook/index.md) | [B13 Governance, Drift & Evidence](b13-governance/index.md), [B03 HR-Driven Identity](b03-hr-identity/index.md), [B05 Devices & Endpoints](b05-devices/index.md) | [B13 Governance, Drift & Evidence](b13-governance/index.md), [B16 People](b16-people/index.md), [B00 Orientation & Program](b00-orientation/index.md) |
 | **B20** [Information Protection & Microsoft Purview](b20-information-protection/index.md) | [B12 Security Operations & Telemetry](b12-security-operations/index.md), [B04 Access & Privilege](b04-access/index.md), [B11 Zero Trust & Assessment](b11-zero-trust/index.md) | [B12 Security Operations & Telemetry](b12-security-operations/index.md), [B16 People](b16-people/index.md), [B00 Orientation & Program](b00-orientation/index.md) |
 
 <!-- book-crosswalk:end -->

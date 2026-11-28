@@ -62,12 +62,12 @@ KITS = ("start-kit", "copilot-agent-pack", "app-modernization", "ansible", "vali
         "daily-checks-workbook-code", "information-protection-code",
         "sql-server-identity-code", "msa-request-pack", "platform-host-code", "estate-inventory-code", "help-desk-automation", "ad-retirement-evidence", "app-retirement", "all-kits")
 # Kits packed from several examples folders, each kept under its own path, instead of
-# from examples/<kit>. The Attribute-Driven Migration developer workbook's chapters 01-09
+# from examples/<kit>. The Attribute-Driven Migration developer workbook's chapters 01-11
 # build on these folders and the Microsoft samples pinned under third_party/.
 BUNDLES = {
     "attribute-driven-migration-code": (
         "hcm-entra", "ms-automation", "validation-kit", "dynamic-rules", "lifecycle-extensions",
-        "group-policy-as-code", "machine-configuration", "ansible", "drift-pipeline",
+        "group-policy-as-code", "machine-configuration", "ansible", "drift-pipeline", "ad-retirement-evidence",
         "third_party/csv2scim", "third_party/msgraph-snippets-python",
         "third_party/lifecycle-workflows-logic-app",
         "third_party/mggraph-intune-samples", "third_party/guest-configuration-samples",
