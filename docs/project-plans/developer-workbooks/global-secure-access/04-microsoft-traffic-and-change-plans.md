@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: b1bff9fae5cfe736678d410e3ed4e30638eb9156c3a62df3afa23ff2dba0c9dc
-last-reviewed: 2026-11-25
+reviewed-sha256: bd88b574b82b1bc0a874efe653ef009d04aa6679cd25102e92ef16ea380197d9
+last-reviewed: 2026-11-27
 ---
 # Chapter 04 — Microsoft Traffic and Change Plans
 

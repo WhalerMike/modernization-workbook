@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Book 10"
 series-order: 3
 review-status: approved
-reviewed-sha256: b34e39eac1f17e6353730190525b2faaffb7a39596bb6a85749c4d2786be0979
-last-reviewed: 2026-11-22
+reviewed-sha256: af75d406bd0379d3dee73860413bf11cebd16573e6c6a03d22c89cc9d12bb6c5
+last-reviewed: 2026-11-27
 ---
 # Module 3: The edge and the egress {.unnumbered}
 

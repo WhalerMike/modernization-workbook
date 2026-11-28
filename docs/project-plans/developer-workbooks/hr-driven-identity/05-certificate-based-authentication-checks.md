@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: dec26da5b3de07b16d66a6e7bf9c01e52230005640ce25612c24213babffcba0
-last-reviewed: 2026-11-18
+reviewed-sha256: ed0dc14bca16c979211455c05e4543227548ecd915c9bc36bc72f88d4860874b
+last-reviewed: 2026-11-27
 ---
 # Chapter 05 — Certificate-Based Authentication Checks
 

@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Book 12"
 series-order: 4
 review-status: approved
-reviewed-sha256: 4d0a447fd50b8e21d28ff76e2ae506612cd4e07a9e8cb92a36dad366f8128b21
-last-reviewed: 2026-11-25
+reviewed-sha256: 9ee997c478899b7033dd669b28185e92ff7b5729717fc907978492eb6b85d9de
+last-reviewed: 2026-11-27
 ---
 # Module 4: Hunting, detections as code and identity signals {.unnumbered}
 

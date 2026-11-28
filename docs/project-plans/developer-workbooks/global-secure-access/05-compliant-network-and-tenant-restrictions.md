@@ -11,8 +11,8 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-05-01
 review-status: approved
-reviewed-sha256: 2df85125d8ce127dce536c68aa81291d45d8ab5cf14fe17d34a7d7301fb42f78
-last-reviewed: 2026-11-25
+reviewed-sha256: 1c8f6f8ad428288724e76f1b6b3398dc16c28df270cbcddf20f691541f0675b2
+last-reviewed: 2026-11-27
 ---
 # Chapter 05 — The Compliant Network and Tenant Restrictions
 

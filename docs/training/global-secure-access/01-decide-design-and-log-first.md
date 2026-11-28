@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Book 09"
 series-order: 1
 review-status: approved
-reviewed-sha256: db1f6796a9577686d9e6f0eace9f968bce65556d6a93c5672ba4bc11a4248373
-last-reviewed: 2026-11-22
+reviewed-sha256: 777f349db64ecb8fee16c33f0c281c340455d5ed09520e4b4cd27b08121ba5d6
+last-reviewed: 2026-11-27
 ---
 # Module 1: Decide, design and log first {.unnumbered}
 

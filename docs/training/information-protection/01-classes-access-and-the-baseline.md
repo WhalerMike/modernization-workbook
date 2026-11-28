@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Book 20"
 series-order: 1
 review-status: approved
-reviewed-sha256: 7eb6ab41d77ad18a63bac42f59422e0c2744f7847dc5b06f6121068552570533
-last-reviewed: 2026-11-25
+reviewed-sha256: 4a8030a0476bb97dcdcd9719709b361991fc69b81bbd7dea1f7ffe4e5970f6ec
+last-reviewed: 2026-11-27
 ---
 # Module 1: Classes, access and the baseline {.unnumbered}
 

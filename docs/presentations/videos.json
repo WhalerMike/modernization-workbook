@@ -16590,6 +16590,11 @@
     "name": "dynamic-rules",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/dynamic-rules",
     "zip": null
+   },
+   {
+    "name": "validation-kit",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/validation-kit",
+    "zip": "downloads/validation-kit.zip"
    }
   ],
   "chapters": [
@@ -18223,6 +18228,11 @@
     "name": "drift-pipeline",
     "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/drift-pipeline",
     "zip": null
+   },
+   {
+    "name": "validation-kit",
+    "url": "https://github.com/WhalerMike/modernization-workbook/tree/main/examples/validation-kit",
+    "zip": "downloads/validation-kit.zip"
    }
   ],
   "chapters": [

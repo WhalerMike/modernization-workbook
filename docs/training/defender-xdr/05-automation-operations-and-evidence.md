@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Book 12"
 series-order: 5
 review-status: approved
-reviewed-sha256: c412b3d7103ea89f08f31d232812f989b37a48b96ebc0adf11536fdf7a03fbe9
-last-reviewed: 2026-11-25
+reviewed-sha256: 632635e6fc11f97b78f04299afd9abc1cf8a5a9c928a465390c46e4ea1d839d0
+last-reviewed: 2026-11-27
 ---
 # Module 5: Automation, operations and evidence {.unnumbered}
 

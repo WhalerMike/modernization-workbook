@@ -7,8 +7,8 @@ research-type: training module
 research-book: "Book 09"
 series-order: 2
 review-status: approved
-reviewed-sha256: ef98c166a14697f4314c78a23e26439aee07a9f27a6b0d16720934b3b97f9189
-last-reviewed: 2026-11-18
+reviewed-sha256: 94f388e87133a87015d2d5343d1d37dbc11c71ad955118d95a5e14e4716f1d15
+last-reviewed: 2026-11-27
 ---
 # Module 2: The client and Microsoft traffic {.unnumbered}
 
