@@ -34,6 +34,13 @@ msa-request-pack/
   standard.json                   the domain and OUs the checker reads (fictional; copy and edit at work)
   copilot-prompts.md              prompts for Microsoft 365 Copilot Chat
   pack_schema.py, build_pack.py   the fields, values and forms in one place, and the build (needs python-docx to write the forms)
+  proposal/                       the production proposal for the authorizing official and the change advisory board
+    msa-production-proposal.docx      the proposal, with a technical appendix for engineers
+    msa-production-proposal.pptx      its 12-slide deck, with speaker notes
+    day2-test-script.md               Day 2 at work: read-only production checks, then one gMSA in a test domain
+    Invoke-MsaDay2ReadOnly.ps1        the read-only checks, one evidence file per step
+    proposal-prompts.md               Copilot prompts: fill the placeholders, review for gaps, draft the board's summary
+    proposal_content.py, build_proposal.py   the content in one place, and the build (python-docx and python-pptx)
   tests/                          Pester and pytest
 non-person-identity/powershell/   the Non-Person Identity kit's Chapter 12 module the checker calls
 ```
@@ -61,6 +68,10 @@ It prints one line per request (`Ready` `True` when nothing blocks it) and write
 ## The tags
 
 Every account carries the same seven tags (WD-175): `SystemId`, `Owner1`, `Owner2`, `Sponsor`, `Environment` (`prod`, `test`, `dev`), `Tier` (`R1`, `R2`, `R3`) and `EntraTarget`. In AD they're `key=value` pairs in the account's description, with the request and change numbers. In Entra, until a tenant check confirms custom security attributes in GCC (WD-176), they're the service principal's `tags` (`npi:<Key>=<Value>`) and `notes`, or a managed identity's Azure resource tags (`entra-tags.json`); once confirmed, custom security attributes in the `NonPersonIdentity` attribute set (`entra-custom-security-attributes.json`). SailPoint is the source for owners; Chapter 12 flags an AD tag that disagrees (NPI-STD-30).
+
+## Propose it for production
+
+`proposal/` holds a neutral production proposal: the problem, the decided design (WD-123 to WD-176), the request flow, the lifecycle, the naming standard and its five enforcement layers, the rollout phases, the controls the evidence supports, the risks and guards, the prerequisites, open items and the decisions requested, with every agency value a placeholder. Run `day2-test-script.md` at work to collect the evidence (Part R reads production and changes nothing; Part T runs only in a test domain), then fill the placeholders with `proposal-prompts.md`. Rebuild with `python proposal/build_proposal.py` (needs python-docx and python-pptx); `--check` needs the standard library only.
 
 ## Where to store the filled requests
 
