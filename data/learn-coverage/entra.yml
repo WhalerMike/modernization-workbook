@@ -2542,6 +2542,7 @@ pages:
   - docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md
   - docs/reference/source-register.md
   - docs/training/non-person-identity/_verification/learning-path.md
+  - examples/msa-request-pack/proposal/proposal_content.py
   - examples/third_party/entra-service-account-pages/SNAPSHOT.md
   - examples/third_party/entra-service-account-pages/snapshot.json
 - path: docs/architecture/service-accounts-managed-identities.md
@@ -2571,6 +2572,7 @@ pages:
   - docs/books/guides/service-account-migration.md
   - docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.md
   - docs/project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.md
+  - examples/msa-request-pack/proposal/proposal_content.py
   - examples/third_party/entra-service-account-choice-pages/SNAPSHOT.md
   - examples/third_party/entra-service-account-choice-pages/snapshot.json
 - path: docs/architecture/service-accounts-principal.md
@@ -2621,6 +2623,8 @@ pages:
   - docs/books/guides/service-account-migration.md
   - docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.md
   - docs/reference/source-register.md
+  - examples/msa-request-pack/proposal/day2-test-script.md
+  - examples/msa-request-pack/proposal/proposal_content.py
   - examples/third_party/entra-service-account-pages/SNAPSHOT.md
   - examples/third_party/entra-service-account-pages/snapshot.json
 - path: docs/architecture/sync-directory.md

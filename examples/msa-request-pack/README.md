@@ -36,6 +36,13 @@ msa-request-pack/
   standard.json                   the domain and OUs the checker reads (fictional; copy and edit at work)
   copilot-prompts.md              prompts for Microsoft 365 Copilot Chat
   pack_schema.py, build_pack.py   the fields, values and forms in one place, and the build (needs python-docx to write the forms)
+  proposal/                       the production proposal for the authorizing official and the change advisory board
+    msa-production-proposal.docx      the proposal, with a technical appendix for engineers
+    msa-production-proposal.pptx      its 12-slide deck, with speaker notes
+    day2-test-script.md               Day 2 at work: read-only production checks, then one gMSA in a test domain
+    Invoke-MsaDay2ReadOnly.ps1        the read-only checks, one evidence file per step
+    proposal-prompts.md               Copilot prompts: fill the placeholders, review for gaps, draft the board's summary
+    proposal_content.py, build_proposal.py   the content in one place, and the build (python-docx and python-pptx)
   tests/                          Pester and pytest; tests/fixtures/forest.json is what -CheckForest finds in the fictional forest
 non-person-identity/powershell/   the Non-Person Identity kit's Chapter 12 module the checker calls
 ```
@@ -66,7 +73,7 @@ When NPI-STD-03 refuses a name, its finding ends with the name `Get-MsaNameSugge
 
 ## Change an existing account
 
-A `Change` row changes one thing: `ChangeType` is `AddHost`, `RemoveHost`, `AddSpn`, `RemoveSpn`, `Tier` or `EndDate`, `ChangeItems` names the hosts or SPNs added or removed, and `Hosts` and `Spns` are the full lists after the change. An owner or sponsor change is form 03, a retirement form 04. The Non-Person Identity kit's Chapter 06 plans the approved change (`Invoke-NpiKerberosChange.ps1`): a host change as a change to `DL-gMSA-<app>-Hosts` (a dMSA's retrievers are its hosts), an SPN change as `setspn -S` or `setspn -D`, a tier or end date change as a rewrite of the tags. A person sends the write while WD-184, a draft that proposes the rights for the pipeline, is undecided.
+A `Change` row changes one thing: `ChangeType` is `AddHost`, `RemoveHost`, `AddSpn`, `RemoveSpn`, `Tier` or `EndDate`, `ChangeItems` names the hosts or SPNs added or removed, and `Hosts` and `Spns` are the full lists after the change. An owner or sponsor change is form 03, a retirement form 04. The Non-Person Identity kit's Chapter 06 plans the approved change (`Invoke-NpiKerberosChange.ps1`): a host change as a change to `DL-gMSA-<app>-Hosts` (a dMSA's retrievers are its hosts), an SPN change as `setspn -S` or `setspn -D`, a tier or end date change as a rewrite of the tags. A person sends the write while WD-185, a draft that proposes the rights for the pipeline, is undecided.
 
 ## Suggest the names
 
@@ -81,6 +88,10 @@ It prints the account name (WD-159, WD-173), its DNS host name, the retriever gr
 ## The tags
 
 Every account carries the same seven tags (WD-175): `SystemId`, `Owner1`, `Owner2`, `Sponsor`, `Environment` (`prod`, `test`, `dev`), `Tier` (`R1`, `R2`, `R3`) and `EntraTarget`. In AD they're `key=value` pairs in the account's description, with the request and change numbers. In Entra, until a tenant check confirms custom security attributes in GCC (WD-176), they're the service principal's `tags` (`npi:<Key>=<Value>`) and `notes`, or a managed identity's Azure resource tags (`entra-tags.json`); once confirmed, custom security attributes in the `NonPersonIdentity` attribute set (`entra-custom-security-attributes.json`). SailPoint is the source for owners; Chapter 12 flags an AD tag that disagrees (NPI-STD-30).
+
+## Propose it for production
+
+`proposal/` holds a neutral production proposal: the problem, the decided design (WD-123 to WD-176), the request flow, the lifecycle, the naming standard and its five enforcement layers, the rollout phases, the controls the evidence supports, the risks and guards, the prerequisites, open items and the decisions requested, with every agency value a placeholder. Run `day2-test-script.md` at work to collect the evidence (Part R reads production and changes nothing; Part T runs only in a test domain), then fill the placeholders with `proposal-prompts.md`. Rebuild with `python proposal/build_proposal.py` (needs python-docx and python-pptx); `--check` needs the standard library only.
 
 ## Where to store the filled requests
 

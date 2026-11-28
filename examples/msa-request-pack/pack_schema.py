@@ -232,6 +232,6 @@ FORMS = [
       "After it, a person installs the account on an added host or uninstalls it from a removed one.",
       "An SPN is added with setspn -S, which checks for a duplicate first, and removed with setspn -D.",
       "A tier or end date change rewrites the account's tags in AD, naming this request and change.",
-      "Until the program decides WD-184 (a draft), a person signed in with the right runs each change's write; "
+      "Until the program decides WD-185 (a draft), a person signed in with the right runs each change's write; "
       "the pipeline doesn't hold those rights yet."]),
 ]

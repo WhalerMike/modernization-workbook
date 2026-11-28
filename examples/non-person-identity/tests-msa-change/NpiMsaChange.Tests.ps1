@@ -32,7 +32,7 @@ BeforeAll {
 AfterAll { Remove-Item -Recurse -Force $script:Tmp -ErrorAction SilentlyContinue }
 
 Describe 'The calls a change uses (config/calls-ch06.json)' {
-    It 'declares each change write for kerberos-apply, run by a person while WD-184 is a draft, with its controls and KSIs' {
+    It 'declares each change write for kerberos-apply, run by a person while WD-185 is a draft, with its controls and KSIs' {
         foreach ($id in 'krb-set-retriever-hosts', 'krb-set-dmsa-retrievers', 'krb-add-spn', 'krb-remove-spn', 'krb-set-tags') {
             $c = (Get-NpiKrbCall -Id $id)[0]
             $c.method | Should -Be 'WRITE' -Because $id

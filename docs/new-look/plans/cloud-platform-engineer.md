@@ -11,10 +11,10 @@ review-status: pending
 
 ## Week 1: boundary and landing zone
 
-- [Book 10 — Cloud Boundary & Landing Zone](../../books/b10-cloud-boundary/index.md) (Book, 13 chapters, about 5 hr 3 min). Why the authorization boundary, not the product catalog, decides what an agency can use: what changed at FedRAMP, what GCC leaves out, how the landing zone makes the boundary concrete, who owns it, and how to compensate and evidence it.
+- [Book 10 — Cloud Boundary & Landing Zone](../../books/b10-cloud-boundary/index.md) (Book, 13 chapters, about 5 hr 7 min). Why the authorization boundary, not the product catalog, decides what an agency can use: what changed at FedRAMP, what GCC leaves out, how the landing zone makes the boundary concrete, who owns it, and how to compensate and evidence it.
 - [Azure Security Engineering](../../training/azure-security/index.md) (Learning path, 5 modules, 5 hr 16 min). Five modules: the baseline and the exposure register, DDoS protection and the WAF, the edge and the egress, Private Link, DNS and Key Vault, and policy, drift and evidence, each with a lab of the guide's checks in your own test subscription.
 
-*Milestone 1: about 10 hr 19 min.*
+*Milestone 1: about 10 hr 23 min.*
 
 ## Week 2: network and DNS
 
@@ -37,5 +37,5 @@ review-status: pending
 
 *Milestone 4: about 1 hr 32 min.*
 
-**Whole plan:** about 35 hr 10 min of reading and video, plus the labs.
+**Whole plan:** about 35 hr 14 min of reading and video, plus the labs.
 

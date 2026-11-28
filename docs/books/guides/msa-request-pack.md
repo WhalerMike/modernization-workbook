@@ -32,7 +32,7 @@ The rules are the [managed service account standard](service-account-migration.m
 
 ## Download
 
-**[msa-request-pack.zip](../../../downloads/msa-request-pack.zip)**: seven Word forms in `forms/`, `request_template.csv`, twelve worked examples in `examples.csv`, the checker `Test-MsaRequest.ps1` with its `standard.json`, the name suggester `Get-MsaNameSuggestion.ps1`, the Copilot prompt sheet `copilot-prompts.md`, and the tests. It also carries the Non-Person Identity kit's Chapter 12 module, because the checker runs that chapter's request check. The same files are in the repository's [`examples/msa-request-pack`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/msa-request-pack) folder.
+**[msa-request-pack.zip](../../../downloads/msa-request-pack.zip)**: seven Word forms in `forms/`, `request_template.csv`, twelve worked examples in `examples.csv`, the checker `Test-MsaRequest.ps1` with its `standard.json`, the name suggester `Get-MsaNameSuggestion.ps1`, the Copilot prompt sheet `copilot-prompts.md`, and the tests. It also carries the Non-Person Identity kit's Chapter 12 module, because the checker runs that chapter's request check, and the [production proposal](#production-proposal) in `proposal/`. The same files are in the repository's [`examples/msa-request-pack`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/msa-request-pack) folder.
 
 ## Two sides, one direction
 
@@ -49,7 +49,7 @@ The rules are the [managed service account standard](service-account-migration.m
 | A new account for a new workload | `01-new-account-request.docx`, and a row in the CSV with `RequestKind` `New` | The request goes to SailPoint, through the agency's system access management tool; its form and pre-approval workflow apply the same checks as the checker ([how it's enforced](service-account-migration.md#msa-standard-enforcement)) |
 | Replace an existing service account with a gMSA or dMSA | `02-migration-request.docx`, and a CSV row with `RequestKind` `Migrate` and `Supersedes` | The same; the [decision path](service-account-migration.md#decision-path) decides gMSA or dMSA |
 | Change an existing account: a host, an SPN, the risk tier or the end date | `07-change-request.docx`, and a CSV row with `RequestKind` `Change`, its `ChangeType` and its `ChangeItems` | SailPoint approves; Chapter 06 plans the change, and a reviewer approves the plan by its hash ([who runs each change](#changes)) |
-| Change an owner or the sponsor | `03-owner-change-request.docx` | SailPoint approves; the account's tags are rewritten (by a person while [WD-184](../../about/decision-register.md#wd-184), a draft, is undecided); Chapter 12 flags any tag that still disagrees |
+| Change an owner or the sponsor | `03-owner-change-request.docx` | SailPoint approves; the account's tags are rewritten (by a person while [WD-185](../../about/decision-register.md#wd-185), a draft, is undecided); Chapter 12 flags any tag that still disagrees |
 | Retire an account | `04-retirement-request.docx` | The standard's [S10](service-account-migration.md#msa-standard-steps): disabled, then deleted after 90 days, never an account a dMSA superseded |
 | Approve a request | `05-approver-checklist.docx` | Purpose, risk, hosts, people and any end date: nothing a rule can check |
 | Record the change | `06-servicenow-change-template.docx` | The fields ServiceNow's change model requires before Implement. Requiring them makes the record complete; ServiceNow never approves ([WD-162](../../about/decision-register.md#wd-162)) |
@@ -62,16 +62,16 @@ A change request changes one thing on an account that already exists. Its CSV ro
 
 | `ChangeType` | `ChangeItems` | Chapter 06 plans | Who sends the write | Then |
 |---|---|---|---|---|
-| `AddHost` | The hosts added | A gMSA: `Set-ADGroup -Replace @{ member = ... }` on its one `DL-gMSA-<app>-Hosts` group, with every host after the change ([WD-160](../../about/decision-register.md#wd-160)). A dMSA: `Set-ADServiceAccount -PrincipalsAllowedToRetrieveManagedPassword`, because a dMSA's retrievers are its hosts ([WD-173](../../about/decision-register.md#wd-173)) | A person; WD-184 proposes the pipeline for a gMSA. A dMSA's is always a person's ([WD-163](../../about/decision-register.md#wd-163)) | On each added host, a person restarts it, then runs `Install-ADServiceAccount` and `Test-ADServiceAccount`[^mrp-gmsa] |
+| `AddHost` | The hosts added | A gMSA: `Set-ADGroup -Replace @{ member = ... }` on its one `DL-gMSA-<app>-Hosts` group, with every host after the change ([WD-160](../../about/decision-register.md#wd-160)). A dMSA: `Set-ADServiceAccount -PrincipalsAllowedToRetrieveManagedPassword`, because a dMSA's retrievers are its hosts ([WD-173](../../about/decision-register.md#wd-173)) | A person; WD-185 proposes the pipeline for a gMSA. A dMSA's is always a person's ([WD-163](../../about/decision-register.md#wd-163)) | On each added host, a person restarts it, then runs `Install-ADServiceAccount` and `Test-ADServiceAccount`[^mrp-gmsa] |
 | `RemoveHost` | The hosts removed | The same write, without them. A change never removes the last host: that's a retirement (form 04) | The same | A person runs `Uninstall-ADServiceAccount` on each removed host (WD-163) |
-| `AddSpn` | The SPNs added | `setspn -S <spn> <account>`, which adds the SPN after checking that no duplicate exists[^mrp-setspn] | A person; WD-184 proposes the pipeline | Nothing more |
+| `AddSpn` | The SPNs added | `setspn -S <spn> <account>`, which adds the SPN after checking that no duplicate exists[^mrp-setspn] | A person; WD-185 proposes the pipeline | Nothing more |
 | `RemoveSpn` | The SPNs removed | `setspn -D <spn> <account>`[^mrp-setspn] | The same | An account left with no SPN should be outbound-only (NPI-STD-15) |
-| `Tier` | Blank: the new tier is `RiskTier` | The seven tags rewritten as the description, naming this request and change: `Set-ADServiceAccount -Description` | A person; WD-184 proposes the pipeline | The certification cadence follows the new tier ([WD-166](../../about/decision-register.md#wd-166)) |
+| `Tier` | Blank: the new tier is `RiskTier` | The seven tags rewritten as the description, naming this request and change: `Set-ADServiceAccount -Description` | A person; WD-185 proposes the pipeline | The certification cadence follows the new tier ([WD-166](../../about/decision-register.md#wd-166)) |
 | `EndDate` | Blank: the new date is `EndDate` | The same rewrite, for an account whose `EntraTarget` is `KeepKerberos`; the date may be no later than program G5, or the island's end of life ([WD-165](../../about/decision-register.md#wd-165)) | The same | Chapter 03's decisions record the date in a reviewed pull request |
 
 : Change requests (design guidance) {.striped .hover}
 
-The pipeline's gMSA, `gmsa-msapipe`, doesn't hold the rights these writes need: write of a retriever group's members, of an account's `servicePrincipalName` and of its description. Learn's *Validated write to service principal name* covers only SPNs that match the account's DNS host name,[^mrp-validated-spn] which a service's SPN doesn't. [WD-184](../../about/decision-register.md#wd-184) proposes the three rights and their scope; it's a draft, so until the program owner decides it, a person signed in with each right sends these writes from the approved plan (`-RunAs Person`). Nothing about the request changes when it's decided: only who sends the write.
+The pipeline's gMSA, `gmsa-msapipe`, doesn't hold the rights these writes need: write of a retriever group's members, of an account's `servicePrincipalName` and of its description. Learn's *Validated write to service principal name* covers only SPNs that match the account's DNS host name,[^mrp-validated-spn] which a service's SPN doesn't. [WD-185](../../about/decision-register.md#wd-185) proposes the three rights and their scope; it's a draft, so until the program owner decides it, a person signed in with each right sends these writes from the approved plan (`-RunAs Person`). Nothing about the request changes when it's decided: only who sends the write.
 
 ## Fill in and check a request
 
@@ -224,7 +224,7 @@ Ready            False
   NAME-LENGTH     Finding gmsa-payrollreports-rs is 22 characters; the standard allows 15 before the $, shortened at <app>, so the short name can have 7 characters here. 'payroll' is only the first 7: choose the short name on the system's record, check it isn't another system's (-CheckForest), and ask again (WD-173, WD-175)
 ```
 
-The cut-off name here is another system's short name, which is why the suggester doesn't choose it for you. `-CheckForest` looks up, read only, whether the account name, its retriever group and each SPN already exist, with `Get-ADObject` from the ActiveDirectory module; give `-Server` a global catalog (`<dc>:3268`) to search the whole forest, because Learn requires a gMSA's name to be unique in the forest.[^mrp-gmsa] It reports a clash as a finding and never renames: the standard has no numbering rule, and [WD-184](../../about/decision-register.md#wd-184), a draft, proposes one for that case. The pack's fixture shows what it reports:
+The cut-off name here is another system's short name, which is why the suggester doesn't choose it for you. `-CheckForest` looks up, read only, whether the account name, its retriever group and each SPN already exist, with `Get-ADObject` from the ActiveDirectory module; give `-Server` a global catalog (`<dc>:3268`) to search the whole forest, because Learn requires a gMSA's name to be unique in the forest.[^mrp-gmsa] It reports a clash as a finding and never renames: the standard has no numbering rule, and [WD-185](../../about/decision-register.md#wd-185), a draft, proposes one for that case. The pack's fixture shows what it reports:
 
 ```powershell
 ./Get-MsaNameSuggestion.ps1 -SystemId SYS-0412 -AppShortName payroll -Environment prod -Hosts PAY01 -ServiceClass HTTP -SpnHost reports -CheckForest -ForestFixturePath tests/fixtures/forest.json
@@ -241,7 +241,7 @@ ManagedIdentity  id-payroll-prod-<region>-001
 Tags             SystemId=SYS-0412; Owner1=<owner1-upn>; Owner2=<owner2-upn>; Sponsor=<sponsor-upn>; Environment=prod; Tier=<R1|R2|R3>; EntraTarget=Undecided
 Ready            False
 Forest           2 clash(es)
-  FOREST-NAME     Finding gmsa-payroll$ already exists (msDS-GroupManagedServiceAccount CN=gmsa-payroll,OU=Service Accounts,DC=corp,DC=contoso,DC=example). The standard has no numbering rule: if it's this system's account, ask for a change, not a new account; if it's another system's, one of the two needs a different short name on its record (WD-173 sets no rule for that case, WD-184 asks for one)
+  FOREST-NAME     Finding gmsa-payroll$ already exists (msDS-GroupManagedServiceAccount CN=gmsa-payroll,OU=Service Accounts,DC=corp,DC=contoso,DC=example). The standard has no numbering rule: if it's this system's account, ask for a change, not a new account; if it's another system's, one of the two needs a different short name on its record (WD-173 sets no rule for that case, WD-185 asks for one)
   FOREST-GROUP    Info    DL-gMSA-payroll-Hosts already exists: a second account for the same system uses the same group (WD-159); if the group isn't this system's, its short name is taken
   FOREST-SPN      Finding HTTP/reports.corp.contoso.example is already registered on svc-reports: setspn -S would refuse it. Move it in the switch window (Migration A, step A5) or name a different SPN
 ```
@@ -261,9 +261,24 @@ SailPoint can't run the suggester itself, but it can apply the same rules at the
 
 The service isn't built yet (WD-174), so it has no interface to document here, and the pages read don't say which field names the trigger passes for a form's values: *not yet specified*. Build the service so it calls the pack's scripts rather than copying their rules, and the rules stay in one place.
 
+## Proposing it for production {#production-proposal}
+
+The pack's `proposal/` folder is a neutral proposal to take the standard into production, for the authorizing official and the change advisory board, with a technical appendix for engineers. It restates nothing new: each part summarizes and links the page that holds it.
+
+| File | What it holds |
+|---|---|
+| `msa-production-proposal.docx` | The problem; the decided design as one table of decisions ([WD-123 to WD-176](../../about/decision-register.md#wd-159)); the flow from the agency's system access management tool through SailPoint, ServiceNow and the pipeline to certification; the lifecycle; the naming standard and its [five enforcement layers](service-account-migration.md#msa-standard-enforcement); rollout by the guide's [change-safety rings](service-account-migration.md#sam-control-states) with a 30-day parallel run; the controls the evidence supports, from [the standard's steps](service-account-migration.md#msa-standard-steps); the [dangers](service-account-migration.md#dangers) and their guards; the prerequisites; open items; the decisions requested; and one table of placeholders |
+| `msa-production-proposal.pptx` | The same story in 12 slides, with speaker notes |
+| `day2-test-script.md`, `Invoke-MsaDay2ReadOnly.ps1` | Day 2 at work: read-only production checks (the KDS root key's age, never its value; domain controller versions and functional levels; user accounts used as services and their SPNs; existing managed accounts; who can create in the service-account OU), each saving an evidence file that fills a placeholder; then one gMSA in a test domain, [Module 15](../../training/non-person-identity/15-your-first-gmsa.md)'s steps, installed, tested and backed out |
+| `proposal-prompts.md` | Copilot prompts: fill the placeholders from the evidence, review the proposal for gaps, draft the board's summary |
+
+: The production proposal {.striped .hover}
+
+It proposes gMSAs now and dMSAs once the domain controllers reach Windows Server 2025: a dMSA needs at least one Windows Server 2025 domain controller that the hosts can discover, and every host that uses it on Windows Server 2025.[^mrp-dmsa-faq] The workbook assumes a Windows Server 2016 baseline with Windows Server 2019 as the minimum, so the Day 2 read of the domain controllers confirms or corrects that. A test OU inside the production domain is still production: every production write goes through the approved Chapter 06 plan ([WD-168](../../about/decision-register.md#wd-168)), so the script's one write runs only in a test domain. The Change request kind and the name suggester it describes are pending approval.
+
 ## Using Copilot at work
 
-`copilot-prompts.md` has six prompts: draft a row from what you know, find the SPNs a workload needs, check a row against the rules, explain a finding, draft a change row, and turn the suggester's output into a request. Use Microsoft 365 Copilot Chat signed in with your work account, follow your agency's AI-use policy on what you may paste, and run the checker on every row Copilot drafts: a suggestion isn't an approval, and it isn't evidence.
+`copilot-prompts.md` has six prompts: draft a row from what you know, find the SPNs a workload needs, check a row against the rules, explain a finding, draft a change row, and turn the suggester's output into a request. `proposal/proposal-prompts.md` has four for the [production proposal](#production-proposal). Use Microsoft 365 Copilot Chat signed in with your work account, follow your agency's AI-use policy on what you may paste, and run the checker on every row Copilot drafts: a suggestion isn't an approval, and it isn't evidence.
 
 ## What couldn't be verified {#what-couldnt-be-verified}
 
@@ -275,7 +290,7 @@ The service isn't built yet (WD-174), so it has no interface to document here, a
 ## Questions for the program owner
 
 1. Who in the agency holds Attribute Definition Administrator for the `NonPersonIdentity` set, and who holds Attribute Assignment Administrator for the pipeline?
-2. [WD-184](../../about/decision-register.md#wd-184), a draft: does the pipeline get the rights to send a change request's writes, and what name does a new account get when the standard's name is taken?
+2. [WD-185](../../about/decision-register.md#wd-185), a draft: does the pipeline get the rights to send a change request's writes, and what name does a new account get when the standard's name is taken?
 
 <!-- revisions:start: generated by scripts/generate_revisions.py from data/editions.yml; edit those, not this section -->
 
@@ -291,6 +306,7 @@ This guide has not been published in an edition yet. Each edition is kept, with 
 [^mrp-sp-forms]: SailPoint, Identity Security Cloud, "Forms" (required fields, lengths, regular expressions with an error message, and conditions), <https://documentation.sailpoint.com/saas/help/forms/index.html> (accessed Nov 25, 2026).
 [^mrp-sp-trigger]: SailPoint Developer Community, "Access Request Submitted" event trigger (request-response: a preliminary approval or denial), <https://developer.sailpoint.com/docs/extensibility/event-triggers/triggers/access-request-submitted> (accessed Nov 25, 2026).
 [^mrp-sp-actions]: SailPoint, "Workflow Actions," HTTP Request (makes an HTTP request to an external system; DELETE, GET, PATCH, POST or PUT; basic authentication, custom authorization, OAuth 2.0 client credentials or none; a response must be JSON), <https://documentation.sailpoint.com/saas/help/workflows/workflow-actions.html> (accessed Nov 28, 2026).
+[^mrp-dmsa-faq]: Microsoft Learn, "Delegated Managed Service Accounts FAQ" (at least one Windows Server 2025 domain controller, discoverable by the client or member server; every client and server on a dMSA-supported operating system), <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/delegated-managed-service-accounts/delegated-managed-service-accounts-faq>, and "Setting up delegated Managed Service Accounts (dMSA) in Windows Server 2025," <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/delegated-managed-service-accounts/delegated-managed-service-accounts-set-up-dmsa> (accessed Nov 28, 2026).
 [^mrp-csa]: Microsoft Learn, "What are custom security attributes in Microsoft Entra ID?" (users and service principals; free in all editions; limits: 64-character values, 50 values per object, 100 predefined values), <https://learn.microsoft.com/entra/fundamentals/custom-security-attributes-overview> (accessed Nov 25, 2026).
 [^mrp-csa-role]: Microsoft Learn, "Microsoft Entra built-in roles," Attribute Assignment Administrator (`microsoft.directory/azureManagedIdentities/customSecurityAttributes/update`), <https://learn.microsoft.com/entra/identity/role-based-access-control/permissions-reference> (accessed Nov 25, 2026).
 [^mrp-azure-tags]: Microsoft Learn, "Use tags to organize your Azure resources and management hierarchy" (50 tag pairs per resource; tags aren't inherited from a resource group or subscription), <https://learn.microsoft.com/azure/azure-resource-manager/management/tag-resources> (accessed Nov 25, 2026).

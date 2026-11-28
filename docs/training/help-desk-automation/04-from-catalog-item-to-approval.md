@@ -14,7 +14,7 @@ review-status: pending
 
 ## Introduction (3 minutes)
 
-A request that can say anything has to be read by a person. [WD-182](../../about/decision-register.md#wd-182) makes every request-driven task a ServiceNow catalog item with typed variables, handed through the agency's system access management tool to SailPoint, whose approval scheme for that task decides it. ServiceNow records the request and never approves it ([WD-174](../../about/decision-register.md#wd-174)).
+A request that can say anything has to be read by a person. [WD-182](../../about/decision-register.md#wd-182) makes every request-driven task a ServiceNow catalog item with typed variables, handed through the agency's system access management tool to SailPoint, whose approval scheme for that task decides it. ServiceNow records the request and never approves it ([WD-174](../../about/decision-register.md#wd-174)). The pipeline reads each approval back from SailPoint with one scope, `idn:access-request-status:read`. [WD-184](../../about/decision-register.md#wd-184), a draft amendment to WD-182 awaiting approval, has the test stage prove that the pipeline's API client can make that read. If it can't, the pipeline uses a dedicated identity's personal access token holding only that scope.
 
 In this module you read the kit's templates for both systems and the fixture queue's approvals, so you can say for each task what the requester types, what the agent records and who approves.
 

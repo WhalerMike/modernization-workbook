@@ -1,6 +1,6 @@
 {
-  "_comment": "The NIST SP 800-53 Rev. 5 controls and FedRAMP 20x KSIs the G5 evidence packet supports. Program design: the gate owner checks the packet and the assessor decides each control; KSIs are FedRAMP's provider indicators the agency lines its evidence up with.",
+  "_comment": "The NIST SP 800-53 Rev. 5 controls and FedRAMP 20x KSIs the G5 evidence packet supports. Program design: the gate owner checks the packet and the assessor decides each control; KSIs are FedRAMP's provider indicators the agency lines its evidence up with. Pairs, from Book 13 Appendix A: CM-8 with KSI-PIY-GIV, CA-7 with KSI-MLA-EVC. AC-2 carries none: KSI-IAM-AAM maps to AC-2(2), AC-2(3) and AC-2(13), and the packet shows accounts still in use, not accounts disabled or removed.",
   "steps": {
-    "g5-evidence": { "controls": ["CM-8", "AC-2", "IA-2", "AU-6", "CA-7", "SA-22"], "ksis": ["KSI-PIY-GIV", "KSI-IAM-AAM", "KSI-MLA-EVC"] }
+    "g5-evidence": { "controls": ["CM-8", "AC-2", "IA-2", "AU-6", "CA-7", "SA-22"], "ksis": ["KSI-PIY-GIV", "KSI-MLA-EVC"] }
   }
 }

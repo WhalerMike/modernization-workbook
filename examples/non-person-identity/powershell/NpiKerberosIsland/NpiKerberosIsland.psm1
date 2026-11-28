@@ -19,7 +19,7 @@
     disables and moves; a person for the dMSA steps (WD-163). New gMSAs follow the reviewed AD
     standard in ad-standard.json: their OU, password interval, name and retriever group. A change to
     an existing account (New-NpiKrbChangePlan: a host, an SPN, the tier or the end date) is planned
-    the same way, one approved change request at a time, and sent by a person while WD-184 is a draft.
+    the same way, one approved change request at a time, and sent by a person while WD-185 is a draft.
 
     Illustrative: tested against fixtures and a fake Active Directory, not a production domain.
 #>
@@ -868,7 +868,7 @@ function New-NpiKrbChangePlan {
           Tier, EndDate        the account's tags rewritten as its description, naming this request and
                                change (RewriteTags, WD-175); an end date also records RecordEndDate for
                                Chapter 03's decisions
-        Every write is runBy person while WD-184, the draft that would give gmsa-msapipe these rights,
+        Every write is runBy person while WD-185, the draft that would give gmsa-msapipe these rights,
         is undecided. Throws instead of planning when any rule fails.
     .EXAMPLE
         # Plan adding PAY03 to gmsa-payroll$'s retriever group, from the fixtures.

@@ -1,0 +1,8 @@
+{
+  "schema": "fmw-estate-inventory/1",
+  "runId": "2026-11-29T020000Z",
+  "mode": "Live",
+  "cloud": "gcc",
+  "tenantId": "0c0ffee0-0000-4000-8000-00000000c0de",
+  "_note": "A fictional, shortened manifest for the loader's tests (FmpEnvironment.Tests.ps1), which seal a copy of this folder: they write the profile's manifestSha256, its time and SHA256SUMS before each test."
+}

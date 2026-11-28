@@ -135,7 +135,7 @@ if ($CheckForest) {
         $bySpn = { param($s) @(Get-ADObject -LDAPFilter "(servicePrincipalName=$s)" -Properties samAccountName, objectClass @srv) }
     }
     foreach ($hit in @(& $byName "$account`$")) {
-        Add-Finding 'FOREST-NAME' 'Finding' "$account`$ already exists ($($hit.objectClass) $($hit.distinguishedName)). The standard has no numbering rule: if it's this system's account, ask for a change, not a new account; if it's another system's, one of the two needs a different short name on its record (WD-173 sets no rule for that case, WD-184 asks for one)"
+        Add-Finding 'FOREST-NAME' 'Finding' "$account`$ already exists ($($hit.objectClass) $($hit.distinguishedName)). The standard has no numbering rule: if it's this system's account, ask for a change, not a new account; if it's another system's, one of the two needs a different short name on its record (WD-173 sets no rule for that case, WD-185 asks for one)"
         $clashes += "$account`$"
     }
     if ($group) {

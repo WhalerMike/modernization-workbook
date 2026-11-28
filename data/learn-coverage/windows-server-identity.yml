@@ -1268,10 +1268,13 @@ pages:
   - data/source-register.json
   - docs/books/b02-identity/08-assessing-the-forest.md
   - docs/books/b02-identity/09-building-the-entra-target.md
+  - docs/books/guides/msa-request-pack.md
   - docs/books/guides/service-account-migration.md
   - docs/project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.md
   - docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md
   - docs/reference/source-register.md
+  - examples/msa-request-pack/proposal/day2-test-script.md
+  - examples/msa-request-pack/proposal/proposal_content.py
 - path: WindowsServerDocs/identity/ad-ds/manage/delegated-managed-service-accounts/delegated-managed-service-accounts-overview.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/manage/delegated-managed-service-accounts/delegated-managed-service-accounts-overview
   title: Delegated Managed Service Accounts overview in Windows Server 2025
@@ -1296,6 +1299,7 @@ pages:
   - docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md
   - docs/project-plans/developer-workbooks/non-person-identity/12-the-managed-service-account-standard.md
   - docs/reference/source-register.md
+  - examples/msa-request-pack/proposal/proposal_content.py
   - examples/third_party/windows-server-msa-pages/SNAPSHOT.md
   - examples/third_party/windows-server-msa-pages/snapshot.json
 - path: WindowsServerDocs/identity/ad-ds/manage/delegated-managed-service-accounts/delegated-managed-service-accounts-set-up-dmsa.md
@@ -1311,12 +1315,14 @@ pages:
   - data/decisions.yml
   - data/source-register.json
   - docs/about/decision-register.md
+  - docs/books/guides/msa-request-pack.md
   - docs/books/guides/service-account-migration.md
   - docs/project-plans/developer-workbooks/non-person-identity/01-non-person-identity-inventory-as-code.md
   - docs/project-plans/developer-workbooks/non-person-identity/03-the-migration-path-matrix-as-code.md
   - docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md
   - docs/project-plans/developer-workbooks/non-person-identity/12-the-managed-service-account-standard.md
   - docs/reference/source-register.md
+  - examples/msa-request-pack/proposal/proposal_content.py
   - examples/non-person-identity/config/calls-ch06.json
   - examples/third_party/windows-server-msa-pages/SNAPSHOT.md
   - examples/third_party/windows-server-msa-pages/snapshot.json
@@ -1703,6 +1709,8 @@ pages:
   - docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md
   - docs/project-plans/developer-workbooks/non-person-identity/11-deploying-to-test-and-production.md
   - docs/reference/source-register.md
+  - examples/msa-request-pack/proposal/day2-test-script.md
+  - examples/msa-request-pack/proposal/proposal_content.py
   - examples/third_party/windows-server-msa-pages/SNAPSHOT.md
   - examples/third_party/windows-server-msa-pages/snapshot.json
 - path: WindowsServerDocs/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/group-managed-service-accounts-overview.md
@@ -1722,6 +1730,7 @@ pages:
   - docs/books/guides/service-account-migration.md
   - docs/project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md
   - docs/project-plans/developer-workbooks/non-person-identity/12-the-managed-service-account-standard.md
+  - examples/msa-request-pack/proposal/proposal_content.py
 - path: WindowsServerDocs/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/manage-group-managed-service-accounts.md
   url: https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/manage-group-managed-service-accounts
   title: Manage Group Managed Service Accounts
@@ -1749,6 +1758,7 @@ pages:
   - docs/project-plans/developer-workbooks/non-person-identity/12-the-managed-service-account-standard.md
   - docs/project-plans/developer-workbooks/provider-notices/08-deploying-to-test-and-production.md
   - docs/reference/source-register.md
+  - examples/msa-request-pack/proposal/proposal_content.py
   - examples/non-person-identity/config/calls-ch06.json
   - examples/non-person-identity/config/calls-ch11.json
   - examples/third_party/windows-server-msa-pages/SNAPSHOT.md

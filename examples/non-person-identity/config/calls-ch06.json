@@ -24,14 +24,14 @@
         "Domain Admins or Enterprise Admins, or equivalent permissions, to create or migrate to a dMSA, against a read-write domain controller",
         "Read (default for authenticated domain users)",
         "Write msDS-GroupMSAMembership on the managed service account",
-        "Write servicePrincipalName on the managed service account: Learn's validated write to service principal name allows only SPNs that match the account's DNS host name, so a service SPN needs the property write (WD-184, draft)",
-        "Write the description attribute on the managed service account (WD-184, draft)",
-        "Write the member attribute of the account's DL-gMSA-<app>-Hosts group (WD-184, draft)"
+        "Write servicePrincipalName on the managed service account: Learn's validated write to service principal name allows only SPNs that match the account's DNS host name, so a service SPN needs the property write (WD-185, draft)",
+        "Write the description attribute on the managed service account (WD-185, draft)",
+        "Write the member attribute of the account's DL-gMSA-<app>-Hosts group (WD-185, draft)"
       ],
       "runAs": ["Pipeline", "Person"],
       "pipelineIdentity": "gmsa-msapipe$",
-      "pipelineRole": "The pipeline's own gMSA, run after SailPoint approves the request and ServiceNow records the change (WD-162, WD-163). It holds only delegated rights in the service-account OUs: create msDS-GroupManagedServiceAccount objects in the service-account OU (as a member of DL-gMSA-Creators), write msDS-GroupMSAMembership on those accounts, disable superseded accounts and move them into the holding OU. It is in no privileged group and never writes group membership, a dMSA or a migration. A change request's writes (a retriever group's hosts, an SPN, the description's tags) are a person's until the workbook owner decides WD-184, a draft that proposes those three rights for it.",
-      "personRole": "A person signed in to the domain with the call's right, against a read-write domain controller: the dMSA steps (Domain Admins, Learn); a change request's writes (New-NpiKrbChangePlan: a retriever group's hosts, a dMSA's hosts, setspn -S and -D, the description's tags) while WD-184 is a draft; and in a test domain any pipeline step"
+      "pipelineRole": "The pipeline's own gMSA, run after SailPoint approves the request and ServiceNow records the change (WD-162, WD-163). It holds only delegated rights in the service-account OUs: create msDS-GroupManagedServiceAccount objects in the service-account OU (as a member of DL-gMSA-Creators), write msDS-GroupMSAMembership on those accounts, disable superseded accounts and move them into the holding OU. It is in no privileged group and never writes group membership, a dMSA or a migration. A change request's writes (a retriever group's hosts, an SPN, the description's tags) are a person's until the workbook owner decides WD-185, a draft that proposes those three rights for it.",
+      "personRole": "A person signed in to the domain with the call's right, against a read-write domain controller: the dMSA steps (Domain Admins, Learn); a change request's writes (New-NpiKrbChangePlan: a retriever group's hosts, a dMSA's hosts, setspn -S and -D, the description's tags) while WD-185 is a draft; and in a test domain any pipeline step"
     }
   },
   "calls": [
@@ -209,7 +209,7 @@
       "api": "ad",
       "method": "WRITE",
       "cmdlet": "Set-ADGroup",
-      "adRight": "Write the member attribute of the account's DL-gMSA-<app>-Hosts group (WD-184, draft)",
+      "adRight": "Write the member attribute of the account's DL-gMSA-<app>-Hosts group (WD-185, draft)",
       "allowedParams": ["Identity", "Replace"],
       "stage": "GA",
       "tasks": ["kerberos-apply"],
@@ -217,7 +217,7 @@
       "controls": ["AC-6", "CM-3"],
       "ksis": ["KSI-IAM-ELP", "KSI-CMT-LMC"],
       "learn": "https://learn.microsoft.com/powershell/module/activedirectory/set-adgroup",
-      "note": "AddHost and RemoveHost on a gMSA: -Replace @{ member = <every host after the change> } on the one retriever group, so the write states the whole reviewed list, as SetRetrievers does, and is skipped if the group changed since the plan was read. Adding or removing a host is a reviewed group change (WD-160). A person sends it until WD-184 is decided; Learn's Add- and Remove-ADGroupMember aren't used because this code never runs a Remove- cmdlet."
+      "note": "AddHost and RemoveHost on a gMSA: -Replace @{ member = <every host after the change> } on the one retriever group, so the write states the whole reviewed list, as SetRetrievers does, and is skipped if the group changed since the plan was read. Adding or removing a host is a reviewed group change (WD-160). A person sends it until WD-185 is decided; Learn's Add- and Remove-ADGroupMember aren't used because this code never runs a Remove- cmdlet."
     },
     {
       "id": "krb-set-dmsa-retrievers",
@@ -239,7 +239,7 @@
       "api": "ad",
       "method": "WRITE",
       "cmdlet": "setspn",
-      "adRight": "Write servicePrincipalName on the managed service account: Learn's validated write to service principal name allows only SPNs that match the account's DNS host name, so a service SPN needs the property write (WD-184, draft)",
+      "adRight": "Write servicePrincipalName on the managed service account: Learn's validated write to service principal name allows only SPNs that match the account's DNS host name, so a service SPN needs the property write (WD-185, draft)",
       "allowedParams": ["S", "Account"],
       "stage": "GA",
       "tasks": ["kerberos-apply"],
@@ -254,7 +254,7 @@
       "api": "ad",
       "method": "WRITE",
       "cmdlet": "setspn",
-      "adRight": "Write servicePrincipalName on the managed service account: Learn's validated write to service principal name allows only SPNs that match the account's DNS host name, so a service SPN needs the property write (WD-184, draft)",
+      "adRight": "Write servicePrincipalName on the managed service account: Learn's validated write to service principal name allows only SPNs that match the account's DNS host name, so a service SPN needs the property write (WD-185, draft)",
       "allowedParams": ["D", "Account"],
       "stage": "GA",
       "tasks": ["kerberos-apply"],
@@ -269,7 +269,7 @@
       "api": "ad",
       "method": "WRITE",
       "cmdlet": "Set-ADServiceAccount",
-      "adRight": "Write the description attribute on the managed service account (WD-184, draft)",
+      "adRight": "Write the description attribute on the managed service account (WD-185, draft)",
       "allowedParams": ["Identity", "Description"],
       "stage": "GA",
       "tasks": ["kerberos-apply"],

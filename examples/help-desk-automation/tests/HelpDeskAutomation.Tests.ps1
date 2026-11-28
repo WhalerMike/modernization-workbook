@@ -335,7 +335,7 @@ Describe 'The request pipeline on the platform host' {
     }
     It 'names the settings still to fill in before it signs in to anything' {
         $msg = try { & (Join-Path $script:Kit 'deploy/Invoke-HtRequestPipeline.ps1') -SettingsPath (Join-Path $script:Kit 'deploy/requests-settings.template.json') -DryRun } catch { $_.Exception.Message }
-        $msg | Should -Be 'Fill in the settings first: clientId, iscApiUrl, iscClientId, runAs, serviceNowClientId, serviceNowUrl, tenantId.'
+        $msg | Should -Be 'Fill in the settings first: clientId, credentialAdmins, iscApiUrl, iscClientId, runAs, serviceNowClientId, serviceNowUrl, tenantId.'
     }
     It 'registering is a dry run by default, under the pipeline''s own gMSA' {
         $r = & (Join-Path $script:Kit 'deploy/Register-HtRequestPipeline.ps1') -SettingsPath $script:RSettings
@@ -355,5 +355,102 @@ Describe 'The request pipeline on the platform host' {
         $items = (Get-HtConfig request-items).items.Keys
         $ci.items.name | Sort-Object | Should -Be ($items | Sort-Object)
         $ci.items.variables.name | Should -Not -Contain 'command'
+    }
+}
+
+Describe 'The pipeline''s sign-in and secrets (WD-184)' {
+    BeforeAll {
+        $script:SignIn = @{ serviceNowUrl = 'https://sn.example.test'; serviceNowClientId = 'sn-client'; serviceNowSecretFile = 'creds/servicenow.secret'
+            iscApiUrl = 'https://isc.example.test'; iscClientId = 'isc-client'; iscSecretFile = 'creds/sailpoint.secret'; iscCredential = 'api-client'; credentialAdmins = 'CONTOSO\Tier0-Admins' }
+        function New-Forbidden { [Microsoft.PowerShell.Commands.HttpResponseException]::new('Forbidden', [Net.Http.HttpResponseMessage]::new([Net.HttpStatusCode]::Forbidden)) }
+    }
+    BeforeEach {
+        Mock -ModuleName HelpDeskAutomation Read-HtSecretFile { if ($Path -like '*servicenow*') { 'sn-secret-from-file' } else { 'isc-secret-from-file' } }
+        Mock -ModuleName HelpDeskAutomation Invoke-RestMethod { @{ access_token = 'token' } } -ParameterFilter { $Uri -like '*/oauth*' }
+        Mock -ModuleName HelpDeskAutomation Invoke-RestMethod { @() } -ParameterFilter { $Uri -like '*/v3/access-request-status*' }
+    }
+    It 'only the run-as account, SYSTEM, Administrators and the credential administrators may read a secret file' {
+        $rules = @(
+            [pscustomobject]@{ Identity = 'CONTOSO\gmsa-fmphelpdesk$'; Rights = 'Read, Synchronize'; Type = 'Allow' }
+            [pscustomobject]@{ Identity = 'NT AUTHORITY\SYSTEM'; Rights = 'FullControl'; Type = 'Allow' }
+            [pscustomobject]@{ Identity = 'contoso\tier0-admins'; Rights = 'FullControl'; Type = 'Allow' }
+            [pscustomobject]@{ Identity = 'BUILTIN\Users'; Rights = 'ReadAndExecute, Synchronize'; Type = 'Allow' }
+            [pscustomobject]@{ Identity = 'CONTOSO\gmsa-fmpgitea$'; Rights = 'Read'; Type = 'Allow' }
+            [pscustomobject]@{ Identity = 'Everyone'; Rights = 'Read'; Type = 'Deny' }
+        )
+        Test-HtSecretFileAccess -Rules $rules -Allowed 'CONTOSO\gmsa-fmphelpdesk$', 'CONTOSO\Tier0-Admins' | Should -Be @('BUILTIN\Users', 'CONTOSO\gmsa-fmpgitea$')
+        Test-HtSecretFileAccess -Rules $rules[0..2] -Allowed 'CONTOSO\gmsa-fmphelpdesk$', 'CONTOSO\Tier0-Admins' | Should -BeNullOrEmpty
+    }
+    It 'signs in to ServiceNow and SailPoint with the secrets from their files, never an environment variable' {
+        $r = Connect-HtRequestSystems -Settings $script:SignIn
+        $r.StatusRead | Should -Be 'allowed'
+        Should -Invoke -ModuleName HelpDeskAutomation Invoke-RestMethod -Times 1 -Exactly -ParameterFilter { $Uri -like '*/oauth_token.do' -and $Body.client_secret -eq 'sn-secret-from-file' -and $Body.grant_type -eq 'client_credentials' }
+        Should -Invoke -ModuleName HelpDeskAutomation Invoke-RestMethod -Times 1 -Exactly -ParameterFilter { $Uri -like '*/oauth/token' -and $Body.client_secret -eq 'isc-secret-from-file' }
+        Should -Invoke -ModuleName HelpDeskAutomation Read-HtSecretFile -Times 1 -Exactly -ParameterFilter { $Path -eq 'creds/sailpoint.secret' -and $Allowed -contains 'CONTOSO\Tier0-Admins' }
+        $code = (Get-ChildItem (Join-Path $script:Kit 'deploy'), (Join-Path $script:Kit 'powershell') -Recurse -Include *.ps1, *.psm1 | Get-Content -Raw) -join "`n"
+        $code | Should -Not -Match 'GetEnvironmentVariable|\$env:HDA_'
+    }
+    It 'proves the SailPoint token with one status read, the declared call' {
+        Connect-HtRequestSystems -Settings $script:SignIn | Out-Null
+        Should -Invoke -ModuleName HelpDeskAutomation Invoke-RestMethod -Times 1 -Exactly -ParameterFilter { $Method -eq 'GET' -and $Uri -eq 'https://isc.example.test/v3/access-request-status?limit=1' }
+    }
+    It 'a personal access token signs in the same way, with the client-credentials grant' {
+        $s = $script:SignIn.Clone(); $s.iscCredential = 'personal-access-token'
+        (Connect-HtRequestSystems -Settings $s).SailPoint | Should -Be 'personal-access-token'
+        Should -Invoke -ModuleName HelpDeskAutomation Invoke-RestMethod -Times 1 -Exactly -ParameterFilter { $Uri -like '*/oauth/token' -and $Body.grant_type -eq 'client_credentials' }
+    }
+    It 'HT-RQ-06: a 403 to the API client''s token stops the run and names the personal access token' {
+        Mock -ModuleName HelpDeskAutomation Invoke-RestMethod { throw (New-Forbidden) } -ParameterFilter { $Uri -like '*/v3/access-request-status*' }
+        { Connect-HtRequestSystems -Settings $script:SignIn } | Should -Throw '*HT-RQ-06*personal access token*idn:access-request-status:read*'
+        & (Get-Module HelpDeskAutomation) { $script:Systems.ContainsKey('isc') } | Should -BeFalse
+    }
+    It 'HT-RQ-06: a 403 to a personal access token names its scope and user level' {
+        Mock -ModuleName HelpDeskAutomation Invoke-RestMethod { throw (New-Forbidden) } -ParameterFilter { $Uri -like '*/v3/access-request-status*' }
+        $s = $script:SignIn.Clone(); $s.iscCredential = 'personal-access-token'
+        { Connect-HtRequestSystems -Settings $s } | Should -Throw '*HT-RQ-06*ORG_ADMIN*'
+    }
+    It 'any other failure of the status read is not dressed up as a token problem' {
+        Mock -ModuleName HelpDeskAutomation Invoke-RestMethod { throw 'connection refused' } -ParameterFilter { $Uri -like '*/v3/access-request-status*' }
+        { Connect-HtRequestSystems -Settings $script:SignIn } | Should -Throw 'connection refused'
+    }
+    It 'refuses a SailPoint credential that is neither an API client nor a personal access token' {
+        $s = $script:SignIn.Clone(); $s.iscCredential = 'password'
+        { Connect-HtRequestSystems -Settings $s } | Should -Throw '*iscCredential must be*'
+    }
+    It 'protecting a secret is a dry run by default, for the pipeline''s gMSA, and refuses the assessment gMSA' {
+        $r = & (Join-Path $script:Kit 'deploy/Protect-HtPipelineSecret.ps1') -SettingsPath (Join-Path $script:Fx 'requests-settings.fixture.json') -System sailpoint
+        $r.Applied | Should -BeFalse
+        $r.ProtectedFor | Should -Be 'CONTOSO\gmsa-fmphelpdesk$'
+        $r.SecretFile | Should -Be 'unused/sailpoint.secret'
+        $s = Get-Content (Join-Path $script:Fx 'requests-settings.fixture.json') -Raw | ConvertFrom-Json -AsHashtable; $s.runAs = 'CONTOSO\gmsa-fmpassess$'
+        $p = Join-Path $script:Tmp 'protect-assess.json'; $s | ConvertTo-Json | Set-Content $p
+        { & (Join-Path $script:Kit 'deploy/Protect-HtPipelineSecret.ps1') -SettingsPath $p -System servicenow } | Should -Throw '*never runs as the assessment gMSA*'
+    }
+    It 'the test stage can register the pipeline as a dry run, to prove the sign-ins as the gMSA first' {
+        $r = & (Join-Path $script:Kit 'deploy/Register-HtRequestPipeline.ps1') -SettingsPath (Join-Path $script:Fx 'requests-settings.fixture.json') -PipelineDryRun
+        $r.Runs | Should -Match ' -DryRun$'
+        (& (Join-Path $script:Kit 'deploy/Register-HtRequestPipeline.ps1') -SettingsPath (Join-Path $script:Fx 'requests-settings.fixture.json')).Runs | Should -Not -Match 'DryRun'
+    }
+    It 'a failed sign-in leaves signin.json in the dated run folder and exits 3' {
+        $s = Get-Content (Join-Path $script:Fx 'requests-settings.fixture.json') -Raw | ConvertFrom-Json -AsHashtable
+        $s.runsPath = Join-Path $script:Tmp 'signin-runs'; $s.certificatePath = Join-Path $script:Tmp 'no-such-worker.pfx'
+        $p = Join-Path $script:Tmp 'signin-settings.json'; $s | ConvertTo-Json | Set-Content $p
+        & pwsh -NoProfile -File (Join-Path $script:Kit 'deploy/Invoke-HtRequestPipeline.ps1') -SettingsPath $p -DryRun -AsOf '2026-11-27T12:00:00Z' *>&1 | Out-Null
+        $LASTEXITCODE | Should -Be 3
+        $j = Get-Content (Join-Path $script:Tmp 'signin-runs/2026-11-27T120000Z/signin.json') -Raw | ConvertFrom-Json
+        $j.state | Should -Be 'failed'; $j.step | Should -Be 'sign-in'
+    }
+}
+
+Describe 'The pipeline''s secret files on Windows (WD-184)' {
+    It 'a secret file round-trips only through DPAPI for the account that protected it' -Skip:(-not $IsWindows) {
+        $p = Join-Path $script:Tmp 'creds/roundtrip.secret'
+        $r = Protect-HtSecretFile -Path $p -Secret (ConvertTo-SecureString 'fixture-client-secret' -AsPlainText -Force)
+        $r.Protection | Should -Be 'DPAPI, current user'
+        [Text.Encoding]::UTF8.GetString([IO.File]::ReadAllBytes($p)) | Should -Not -Match 'fixture-client-secret'
+        & (Get-Module HelpDeskAutomation) { param($f) Read-HtSecretFile -Path $f } $p | Should -Be 'fixture-client-secret'
+    }
+    It 'a missing secret file is HT-RQ-06, with the script that writes it' -Skip:(-not $IsWindows) {
+        { & (Get-Module HelpDeskAutomation) { Read-HtSecretFile -Path 'no/such.secret' } } | Should -Throw '*HT-RQ-06*Protect-HtPipelineSecret.ps1*'
     }
 }

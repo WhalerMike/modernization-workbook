@@ -414,18 +414,18 @@ Disconnect-MgGraph
 
 ## Federal requirements and evidence
 
-The manifest's controls and KSIs are the kit's `config/requirements.json`, step `retirement-plan`: controls CM-8, AC-2, CA-3, SR-12 and SI-12, and KSIs KSI-PIY-GIV, KSI-IAM-AAM and KSI-CMT-LMC.[^am08-sp80053] [^am08-ksi]
+The manifest's controls and KSIs are the kit's `config/requirements.json`, step `retirement-plan`: controls CM-8, AC-2, AC-2(3), CA-3, SR-12, SI-12 and CM-3, and KSIs KSI-PIY-GIV, KSI-IAM-AAM and KSI-CMT-LMC.[^am08-sp80053] [^am08-ksi] Each KSI is paired with the control [Book 13, Appendix A](../../../books/b13-governance/appendix-a-requirements-mapping.md) maps it to, as [Book 18, Appendix B](../../../books/b18-application-modernization/appendix-b-shutting-down-a-retired-application.md#what-the-gates-support-and-the-evidence) does: KSI-IAM-AAM lists AC-2(3) among its related controls, not AC-2 itself, and KSI-CMT-LMC lists CM-3.
 
 | What the output proves | Requirement it supports | KSI it aligns to | Who keeps it |
 |---|---|---|---|
 | Every component the application left is listed, and each is flagged until it's removed (Lab 1, steps 2 and 3) | CM-8, System Component Inventory | KSI-PIY-GIV | The asset manager, who retires the CMDB item |
-| The application's sign-in is off, and its accounts and registration are on the removal list (Lab 1, step 5; Lab 2, steps 3 and 4) | AC-2, Account Management | KSI-IAM-AAM | The identity team |
+| The application's sign-in is off, and its accounts and registration are on the removal list (Lab 1, step 5; Lab 2, steps 3 and 4) | AC-2, Account Management | — | The identity team |
+| The accounts the application no longer needs are disabled at the switch-off: the service principal's sign-in, the AD service accounts (Lab 1, steps 3 and 5; Lab 2, step 4) | AC-2(3), Disable Accounts | KSI-IAM-AAM | The identity team |
 | No dependent still calls it, and the exchanges end with it (Lab 1, steps 2 and 4) | CA-3, Information Exchange | — | The application owner, with each partner system's owner |
 | Each component is removed, after the window, by its owning team (Lab 1, step 3) | SR-12, Component Disposal | — | Each owning team, with its removal record |
 | The records officer confirmed the records disposition before anything was removed (R3) | SI-12, Information Management and Retention | — | The records officer |
+| Each removal is its own change at its gate, from the plan's commands (Lab 1, step 3) | CM-3, Configuration Change Control | KSI-CMT-LMC | The change board, with each change record |
 | The plan filed at R6 is the plan the kit wrote (Lab 1, steps 6 and 7) | Supports the closure record of [Book 14, Appendix I](../../../books/b14-compliance/appendix-i-closing-a-systems-authorization.md) | — | The ISSO, who files it with the closing decision |
-
-The manifest also names KSI-CMT-LMC, which [Appendix B](../../../books/b18-application-modernization/appendix-b-shutting-down-a-retired-application.md#what-the-gates-support-and-the-evidence) lines up with each change; this table doesn't pair it with a control while that pairing is under review.
 
 KSIs are FedRAMP 20x indicators for cloud service providers; the agency lines its evidence up with them and doesn't report them. The plan's evidence supports these controls; the agency's assessor decides them *(design guidance)*.
 

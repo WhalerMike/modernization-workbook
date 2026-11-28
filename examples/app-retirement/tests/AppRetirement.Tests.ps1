@@ -39,6 +39,9 @@ Describe 'After the removal date' {
         foreach ($f in $m.files) { $f.sha256 | Should -Be (Get-ArtSha256 (Join-Path $script:Out $f.path)) }
         $m.footprint.sha256 | Should -Be (Get-ArtSha256 $script:Fp)
         $m.controls | Should -Contain 'CM-8'
+        $m.controls | Should -Contain 'CM-3'
+        $m.controls | Should -Contain 'AC-2(3)'
+        $m.ksis | Should -Contain 'KSI-CMT-LMC'
     }
     It 'a date with no time zone is the manifest''s UTC date, on any machine' {
         Get-Content (Join-Path $script:Out 'manifest.json') -Raw | Should -Match '"asOfUtc": "2026-12-10T00:00:00Z"'

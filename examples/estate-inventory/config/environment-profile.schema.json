@@ -1,0 +1,92 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Estate inventory environment profile (fmw-environment-profile/1)",
+  "description": "EnvironmentProfile.json in an estate inventory run folder: the names and IDs the labs ask for, taken only from files the run's kits wrote, each with the file it came from. No secret, and no list of users, groups or accounts. powershell/FmpEnvironment reads it.",
+  "type": "object",
+  "required": ["schema", "provenance", "fields"],
+  "additionalProperties": false,
+  "properties": {
+    "schema": { "const": "fmw-environment-profile/1" },
+    "provenance": {
+      "type": "object",
+      "required": ["runId", "mode", "label", "generatedUtc", "manifest", "manifestSha256", "sources", "readOnly", "controls", "ksi"],
+      "additionalProperties": false,
+      "properties": {
+        "runId": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{6}Z$", "description": "The run folder's name: its UTC start time." },
+        "mode": { "enum": ["Fixture", "Live"] },
+        "label": { "enum": ["test", "production", "fixture", "unlabelled"], "description": "The settings' environmentLabel for a live run; fixture for a fixture run. The loader fills a placeholder only from the label it expects (test by default)." },
+        "generatedUtc": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$" },
+        "manifest": { "const": "EstateInventoryManifest.json" },
+        "manifestSha256": { "$ref": "#/definitions/sha256" },
+        "sources": {
+          "type": "array",
+          "description": "Every file the profile read, relative to the run folder, with its SHA-256.",
+          "items": {
+            "type": "object",
+            "required": ["step", "file", "sha256"],
+            "additionalProperties": false,
+            "properties": {
+              "step": { "$ref": "#/definitions/step" },
+              "file": { "$ref": "#/definitions/relativePath" },
+              "sha256": { "$ref": "#/definitions/sha256" }
+            }
+          }
+        },
+        "readOnly": { "const": true },
+        "controls": { "type": "array", "items": { "type": "string", "pattern": "^[A-Z]{2}-\\d+$" } },
+        "ksi": { "type": "array", "items": { "type": "string", "pattern": "^KSI-[A-Z]{3}-[A-Z]{3}$" } }
+      }
+    },
+    "fields": {
+      "type": "object",
+      "propertyNames": {
+        "enum": [
+          "ad.forestName", "ad.forestRootDomain", "ad.forestMode", "ad.domains", "ad.domainDetails",
+          "ad.rootDomain.netBiosName", "ad.rootDomain.distinguishedName", "ad.rootDomain.domainMode", "ad.rootDomain.pdcEmulator",
+          "ad.domainControllers", "ad.sites", "ad.upnSuffixes", "ad.trusts",
+          "cloud", "tenantId", "azure.subscriptionIds", "azure.managementGroupIds", "graphEnvironment", "azureEnvironment"
+        ]
+      },
+      "additionalProperties": { "$ref": "#/definitions/field" },
+      "properties": {
+        "cloud": { "properties": { "value": { "enum": ["gcc", "global", null] } } },
+        "tenantId": { "properties": { "value": { "anyOf": [{ "type": "null" }, { "type": "string", "pattern": "^[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}$" }] } } },
+        "graphEnvironment": { "properties": { "value": { "enum": ["Global", null] } } },
+        "azureEnvironment": { "properties": { "value": { "enum": ["AzureCloud", null] } } }
+      }
+    }
+  },
+  "definitions": {
+    "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "relativePath": { "type": "string", "pattern": "^[^/\\\\:][^\\\\:]*$", "description": "Relative to the run folder, with '/'." },
+    "step": { "enum": ["start-kit", "non-person-identity", "privileged-access", "validation-kit", "estate-inventory"] },
+    "field": {
+      "type": "object",
+      "required": ["status", "value", "sources"],
+      "properties": {
+        "status": { "enum": ["ok", "conflict", "notCollected"] },
+        "value": { "description": "The value when status is ok; null otherwise." },
+        "reason": { "type": "string" },
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["step"],
+            "properties": {
+              "step": { "$ref": "#/definitions/step" },
+              "file": { "$ref": "#/definitions/relativePath" },
+              "key": { "type": "string" },
+              "derivedFrom": { "type": "string" },
+              "rule": { "type": "string" },
+              "value": {}
+            }
+          }
+        }
+      },
+      "allOf": [
+        { "if": { "properties": { "status": { "const": "ok" } } }, "then": { "properties": { "value": { "not": { "type": "null" } }, "sources": { "minItems": 1 } } } },
+        { "if": { "properties": { "status": { "enum": ["conflict", "notCollected"] } } }, "then": { "required": ["reason"], "properties": { "value": { "type": "null" } } } }
+      ]
+    }
+  }
+}

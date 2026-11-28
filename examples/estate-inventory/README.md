@@ -27,11 +27,14 @@ Each cloud step runs in its own PowerShell 7 process, which signs in app-only (a
   logs\                               each step's log, and the output of each child process
   EstateInventoryManifest.json        the settings' SHA-256, the host, the account, each step's status,
                                       controls and KSIs, each kit's manifest and its SHA-256
+  EnvironmentProfile.json             the forest, domains, domain controllers, sites, trusts, tenant,
+                                      cloud and Azure scopes the kits read, each with its source file,
+                                      and the manifest's SHA-256 (see "The environment profile")
   Summary.md                          one table: step, status, output, controls, KSIs
   SHA256SUMS                          every file in the run folder
 ```
 
-Exit code 0: every step passed (or, in a fixture run, was recorded). 2: a step ended in `Error`, or the validation kit in `Partial` (some checks ended in `Error`). 1: the settings were refused, and nothing ran.
+Exit code 0: every step passed (or, in a fixture run, was recorded). 2: a step ended in `Error`, the validation kit in `Partial` (some checks ended in `Error`), or the environment profile couldn't be written (`logs/environment-profile.log` says why). 1: the settings were refused, and nothing ran.
 
 `Test-EiRun -Path <run>` (in `powershell/EstateInventory`) rechecks `SHA256SUMS` and each kit manifest's hash, and lists what changed.
 
@@ -45,6 +48,7 @@ Exit code 0: every step passed (or, in a fixture run, was recorded). 2: a step e
 | `non-person-identity` | AC-2, CM-8, IA-4, IA-5 | KSI-PIY-GIV, KSI-IAM-SNU |
 | `privileged-access` | AC-2, AC-6 | KSI-IAM-AAM, KSI-IAM-ELP |
 | `validation-kit` | CA-7 | KSI-MLA-EVC |
+| the environment profile | CM-8 | KSI-PIY-GIV |
 | the manifest | AU-9, CA-7 | KSI-MLA-OSM, KSI-MLA-EVC |
 
 KSIs are FedRAMP's indicators for cloud service providers: the agency lines its own evidence up with what its providers report against them, and doesn't report KSIs itself.
@@ -66,7 +70,8 @@ Estate inventory (Fixture, read-only): C:\FMWLabs\results\estate-inventory\<run>
   non-person-identity  Pass      non-person-identity/fixture
   privileged-access    Pass      privileged-access
   validation-kit       Pass      validation-kit/<vk-run>
-Written to C:\FMWLabs\results\estate-inventory\<run> (EstateInventoryManifest.json, Summary.md, SHA256SUMS)
+  environment-profile  fixture   EnvironmentProfile.json: 18 filled, 1 in conflict, 0 not collected
+Written to C:\FMWLabs\results\estate-inventory\<run> (EstateInventoryManifest.json, EnvironmentProfile.json, Summary.md, SHA256SUMS)
 ```
 
 The Start Kit reads only a live forest, so a fixture run copies its recorded run (`start-kit/tests/fixtures/result-assessment/run-nov`) and marks the step `Recorded`. Each run keeps its own folder; list them with:
@@ -75,7 +80,7 @@ The Start Kit reads only a live forest, so a fixture run copies its recorded run
 Get-ChildItem C:\FMWLabs\results\estate-inventory -Name
 ```
 
-The tests: `Invoke-Pester -Path tests` (Pester 5, PowerShell 7 on Windows; 13 tests, about a minute). They run the fixture run twice, refuse a secret and a placeholder, catch a changed file, and run the live path with a stand-in Start Kit in Windows PowerShell 5.1 and no certificate, so each cloud step fails on its own.
+The tests: `Invoke-Pester -Path tests` (Pester 5, PowerShell 7 on Windows; 44 tests, about a minute). `EstateInventory.Tests.ps1` runs the fixture run twice, checks its environment profile against the schema, refuses a secret, a placeholder and an unknown label, catches a changed file, and runs the live path with a stand-in Start Kit in Windows PowerShell 5.1 and no certificate, so each cloud step fails on its own. `FmpEnvironment.Tests.ps1`, the loader's tests, also pass in Windows PowerShell 5.1 with Pester 5.
 
 ## A live run
 
@@ -97,7 +102,7 @@ The tests: `Invoke-Pester -Path tests` (Pester 5, PowerShell 7 on Windows; 13 te
 
 ### The settings
 
-Copy [`config/settings.template.json`](config/settings.template.json) outside the kit's folder and fill in every `<placeholder>`. A live run refuses a placeholder, and any run refuses a secret-like setting (`secret`, `password`, `apikey`, `privatekey` in a key's name). Leave `kits` out when the kits sit side by side, as they do in the zip.
+Copy [`config/settings.template.json`](config/settings.template.json) outside the kit's folder and fill in every `<placeholder>`. A live run refuses a placeholder, and any run refuses a secret-like setting (`secret`, `password`, `apikey`, `privatekey` in a key's name). Leave `kits` out when the kits sit side by side, as they do in the zip. Set `environmentLabel` to `test` for a run against the test forest and test tenant, and to `production` for the platform host's weekly run: it goes into the environment profile, and the labs fill their placeholders only from a profile labelled `test`.
 
 ### Run it once by hand, as the run account
 
@@ -118,6 +123,35 @@ Register-ScheduledTask -TaskName 'FMW Estate Inventory' -Action $action -Trigger
 Start-ScheduledTask -TaskName 'FMW Estate Inventory'
 ```
 
+## The environment profile
+
+`EnvironmentProfile.json` (schema: [`config/environment-profile.schema.json`](config/environment-profile.schema.json)) holds the names and IDs the workbook's Lab 2s ask you to type. The run writes it after the manifest, from files the kits wrote in the run folder and nothing else: it makes no call of its own to Active Directory, Entra ID or Azure. It holds no secret and no list of users, groups or accounts, and it leaves out the domain controllers' addresses and the domains' SIDs.
+
+| Fields | Read from | What |
+|---|---|---|
+| `ad.forestName`, `ad.forestRootDomain`, `ad.forestMode`, `ad.domains`, `ad.sites`, `ad.upnSuffixes` | The Start Kit's `<root-domain>/Forest/ForestTopology.json` | The forest |
+| `ad.domainDetails`, `ad.rootDomain.netBiosName`, `ad.rootDomain.distinguishedName`, `ad.rootDomain.domainMode`, `ad.rootDomain.pdcEmulator` | The same file | Each domain's DNS and NetBIOS names, functional level, distinguished name, parent and PDC emulator |
+| `ad.domainControllers` | The same file | Each domain controller's host name, domain, site and operating system, and whether it is a global catalog or read-only |
+| `ad.trusts` | Each domain's `Trusts/TrustMap.json` | Each trust's name, direction and type, and whether it is within the forest or forest-transitive |
+| `cloud`, `tenantId` | Each cloud kit's own manifest: `non-person-identity/<domain>/manifest.json`, `privileged-access/manifest.json`, `validation-kit/<run>/ValidationManifest.json` | The cloud setting and the tenant each kit read |
+| `azure.subscriptionIds`, `azure.managementGroupIds` | The same manifests' Azure Resource Manager requests, and the Azure scopes in `privileged-access/inventory.csv` | The subscriptions and management groups the run read |
+| `graphEnvironment`, `azureEnvironment` | `cloud` | `Global` and `AzureCloud`: Microsoft 365 GCC (Moderate) uses the global Graph endpoint and commercial Azure, as the run itself signs in |
+
+Each field has a status. `ok`: the sources agree, and the value is there with the file and key each source gave. `conflict`: two sources disagree, and there is no value. In a fixture run `tenantId` is a conflict, because the kits' fixtures are separate fictional tenants; in a live run it means one kit read a different tenant from the others. `notCollected`: no step that finished wrote the file, and `reason` says which. The provenance records the run, its label (`test`, `production`, `fixture`, or `unlabelled` when the settings have no `environmentLabel`), the time in UTC, `EstateInventoryManifest.json`'s SHA-256 and each source file's SHA-256; `SHA256SUMS` covers the profile.
+
+### Reading it in a lab
+
+[`powershell/FmpEnvironment`](powershell/FmpEnvironment/FmpEnvironment.psm1) reads the profile in Windows PowerShell 5.1 and PowerShell 7, and reads files only. `Import-FmpEnvironment -Path <run>` refuses a profile older than `-MaxAgeDays` (8 by default: a weekly run and a day), one whose manifest no longer has the SHA-256 it recorded, one that changed after the run (`SHA256SUMS`), and one whose label isn't `-Expect` (`test` by default; `fixture` for Lab 1's run). `Get-FmpEnvironmentValue` gives one field, by its name or by a lab's placeholder, and refuses a conflict, a field not collected, and a one-value placeholder when the run saw several values. `Get-FmpEnvironmentPlaceholder` lists the placeholders it fills, and `Expand-FmpPlaceholder '<command>'` prints a lab command with them filled in. On Lab 1's run, from this folder:
+
+```powershell
+Import-Module ./powershell/FmpEnvironment/FmpEnvironment.psd1
+$run = Get-ChildItem C:\FMWLabs\results\estate-inventory -Directory | Sort-Object Name | Select-Object -Last 1
+Import-FmpEnvironment -Path $run.FullName -Expect fixture
+Expand-FmpPlaceholder 'Get-ADDomainController -Filter * -Server <test-domain> | Select-Object Name, Site'
+```
+
+The last line prints `Get-ADDomainController -Filter * -Server contoso.example | Select-Object Name, Site`. [Set Up for the Labs](../../docs/training/lab-setup.md#environment-profile) lists the placeholders it fills and the commands for a test environment.
+
 ## Where it runs
 
 On a domain-joined Windows Server member server, not a domain controller and not a person's workstation, with RSAT's ActiveDirectory module, Windows PowerShell 5.1, PowerShell 7, Microsoft Graph PowerShell and Az.Accounts. It needs ADWS (TCP 9389) to the domain controllers for the Start Kit and the AD reads, and outbound HTTPS to `login.microsoftonline.com`, `graph.microsoft.com` and `management.azure.com`.
@@ -128,4 +162,5 @@ On the platform host ([Book 10, Appendix B, D.6](../../docs/books/b10-cloud-boun
 
 - It doesn't compare a run with the last one. The kits' own drift runs do that (`Invoke-NpiDriftRun.ps1`, `Invoke-PaEvidenceRun.ps1`, the drift pipeline's `compare`), from the folders this run writes.
 - No kit here lists every Entra user, group and device; the Start Kit's counts cover AD only.
+- No kit here reads the tenant's domains, so the environment profile has no tenant domain (`<tenant>.onmicrosoft.com`) and no test user or account.
 - It doesn't sign the run folder. `SHA256SUMS` shows nothing changed after the run; an immutable store keeps it from changing afterwards.
