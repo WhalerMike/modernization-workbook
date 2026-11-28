@@ -490,6 +490,7 @@ website:
             - docs/training/application-modernization/05-the-front-end-and-section-508.md
             - docs/training/application-modernization/06-the-applications-identity.md
             - docs/training/application-modernization/07-the-evidence-pack.md
+            - docs/training/application-modernization/08-shutting-down-a-retired-application.md
         - section: "Data Platform and SQL Server Identity learning path"
           href: docs/training/data-platform/index.md
           contents:

@@ -1926,6 +1926,11 @@
   "page": "07-the-post-change-test-and-the-evidence-pack.docx",
   "title": "Building Application Modernization"
  },
+ "docs/project-plans/developer-workbooks/application-modernization/08-shutting-down-a-retired-application.md": {
+  "bundle": "building-application-modernization-bundle.docx",
+  "page": "08-shutting-down-a-retired-application.docx",
+  "title": "Building Application Modernization"
+ },
  "docs/project-plans/developer-workbooks/application-modernization/index.md": {
   "bundle": "building-application-modernization-bundle.docx",
   "page": "index.docx",
@@ -2587,6 +2592,11 @@
  "docs/training/application-modernization/07-the-evidence-pack.md": {
   "bundle": "training-application-modernization-bundle.docx",
   "page": "07-the-evidence-pack.docx",
+  "title": "Learning path: Application Modernization"
+ },
+ "docs/training/application-modernization/08-shutting-down-a-retired-application.md": {
+  "bundle": "training-application-modernization-bundle.docx",
+  "page": "08-shutting-down-a-retired-application.docx",
   "title": "Learning path: Application Modernization"
  },
  "docs/training/application-modernization/index.md": {

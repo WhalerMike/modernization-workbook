@@ -1,0 +1,8 @@
+PS> ./Invoke-ArtPlan.ps1 -FootprintPath tests/fixtures/footprint.json -OutputPath out/retire -AsOf 2026-12-10
+Application : Grants Tracker (fictional)
+Gates       : R1=met R2=blocked R3=met R4=met R5=blocked R6=pending
+Findings    : 7
+Warnings    : 1
+OutputPath  : out/retire
+
+(exit code 2)

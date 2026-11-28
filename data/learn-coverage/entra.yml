@@ -22141,6 +22141,7 @@ pages:
   cited_by:
   - data/source-register.json
   - docs/books/b18-application-modernization/appendix-b-shutting-down-a-retired-application.md
+  - docs/project-plans/developer-workbooks/application-modernization/08-shutting-down-a-retired-application.md
   - docs/project-plans/developer-workbooks/non-person-identity/02-ownership-and-the-orphan-rule.md
   - docs/reference/source-register.md
 - path: docs/identity/enterprise-apps/end-user-experiences.md
@@ -22784,6 +22785,7 @@ pages:
   cited_by:
   - docs/books/b18-application-modernization/appendix-b-shutting-down-a-retired-application.md
   - docs/books/guides/non-person-identity-implementation.md
+  - docs/project-plans/developer-workbooks/application-modernization/08-shutting-down-a-retired-application.md
 - path: docs/identity/enterprise-apps/restore-permissions.md
   url: https://learn.microsoft.com/entra/identity/enterprise-apps/restore-permissions
   title: Restore revoked permissions granted to applications in Microsoft Entra ID

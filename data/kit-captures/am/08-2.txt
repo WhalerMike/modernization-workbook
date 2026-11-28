@@ -1,0 +1,11 @@
+PS> Get-Content out/retire/findings.json | ConvertFrom-Json | Format-Table Rule, Severity, Gate, Object
+Rule   Severity Gate Object
+----   -------- ---- ------
+ART-03 Finding  R2   Payments Gateway (fictional)
+ART-07 Finding  R5   DNS record: grants.corp.contoso.example A
+ART-07 Finding  R5   Certificate: CN=grants.corp.contoso.example
+ART-07 Finding  R5   Account (user): svc-grants
+ART-07 Finding  R5   Account (gmsa): gmsa-grantsjob$
+ART-06 Warn     R5   Firewall rule: FW-2291 Users to grants:443
+ART-07 Finding  R5   Monitoring source: Grants Tracker IIS logs (fictional)
+ART-07 Finding  R5   License: Reporting add-on (fictional) x40

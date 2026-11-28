@@ -64,7 +64,7 @@ The learning path and its hands-on labs.
 
 | Page | What it is |
 |---|---|
-| [Learning path: Application Modernization](../training/application-modernization/index.md) | A learning path in seven modules for developers, data engineers, identity engineers, accessibility testers and ISSO reviewers, built on Book 18 and its reference implementation: the API contract and the schema a service owns; loading a… |
+| [Learning path: Application Modernization](../training/application-modernization/index.md) | A learning path in eight modules for developers, data engineers, identity engineers, accessibility testers and ISSO reviewers, built on Book 18 and its reference implementation: the API contract and the schema a service owns; loading a… |
 | [Labs](../training/labs.md#am) | Every lab in Building Application Modernization: what each needs, where it runs, and its commands. |
 
 : Learn {.striped .hover}

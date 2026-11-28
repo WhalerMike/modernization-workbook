@@ -1,0 +1,13 @@
+PS> $m = Get-Content out/retire/manifest.json -Raw | ConvertFrom-Json
+PS> "Controls: $($m.controls -join ', ')"
+Controls: CM-8, AC-2, CA-3, SR-12, SI-12
+PS> "KSIs: $($m.ksis -join ', ')"
+KSIs: KSI-PIY-GIV, KSI-IAM-AAM, KSI-CMT-LMC
+PS> $m.footprint.sha256 -eq (Get-ArtSha256 tests/fixtures/footprint.json)
+True
+PS> $m.files | ForEach-Object { [pscustomobject]@{ File = $_.path; Matches = $_.sha256 -eq (Get-ArtSha256 "out/retire/$($_.path)") } }
+File          Matches
+----          -------
+findings.json    True
+plan.json        True
+plan.md          True

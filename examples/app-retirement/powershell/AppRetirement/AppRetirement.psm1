@@ -18,7 +18,11 @@ function Get-ArtSha256 {
     -join ([Security.Cryptography.SHA256]::HashData([Text.Encoding]::UTF8.GetBytes($text)) | ForEach-Object { $_.ToString('x2') })
 }
 
-function Write-ArtFile([string]$Path, [string]$Text) { [IO.File]::WriteAllText($Path, ($Text -replace "`r`n", "`n")) }
+# A relative path is resolved against PowerShell's current location, not the process's, so a plan written after Set-Location lands where New-Item made its folder.
+function Write-ArtFile([string]$Path, [string]$Text) {
+    $full = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($Path)
+    [IO.File]::WriteAllText($full, ($Text -replace "`r`n", "`n"))
+}
 
 function Get-ArtFootprint {
     <#
@@ -160,7 +164,9 @@ function New-ArtDecommissionPlan {
     Write-ArtFile (Join-Path $OutputPath 'plan.json') ((ConvertTo-Json -InputObject ([ordered]@{ application = $fp.application.name; cmdbId = $fp.application.cmdbId; gates = $t.Gates; removeBy = $(if ($t.RemoveBy) { $t.RemoveBy.ToString('yyyy-MM-dd') }) }) -Depth 5) + "`n")
     $req = (Get-Content (Join-Path $script:Root 'config/requirements.json') -Raw | ConvertFrom-Json).steps.'retirement-plan'
     $files = foreach ($n in 'findings.json', 'plan.json', 'plan.md') { [ordered]@{ path = $n; sha256 = Get-ArtSha256 (Join-Path $OutputPath $n) } }
-    $manifest = [ordered]@{ step = 'retirement-plan'; mode = 'read'; asOfUtc = $AsOf.ToUniversalTime().ToString('yyyy-MM-ddTHH:mm:ssZ'); footprint = [ordered]@{ path = (Split-Path -Leaf $FootprintPath); sha256 = Get-ArtSha256 $FootprintPath }; controls = $req.controls; ksis = $req.ksis; files = @($files) }
+    # A date given with no time zone (-AsOf 2026-12-10) is read as UTC, so the manifest is the same on every machine.
+    $asOfUtc = if ($AsOf.Kind -eq [DateTimeKind]::Unspecified) { [datetime]::SpecifyKind($AsOf, [DateTimeKind]::Utc) } else { $AsOf.ToUniversalTime() }
+    $manifest = [ordered]@{ step = 'retirement-plan'; mode = 'read'; asOfUtc = $asOfUtc.ToString('yyyy-MM-ddTHH:mm:ssZ'); footprint = [ordered]@{ path = (Split-Path -Leaf $FootprintPath); sha256 = Get-ArtSha256 $FootprintPath }; controls = $req.controls; ksis = $req.ksis; files = @($files) }
     Write-ArtFile (Join-Path $OutputPath 'manifest.json') ((ConvertTo-Json -InputObject $manifest -Depth 5) + "`n")
     [pscustomobject]@{ Application = $fp.application.name; Gates = ($t.Gates.GetEnumerator() | ForEach-Object { "$($_.Key)=$($_.Value)" }) -join ' '; Findings = @($findings | Where-Object Severity -eq 'Finding').Count; Warnings = @($findings | Where-Object Severity -eq 'Warn').Count; OutputPath = $OutputPath }
 }

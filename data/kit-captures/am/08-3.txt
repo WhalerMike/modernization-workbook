@@ -1,0 +1,40 @@
+PS> Get-Content out/retire/plan.md
+# Decommission plan: Grants Tracker (fictional), 2026-12-10
+
+Disposition: Replace by Grants module of the shared service (fictional). Decision PORT-2026-118. Quiet from 2026-10-20; switch off 2026-11-03; remove from 2026-12-03.
+
+| Gate | State |
+|---|---|
+| R1 Decide | met |
+| R2 Quiet | blocked |
+| R3 Records | met |
+| R4 Switch off | met |
+| R5 Remove | blocked |
+| R6 Close | pending |
+
+## Findings
+
+- ART-03 (Finding, R2) Payments Gateway (fictional): Called the application on 2026-10-28, after the quiet date 2026-10-20
+- ART-07 (Finding, R5) DNS record: grants.corp.contoso.example A: Not yet removed; the removal date was 2026-12-03
+- ART-07 (Finding, R5) Certificate: CN=grants.corp.contoso.example: Not yet removed; the removal date was 2026-12-03
+- ART-07 (Finding, R5) Account (user): svc-grants: Not yet removed; the removal date was 2026-12-03
+- ART-07 (Finding, R5) Account (gmsa): gmsa-grantsjob$: Not yet removed; the removal date was 2026-12-03
+- ART-06 (Warn, R5) Firewall rule: FW-2291 Users to grants:443: Removed on 2026-11-10, before the reversible window ended on 2026-12-03
+- ART-07 (Finding, R5) Monitoring source: Grants Tracker IIS logs (fictional): Not yet removed; the removal date was 2026-12-03
+- ART-07 (Finding, R5) License: Reporting add-on (fictional) x40: Not yet removed; the removal date was 2026-12-03
+
+## Commands for the owning teams
+
+Run each in its own change, at its gate. Certificates, firewall rules, monitoring sources, licenses and the CMDB item are removed by their owning teams in their own tools.
+
+```powershell
+# R4 switch off: Grants Tracker (fictional) (reversible: set it back to $true)
+$sp = Get-MgServicePrincipal -Filter "appId eq 'f3000000-0000-4000-8000-000000000501'"
+Update-MgServicePrincipal -ServicePrincipalId $sp.Id -AccountEnabled:$false
+# R5 remove, after the reversible window: restorable for 30 days from the deleted items
+Remove-MgApplication -ApplicationId (Get-MgApplication -Filter "appId eq 'f3000000-0000-4000-8000-000000000501'").Id
+Remove-DnsServerResourceRecord -ComputerName DNS01 -ZoneName "corp.contoso.example" -RRType "A" -Name "grants" -RecordData "10.40.2.17"
+Disable-ADAccount -Identity 'gmsa-grantsjob$'
+```
+
+R6 Close: the authorization closure (Book 14, Appendix I), the CMDB item retired, and this plan's manifest filed with it.
