@@ -82,6 +82,27 @@ RUN_HOST = {
     ("sql-server-identity", "audit-snapshot"): f"{GMSA}, through a Windows login on each instance with the read permissions",
 }
 BY_HAND = "Not scheduled: run by the person or pipeline the kit's chapter names"
+# The chapter of the kit's workbook that teaches a run, for runs whose permission file doesn't give one (or
+# gives a runbook): used by the production assessments section. Read from each kit's chapters and README.
+TAUGHT = {
+    "privileged-access": {"inventory": "01", "emergency-access": "02", "ca-read": "03", "pim-plan": "04",
+                          "pim-alerts": "04", "pim-groups-read": "05", "azure-pim-read": "06",
+                          "access-reviews-plan": "07", "access-reviews-evidence": "07", "pim-audit": "08"},
+    "servicenow-sailpoint": {"drift": "06", "evidence": "07", "writer-check": "08", "deploy-check": "09"},
+    "global-secure-access": {"decision": "01", "baseline": "02", "client": "03", "traffic": "04",
+                             "internet-access": "07", "tls": "07", "compliant-network": "05",
+                             "tenant-restrictions": "05", "private-access": "06", "telemetry": "08"},
+    "defender-xdr": {"access": "01", "coverage": "02", "prevention": "03", "asr": "04", "exposure": "05",
+                     "incidents": "05", "detections": "06", "signals": "07", "preflight": "09"},
+    "azure-security": {"baseline": "01", "exposure": "02", "ddos": "03", "waf": "04", "edge": "05",
+                       "firewall": "06", "private": "07", "policy": "08"},
+    "information-protection": {"access": "01", "inventory": "03", "labels": "04", "protection": "05",
+                               "autolabel": "06", "dlp": "06", "audit": "07", "drift": "08"},
+    "sql-server-identity": {"audit-snapshot": "02", "arc-snapshot": "03"},
+}
+# The estate inventory (WD-180): one weekly run of four kits, under the assessment gMSA and one reader app
+# holding the union of its kits' read rows, as examples/estate-inventory/README.md states.
+ESTATE_RUNS = [("non-person-identity", "inventory"), ("privileged-access", "inventory")]
 
 
 def on_host(r: "Run") -> str:
@@ -241,6 +262,76 @@ def link(path: str, here: str = "docs/reference") -> str:
     return rel.as_posix() + (f"#{anchor}" if anchor else "")
 
 
+def taught_in(kit: str, guide: str, r: "Run") -> str:
+    """A link to the chapter of the kit's workbook that teaches the run, or to the workbook."""
+    folder = (ROOT / guide).parent
+    number = TAUGHT.get(kit, {}).get(r.name) or (r.chapter if r.chapter.isdigit() else "")
+    found = sorted(folder.glob(f"{number}-*.md")) if number and guide.endswith("index.md") else []
+    if found:
+        return f"[Chapter {number}]({link(found[0].relative_to(ROOT).as_posix())})"
+    title = next(t for k, t, _ in KITS if k == kit)
+    return f"[{title}]({link(guide)})"
+
+
+def reader_app(kit: str, title: str) -> str:
+    m = re.search(r"as the (.+? reader app)", HOST.get(kit, ""))
+    return m.group(1) if m else f"{title} reader app"
+
+
+def production_section() -> list[str]:
+    """Every Reads only run, grouped by the identity that runs it in production under WD-181."""
+    estate, by_app, by_hand = [], {}, []
+    for kit, title, guide in KITS:
+        for r in sorted(runs_for(kit).values(), key=lambda r: (TAUGHT.get(kit, {}).get(r.name) or r.chapter
+                                                              or "99", r.name)):
+            if r.changes:
+                continue
+            shown = "All the kit's calls" if r.name == EVERY else f"`{r.name}`"
+            row = [title, shown, taught_in(kit, guide, r), cell(r.graph), cell(r.roles), cell(r.other), on_host(r)]
+            if (kit, r.name) in ESTATE_RUNS:
+                estate.append(row)
+            elif on_host(r).startswith(("Not scheduled", "On request")):
+                by_hand.append(row)
+            else:
+                by_app.setdefault((kit, title), []).append(row)
+    head = ["| Kit | Run | Taught in | Microsoft Graph permissions | Roles | Other rights | Identity |",
+            "|---|---|---|---|---|---|---|"]
+    out = ["## Assessments you can run against production {#production-assessments}", "",
+           "Every **Reads only** run on this page, grouped by the identity that runs it against the production "
+           "forest, tenant and subscriptions under [WD-181](../about/decision-register.md#wd-181): the assessment "
+           "gMSA, `gmsa-fmpassess$`, with default read in the forest, and for Microsoft Graph and Azure the reader "
+           "app of the run's assessment set, which holds only that set's read rows and no write permission. A run "
+           "here changes nothing. Its rights are the same as in its kit's table above; the chapter linked teaches it. "
+           "**Changes** runs aren't listed here.", "",
+           "### The estate inventory {#production-estate-inventory}", "",
+           "One weekly scheduled run of four kits ([WD-180](../about/decision-register.md#wd-180), "
+           f"[Book 10, Appendix B, D.6]({link('docs/books/b10-cloud-boundary/appendix-b-platform-host-interfaces.md#d.6-estate-inventory')})), "
+           "under `gmsa-fmpassess$` at Tier A and one reader app granted the union of its cloud kits' read "
+           f"permissions and Reader at the management group the settings name, as the [estate inventory README]"
+           f"({GH}/examples/estate-inventory/README.md) states.", "", *head,
+           f"| Start Kit | `Invoke-FMPStartKit.ps1` at Tier A: topology, OUs, accounts, SPNs, Group Policy, DNS "
+           f"zones, AD CS templates, the DHCP and NPS server lists, SQL Server directory signals | "
+           f"[Book 02, Chapter 08]({link('docs/books/b02-identity/08-assessing-the-forest.md#the-assessment-account')}) | "
+           f"— | — | Tier A: default read (authenticated user), the [Start Kit README]({GH}/examples/start-kit/README.md)'s "
+           f"rights table. Its Tier B additions are time-bound and run by hand, not on the schedule | "
+           f"Weekly in the estate inventory: {GMSA} (WD-180) |"]
+    out += ["| " + " | ".join(row) + " |" for row in estate]
+    out += [f"| Validation kit | `Invoke-ValidationKit.ps1`: the read-only checks of the tracks the settings name | "
+            f"[Validation kit README]({GH}/examples/validation-kit/README.md) | What `Get-VkRequiredScope` prints for "
+            f"those tracks | — | — | Weekly in the estate inventory: {GMSA} and its reader app (WD-180) |", ""]
+    for (kit, title), rows in by_app.items():
+        app = reader_app(kit, title)
+        out += [f"### {app[0].upper() + app[1:]} {{#production-{kit}}}", "", *head]
+        out += ["| " + " | ".join(row) + " |" for row in rows]
+        out.append("")
+    out += ["### Reads only, but not under a reader app {#production-by-hand}", "",
+            "These runs change nothing, but no scheduled read-only identity can run them: each row says why and "
+            "who runs it.", "", *head]
+    out += ["| " + " | ".join(row) + " |" for row in by_hand]
+    out.append("")
+    return out
+
+
 def page() -> str:
     out = [
         "---",
@@ -277,6 +368,9 @@ def page() -> str:
         "",
         "## At a glance {#at-a-glance}",
         "",
+        "Every **Reads only** run, grouped by the identity that runs it against production, is under "
+        "[Assessments you can run against production](#production-assessments).",
+        "",
         "| Kit | Runs | Reads only | Changes | Microsoft Graph permissions (read runs) |",
         "|---|---|---|---|---|",
     ]
@@ -308,7 +402,7 @@ def page() -> str:
         if kit in KIT_NOTES:
             sec += ["", KIT_NOTES[kit]]
         sections += sec + [""]
-    out += ["", *sections,
+    out += ["", *sections, *production_section(),
             "## Kits that state their needs in prose {#in-prose}", "",
             "These kits don't keep a permission file; each states what it needs in the place linked.", "",
             "| Kit | Where it says what it needs |", "|---|---|"]

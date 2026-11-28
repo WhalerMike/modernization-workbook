@@ -6,6 +6,7 @@ permission file says what its README says.
 from __future__ import annotations
 
 import json
+import re
 import sys
 import unittest
 from pathlib import Path
@@ -46,6 +47,23 @@ class PermissionsPage(unittest.TestCase):
         npi = bp.runs_for("non-person-identity")
         self.assertFalse(npi["drift"].changes)
         self.assertTrue(npi["orphan-apply"].changes)
+
+    def test_production_section_lists_every_read_run_once(self):
+        text = bp.page()
+        self.assertIn("[Assessments you can run against production](#production-assessments)",
+                      text.split("## At a glance", 1)[1].split("\n## ", 1)[0], "At a glance links the section")
+        section = text.split("{#production-assessments}", 1)[1].split("\n## ", 1)[0]
+        rows = [line.split(" | ") for line in section.splitlines() if line.startswith("| ") and "---" not in line]
+        listed = [(r[0].lstrip("| "), r[1]) for r in rows if r[1] != "Run"]
+        for kit, title, guide in bp.KITS:
+            for r in bp.runs_for(kit).values():
+                shown = "All the kit's calls" if r.name == bp.EVERY else f"`{r.name}`"
+                count = listed.count((title, shown))
+                self.assertEqual(count, 0 if r.changes else 1, f"{kit} {r.name}: listed {count} times")
+        for kit in ("Start Kit", "Validation kit"):
+            self.assertTrue(any(k == kit for k, _ in listed), f"the estate inventory's {kit} row")
+        for target in re.findall(r"\]\((\.\./[^)#]+)", section):
+            self.assertTrue((bp.PAGE.parent / target).resolve().exists(), target)
 
 
 if __name__ == "__main__":
