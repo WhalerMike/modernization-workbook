@@ -596,7 +596,12 @@ function Get-EiProfileSource {
 }
 
 function Get-EiProfileCount {
-    <# How many of a profile's fields are filled, in conflict and not collected. #>
+    <#
+    .SYNOPSIS
+        How many of a profile's fields are filled, in conflict and not collected.
+    .EXAMPLE
+        Get-EiProfileCount -EnvironmentProfile (Get-Content "$run/EnvironmentProfile.json" -Raw | ConvertFrom-Json)
+    #>
     param([Parameter(Mandatory)]$EnvironmentProfile)
     $fields = if ($EnvironmentProfile -is [System.Collections.IDictionary]) { @($EnvironmentProfile['fields'].Values) } else { @($EnvironmentProfile.fields.PSObject.Properties.Value) }
     [pscustomobject]@{
