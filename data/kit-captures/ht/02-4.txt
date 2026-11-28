@@ -1,0 +1,5 @@
+PS> Import-Csv out/consent/register.csv | Format-Table Application, Permissions, Requesters, AgeDays, Broad -AutoSize | Out-String -Width 200
+Application                    Permissions                        Requesters AgeDays Broad
+-----------                    -----------                        ---------- ------- -----
+Contoso Dashboards (fictional) User.Read openid                   1          1
+Fabrikam File Sync (fictional) Files.ReadWrite.All Sites.Read.All 2          15      Files.ReadWrite.All

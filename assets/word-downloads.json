@@ -2106,6 +2106,41 @@
   "page": "index.docx",
   "title": "Building Global Secure Access"
  },
+ "docs/project-plans/developer-workbooks/help-desk-automation/01-the-typed-change.md": {
+  "bundle": "building-help-desk-automation-bundle.docx",
+  "page": "01-the-typed-change.docx",
+  "title": "Building Help Desk Automation"
+ },
+ "docs/project-plans/developer-workbooks/help-desk-automation/02-the-consent-request-review.md": {
+  "bundle": "building-help-desk-automation-bundle.docx",
+  "page": "02-the-consent-request-review.docx",
+  "title": "Building Help Desk Automation"
+ },
+ "docs/project-plans/developer-workbooks/help-desk-automation/03-scheduled-checks-sync-roles-and-logs.md": {
+  "bundle": "building-help-desk-automation-bundle.docx",
+  "page": "03-scheduled-checks-sync-roles-and-logs.docx",
+  "title": "Building Help Desk Automation"
+ },
+ "docs/project-plans/developer-workbooks/help-desk-automation/04-requests-in-servicenow-and-sailpoint.md": {
+  "bundle": "building-help-desk-automation-bundle.docx",
+  "page": "04-requests-in-servicenow-and-sailpoint.docx",
+  "title": "Building Help Desk Automation"
+ },
+ "docs/project-plans/developer-workbooks/help-desk-automation/05-the-request-pipeline-and-the-one-time-secret.md": {
+  "bundle": "building-help-desk-automation-bundle.docx",
+  "page": "05-the-request-pipeline-and-the-one-time-secret.docx",
+  "title": "Building Help Desk Automation"
+ },
+ "docs/project-plans/developer-workbooks/help-desk-automation/06-deploying-to-test-and-production.md": {
+  "bundle": "building-help-desk-automation-bundle.docx",
+  "page": "06-deploying-to-test-and-production.docx",
+  "title": "Building Help Desk Automation"
+ },
+ "docs/project-plans/developer-workbooks/help-desk-automation/index.md": {
+  "bundle": "building-help-desk-automation-bundle.docx",
+  "page": "index.docx",
+  "title": "Building Help Desk Automation"
+ },
  "docs/project-plans/developer-workbooks/hr-driven-identity/01-the-writer-register-as-code.md": {
   "bundle": "building-hr-driven-identity-bundle.docx",
   "page": "01-the-writer-register-as-code.docx",
@@ -2843,6 +2878,41 @@
   "bundle": "training-global-secure-access-bundle.docx",
   "page": "index.docx",
   "title": "Learning path: Global Secure Access as the Identity-Aware Network"
+ },
+ "docs/training/help-desk-automation/01-parameters-travel-commands-dont.md": {
+  "bundle": "training-help-desk-automation-bundle.docx",
+  "page": "01-parameters-travel-commands-dont.docx",
+  "title": "Learning path: Help Desk Automation"
+ },
+ "docs/training/help-desk-automation/02-consent-requests-and-the-approver.md": {
+  "bundle": "training-help-desk-automation-bundle.docx",
+  "page": "02-consent-requests-and-the-approver.docx",
+  "title": "Learning path: Help Desk Automation"
+ },
+ "docs/training/help-desk-automation/03-the-morning-checks-on-a-schedule.md": {
+  "bundle": "training-help-desk-automation-bundle.docx",
+  "page": "03-the-morning-checks-on-a-schedule.docx",
+  "title": "Learning path: Help Desk Automation"
+ },
+ "docs/training/help-desk-automation/04-from-catalog-item-to-approval.md": {
+  "bundle": "training-help-desk-automation-bundle.docx",
+  "page": "04-from-catalog-item-to-approval.docx",
+  "title": "Learning path: Help Desk Automation"
+ },
+ "docs/training/help-desk-automation/05-the-pipeline-and-the-separate-channel.md": {
+  "bundle": "training-help-desk-automation-bundle.docx",
+  "page": "05-the-pipeline-and-the-separate-channel.docx",
+  "title": "Learning path: Help Desk Automation"
+ },
+ "docs/training/help-desk-automation/06-deploying-to-test-and-production.md": {
+  "bundle": "training-help-desk-automation-bundle.docx",
+  "page": "06-deploying-to-test-and-production.docx",
+  "title": "Learning path: Help Desk Automation"
+ },
+ "docs/training/help-desk-automation/index.md": {
+  "bundle": "training-help-desk-automation-bundle.docx",
+  "page": "index.docx",
+  "title": "Learning path: Help Desk Automation"
  },
  "docs/training/hr-driven-identity/01-one-writer-per-state.md": {
   "bundle": "training-hr-driven-identity-bundle.docx",

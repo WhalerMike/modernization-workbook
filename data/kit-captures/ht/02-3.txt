@@ -1,0 +1,5 @@
+PS> Get-HtPendingConsentRequest -OutputPath out/consent -FixturePath tests/fixtures -AsOf 2026-11-27T12:00:00Z | Format-List
+Pending    : 2
+Findings   : 1
+Warnings   : 1
+OutputPath : out/consent

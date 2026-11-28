@@ -295,6 +295,29 @@ Replace each `<placeholder>` with your test environment's value.
 The chapter's steps say what each command does and what to look for.
 
 ```powershell
+# Step 1: Register the app in the tenant's own cloud
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes Application.ReadWrite.All -NoWelcome
+$cert = New-SelfSignedCertificate -Subject 'CN=<app-name>' -CertStoreLocation Cert:\CurrentUser\My -KeyExportPolicy NonExportable -KeySpec Signature -KeyLength 2048 -KeyAlgorithm RSA -HashAlgorithm SHA256 -NotAfter (Get-Date).AddDays(90)
+$app = New-MgApplication -BodyParameter @{ displayName = '<app-name>'; signInAudience = 'AzureADMyOrg' }
+Update-MgApplication -ApplicationId $app.Id -BodyParameter @{ keyCredentials = @(@{ type = 'AsymmetricX509Cert'; usage = 'Verify'; key = [Convert]::ToBase64String($cert.RawData); displayName = 'CN=<app-name>' }) }
+New-MgServicePrincipal -BodyParameter @{ appId = $app.AppId } | Out-Null
+[pscustomobject]@{ AppId = $app.AppId; Thumbprint = $cert.Thumbprint }
+
+# Step 2: Grant the two application permissions
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes Application.Read.All, AppRoleAssignment.ReadWrite.All -NoWelcome
+$sp = Get-MgServicePrincipal -Filter "appId eq '<app-id>'"
+$graph = Get-MgServicePrincipal -Filter "appId eq '00000003-0000-0000-c000-000000000000'"
+foreach ($p in 'Application.Read.All', 'Directory.Read.All') {
+    $role = $graph.AppRoles | Where-Object { $_.Value -eq $p -and $_.AllowedMemberTypes -contains 'Application' }
+    New-MgServicePrincipalAppRoleAssignedTo -ServicePrincipalId $graph.Id -BodyParameter @{ principalId = $sp.Id; resourceId = $graph.Id; appRoleId = $role.Id } | Out-Null
+}
+Get-MgServicePrincipalAppRoleAssignment -ServicePrincipalId $sp.Id | ForEach-Object { $id = $_.AppRoleId; ($graph.AppRoles | Where-Object Id -eq $id).Value }
+
+# Step 3: Grant Reader
+Connect-AzAccount -Environment AzureCloud -Tenant <tenant-id> -Subscription <subscription-id>
+$sp = Get-AzADServicePrincipal -ApplicationId <app-id>
+New-AzRoleAssignment -ObjectId $sp.Id -RoleDefinitionName Reader -ResourceGroupName <resource-group>
+
 # Step 4: On a domain-joined test host with the ActiveDirectory module, as an ordinary domain user, sign in and run
 Connect-MgGraph -Environment Global -TenantId <tenant-id> -ClientId <app-id> -CertificateThumbprint <thumbprint>
 Connect-AzAccount -ServicePrincipal -Environment AzureCloud -Tenant <tenant-id> -ApplicationId <app-id> -CertificateThumbprint <thumbprint>
@@ -314,12 +337,6 @@ Import-Csv out/inventory-test/register.csv | Where-Object Source -ne 'AD' | Sort
 # Step 8: Back it out
 Remove-Item -Recurse -Force out/inventory-test
 ```
-
-Steps with no command, done in the portal or by hand as the chapter's step says:
-
-- **Step 1:** Register the app in the tenant's own cloud
-- **Step 2:** Grant the two application permissions
-- **Step 3:** Grant Reader
 :::
 
 <!-- labs:end -->

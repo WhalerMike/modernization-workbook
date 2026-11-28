@@ -31,6 +31,8 @@ prefixes:
   docs/books/guides/snow-sailpoint-integration-kit.md: "ServiceNow and SailPoint Identity Security Cloud, beside Microsoft 365 GCC (Moderate) with commercial Azure"
   docs/training/ticket-to-machine/: "ServiceNow and SailPoint Identity Security Cloud, beside Microsoft 365 GCC (Moderate) with commercial Azure"
   docs/project-plans/developer-workbooks/ticket-to-machine/: "ServiceNow and SailPoint Identity Security Cloud, beside Microsoft 365 GCC (Moderate) with commercial Azure"
+  docs/project-plans/developer-workbooks/help-desk-automation/: "Microsoft 365 GCC (Moderate) with commercial Azure, ServiceNow and SailPoint Identity Security Cloud"
+  docs/training/help-desk-automation/: "Microsoft 365 GCC (Moderate) with commercial Azure, ServiceNow and SailPoint Identity Security Cloud"
   docs/books/guides/defender-xdr-implementation.md: "Microsoft 365 GCC (Moderate); Windows clients and Windows Server only"
   docs/training/defender-xdr/: "Microsoft 365 GCC (Moderate); Windows clients and Windows Server only"
   # Pages with no technical scope.

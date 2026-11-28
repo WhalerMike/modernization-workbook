@@ -1,0 +1,24 @@
+PS> Get-Content out/plan/REQ-2026-0501/plan.json
+{
+  "requestId": "REQ-2026-0501",
+  "changeId": "set-records-flag",
+  "userId": "a1000000-0000-4000-8000-000000000101",
+  "userPrincipalName": "avery.lane@contoso.example",
+  "property": "onPremisesExtensionAttributes",
+  "extension": "extensionAttribute10",
+  "before": "",
+  "after": "RetainAll",
+  "plannedUtc": "2026-11-27T12:00:00Z",
+  "controls": [
+    "AC-2",
+    "AC-6",
+    "CM-3"
+  ],
+  "ksis": [
+    "KSI-CMT-LMC",
+    "KSI-IAM-JIT"
+  ],
+  "note": "Applies only with this file's SHA-256 as -ApprovedPlanSha256, and only if the value is still the one recorded in before."
+}
+PS> Get-Content out/plan/REQ-2026-0501/plan.sha256
+dd84334337d48e28b4db41c5e8fdab5dfb64df39a54584bea126af1904696a57  plan.json

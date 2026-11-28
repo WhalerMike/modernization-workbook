@@ -223,6 +223,23 @@ Replace each `<placeholder>` with your test environment's value.
 
 The chapter's steps say what each command does and what to look for.
 
+In PowerShell 7:
+
+```powershell
+# Step 1: Register the reader app
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes 'Application.ReadWrite.All', 'AppRoleAssignment.ReadWrite.All' -NoWelcome
+$cert = New-SelfSignedCertificate -Subject 'CN=hrlc-ch05-reader' -CertStoreLocation Cert:\CurrentUser\My -KeyExportPolicy NonExportable -KeySpec Signature -NotAfter (Get-Date).AddDays(30)
+$app = New-MgApplication -DisplayName 'hrlc-ch05-reader' -SignInAudience AzureADMyOrg -KeyCredentials @(@{ Type = 'AsymmetricX509Cert'; Usage = 'Verify'; Key = $cert.RawData })
+$sp = New-MgServicePrincipal -AppId $app.AppId
+$graph = Get-MgServicePrincipal -Filter "appId eq '00000003-0000-0000-c000-000000000000'"
+foreach ($p in 'Policy.Read.All', 'Policy.Read.AuthenticationMethod', 'PublicKeyInfrastructure.Read.All') {
+    $role = $graph.AppRoles | Where-Object { $_.Value -eq $p -and $_.AllowedMemberTypes -contains 'Application' }
+    New-MgServicePrincipalAppRoleAssignment -ServicePrincipalId $sp.Id -PrincipalId $sp.Id -ResourceId $graph.Id -AppRoleId $role.Id
+}
+```
+
+In a POSIX shell (Git Bash on Windows):
+
 ```bash
 # Step 2: Export the configuration
 export HRLC_GRAPH_TOKEN='<graph-token>'
@@ -239,15 +256,31 @@ python python/cba_check.py measure --urls my-crl-urls.txt --out out/cba-test/crl
 # Step 4: Check
 python -c "import json; d=json.load(open('config/cba-expected.json')); d['issuingCas'] = [{'displayName': '<ca-name>', 'thumbprint': '<ca-thumbprint>'}]; d['multifactorPolicyOids'] = ['<piv-policy-oid>']; json.dump(d, open('my-cba-expected.json', 'w'), indent=2)"
 python python/cba_check.py check --cloud <cloud> --exports exports/cba --crl out/cba-test/crl-measurements.csv --expected my-cba-expected.json --as-of <today> --out out/cba-test/check
+```
 
+In PowerShell 7:
+
+```powershell
+# Step 5: Prove revocation
+certutil -revoke <cert-serial> 1
+certutil -CRL
+(Get-Date).ToUniversalTime().ToString('yyyy-MM-ddTHH:mm:ssZ')
+
+# Step 5: Prove revocation
+Invoke-WebRequest -Uri '<crl-url-1>' -OutFile revoked-test.crl
+certutil -dump revoked-test.crl | Select-String -Pattern 'ThisUpdate', 'NextUpdate', 'Next CRL Publish', '<cert-serial>'
+
+# Step 5: Prove revocation
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes 'AuditLog.Read.All' -NoWelcome
+Get-MgAuditLogSignIn -Filter "userPrincipalName eq '<test-user-upn>' and createdDateTime ge <revoked-at>" | Format-List CreatedDateTime, AppDisplayName, @{ n = 'ErrorCode'; e = { $_.Status.ErrorCode } }, @{ n = 'FailureReason'; e = { $_.Status.FailureReason } }
+```
+
+In a POSIX shell (Git Bash on Windows):
+
+```bash
 # Step 6: Back it out
 rm -rf exports out my-crl-urls.txt my-cba-expected.json
 ```
-
-Steps with no command, done in the portal or by hand as the chapter's step says:
-
-- **Step 1:** Register the reader app
-- **Step 5:** Prove revocation
 :::
 
 <!-- labs:end -->

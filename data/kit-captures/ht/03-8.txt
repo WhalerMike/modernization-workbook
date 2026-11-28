@@ -1,0 +1,12 @@
+PS> 'sync', 'roles', 'logs' | ForEach-Object { ./deploy/Invoke-HtScheduledRun.ps1 -Job $_ -SettingsPath tests/fixtures/settings.fixture.json -FixturePath tests/fixtures -AsOf 2026-11-27T12:00:00Z | Out-Null; "$_ exit code: $LASTEXITCODE" }
+sync exit code: 2
+roles exit code: 2
+logs exit code: 2
+(exit code 2)
+PS> Get-ChildItem out/runs -Directory -Recurse -Name
+logs
+roles
+sync
+logs/<run>
+roles/<run>
+sync/<run>

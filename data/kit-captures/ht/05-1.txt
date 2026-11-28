@@ -1,0 +1,8 @@
+PS> Import-Module ./powershell/HelpDeskAutomation/HelpDeskAutomation.psm1 -Force
+PS> 'request-queue', 'password-reset', 'authenticator-reset', 'account-create' | ForEach-Object { Get-HtRequiredPermission -Task $_ } | Format-Table Task, Mode, GraphPermissions -AutoSize | Out-String -Width 200
+Task                Mode  GraphPermissions
+----                ----  ----------------
+request-queue       write {User.Read.All, RoleManagement.Read.Directory}
+password-reset      write {User-PasswordProfile.ReadWrite.All}
+authenticator-reset write {UserAuthenticationMethod.ReadWrite.All, UserAuthMethod-TAP.ReadWrite.All}
+account-create      write {User.Create, GroupMember.ReadWrite.All}

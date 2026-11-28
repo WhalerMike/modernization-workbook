@@ -108,6 +108,7 @@ KIT_CAPTURES = {"ttm": ("docs/project-plans/developer-workbooks/ticket-to-machin
                 "dc": ("docs/project-plans/developer-workbooks/daily-checks", "examples/daily-checks-workbook"),
                 "ip": ("docs/project-plans/developer-workbooks/information-protection", "examples/information-protection"),
                 "sql": ("docs/project-plans/developer-workbooks/sql-server-identity", "examples/sql-server-identity"),
+                "ht": ("docs/project-plans/developer-workbooks/help-desk-automation", "examples/help-desk-automation"),
                 "adm": ("docs/books/b19-developer-workbook", "examples")}
 
 

@@ -1,0 +1,8 @@
+PS> $c = Get-Content config/consent-review.json -Raw | ConvertFrom-Json
+PS> $c.maxAgeDays = 0
+PS> $c | ConvertTo-Json | Set-Content out/consent-review.strict.json
+PS> Get-HtPendingConsentRequest -OutputPath out/consent-strict -FixturePath tests/fixtures -ReviewPath out/consent-review.strict.json -AsOf 2026-11-27T12:00:00Z | Format-List
+Pending    : 2
+Findings   : 2
+Warnings   : 1
+OutputPath : out/consent-strict

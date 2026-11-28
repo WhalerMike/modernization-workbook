@@ -358,6 +358,10 @@ Replace each `<placeholder>` with your test environment's value.
 The chapter's steps say what each command does and what to look for.
 
 ```powershell
+# Step 1: Create the extension and its Logic App in the admin center
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes 'LifecycleWorkflows.ReadWrite.All' -NoWelcome
+(Invoke-MgGraphRequest -Method GET -Uri '/v1.0/identityGovernance/lifecycleWorkflows/customTaskExtensions').value | Select-Object id, displayName
+
 # Step 2: Record what the admin center made
 Connect-MgGraph -Scopes 'LifecycleWorkflows.ReadWrite.All', 'Application.Read.All' -Environment Global
 Invoke-MgGraphRequest -Method GET -Uri '/v1.0/identityGovernance/lifecycleWorkflows/customTaskExtensions/<extension-id>' -OutputType Json |
@@ -369,21 +373,61 @@ az rest --method get --url '/subscriptions/<subscription-id>/resourceGroups/<res
 python -c "import json; print(json.dumps(json.load(open('out/arm-cms-revocation.json'))['resources'][0]['properties']['accessControl'], indent=2))"
 (Invoke-MgGraphRequest -Method GET -Uri "/v1.0/servicePrincipals(appId='ce79fdc4-cd1d-4ea5-8139-e74d7dbe0bb7')").displayName
 
+# Step 3: Replace the definition with the program's
+$la = '/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Logic/workflows/la-lcw-cms-revocation?api-version=2016-06-01'
+$current = az rest --method get --url $la | Out-String | ConvertFrom-Json -AsHashtable
+$params = (Get-Content out/arm-cms-revocation.json -Raw | ConvertFrom-Json -AsHashtable).resources[0].properties.parameters
+$params.integrationUri.value = '<test-receiver-uri>'
+$definition = (Get-Content logicapp/integration.workflow.json -Raw | ConvertFrom-Json -AsHashtable).definition
+@{ location = $current.location; tags = $current.tags; identity = @{ type = 'SystemAssigned' }; properties = @{ state = 'Enabled'; definition = $definition; parameters = $params; accessControl = $current.properties.accessControl } } | ConvertTo-Json -Depth 100 | Set-Content la-put.json
+az rest --method put --url $la --body '@la-put.json' --query properties.provisioningState
+
 # Step 4: Build a test workflow
 Invoke-MgGraphRequest -Method GET -Uri '/v1.0/identityGovernance/lifecycleWorkflows/workflows/<workflow-id>?$expand=tasks' -OutputType Json |
     Set-Content workflow-get-test.json
 python tools/lcwext.py check-workflow config/integrations.json --name cms-revocation --extension-id <extension-id> workflow-get-test.json
 python -c "import json; p = 'config/integrations.json'; c = json.load(open(p)); c['integrations'][0]['workflows'].append({'workflowId': '<workflow-id>', 'scenario': 'leaver', 'operation': 'revoke'}); json.dump(c, open(p, 'w'), indent=2)"
 python tools/lcwext.py build config/integrations.json --name cms-revocation --tenant-id <tenant-id>
+
+# Step 5: Run it on demand for one fictional user
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes 'LifecycleWorkflows.ReadWrite.All' -NoWelcome
+Invoke-MgGraphRequest -Method POST -Uri '/v1.0/identityGovernance/lifecycleWorkflows/workflows/<workflow-id>/activate' -Body @{ subjects = @(@{ id = '<test-user-id>' }) }
+
+# Step 5: Run it on demand for one fictional user
+$runs = '/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Logic/workflows/la-lcw-cms-revocation/runs'
+$run = (az rest --method get --url "$($runs)?api-version=2016-06-01&`$top=1" | Out-String | ConvertFrom-Json).value[0].name
+(az rest --method get --url "$($runs)/$($run)/actions/Check_request?api-version=2016-06-01" | Out-String | ConvertFrom-Json).properties.status
+$upr = (Invoke-MgGraphRequest -Method GET -Uri '/v1.0/identityGovernance/lifecycleWorkflows/workflows/<workflow-id>/userProcessingResults').value | Where-Object { $_.subject.id -eq '<test-user-id>' } | Select-Object -First 1
+(Invoke-MgGraphRequest -Method GET -Uri "/v1.0/identityGovernance/lifecycleWorkflows/workflows/<workflow-id>/userProcessingResults/$($upr.id)/taskProcessingResults").value | ForEach-Object { [pscustomobject]@{ task = $_.task.displayName; status = $_.processingStatus; started = $_.startedDateTime; completed = $_.completedDateTime } }
+
+# Step 6: Drill the failure path
+$la = '/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Logic/workflows/la-lcw-cms-revocation?api-version=2016-06-01'
+$current = az rest --method get --url $la | Out-String | ConvertFrom-Json -AsHashtable
+$params = (Get-Content out/arm-cms-revocation.json -Raw | ConvertFrom-Json -AsHashtable).resources[0].properties.parameters
+$params.integrationUri.value = '<failing-receiver-uri>'
+$definition = (Get-Content logicapp/integration.workflow.json -Raw | ConvertFrom-Json -AsHashtable).definition
+@{ location = $current.location; tags = $current.tags; identity = @{ type = 'SystemAssigned' }; properties = @{ state = 'Enabled'; definition = $definition; parameters = $params; accessControl = $current.properties.accessControl } } | ConvertTo-Json -Depth 100 | Set-Content la-put.json
+az rest --method put --url $la --body '@la-put.json' --query properties.provisioningState
+Invoke-MgGraphRequest -Method POST -Uri '/v1.0/identityGovernance/lifecycleWorkflows/workflows/<workflow-id>/activate' -Body @{ subjects = @(@{ id = '<second-test-user-id>' }) }
+
+# Step 6: Drill the failure path
+$upr = (Invoke-MgGraphRequest -Method GET -Uri '/v1.0/identityGovernance/lifecycleWorkflows/workflows/<workflow-id>/userProcessingResults').value | Where-Object { $_.subject.id -eq '<second-test-user-id>' } | Select-Object -First 1
+(Invoke-MgGraphRequest -Method GET -Uri "/v1.0/identityGovernance/lifecycleWorkflows/workflows/<workflow-id>/userProcessingResults/$($upr.id)/taskProcessingResults").value | ForEach-Object { [pscustomobject]@{ id = $_.id; task = $_.task.displayName; status = $_.processingStatus; started = $_.startedDateTime; completed = $_.completedDateTime } }
+
+# Step 7: Back it out
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes 'LifecycleWorkflows.ReadWrite.All', 'User.ReadWrite.All' -NoWelcome
+$wf = Invoke-MgGraphRequest -Method GET -Uri '/v1.0/identityGovernance/lifecycleWorkflows/workflows/<workflow-id>?$expand=tasks'
+$tasks = @($wf.tasks | Where-Object { -not ($_.arguments | Where-Object { $_.value -eq '<extension-id>' }) } | ForEach-Object { @{ displayName = $_.displayName; description = $_.description; continueOnError = $_.continueOnError; isEnabled = $_.isEnabled; taskDefinitionId = $_.taskDefinitionId; arguments = @($_.arguments) } })
+$version = @{ workflow = @{ category = $wf.category; displayName = $wf.displayName; description = $wf.description; isEnabled = $wf.isEnabled; isSchedulingEnabled = $wf.isSchedulingEnabled; executionConditions = $wf.executionConditions; tasks = $tasks } }
+Invoke-MgGraphRequest -Method POST -Uri '/v1.0/identityGovernance/lifecycleWorkflows/workflows/<workflow-id>/createNewVersion' -Body ($version | ConvertTo-Json -Depth 20) -ContentType 'application/json' | Out-Null
+Invoke-MgGraphRequest -Method DELETE -Uri '/v1.0/identityGovernance/lifecycleWorkflows/workflows/<workflow-id>'
+Invoke-MgGraphRequest -Method DELETE -Uri '/v1.0/identityGovernance/lifecycleWorkflows/deletedItems/workflows/<workflow-id>'
+Invoke-MgGraphRequest -Method DELETE -Uri '/v1.0/identityGovernance/lifecycleWorkflows/customTaskExtensions/<extension-id>'
+az role assignment delete --assignee '<your-upn>' --role '<azure-role>' --resource-group '<resource-group>'
+az group delete --name '<resource-group>' --yes
+Remove-MgUser -UserId '<test-user-id>'
+Remove-MgUser -UserId '<second-test-user-id>'
 ```
-
-Steps with no command, done in the portal or by hand as the chapter's step says:
-
-- **Step 1:** Create the extension and its Logic App in the admin center
-- **Step 3:** Replace the definition with the program's
-- **Step 5:** Run it on demand for one fictional user
-- **Step 6:** Drill the failure path
-- **Step 7:** Back it out
 :::
 
 <!-- labs:end -->

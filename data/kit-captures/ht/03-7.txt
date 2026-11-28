@@ -1,0 +1,7 @@
+PS> (Get-Content deploy/eventlog-dcr.json -Raw | ConvertFrom-Json).parameters.xPathQueries.defaultValue
+Security!*[System[(EventID=4624 or EventID=4625 or EventID=4648 or EventID=4672 or EventID=4720 or EventID=4722 or EventID=4723 or EventID=4724 or EventID=4725 or EventID=4726 or EventID=4728 or EventID=4732 or EventID=4740 or EventID=4756 or EventID=4767)]]
+System!*[System[(Level=1 or Level=2 or Level=3)]]
+Application!*[System[(Level=1 or Level=2 or Level=3)]]
+PS> (Get-Content deploy/eventlog-dcr.json -Raw | ConvertFrom-Json).resources | ForEach-Object { $_.type }
+Microsoft.Insights/dataCollectionRules
+Microsoft.Insights/dataCollectionRuleAssociations

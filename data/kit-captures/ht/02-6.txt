@@ -1,0 +1,31 @@
+PS> Get-Content out/consent/manifest.json
+{
+  "step": "consent-requests",
+  "mode": "read",
+  "asOfUtc": "2026-11-27T12:00:00Z",
+  "controls": [
+    "AC-6",
+    "AC-20",
+    "CA-7",
+    "SA-9"
+  ],
+  "ksis": [
+    "KSI-IAM-ELP"
+  ],
+  "files": [
+    {
+      "path": "register.json",
+      "sha256": "27c2ad54f7026b60ec3d9574cf55adb85e0b1148ef6a1e16fd3becfdf4b0d851"
+    },
+    {
+      "path": "register.csv",
+      "sha256": "09b2556c00af1fd42afdc0ba4d4874bdce8b0ca03e00761342ce38af1a0e90c4"
+    },
+    {
+      "path": "findings.json",
+      "sha256": "ee759b12ac517a966cea285d1958dde703afd001bcc784d43eb88aa558d576de"
+    }
+  ]
+}
+PS> Get-HtSha256 out/consent/findings.json
+ee759b12ac517a966cea285d1958dde703afd001bcc784d43eb88aa558d576de

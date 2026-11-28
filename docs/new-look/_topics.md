@@ -18,6 +18,11 @@
     <p class="nl-tile-count">26 pages</p>
   </li>
   <li class="nl-tile">
+    <p class="nl-tile-title" role="heading" aria-level="3"><a href="../topics/help-desk-automation.html">Help Desk Automation</a></p>
+    <p class="nl-tile-desc">The everyday help desk and audit tasks of Book 15, Chapter 12, moved from emails under standing…</p>
+    <p class="nl-tile-count">21 pages</p>
+  </li>
+  <li class="nl-tile">
     <p class="nl-tile-title" role="heading" aria-level="3"><a href="../topics/privileged-access.html">Privileged Access</a></p>
     <p class="nl-tile-desc">Administrative identity without standing privilege</p>
     <p class="nl-tile-count">37 pages</p>

@@ -2,6 +2,7 @@
   "_comment": "Every Microsoft Graph call the pack makes, the task that makes it and the least privilege Microsoft Learn names for it (read November 27, 2026). Azure calls name the Azure role instead of a Graph permission. docs/reference/permissions-by-run.md is built from this file, and tests/HelpDeskAutomation.Tests.ps1 fails if the module calls an endpoint not declared here.",
   "tasks": {
     "typed-change-plan": {
+      "chapter": "01",
       "mode": "read",
       "graphPermissions": [
         "User.Read.All"
@@ -10,6 +11,7 @@
       "adRights": []
     },
     "typed-change-apply": {
+      "chapter": "01",
       "mode": "write",
       "graphPermissions": [
         "User.Read.All",
@@ -20,6 +22,7 @@
       "delegatedRole": "User Administrator, activated through PIM against the ticket, or the approved write pipeline (WD-182)"
     },
     "consent-requests": {
+      "chapter": "02",
       "mode": "read",
       "graphPermissions": [
         "ConsentRequest.Read.All"
@@ -28,6 +31,7 @@
       "adRights": []
     },
     "sync-check": {
+      "chapter": "03",
       "mode": "read",
       "graphPermissions": [
         "Organization.Read.All",
@@ -38,6 +42,7 @@
       "adRights": []
     },
     "role-review": {
+      "chapter": "03",
       "mode": "read",
       "graphPermissions": [
         "RoleManagement.Read.Directory",
@@ -47,6 +52,7 @@
       "adRights": []
     },
     "log-forwarding-check": {
+      "chapter": "03",
       "mode": "read",
       "graphPermissions": [],
       "azureRoles": [
@@ -56,6 +62,7 @@
       "adRights": []
     },
     "log-forwarding-deploy": {
+      "chapter": "03",
       "mode": "write",
       "graphPermissions": [],
       "azureRoles": [
@@ -65,6 +72,7 @@
       "delegatedRole": "A person deploying the reviewed template, not the scheduled identity"
     },
     "request-queue": {
+      "chapter": "05",
       "mode": "write",
       "graphPermissions": [
         "User.Read.All",
@@ -77,6 +85,7 @@
       "iscScope": "idn:access-request-status:read (user level ORG_ADMIN to read others' requests)"
     },
     "password-reset": {
+      "chapter": "05",
       "mode": "write",
       "graphPermissions": [
         "User-PasswordProfile.ReadWrite.All"
@@ -86,6 +95,7 @@
       "delegatedRole": "The worker app also holds the User Administrator role, which covers nonadmin users only (Learn, Update user)"
     },
     "authenticator-reset": {
+      "chapter": "05",
       "mode": "write",
       "graphPermissions": [
         "UserAuthenticationMethod.ReadWrite.All",
@@ -96,6 +106,7 @@
       "delegatedRole": "Authentication Administrator covers members; admins need Privileged Authentication Administrator, so the pipeline refuses them"
     },
     "account-create": {
+      "chapter": "05",
       "mode": "write",
       "graphPermissions": [
         "User.Create",

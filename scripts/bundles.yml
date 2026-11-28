@@ -532,6 +532,12 @@ bundles:
     root: docs/training/provider-notices
     warn_unlisted: ["*.md"]
     pages: [index.md, "[0-9][0-9]-*.md"]
+  - output: training-help-desk-automation-bundle.docx
+    title: "Learning path: Help Desk Automation"
+    subtitle: "A learning path — Federal Modernization Workbook training, combined edition"
+    root: docs/training/help-desk-automation
+    warn_unlisted: ["*.md"]
+    pages: [index.md, "[0-9][0-9]-*.md"]
   - output: training-ticket-to-machine-bundle.docx
     title: "Learning path: Ticket-to-Machine on ServiceNow and SailPoint"
     subtitle: "A learning path — Federal Modernization Workbook training, combined edition"
@@ -614,6 +620,12 @@ bundles:
     title: "Building Provider Notices"
     subtitle: "A developer workbook — Federal Modernization Workbook, combined edition"
     root: docs/project-plans/developer-workbooks/provider-notices
+    warn_unlisted: ["*.md"]
+    pages: [index.md, "[0-9][0-9]-*.md"]
+  - output: building-help-desk-automation-bundle.docx
+    title: "Building Help Desk Automation"
+    subtitle: "A developer workbook — Federal Modernization Workbook, combined edition"
+    root: docs/project-plans/developer-workbooks/help-desk-automation
     warn_unlisted: ["*.md"]
     pages: [index.md, "[0-9][0-9]-*.md"]
   # ---------------------------------------------------------------------

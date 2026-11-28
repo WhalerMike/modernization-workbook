@@ -304,6 +304,20 @@ New-MgIdentityGovernanceLifecycleWorkflowNewVersion -WorkflowId <workflow-id> -B
 
 # Step 4: Set the execution limit
 ../validation-kit/Invoke-ValidationKit.ps1 -OutputPath out/ch03-vk -CheckId VK-HR-06
+
+# Step 5: Check the pass
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes 'Policy.Read.AuthenticationMethod', 'UserAuthenticationMethod.Read.All', 'User.Read.All', 'LifecycleWorkflows-Workflow.ReadWrite.All', 'LifecycleWorkflows-Reports.Read.All' -NoWelcome
+$tap = Invoke-MgGraphRequest -Method GET -Uri 'https://graph.microsoft.com/v1.0/policies/authenticationMethodsPolicy/authenticationMethodConfigurations/temporaryAccessPass'
+$taskArgs = (Get-Content config/workflows/pre-hire.json -Raw | ConvertFrom-Json).tasks.arguments
+[pscustomobject]@{ state = $tap.state; minimumLifetimeInMinutes = $tap.minimumLifetimeInMinutes; maximumLifetimeInMinutes = $tap.maximumLifetimeInMinutes; policyIsUsableOnce = $tap.isUsableOnce; fileLifetimeMinutes = ($taskArgs | Where-Object name -like 'tapLifetime*').value; fileIsUsableOnce = ($taskArgs | Where-Object name -eq 'tapIsUsableOnce').value } | Format-List
+$hire = Get-MgUser -UserId '<test-hire-upn>'
+Get-MgUserAuthenticationMethod -UserId $hire.Id | ForEach-Object { $_.AdditionalProperties['@odata.type'] }
+Initialize-MgIdentityGovernanceLifecycleWorkflow -WorkflowId <prehire-workflow-id> -BodyParameter @{ subjects = @(@{ id = $hire.Id }) }
+do {
+    Start-Sleep -Seconds 60
+    $upr = Get-MgIdentityGovernanceLifecycleWorkflowUserProcessingResult -WorkflowId <prehire-workflow-id> -All | Where-Object { $_.Subject.Id -eq $hire.Id -and $_.WorkflowExecutionType -eq 'onDemand' } | Sort-Object ScheduledDateTime | Select-Object -Last 1
+} until ($upr.ProcessingStatus -in 'completed', 'completedWithErrors', 'failed', 'canceled')
+Get-MgIdentityGovernanceLifecycleWorkflowUserProcessingResultTaskProcessingResult -WorkflowId <prehire-workflow-id> -UserProcessingResultId $upr.Id | Format-List @{ n = 'Task'; e = { $_.Task.DisplayName } }, ProcessingStatus, FailureReason
 ```
 
 In a POSIX shell (Git Bash on Windows):
@@ -345,10 +359,6 @@ In a POSIX shell (Git Bash on Windows):
 # Step 7: Back it out
 rm -rf exports out/ch03 out/ch03-vk
 ```
-
-Steps with no command, done in the portal or by hand as the chapter's step says:
-
-- **Step 5:** Check the pass
 :::
 
 <!-- labs:end -->

@@ -1,0 +1,36 @@
+PS> Test-HtLogForwarding -OutputPath out/logs -FixturePath tests/fixtures -AsOf 2026-11-27T12:00:00Z | Format-List
+Servers    : 2
+Findings   : 2
+OutputPath : out/logs
+PS> Get-Content out/logs/servers.json
+[
+  {
+    "server": "SYNC01",
+    "arc": true,
+    "associated": true,
+    "lastEventUtc": "2026-11-27T11:55:00Z",
+    "silentHours": 0.1
+  },
+  {
+    "server": "SYNC02",
+    "arc": true,
+    "associated": false,
+    "lastEventUtc": "2026-11-26T20:00:00Z",
+    "silentHours": 16.0
+  }
+]
+PS> Get-Content out/logs/findings.json
+[
+  {
+    "Rule": "HT-LF-02",
+    "Severity": "Finding",
+    "Object": "SYNC02",
+    "Issue": "Not associated with the data collection rule dcr-windows-events-identity-servers"
+  },
+  {
+    "Rule": "HT-LF-03",
+    "Severity": "Finding",
+    "Object": "SYNC02",
+    "Issue": "No event in the workspace for 16 hours (limit 6)"
+  }
+]

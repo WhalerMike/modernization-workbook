@@ -1,0 +1,4 @@
+PS> Invoke-Pester -Path tests -FullNameFilter 'Pending admin consent requests*' -Output None -PassThru | Select-Object PassedCount, FailedCount
+PassedCount FailedCount
+----------- -----------
+          5           0

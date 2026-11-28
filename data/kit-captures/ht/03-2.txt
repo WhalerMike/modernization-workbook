@@ -1,0 +1,7 @@
+PS> Invoke-HtSyncCheck -OutputPath out/sync/day2 -FixturePath tests/fixtures -PreviousPath tests/fixtures/previous-sync -AsOf 2026-11-27T12:00:00Z | Format-List
+LastSyncAgeMinutes : 18
+ProvisioningErrors : 2
+ServicesDown       : 1
+Findings           : 3
+Changed            : 3
+OutputPath         : out/sync/day2

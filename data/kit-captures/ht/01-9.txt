@@ -1,0 +1,4 @@
+PS> Copy-Item -Recurse tests/fixtures out/changed
+PS> (Get-Content out/changed/users.json -Raw) -replace '"extensionAttribute10": null', '"extensionAttribute10": "Hold"' | Set-Content out/changed/users.json -NoNewline
+PS> try { Invoke-HtTypedChange -PlanPath $p.PlanPath -ApprovedPlanSha256 $p.PlanSha256 -OutputPath out/apply -FixturePath out/changed -Apply } catch { $_.Exception.Message }
+HT-07: the value is now 'Hold', not the plan's ''. Plan again. Nothing was changed.

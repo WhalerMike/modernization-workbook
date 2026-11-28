@@ -1,7 +1,7 @@
 ---
 title: "Training"
 subtitle: "Learning paths: modules to work through in order, and the vendors' own training mapped to the workbook's roles"
-description: "The Federal Modernization Workbook's training: the Microsoft Automation learning path in four modules, the Ticket-to-Machine and HR-Driven Identity learning paths in seven modules each, the Privileged Access learning path in eight modules, the Attribute-Driven Migration learning path in nine modules, the Non-Person Identity learning path in eleven modules, the Provider Notices learning path in nine modules, the Zero Trust Assessment learning path in four modules, the Defender XDR learning path in five modules, the Global Secure Access learning path in six modules, the Azure Security Engineering learning path in five modules, the Daily Checks Dashboard learning path in two modules, the DNS, DHCP and IPAM learning path in six modules, the Application Modernization learning path in seven modules, the Data Platform and SQL Server Identity learning path in ten modules, and external learning paths from product vendors."
+description: "The Federal Modernization Workbook's training: the Microsoft Automation learning path in four modules, the Ticket-to-Machine and HR-Driven Identity learning paths in seven modules each, the Privileged Access learning path in eight modules, the Attribute-Driven Migration learning path in nine modules, the Non-Person Identity learning path in eleven modules, the Provider Notices learning path in nine modules, the Help Desk Automation learning path in six modules, the Zero Trust Assessment learning path in four modules, the Defender XDR learning path in five modules, the Global Secure Access learning path in six modules, the Azure Security Engineering learning path in five modules, the Daily Checks Dashboard learning path in two modules, the DNS, DHCP and IPAM learning path in six modules, the Application Modernization learning path in seven modules, the Data Platform and SQL Server Identity learning path in ten modules, and external learning paths from product vendors."
 doc-type: section-landing
 fmw-eyebrow: "Training"
 listing:
@@ -38,6 +38,7 @@ listing:
       - "!attribute-driven-migration/**"
       - "!non-person-identity/**"
       - "!provider-notices/**"
+      - "!help-desk-automation/**"
       - "!zero-trust-assessment/**"
       - "!defender-xdr/**"
       - "!global-secure-access/**"
@@ -80,6 +81,7 @@ Each learning path's code downloads as one zip, rebuilt from the repository on e
 | Attribute-Driven Migration | [attribute-driven-migration-code.zip](../../downloads/attribute-driven-migration-code.zip) | `C:\FMWLabs\attribute-driven-migration-code\<the folder each module names>` | Python and PowerShell 7.2 |
 | Non-Person Identity | [non-person-identity-code.zip](../../downloads/non-person-identity-code.zip) | `C:\FMWLabs\non-person-identity-code\non-person-identity` | PowerShell 7.1 |
 | Provider Notices | [provider-notices-code.zip](../../downloads/provider-notices-code.zip) | `C:\FMWLabs\provider-notices-code\provider-notices` | PowerShell 7.1 |
+| Help Desk Automation | [help-desk-automation.zip](../../downloads/help-desk-automation.zip) | `C:\FMWLabs\help-desk-automation` | PowerShell 7.1 |
 | Zero Trust Assessment | [zta-results.zip](../../downloads/zta-results.zip) | `C:\FMWLabs\zta-results` | PowerShell 7.1 |
 | PKI and Certificates | [start-kit.zip](../../downloads/start-kit.zip); for Module 7, [validation-kit.zip](../../downloads/validation-kit.zip) | `C:\FMWLabs\start-kit`; `C:\FMWLabs\validation-kit` | Windows PowerShell 5.1 |
 | Defender XDR | [defender-xdr-code.zip](../../downloads/defender-xdr-code.zip) | `C:\FMWLabs\defender-xdr-code\defender-xdr` | PowerShell 7.1 |
@@ -231,6 +233,12 @@ Nine modules on the notices cloud providers send about the agency's own estate, 
 **Code:** [provider-notices-code.zip](../../downloads/provider-notices-code.zip), or [`examples/provider-notices`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/provider-notices) in the repository. The path's page says [how to unzip it and where](provider-notices/index.md#get-the-code).
 
 **Watch:** each module has a narrated deck, about 12 to 15 minutes, linked from the module's page.
+
+## Help Desk Automation learning path
+
+Six modules, one per chapter of the developer workbook [*Building Help Desk Automation*](../project-plans/developer-workbooks/help-desk-automation/index.md), built on [Book 15, Chapter 12](../books/b15-day2-operations/12-the-day-two-runbook.md)'s everyday help desk and audit tasks: a typed change that carries a change id, a user and a value, never a command, applied only with its approved hash; the pending admin consent review, with the verdict left to the identity governance approver; the morning synchronization check, the custom role review and the event-log forwarding check as read-only jobs on the platform host; ServiceNow catalog items approved in SailPoint; the pipeline that re-reads each approval and hands a one-time secret to one person on a separate channel; and, optionally, the runbook that deploys it all. Each module runs a chapter's Lab 1 on fixtures, points to its Lab 2 in a test environment, and ends with a knowledge check. Start at the [learning path](help-desk-automation/index.md).
+
+**Code:** [help-desk-automation.zip](../../downloads/help-desk-automation.zip), or [`examples/help-desk-automation`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/help-desk-automation) in the repository. The path's page says [how to unzip it and where](help-desk-automation/index.md#get-the-code).
 
 ## Zero Trust Assessment learning path
 

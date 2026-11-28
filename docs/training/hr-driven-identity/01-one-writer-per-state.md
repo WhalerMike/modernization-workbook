@@ -246,6 +246,36 @@ Replace each `<placeholder>` with your test environment's value.
 
 The chapter's steps say what each command does and what to look for.
 
+In PowerShell 7:
+
+```powershell
+# Step 1: Register the reader app
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes 'Application.ReadWrite.All', 'AppRoleAssignment.ReadWrite.All' -NoWelcome
+$cert = New-SelfSignedCertificate -Subject 'CN=hrlc-ch01-reader' -CertStoreLocation Cert:\CurrentUser\My -KeyExportPolicy NonExportable -KeySpec Signature -NotAfter (Get-Date).AddDays(30)
+$app = New-MgApplication -DisplayName 'hrlc-ch01-reader' -SignInAudience AzureADMyOrg -KeyCredentials @(@{ Type = 'AsymmetricX509Cert'; Usage = 'Verify'; Key = $cert.RawData })
+$sp = New-MgServicePrincipal -AppId $app.AppId
+$graph = Get-MgServicePrincipal -Filter "appId eq '00000003-0000-0000-c000-000000000000'"
+foreach ($p in 'AuditLog.Read.All', 'Directory.Read.All') {
+    $role = $graph.AppRoles | Where-Object { $_.Value -eq $p -and $_.AllowedMemberTypes -contains 'Application' }
+    New-MgServicePrincipalAppRoleAssignment -ServicePrincipalId $sp.Id -PrincipalId $sp.Id -ResourceId $graph.Id -AppRoleId $role.Id
+}
+
+# Step 2: Make a known write
+Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes 'User.ReadWrite.All', 'User-LifeCycleInfo.ReadWrite.All', 'User.EnableDisableAccount.All', 'AuditLog.Read.All' -NoWelcome
+$start = (Get-Date).ToUniversalTime().ToString('yyyy-MM-ddTHH:mm:ssZ')
+Update-MgUser -UserId '<test-user-1>' -EmployeeHireDate '<new-hire-date>'
+Update-MgUser -UserId '<test-user-2>' -AccountEnabled:$false
+do {
+    Start-Sleep -Seconds 60
+    $recs = Get-MgAuditLogDirectoryAudit -Filter "activityDateTime ge $start" -All
+    $hire = $recs | Where-Object { $_.ActivityDisplayName -eq 'Update user' -and $_.TargetResources.UserPrincipalName -contains '<test-user-1>' }
+    $off = $recs | Where-Object { $_.ActivityDisplayName -eq 'Disable account' -and $_.TargetResources.UserPrincipalName -contains '<test-user-2>' }
+} until ($hire -and $off)
+@($hire) + @($off) | Format-Table ActivityDateTime, ActivityDisplayName, @{ n = 'Target'; e = { $_.TargetResources.UserPrincipalName } }
+```
+
+In a POSIX shell (Git Bash on Windows):
+
 ```bash
 # Step 3: Export the window
 export HRLC_GRAPH_TOKEN='<graph-token>'
@@ -268,11 +298,6 @@ python python/writer_register.py scan --register my-register.json --audit export
 # Step 6: Back it out
 rm -rf exports/ch01 out/ch01-test
 ```
-
-Steps with no command, done in the portal or by hand as the chapter's step says:
-
-- **Step 1:** Register the reader app
-- **Step 2:** Make a known write
 :::
 
 <!-- labs:end -->

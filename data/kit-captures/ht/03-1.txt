@@ -1,0 +1,16 @@
+PS> Import-Module ./powershell/HelpDeskAutomation/HelpDeskAutomation.psm1 -Force
+PS> 'sync-check', 'role-review', 'log-forwarding-check' | ForEach-Object { Get-HtRequiredPermission -Task $_ } | Format-List
+Task             : sync-check
+Mode             : read
+GraphPermissions : {Organization.Read.All, User.Read.All, ServiceHealth.Read.All}
+AzureRoles       : {}
+
+Task             : role-review
+Mode             : read
+GraphPermissions : {RoleManagement.Read.Directory, DeviceManagementRBAC.Read.All}
+AzureRoles       : {}
+
+Task             : log-forwarding-check
+Mode             : read
+GraphPermissions : {}
+AzureRoles       : {Reader, Log Analytics Reader}

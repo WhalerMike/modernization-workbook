@@ -1,0 +1,7 @@
+PS> ./deploy/Register-HtScheduledJobs.ps1 -SettingsPath tests/fixtures/settings.fixture.json | Format-Table Task, When, RunAs, Registered -AutoSize | Out-String -Width 200
+Task                             When                 RunAs                   Registered
+----                             ----                 -----                   ----------
+FMW Help Desk - Sync check       daily 06:30          CONTOSO\gmsa-fmpassess$      False
+FMW Help Desk - Consent requests daily 07:00          CONTOSO\gmsa-fmpassess$      False
+FMW Help Desk - Log forwarding   daily 07:15          CONTOSO\gmsa-fmpassess$      False
+FMW Help Desk - Role review      weekly, Monday 07:30 CONTOSO\gmsa-fmpassess$      False

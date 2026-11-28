@@ -1,0 +1,4 @@
+PS> (Get-HtConfig request-items).secretClearMinutes
+120
+PS> Select-String -Path servicenow/scheduled-job-clear-one-time-secret.js -Pattern 'var limitMinutes' | ForEach-Object { $_.Line.Trim() }
+var limitMinutes = 120;

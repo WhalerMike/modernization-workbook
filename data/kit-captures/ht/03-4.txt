@@ -1,0 +1,14 @@
+PS> Invoke-HtSyncCheck -OutputPath out/sync/late -FixturePath tests/fixtures -AsOf 2026-11-27T14:00:00Z | Format-List
+LastSyncAgeMinutes : 138
+ProvisioningErrors : 2
+ServicesDown       : 1
+Findings           : 4
+Changed            : 0
+OutputPath         : out/sync/late
+PS> Get-Content out/sync/late/findings.json -TotalCount 6
+[
+  {
+    "Rule": "HT-SY-01",
+    "Severity": "Finding",
+    "Object": "c0ffee00-0000-4000-8000-000000000001",
+    "Issue": "No synchronization for 138 minutes (limit 90)"

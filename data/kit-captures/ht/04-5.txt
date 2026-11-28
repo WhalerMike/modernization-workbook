@@ -1,0 +1,12 @@
+PS> $ap = Get-Content sailpoint/access-profiles.json -Raw | ConvertFrom-Json
+PS> $ap.accessProfiles | ForEach-Object { [pscustomobject]@{ Profile = $_.name; Approvers = ($_.accessRequestConfig.approvalSchemes | ForEach-Object approverType) -join ' then ' } } | Format-Table -AutoSize | Out-String -Width 200
+Profile                              Approvers
+-------                              ---------
+Help Desk Task - Typed User Change   MANAGER then GOVERNANCE_GROUP
+Help Desk Task - Password Reset      GOVERNANCE_GROUP
+Help Desk Task - Authenticator Reset MANAGER then GOVERNANCE_GROUP
+Help Desk Task - Cloud Account       MANAGER then GOVERNANCE_GROUP
+PS> $ap.pipelineApiClient | Format-List
+scopes    : {idn:access-request-status:read}
+userLevel : ORG_ADMIN (SailPoint requires it to read other users' request status)
+note      : Read only; the pipeline never approves or submits

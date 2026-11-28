@@ -1,0 +1,14 @@
+PS> $rq = Get-Content tests/fixtures/requests.json -Raw | ConvertFrom-Json -AsHashtable
+PS> $rq.isc.Keys | Sort-Object | ForEach-Object { [pscustomobject]@{ Request = $_; State = $rq.isc[$_][0].state; Approvals = (@($rq.isc[$_][0].approvalDetails) | ForEach-Object { $_.status }) -join ', ' } } | Format-Table -AutoSize | Out-String -Width 200
+Request State     Approvals
+------- -----     ---------
+AR-1    EXECUTING APPROVED
+AR-11   EXECUTING PENDING
+AR-2    EXECUTING APPROVED
+AR-3    EXECUTING APPROVED
+AR-4    EXECUTING APPROVED
+AR-5    EXECUTING APPROVED
+AR-6    EXECUTING APPROVED
+AR-7    REJECTED  REJECTED
+AR-8    EXECUTING APPROVED
+AR-9    EXECUTING APPROVED

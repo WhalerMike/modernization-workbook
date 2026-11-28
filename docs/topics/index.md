@@ -16,6 +16,7 @@ Each row shows what a topic has. A cell that says **gap** is something readers n
 | [Non-Person Identity](non-person-identity.md) | 7 | 1 | 4 | 13 chapters | 15 modules | yes | 37 | 3 zips |
 | [Attribute-Driven Migration](attribute-driven-migration.md) | 6 | 1 | 4 | 10 chapters | 9 modules | yes | 28 | 4 zips |
 | [Provider Notices](provider-notices.md) | 5 | [not needed](#gaps) | 1 | 8 chapters | 9 modules | yes | 20 | 1 zip |
+| [Help Desk Automation](help-desk-automation.md) | 3 | [not needed](#gaps) | 1 | 6 chapters | 6 modules | yes | 1 | 1 zip |
 | [Privileged Access](privileged-access.md) | 8 | 1 | 1 | 9 chapters | 8 modules | yes | 19 | 1 zip |
 | [Ticket-to-Machine](ticket-to-machine.md) | 4 | 1 | 3 | 9 chapters | 7 modules | yes | 21 | 3 zips |
 | [HR-Driven Identity](hr-driven-identity.md) | 7 | 1 | 2 | 8 chapters | 7 modules | yes | 25 | 1 zip |
@@ -44,6 +45,7 @@ A gap is filled only where readers need it. Where nothing is needed, the note sa
 | Topic | Missing | Why |
 |---|---|---|
 | [Provider Notices](provider-notices.md#gaps) | Project plan | Not needed, because the implementation guide's seven gates and the developer workbook's chapters already sequence the work, and it runs inside day-two operations (Book 15). |
+| [Help Desk Automation](help-desk-automation.md#gaps) | Project plan | Not needed, because the help desk's work is day-two operations (Book 15), decisions WD-181 to WD-183 settle where it runs, and the developer workbook's runbook sequences the rollout. |
 | [Defender XDR](defender-xdr.md#gaps) | Project plan | Not needed, because the implementation guide's ten gates sequence the rollout, and it is an operating capability of security operations (Book 12) rather than a project with an end. |
 | [Azure Security](azure-security.md#gaps) | Project plan | Not needed, because the implementation guide's ten steps sequence the work and the landing zone it hardens is Book 10's; a project plan would repeat the guide. |
 | [Microsoft Automation](microsoft-automation.md#gaps) | Project plan | Not needed, because this is a learning path for the people who build the other topics, not a project. |

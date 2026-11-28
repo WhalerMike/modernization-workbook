@@ -1,0 +1,3 @@
+PS> (Get-Content out/plan/REQ-2026-0501/plan.json -Raw) -replace '"after": "RetainAll"', '"after": ""' | Set-Content out/plan/REQ-2026-0501/edited.json -NoNewline
+PS> try { Invoke-HtTypedChange -PlanPath out/plan/REQ-2026-0501/edited.json -ApprovedPlanSha256 $p.PlanSha256 -OutputPath out/apply -FixturePath tests/fixtures -Apply } catch { $_.Exception.Message }
+HT-08: the plan's SHA-256 is f41cec0b72c454de71d54b1cb2f442e647428c675d0bbb8a8f3a82dc9c5e424c, not the approved dd84334337d48e28b4db41c5e8fdab5dfb64df39a54584bea126af1904696a57. Nothing was changed.

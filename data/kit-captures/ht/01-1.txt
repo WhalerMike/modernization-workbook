@@ -1,0 +1,11 @@
+PS> Import-Module ./powershell/HelpDeskAutomation/HelpDeskAutomation.psm1 -Force
+PS> 'typed-change-plan', 'typed-change-apply' | ForEach-Object { Get-HtRequiredPermission -Task $_ } | Format-List
+Task             : typed-change-plan
+Mode             : read
+GraphPermissions : {User.Read.All}
+AzureRoles       : {}
+
+Task             : typed-change-apply
+Mode             : write
+GraphPermissions : {User.Read.All, User.ReadUpdate.All}
+AzureRoles       : {}

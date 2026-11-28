@@ -1,0 +1,26 @@
+PS> New-HtTypedChangePlan -RequestId REQ-2026-0502 -User blake.ortiz@contoso.example -ChangeId set-department -Value Audit -OutputPath out/plan -FixturePath tests/fixtures -AsOf 2026-11-27T12:00:00Z | Format-List
+HT-02: User 'blake.ortiz@contoso.example' is synchronized from on-premises; change it at the source (the on-premises directory or the HR record)
+
+RequestId  : REQ-2026-0502
+Ready      : False
+Findings   : 1
+PlanPath   :
+PlanSha256 :
+PS> New-HtTypedChangePlan -RequestId 'please run this' -User casey.diaz@contoso.example -ChangeId set-employee-type -Value Vendor -OutputPath out/plan -FixturePath tests/fixtures -AsOf 2026-11-27T12:00:00Z | Format-List
+HT-06: Request id 'please run this' isn't a ticket number (for example REQ-2026-0501 or RITM0010001)
+HT-04: User 'casey.diaz@contoso.example' is disabled; a disabled account goes to the security office, not a change
+HT-03: 'Vendor' isn't one of: Employee, Contractor, Intern, Partner
+
+RequestId  : please run this
+Ready      : False
+Findings   : 3
+PlanPath   :
+PlanSha256 :
+PS> New-HtTypedChangePlan -RequestId REQ-2026-0503 -User devon.park@contoso.example -ChangeId set-records-flag -Value RetainAll -OutputPath out/plan -FixturePath tests/fixtures -AsOf 2026-11-27T12:00:00Z | Format-List
+HT-05: The user already has that value; nothing to change
+
+RequestId  : REQ-2026-0503
+Ready      : False
+Findings   : 1
+PlanPath   :
+PlanSha256 :

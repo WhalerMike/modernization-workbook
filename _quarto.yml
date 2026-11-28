@@ -135,6 +135,8 @@ website:
           - text: "Operations, evidence and applications"
           - href: docs/topics/provider-notices.md
             text: "Provider Notices"
+          - href: docs/topics/help-desk-automation.md
+            text: "Help Desk Automation"
           - href: docs/topics/daily-checks-dashboard.md
             text: "Daily Checks Dashboard"
           - href: docs/topics/compliance-evidence.md
@@ -279,6 +281,8 @@ website:
             text: "Building SQL Server Identity"
           - href: docs/project-plans/developer-workbooks/application-modernization/index.md
             text: "Building Application Modernization"
+          - href: docs/project-plans/developer-workbooks/help-desk-automation/index.md
+            text: "Building Help Desk Automation"
       - href: docs/evaluations/index.md
         text: "Evaluations"
       - href: docs/training/index.md
@@ -414,6 +418,15 @@ website:
             - docs/training/provider-notices/07-routing-to-owners.md
             - docs/training/provider-notices/08-digest-evidence-and-go-no-go.md
             - docs/training/provider-notices/09-deploying-to-test-and-production.md
+        - section: "Help Desk Automation learning path"
+          href: docs/training/help-desk-automation/index.md
+          contents:
+            - docs/training/help-desk-automation/01-parameters-travel-commands-dont.md
+            - docs/training/help-desk-automation/02-consent-requests-and-the-approver.md
+            - docs/training/help-desk-automation/03-the-morning-checks-on-a-schedule.md
+            - docs/training/help-desk-automation/04-from-catalog-item-to-approval.md
+            - docs/training/help-desk-automation/05-the-pipeline-and-the-separate-channel.md
+            - docs/training/help-desk-automation/06-deploying-to-test-and-production.md
         - section: "Zero Trust Assessment learning path"
           href: docs/training/zero-trust-assessment/index.md
           contents:
@@ -585,6 +598,10 @@ website:
               href: docs/project-plans/developer-workbooks/application-modernization/index.md
               contents:
                 - auto: "docs/project-plans/developer-workbooks/application-modernization/*-*.md"
+            - section: "Building Help Desk Automation"
+              href: docs/project-plans/developer-workbooks/help-desk-automation/index.md
+              contents:
+                - auto: "docs/project-plans/developer-workbooks/help-desk-automation/*-*.md"
     - id: books
       title: "The Workbook Books"
       style: docked

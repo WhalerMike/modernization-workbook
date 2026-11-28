@@ -1,0 +1,18 @@
+PS> Get-Content out/sync/day2/report.md
+# Morning synchronization report, 2026-11-27
+
+- Last synchronization: 2026-11-27T11:42:00Z (18 minutes ago)
+- Provisioning errors: 2
+- Services not operational: Exchange Online (serviceDegradation)
+
+## Changed since the last run
+
+- Provisioning errors: 1 -> 2
+- New error objects: a1000000-0000-4000-8000-000000000105
+- Exchange Online: serviceOperational -> serviceDegradation
+
+## Findings (each becomes a ticket)
+
+- HT-SY-02 a1000000-0000-4000-8000-000000000105: A provisioning error (PropertyConflict) on this user
+- HT-SY-02 a1000000-0000-4000-8000-000000000106: A provisioning error (PropertyConflict) on this user
+- HT-SY-03 Exchange Online: Service status serviceDegradation

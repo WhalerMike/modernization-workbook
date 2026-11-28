@@ -1,0 +1,20 @@
+PS> $ci.requestedItemFields | Format-List name, type, writtenBy
+name      : u_automation_state
+type      : choice
+writtenBy : the access management hand-off (ready) and the pipeline (done, failed, manual)
+
+name      : u_isc_access_request_id
+type      : string
+writtenBy : the agency's system access management tool, when it submits the request to SailPoint
+
+name      : u_identity_verified_by
+type      : reference
+writtenBy : the service desk agent who verified the person (resets only)
+
+name      : u_identity_verification_method
+type      : choice
+writtenBy : the same agent
+
+name      : u_one_time_secret
+type      : password2
+writtenBy : the pipeline only; readable only by the assigned agent's group (servicenow/acl.md); cleared by servicenow/scheduled-job-clear-one-time-secret.js
