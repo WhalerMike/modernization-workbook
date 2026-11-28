@@ -3,5 +3,5 @@ PS> $p | Format-List
 RequestId  : REQ-2026-0501
 Ready      : True
 Findings   : 0
-PlanPath   : out/plan/REQ-2026-0501\plan.json
+PlanPath   : out/plan/REQ-2026-0501/plan.json
 PlanSha256 : dd84334337d48e28b4db41c5e8fdab5dfb64df39a54584bea126af1904696a57

@@ -155,7 +155,7 @@ The run's date is only the folder's name. The data's date is `-AsOf`, which stay
     RequestId  : REQ-2026-0501
     Ready      : True
     Findings   : 0
-    PlanPath   : C:\FMWLabs\results\help-desk-automation-01-parameters-travel-commands-dont\lab1\<run>\plan\REQ-2026-0501\plan.json
+    PlanPath   : C:/FMWLabs/results/help-desk-automation-01-parameters-travel-commands-dont/lab1/<run>/plan/REQ-2026-0501/plan.json
     PlanSha256 : dd84334337d48e28b4db41c5e8fdab5dfb64df39a54584bea126af1904696a57
     ```
 

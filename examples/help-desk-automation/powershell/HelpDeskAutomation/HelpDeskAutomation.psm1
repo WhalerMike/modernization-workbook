@@ -265,7 +265,7 @@ function New-HtTypedChangePlan {
     Write-HtJson $plan $planPath
     $sha = Get-HtSha256 $planPath
     Write-HtText (Join-Path $dir 'plan.sha256') "$sha  plan.json`n"
-    [pscustomobject]@{ RequestId = $RequestId; Ready = $true; Findings = 0; PlanPath = $planPath; PlanSha256 = $sha }
+    [pscustomobject]@{ RequestId = $RequestId; Ready = $true; Findings = 0; PlanPath = ($planPath -replace '\\', '/'); PlanSha256 = $sha }
 }
 
 function Invoke-HtTypedChange {
