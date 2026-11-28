@@ -69,7 +69,7 @@ Learn's pages work one domain controller, one record or one event at a time. G5 
 | Each domain controller is demoted on its own | A domain controller nobody remembered keeps running | AD-G5-01: every domain controller is in the island register or a finding |
 | Verify cleanup by looking in Sites and Services | One forced removal leaves an NTDS Settings object behind, and replication keeps trying it | AD-G5-03: an NTDS Settings object for a server that is no longer a domain controller |
 | Verify SRV records by `nslookup` after install | A record left for a removed domain controller sends clients to a host that's gone, or to whoever has its address next | AD-G5-04: every DC locator record points at an island domain controller |
-| Trusts, SPNs and sign-ins are documented separately | A trust, an SPN on a user account or a person still signing in is a live dependency on AD | AD-G5-05, AD-G5-06 and AD-G5-07, each against the register |
+| Trusts, SPNs and sign-ins are documented separately | A trust, an SPN on a user account or a person still signing in is a live dependency on AD | AD-G5-05, AD-G5-06 and AD-G5-07, each against the register; AD-G5-09 when no authentication rows were read while domain controllers still run, so an empty export can't pass for a quiet forest |
 | No end date is part of any of them | An island without an end of life is a forest that was never retired | AD-G5-02: the island and each workload have a date, and it hasn't passed |
 | Nothing ties the reads together | The gate owner gets screenshots, not evidence | One packet: what was read, the findings, a summary and a manifest with each file's SHA-256, the register's SHA-256, the controls and the KSIs |
 
@@ -77,15 +77,15 @@ Learn's pages work one domain controller, one record or one event at a time. G5 
 
 ## The code: what `examples/ad-retirement-evidence` adds
 
-[`examples/ad-retirement-evidence`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ad-retirement-evidence) is one Windows PowerShell module, a runner, a query, the island register and its tests. It declares Windows PowerShell 5.1, where the Active Directory module is native, and runs unchanged in PowerShell 7. Its [README](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/ad-retirement-evidence/README.md) lists the eight checks.
+[`examples/ad-retirement-evidence`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/ad-retirement-evidence) is one Windows PowerShell module, a runner, a query, the island register and its tests. It declares Windows PowerShell 5.1, where the Active Directory module is native, and runs unchanged in PowerShell 7. Its [README](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/ad-retirement-evidence/README.md) lists the nine checks.
 
 ### The reads
 
-`Get-AreEstate` reads seven things, every one declared in `config/calls.json` with the right it needs: the domain controllers, the NTDS Settings objects, the trusts, the objects with an SPN and the enabled computers, at the default read any domain account has; the DC locator SRV records, as a DNS query; and the authentication rows, from the CSV export of `queries/dc-authentication.kql` or, with `-WorkspaceId`, from the workspace as a Log Analytics Reader. With `-FixturePath` it reads the same shapes from JSON, which is how Lab 1 runs with no forest. With `-NoDomain`, after the last domain controller is gone, it reads only DNS and the authentication rows. A test fails if the module calls a cmdlet that changes Active Directory or DNS.
+`Get-AreEstate` reads seven things, every one declared in `config/calls.json` with the right it needs: the domain controllers, the NTDS Settings objects, the trusts, the objects with an SPN and the enabled computers, at the default read any domain account has; the DC locator SRV records, as a DNS query; and the authentication rows, from the CSV export of `queries/dc-authentication.kql` or, with `-WorkspaceId`, from the workspace as a Log Analytics Data Reader. With `-FixturePath` it reads the same shapes from JSON, which is how Lab 1 runs with no forest. With `-NoDomain`, after the last domain controller is gone, it reads only DNS and the authentication rows. A test fails if the module calls a cmdlet that changes Active Directory or DNS.
 
 ### The checks
 
-`Test-AreG5` compares the reads with the register and returns findings and warnings. It changes nothing. A computer that signed in to the domain in the window is a warning, not a finding (AD-G5-08), because `lastLogonTimestamp` is approximate by design[^c11-lastlogon] and the device side of G4 is Intune's to prove. Everything else is a finding, and the packet is ready for the gate owner only when there are none.
+`Test-AreG5` compares the reads with the register and returns findings and warnings. It changes nothing. A computer that signed in to the domain in the window is a warning, not a finding (AD-G5-08), because `lastLogonTimestamp` is approximate by design[^c11-lastlogon] and the device side of G4 is Intune's to prove. No authentication rows at all while domain controllers still run is a finding of its own (AD-G5-09): the events aren't reaching the workspace, so AD-G5-07's silence proves nothing. Everything else is a finding, and the packet is ready for the gate owner only when there are none.
 
 ### The packet
 
@@ -95,7 +95,7 @@ G5 asks for the packet "in the repository and the SIEM". The kit writes it for t
 
 ### The tests
 
-`tests/AdRetirementEvidence.Tests.ps1` has 14 Pester tests on two fictional estates: a Kerberos island with leftovers (a second domain controller, metadata and an SRV record for a removed one, a trust, a reporting service's SPN and its NTLM sign-ins, a person signing in to a domain controller, a PC still signing in to the domain), and a full retirement with nothing left. They pass in Windows PowerShell 5.1 and in PowerShell 7 with Pester 5.
+`tests/AdRetirementEvidence.Tests.ps1` has 15 Pester tests on two fictional estates: a Kerberos island with leftovers (a second domain controller, metadata and an SRV record for a removed one, a trust, a reporting service's SPN and its NTLM sign-ins, a person signing in to a domain controller, a PC still signing in to the domain), the same island with an empty authentication export (AD-G5-09, and the runner exits `2`), and a full retirement with nothing left. They pass in Windows PowerShell 5.1 and in PowerShell 7 with Pester 5.
 
 ::: {.callout-important}
 ## Illustrative code
@@ -205,7 +205,7 @@ Invoke-Pester -Path tests
 
    <!-- capture:end -->
 
-   Nine files, each `True`; the register's hash matches; then `CM-8, AC-2, IA-2, AU-6, CA-7, SA-22 | KSI-PIY-GIV, KSI-IAM-AAM, KSI-MLA-EVC`.
+   Nine files, each `True`; the register's hash matches; then `CM-8, AC-2, IA-2, AU-6, CA-7, SA-22 | KSI-PIY-GIV, KSI-MLA-EVC`.
 
 5. **Break it on purpose.** Add a line to the findings after the packet was written, then list the files whose hash no longer matches:
 
@@ -263,9 +263,9 @@ Invoke-Pester -Path tests
 
    <!-- capture:end -->
 
-   `Tests Passed: 14` and `Failed: 0` (Windows PowerShell 5.1 prints each count of the summary on its own line).
+   `Tests Passed: 15` and `Failed: 0` (Windows PowerShell 5.1 prints each count of the summary on its own line).
 
-**Expected result:** each row of the gap table seen in a packet, and 14 tests passing.
+**Expected result:** each row of the gap table seen in a packet, and 15 tests passing.
 
 ## Lab 2: test forest and test workspace
 
@@ -280,7 +280,7 @@ Every command in this lab, in order, from `examples/ad-retirement-evidence`. Eac
 # Step 1: Grant the read
 # In PowerShell 7
 Connect-AzAccount -Environment AzureCloud -Tenant <tenant-id> -Subscription <subscription-id>
-New-AzRoleAssignment -SignInName <your-upn> -RoleDefinitionName 'Log Analytics Reader' -Scope <workspace-resource-id>
+New-AzRoleAssignment -SignInName <your-upn> -RoleDefinitionName 'Log Analytics Data Reader' -Scope <workspace-resource-id>
 
 # Step 2: Export the authentication rows
 # In PowerShell 7
@@ -317,7 +317,7 @@ Remove-Item -Force .\dc-auth.csv, .\island-register.json
 
 # Step 7: Back it out
 # In PowerShell 7
-Remove-AzRoleAssignment -SignInName <your-upn> -RoleDefinitionName 'Log Analytics Reader' -Scope <workspace-resource-id>
+Remove-AzRoleAssignment -SignInName <your-upn> -RoleDefinitionName 'Log Analytics Data Reader' -Scope <workspace-resource-id>
 ```
 
 :::
@@ -329,10 +329,10 @@ Remove-AzRoleAssignment -SignInName <your-upn> -RoleDefinitionName 'Log Analytic
    ```powershell
    # In PowerShell 7
    Connect-AzAccount -Environment AzureCloud -Tenant <tenant-id> -Subscription <subscription-id>
-   New-AzRoleAssignment -SignInName <your-upn> -RoleDefinitionName 'Log Analytics Reader' -Scope <workspace-resource-id>
+   New-AzRoleAssignment -SignInName <your-upn> -RoleDefinitionName 'Log Analytics Data Reader' -Scope <workspace-resource-id>
    ```
 
-   Learn also has a narrower role for queries alone, Log Analytics Data Reader; Log Analytics Reader includes `*/read` across its scope.[^c11-la-roles] See the verified facts.
+   Log Analytics Data Reader is the role Learn gives "the bare minimum permissions needed to run queries"; Log Analytics Reader, by contrast, carries `*/read` across its scope.[^c11-la-roles] Assigned at the workspace, it reaches that workspace only.
 
 2. **Export the authentication rows**, in PowerShell 7, with the kit's query:[^c11-laquery]
 
@@ -343,7 +343,7 @@ Remove-AzRoleAssignment -SignInName <your-upn> -RoleDefinitionName 'Log Analytic
    (Import-Csv dc-auth.csv).Count
    ```
 
-   Expect at least one row for each domain controller that is still running. No rows at all means the events aren't reaching the workspace, not that nobody signs in: check the audit subcategories on the domain controllers (Audit Kerberos Authentication Service, Audit Kerberos Service Ticket Operations and Audit Credential Validation)[^c11-4768][^c11-4769][^c11-4776] before you go on.
+   Expect at least one row for each domain controller that is still running. No rows at all means the events aren't reaching the workspace, not that nobody signs in, and the kit says so: step 5 then reports AD-G5-09 and exits `2`. Fix it at the source, with the audit subcategories on the domain controllers (Audit Kerberos Authentication Service, Audit Kerberos Service Ticket Operations and Audit Credential Validation)[^c11-4768][^c11-4769][^c11-4776] and their forwarding, and export again.
 
 3. **Write the test island's register**, in Windows PowerShell 5.1, from the kit's copy:
 
@@ -375,7 +375,7 @@ Remove-AzRoleAssignment -SignInName <your-upn> -RoleDefinitionName 'Log Analytic
    Get-Content .\g5-packet\summary.md
    ```
 
-   Expect `Ready` to be `True` only if every other test domain controller is gone and nothing outside the register signs in. Otherwise each finding names what is left.
+   Expect `Ready` to be `True` only if every other test domain controller is gone and nothing outside the register signs in. Otherwise each finding names what is left; AD-G5-09 means step 2's export came back empty.
 
 6. **Record the manifest's hash**, in Windows PowerShell 5.1, for the SIEM record:
 
@@ -399,7 +399,7 @@ Remove-AzRoleAssignment -SignInName <your-upn> -RoleDefinitionName 'Log Analytic
 
    ```powershell
    # In PowerShell 7
-   Remove-AzRoleAssignment -SignInName <your-upn> -RoleDefinitionName 'Log Analytics Reader' -Scope <workspace-resource-id>
+   Remove-AzRoleAssignment -SignInName <your-upn> -RoleDefinitionName 'Log Analytics Data Reader' -Scope <workspace-resource-id>
    ```
 
 After the last domain controller of a real forest is gone there is nothing left to read with the Active Directory module, and `-NoDomain` records the full retirement from DNS and the SIEM alone, as the kit's [README](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/ad-retirement-evidence/README.md#lab-2-a-test-forest) shows.
@@ -416,12 +416,12 @@ After the last domain controller of a real forest is gone there is nothing left 
 | NTLM event | 4776, on the computer authoritative for the account: a domain controller for a domain account | [^c11-4776] |
 | Where the events land | `SecurityEvent`, collected by Microsoft Defender for Cloud or Microsoft Sentinel | [^c11-securityevent] |
 | Querying the workspace | `Invoke-AzOperationalInsightsQuery -WorkspaceId -Query`; rows in `.Results` | [^c11-laquery] |
-| Workspace roles | Log Analytics Reader: `*/read` across the scope, including querying data; Log Analytics Data Reader: "the bare minimum permissions needed to run queries" | [^c11-la-roles] |
+| Workspace roles | Log Analytics Data Reader, the role the kit declares: "the bare minimum permissions needed to run queries" (`workspaces/query/read` and `workspaces/read`, and the `workspaces/tables/data/read` data action), assignable at the workspace alone; Log Analytics Reader: `*/read` across the scope, including querying data | [^c11-la-roles] |
 | `lastLogonTimestamp` | Updated when older than `msDS-LogonTimeSyncInterval`; the first update after a functional level raise is 14 days minus a random part of 5 | [^c11-lastlogon] |
 | Active Directory module | Part of RSAT, added on Windows 10 1809 and later through Optional features | [^c11-rsat] |
 | Microsoft's position on AD DS | Supported; retiring it is the agency's decision | [WD-014](../../about/decision-register.md#wd-014) |
 
-One point where the kit and Learn's least-privilege reading differ, recorded so a later edit doesn't loosen it further: the kit's `config/calls.json` declares Log Analytics Reader for the workspace query, and Learn names Log Analytics Data Reader as the bare minimum for running queries.[^c11-la-roles] Lab 2 grants the declared role at the workspace scope only. Whether the kit should declare the narrower role is open in the verification log.
+The kit declares Log Analytics Data Reader for the workspace query, the narrowest built-in role Learn gives for running queries; Lab 2 grants it at the workspace scope only.[^c11-la-roles]
 
 ## Federal requirements and evidence
 
@@ -431,12 +431,12 @@ The packet is the evidence G5 asks for. Each row names the file or command that 
 |---|---|---|---|
 | Every domain controller is decommissioned or in the island register, and no NTDS Settings object or DC locator record outlives its server (Lab 1, steps 2 and 3: AD-G5-01, AD-G5-03, AD-G5-04 in `findings.json`; `dcs.json`, `ntds.json`, `srv.json`) | CM-8 (System Component Inventory) | KSI-PIY-GIV | The evidence repository |
 | The island and each workload carry an end-of-life date that hasn't passed (step 6: AD-G5-02) | SA-22 (Unsupported System Components) | None: the kit's config pairs no indicator with SA-22 | The evidence repository |
-| No account outside the register holds an SPN, and no trust outside it remains (steps 2 and 3: AD-G5-05, AD-G5-06; `spns.json`, `trusts.json`) | AC-2 (Account Management) | Not claimed here: the kit lists KSI-IAM-AAM, which Book 13, Appendix A maps to AC-2's enhancements, not to AC-2 itself (see the verification log) | The evidence repository |
-| Nothing outside the register still authenticates through the domain controllers (steps 2 and 3: AD-G5-07; `auth.json`) | IA-2 (Identification and Authentication); AU-6 (Audit Record Review, Analysis, and Reporting) | None in the kit's config: the indicator Book 13, Appendix A pairs with AU-6, KSI-MLA-RVL, isn't one the kit lists | The evidence repository; the SIEM |
+| No account outside the register holds an SPN, and no trust outside it remains (steps 2 and 3: AD-G5-05, AD-G5-06; `spns.json`, `trusts.json`) | AC-2 (Account Management) | None: Book 13, Appendix A maps KSI-IAM-AAM to AC-2's enhancements AC-2(2), AC-2(3) and AC-2(13), not to AC-2, and the packet shows accounts still in use, not accounts disabled or removed, so it supports none of the three. The kit's config doesn't list KSI-IAM-AAM | The evidence repository |
+| Nothing outside the register still authenticates through the domain controllers, and the export isn't empty while domain controllers run (steps 2 and 3: AD-G5-07, AD-G5-09; `auth.json`) | IA-2 (Identification and Authentication); AU-6 (Audit Record Review, Analysis, and Reporting) | None in the kit's config: the indicator Book 13, Appendix A pairs with AU-6, KSI-MLA-RVL, isn't one the kit lists | The evidence repository; the SIEM |
 | The packet hashes every file and the register, and an edit after it was written shows (steps 4 and 5: `manifest.json`, `Get-AreSha256`) | CA-7 (Continuous Monitoring) | KSI-MLA-EVC | The evidence repository; the manifest hash in the SIEM |
 | A full retirement reads clean (step 7: `Ready` `True`) | CM-8; CA-7 | KSI-PIY-GIV; KSI-MLA-EVC | The evidence repository |
-| The checks and the packet pass their tests in both editions (step 8: 14 tests) | CA-7 | KSI-MLA-EVC | The repository's test results |
-| The reader holds only the workspace role the kit declares, at the workspace, and loses it afterwards (Lab 2, steps 1 and 7) | AC-2 | Not claimed here, as above | The Azure activity log |
+| The checks and the packet pass their tests in both editions (step 8: 15 tests) | CA-7 | KSI-MLA-EVC | The repository's test results |
+| The reader holds only the workspace role the kit declares, at the workspace, and loses it afterwards (Lab 2, steps 1 and 7) | AC-2 | None, as above | The Azure activity log |
 | The test forest's packet and its manifest hash (Lab 2, steps 5 and 6) | CA-7; CM-8 | KSI-MLA-EVC; KSI-PIY-GIV | The evidence repository; the SIEM |
 
 Key Security Indicators are FedRAMP 20x indicators for cloud service providers. The agency authorizes its own system: it lines this evidence up with what its providers report against them, and doesn't report KSIs itself ([Book 00, Appendix B](../b00-orientation/appendix-b-engagement-archetype.md)). Closing the domain's authorization once it is gone is [Book 14, Appendix I](../b14-compliance/appendix-i-closing-a-systems-authorization.md).
@@ -448,7 +448,7 @@ Key Security Indicators are FedRAMP 20x indicators for cloud service providers. 
 | A domain controller switched off, not demoted | Its metadata stays, replication keeps trying it, and its SRV records still send clients to it | AD-G5-01, AD-G5-03 and AD-G5-04 read what Active Directory and DNS still say, not what was powered down |
 | An island with no end | The forest stays, under a new name | AD-G5-02: the island and each workload need a date that hasn't passed |
 | A register that grows to fit the findings | Every finding disappears into the island | The manifest records the register's SHA-256; a change to the register is a reviewed change, and its workloads come from the island list ([Chapter 06 of *Building Non-Person Identity*](../../project-plans/developer-workbooks/non-person-identity/06-gmsa-dmsa-and-the-kerberos-island.md)) |
-| No authentication rows read as clean | Auditing is off, or forwarding broke, and AD-G5-07 finds nothing | The summary prints how many rows it read; Lab 2, step 2, stops on zero, and the checklist asks for rows from each running domain controller. The kit doesn't fail on zero rows |
+| No authentication rows read as clean | Auditing is off, or forwarding broke, and AD-G5-07 finds nothing | AD-G5-09: no rows at all while domain controllers still run is a finding, and the run exits `2`. The kit checks the total, not each domain controller, so the checklist asks for rows from each one |
 | `lastLogonTimestamp` taken as exact | A computer that signed in last week looks idle, or the reverse | AD-G5-08 is a warning over a 30-day window; devices are proved by the device track, not here |
 | Account names in the wrong place | The authentication export and `auth.json` name people and services | The packet goes to the evidence repository, not a public one; Lab 2 deletes the export |
 | A packet edited after it was written | The gate owner relies on a packet that isn't what the kit read | The manifest's hashes, checked in Lab 1, steps 4 and 5; the manifest hash in the SIEM |
@@ -459,7 +459,7 @@ Key Security Indicators are FedRAMP 20x indicators for cloud service providers. 
 
 - [ ] The island register is reviewed data: its domain controllers, workloads, trusts and hosts match the island list, and its end-of-life dates are the ones the authorizing official accepted.
 - [ ] The platform host's AD objects are in the register until WD-183's exception ends, and gone after.
-- [ ] The authentication export has rows from every domain controller that still runs, over the register's window.
+- [ ] The packet has no AD-G5-09, and `auth.json` has rows from every domain controller that still runs, over the register's window: the kit fails an empty export, not one that is missing a single domain controller.
 - [ ] The packet has no finding, and each warning has an owner.
 - [ ] Every file in the manifest matches its hash, and the register's hash matches the reviewed register.
 - [ ] The packet is committed to the evidence repository and the manifest hash is in the SIEM record.
@@ -483,7 +483,7 @@ Key Security Indicators are FedRAMP 20x indicators for cloud service providers. 
 [^c11-4776]: Microsoft Learn, "4776(S, F) The computer attempted to validate the credentials for an account," subcategory Audit Credential Validation ("For domain accounts, the domain controller is authoritative"), <https://learn.microsoft.com/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4776> (accessed Nov 27, 2026).
 [^c11-securityevent]: Microsoft Learn, "Azure Monitor Logs reference - SecurityEvent," <https://learn.microsoft.com/azure/azure-monitor/reference/tables/securityevent> (accessed Nov 27, 2026).
 [^c11-laquery]: Microsoft Learn, "Invoke-AzOperationalInsightsQuery," <https://learn.microsoft.com/powershell/module/az.operationalinsights/invoke-azoperationalinsightsquery> (accessed Nov 27, 2026).
-[^c11-la-roles]: Microsoft Learn, "Manage access to Log Analytics workspaces," Built-in roles (Log Analytics Data Reader, Log Analytics Reader), <https://learn.microsoft.com/azure/azure-monitor/logs/manage-access> (accessed Nov 27, 2026).
+[^c11-la-roles]: Microsoft Learn, "Manage access to Log Analytics workspaces," Built-in roles (Log Analytics Data Reader, Log Analytics Reader) and the resource scope ("Access to only the specified workspace"), <https://learn.microsoft.com/azure/azure-monitor/logs/manage-access#built-in-roles> (accessed Nov 28, 2026).
 [^c11-rbac]: Microsoft Learn, "Assign Azure roles using Azure PowerShell" (`New-AzRoleAssignment` with `-SignInName`, `-RoleDefinitionName` and `-Scope`), <https://learn.microsoft.com/azure/role-based-access-control/role-assignments-powershell> (accessed Nov 27, 2026, for Chapter 09).
 [^c11-lastlogon]: Microsoft Learn, "Last-Logon-Timestamp attribute," <https://learn.microsoft.com/windows/win32/adschema/a-lastlogontimestamp> (accessed Nov 27, 2026).
 [^c11-rsat]: Microsoft Learn, "Remote Server Administration Tools," RSAT for Windows 10, version 1809 or later versions (Optional features), <https://learn.microsoft.com/troubleshoot/windows-server/system-management-components/remote-server-administration-tools> (accessed Nov 27, 2026).

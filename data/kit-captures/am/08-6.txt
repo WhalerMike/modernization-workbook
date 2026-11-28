@@ -1,6 +1,6 @@
 PS> $m = Get-Content out/retire/manifest.json -Raw | ConvertFrom-Json
 PS> "Controls: $($m.controls -join ', ')"
-Controls: CM-8, AC-2, CA-3, SR-12, SI-12
+Controls: CM-8, AC-2, AC-2(3), CA-3, SR-12, SI-12, CM-3
 PS> "KSIs: $($m.ksis -join ', ')"
 KSIs: KSI-PIY-GIV, KSI-IAM-AAM, KSI-CMT-LMC
 PS> $m.footprint.sha256 -eq (Get-ArtSha256 tests/fixtures/footprint.json)

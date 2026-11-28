@@ -49,6 +49,8 @@ KITS = [
     ("sql-server-identity", "SQL Server Identity", "docs/project-plans/developer-workbooks/sql-server-identity/index.md"),
     ("help-desk-automation", "Help Desk Automation", "docs/project-plans/developer-workbooks/help-desk-automation/index.md"),
     ("ms-automation", "Microsoft Automation", "docs/training/ms-automation-foundations.md"),
+    ("ad-retirement-evidence", "AD retirement evidence (gate G5)",
+     "docs/books/b19-developer-workbook/11-proving-ad-is-retired.md"),
 ]
 # Which identity runs each kit's read runs on the platform host (WD-181). A run that changes something,
 # needs a write permission to read, or needs an Active Directory delegation beyond default read isn't
@@ -67,6 +69,7 @@ HOST = {
     "sql-server-identity": f"{GMSA}; Azure as the SQL Server Identity reader app",
     "help-desk-automation": f"{GMSA}; Graph and Azure as the help desk audit reader app",
     "ms-automation": "Not scheduled: a learning path's labs",
+    "ad-retirement-evidence": "Not scheduled: run at gate G5 by the person who writes the packet, with the workspace role at the workspace only for the run",
 }
 RUN_HOST = {
     ("non-person-identity", "inventory"): f"Weekly in the estate inventory: {GMSA} and its reader app (WD-180)",

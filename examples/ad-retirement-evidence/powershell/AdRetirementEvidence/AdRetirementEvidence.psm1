@@ -88,7 +88,7 @@ function Get-AreEstate {
         computers.json, srv.json, auth.json), so Lab 1 runs with no forest. Live, it uses the ActiveDirectory
         module's Get-* cmdlets and Resolve-DnsName, all at default read, and reads the authentication rows from
         -AuthPath, the CSV export of queries/dc-authentication.kql (or, with -WorkspaceId, runs the query through
-        Az.OperationalInsights as a Log Analytics Reader). With -NoDomain (full retirement, after the last
+        Az.OperationalInsights as a Log Analytics Data Reader). With -NoDomain (full retirement, after the last
         domain controller is gone) it reads only DNS and the authentication rows.
     .EXAMPLE
         Get-AreEstate -Domain corp.contoso.example -FixturePath tests/fixtures/island
@@ -142,6 +142,7 @@ function Test-AreG5 {
           AD-G5-06  an SPN on a user or managed service account the register doesn't list
           AD-G5-07  authentication reaching a domain controller from an account the register doesn't list
           AD-G5-08  (a warning) an enabled computer that signed in to the domain in the window and isn't a listed host
+          AD-G5-09  no authentication rows at all while domain controllers still run: the export is broken, not clean
     .EXAMPLE
         $e = Get-AreEstate -Domain corp.contoso.example -FixturePath tests/fixtures/island; Test-AreG5 -Estate $e -Register (Get-AreIslandRegister) -AsOf 2026-11-27
     #>
@@ -180,6 +181,10 @@ function Test-AreG5 {
         $authByAccount[$acct] += [int]$a.Count
     }
     foreach ($k in ($authByAccount.Keys | Sort-Object)) { & $add 'AD-G5-07' 'Finding' $k "$($authByAccount[$k]) authentication events on the domain controllers in the window from an account the register does not list" }
+    # No rows at all while domain controllers still run means the events aren't reaching the workspace (auditing off,
+    # forwarding broken, the wrong workspace), not that nothing signs in, so AD-G5-07's silence can't be read as clean.
+    $dcCount = @($Estate.Dcs).Count
+    if ($dcCount -gt 0 -and @($Estate.Auth).Count -eq 0) { & $add 'AD-G5-09' 'Finding' $Register.domain "No authentication rows were read while $dcCount domain controller(s) still run: check auditing and forwarding to the workspace, then export again" }
     $since = $AsOf.AddDays(-[int]$Register.authWindowDays)
     foreach ($c in $Estate.Computers) {
         if (-not $c.LastLogonUtc -or [datetime]$c.LastLogonUtc -lt $since) { continue }

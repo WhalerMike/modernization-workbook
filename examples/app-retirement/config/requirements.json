@@ -1,6 +1,6 @@
 {
-  "_comment": "The NIST SP 800-53 Rev. 5 controls and FedRAMP 20x KSIs the retirement plan's evidence supports. Program design: the assessor decides each control; KSIs are FedRAMP's provider indicators the agency lines its evidence up with.",
+  "_comment": "The NIST SP 800-53 Rev. 5 controls and FedRAMP 20x KSIs the retirement plan's evidence supports. Program design: the assessor decides each control; KSIs are FedRAMP's provider indicators the agency lines its evidence up with. Pairs, from Book 13 Appendix A: CM-8 with KSI-PIY-GIV, AC-2(3) with KSI-IAM-AAM (AC-2 itself carries none), CM-3 with KSI-CMT-LMC; CA-3, SR-12 and SI-12 carry none.",
   "steps": {
-    "retirement-plan": { "controls": ["CM-8", "AC-2", "CA-3", "SR-12", "SI-12"], "ksis": ["KSI-PIY-GIV", "KSI-IAM-AAM", "KSI-CMT-LMC"] }
+    "retirement-plan": { "controls": ["CM-8", "AC-2", "AC-2(3)", "CA-3", "SR-12", "SI-12", "CM-3"], "ksis": ["KSI-PIY-GIV", "KSI-IAM-AAM", "KSI-CMT-LMC"] }
   }
 }
