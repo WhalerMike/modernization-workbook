@@ -22,7 +22,7 @@ Import-Module (Join-Path $kit 'powershell/HelpDeskAutomation/HelpDeskAutomation.
 $s = Get-Content -LiteralPath $SettingsPath -Raw | ConvertFrom-Json -AsHashtable
 $bad = @($s.Keys | Where-Object { $_ -match 'secret$|password|apikey|privatekey' })
 if ($bad) { throw "Settings hold a secret-like key ($($bad -join ', ')); secrets stay in the DPAPI-protected files the settings name (WD-184)." }
-$out = Join-Path $s.runsPath $AsOf.ToUniversalTime().ToString("yyyy-MM-dd'T'HHmmss'Z'")
+$out = [IO.Path]::Combine([string]$s.runsPath, $AsOf.ToUniversalTime().ToString("yyyy-MM-dd'T'HHmmss'Z'"))
 if (-not $FixturePath) {
     $ph = @($s.GetEnumerator() | Where-Object { $_.Key -notlike '_*' -and $_.Value -is [string] -and $_.Value -match '<[^>]+>' } | ForEach-Object Key | Sort-Object)
     if ($ph) { throw "Fill in the settings first: $($ph -join ', ')." }

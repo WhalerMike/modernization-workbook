@@ -531,6 +531,8 @@ function Test-HtSecretFileAccess {
         Takes the file's access rules as rows (Identity, Rights, Type), so the rule is tested without a host.
         Allowed are the account the pipeline runs as, SYSTEM, the local Administrators and the settings'
         credentialAdmins group. A Deny rule never counts. Returns the identities that shouldn't read the file.
+    .EXAMPLE
+        Test-HtSecretFileAccess -Rules @([pscustomobject]@{ Identity = 'BUILTIN\Users'; Rights = 'Read'; Type = 'Allow' }) -Allowed 'CONTOSO\gmsa-fmphelpdesk$'
     #>
     param([Parameter(Mandatory)][AllowEmptyCollection()][object[]]$Rules, [Parameter(Mandatory)][AllowEmptyCollection()][string[]]$Allowed)
     $ok = @(@($Allowed) + 'NT AUTHORITY\SYSTEM', 'BUILTIN\Administrators' | Where-Object { $_ } | ForEach-Object { $_.ToLowerInvariant() })
