@@ -65,9 +65,10 @@ The learning path and its hands-on labs.
 
 | Page | What it is |
 |---|---|
-| [Learning path: Building the Attribute-Driven Migration](../training/attribute-driven-migration/index.md) | A learning path in nine modules for developers, platform engineers, identity engineers and ISSO reviewers. |
+| [Learning path: Building the Attribute-Driven Migration](../training/attribute-driven-migration/index.md) | A learning path in ten modules for developers, platform engineers, identity engineers and ISSO reviewers. |
 | [Labs](../training/labs.md#adm) | Every lab in Building the Attribute-Driven Migration (Book 19): what each needs, where it runs, and its commands. |
 | [Microsoft Automation, Module 1: Graph and Azure Foundations](../training/ms-automation-foundations.md) | Teaches Book 19's Chapter 02, the Graph client for government clouds. |
+| [Attribute-Driven Migration, Module 10: Prove AD Is Retired](../training/attribute-driven-migration/10-proving-ad-is-retired.md) | Writes the program G5 evidence packet in Windows PowerShell 5.1. |
 
 : Learn {.striped .hover}
 
@@ -146,6 +147,7 @@ The federal requirements each step supports, and the evidence it keeps.
 | Page | What it is |
 |---|---|
 | [Chapter 09 — Drift Pipelines and Evidence to the ISSO](../books/b19-developer-workbook/09-drift-pipelines-and-evidence.md) | A scheduled GitHub Actions pipeline that signs in with a federated credential and no secret, runs the validation kit read-only, compares each run with the last, opens findings for what is new, changed or unverified, and packages the run… |
+| [Chapter 11 — Proving AD Is Retired](../books/b19-developer-workbook/11-proving-ad-is-retired.md) | The G5 AD Retired packet, from the AD retirement evidence kit. |
 | [Chapter 11 — Drift, Metrics and Evidence](../books/b03-hr-identity/11-drift-metrics-and-evidence.md) | The lifecycle metrics an event-driven pipeline makes measurable, the classes of drift between HR and the directory and how to detect each one, the evidence each lifecycle event leaves, and what the architecture contributes to NIST SP… |
 
 : Evidence {.striped .hover}

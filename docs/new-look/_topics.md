@@ -10,7 +10,7 @@
   <li class="nl-tile">
     <p class="nl-tile-title" role="heading" aria-level="3"><a href="../topics/attribute-driven-migration.html">Attribute-Driven Migration</a></p>
     <p class="nl-tile-desc">Moving identity, policy and device management from Active Directory to Microsoft Entra ID, Intune and…</p>
-    <p class="nl-tile-count">50 pages</p>
+    <p class="nl-tile-count">52 pages</p>
   </li>
   <li class="nl-tile">
     <p class="nl-tile-title" role="heading" aria-level="3"><a href="../topics/provider-notices.html">Provider Notices</a></p>

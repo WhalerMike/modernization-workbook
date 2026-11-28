@@ -13,7 +13,7 @@ last-reviewed: 2026-11-25
 ---
 # Attribute-Driven Migration, Module 5: Build Machine Configuration Packages {.unnumbered}
 
-**Learning path:** [Building the Attribute-Driven Migration](index.md) · Module 5 of 9 · 45 minutes · Guide [Gate 5](../../books/guides/attribute-driven-migration-implementation.md#gate-5-personas-and-targeting-conventions) · Workbook [Chapter 07](../../books/b19-developer-workbook/07-machine-configuration-packages.md)
+**Learning path:** [Building the Attribute-Driven Migration](index.md) · Module 5 of 10 · 45 minutes · Guide [Gate 5](../../books/guides/attribute-driven-migration-implementation.md#gate-5-personas-and-targeting-conventions) · Workbook [Chapter 07](../../books/b19-developer-workbook/07-machine-configuration-packages.md)
 
 **Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.5/Training_ADM_Module_5.pptx) · [▶ Watch](../../presentations/watch.html?v=Training_ADM_Module_5_Narrated) (about 14 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_ADM_Module_5_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-adm-module-5/Training_ADM_Module_5_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-adm-module-5/Training_ADM_Module_5_Narrated.vtt).
 

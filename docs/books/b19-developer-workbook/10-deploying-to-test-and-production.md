@@ -1442,7 +1442,7 @@ A finding this page addresses is ready for closure when every applicable state h
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Chapter 09 — Drift Pipelines and Evidence to the ISSO](09-drift-pipelines-and-evidence.md) · [Workbook index](index.md)
+[← Previous: Chapter 09 — Drift Pipelines and Evidence to the ISSO](09-drift-pipelines-and-evidence.md) · [Workbook index](index.md) · [Next: Chapter 11 — Proving AD Is Retired →](11-proving-ad-is-retired.md)
 :::
 
 [^c10-azcli-cert]: Microsoft Learn, "Sign into Azure with a service principal using the Azure CLI," <https://learn.microsoft.com/cli/azure/authenticate-azure-cli-service-principal>, and "Use an Azure service principal with certificate-based authentication," <https://learn.microsoft.com/cli/azure/azure-cli-sp-tutorial-3> (accessed Nov 2, 2026).

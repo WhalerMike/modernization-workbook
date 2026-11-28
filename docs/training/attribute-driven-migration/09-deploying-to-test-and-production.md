@@ -13,7 +13,7 @@ last-reviewed: 2026-11-25
 ---
 # Attribute-Driven Migration, Module 9: Deploy to Test, then Production {.unnumbered}
 
-**Learning path:** [Building the Attribute-Driven Migration](index.md) · Module 9 of 9 · 50 minutes · Gates 2 to 5 and 7 to 9, through the [step-to-gate map](../../books/b19-developer-workbook/10-deploying-to-test-and-production.md#step-to-gate-map) · Workbook [Chapter 10](../../books/b19-developer-workbook/10-deploying-to-test-and-production.md)
+**Learning path:** [Building the Attribute-Driven Migration](index.md) · Module 9 of 10 · 50 minutes · Gates 2 to 5 and 7 to 9, through the [step-to-gate map](../../books/b19-developer-workbook/10-deploying-to-test-and-production.md#step-to-gate-map) · Workbook [Chapter 10](../../books/b19-developer-workbook/10-deploying-to-test-and-production.md)
 
 **Watch:** the narrated deck for this module: [Deck](https://github.com/WhalerMike/modernization-workbook/releases/download/edition-2026.11.5/Training_ADM_Module_9.pptx) · [▶ Watch](../../presentations/watch.html?v=Training_ADM_Module_9_Narrated) (about 14 minutes, captions) · [MP4](https://github.com/WhalerMike/modernization-workbook/releases/download/videos-2026-10-23/Training_ADM_Module_9_Narrated.mp4) · [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-adm-module-9/Training_ADM_Module_9_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/training-adm-module-9/Training_ADM_Module_9_Narrated.vtt).
 
@@ -728,6 +728,6 @@ You dry-ran the runbook's own scripts: a pre-flight check, changes recorded with
 **Evidence an ISSO keeps from this module:** for each stage, the settings file and its hash, `preflight.json`, the validation kit runs before and after, each kit's outputs, `smoke-report.json`, the evidence package and its verify result, `deploy-record.json` and the rollback scripts, and the `evidence/` folder with `evidence-check.json`; for production, the promotion record and seven days of chained drift packages per wave. The full table is [evidence the ISSO keeps](../../books/b19-developer-workbook/10-deploying-to-test-and-production.md#evidence-the-isso-keeps). Before you run a stage, work through the [Chapter 10 checklist](../../books/b19-developer-workbook/10-deploying-to-test-and-production.md#checklist).
 
 ::: {.callout-tip}
-## You've finished the path
-[Previous: Module 8](08-drift-and-evidence.md) · [Learning path](index.md) · [Labs](../labs.md#adm)
+## Continue the path
+[Previous: Module 8](08-drift-and-evidence.md) · [Learning path](index.md) · [Next: Module 10, Prove AD is retired →](10-proving-ad-is-retired.md)
 :::

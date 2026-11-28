@@ -1,0 +1,11 @@
+PS> ./Invoke-AreEvidence.ps1 -Domain corp.contoso.example -FixturePath tests/fixtures/island -OutputPath out/g5 -AsOf 2026-11-27
+Domain         : corp.contoso.example
+Ready          : False
+Findings       : 7
+Warnings       : 1
+ManifestSha256 : aa9fad972135cf1d700b86fb63ae850fbbb922fb4d043212ff115bbdb7e82631
+OutputPath     : out/g5
+
+
+
+(exit code 2)

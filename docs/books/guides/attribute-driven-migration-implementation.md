@@ -485,6 +485,9 @@ Group Policy inheritance retires here. The risk is policies that look strict but
 - **On a laptop, no tenant:** [Chapter 08, Lab 1](../b19-developer-workbook/08-ansible-beside-arc.md#lab-1-offline-no-subscription) of *Ansible Beside Arc*
 - **In test subscription and a disposable server:** [Chapter 08, Lab 2](../b19-developer-workbook/08-ansible-beside-arc.md#lab-2-test-subscription-and-a-disposable-server)
 - **As training:** [Module 6: Onboard Servers with Ansible beside Arc](../../training/attribute-driven-migration/06-ansible-beside-arc.md), with a knowledge check
+- **On a laptop, no tenant:** [Chapter 11, Lab 1](../b19-developer-workbook/11-proving-ad-is-retired.md#lab-1-fixtures-no-forest) of *Proving AD Is Retired*
+- **In test forest and test workspace:** [Chapter 11, Lab 2](../b19-developer-workbook/11-proving-ad-is-retired.md#lab-2-test-forest-and-test-workspace)
+- **As training:** [Module 10: Prove AD Is Retired](../../training/attribute-driven-migration/10-proving-ad-is-retired.md), with a knowledge check
 :::
 
 <!-- labs:end -->

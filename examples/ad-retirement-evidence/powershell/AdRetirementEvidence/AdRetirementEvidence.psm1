@@ -26,9 +26,45 @@ function Get-AreSha256 {
     -join ($bytes | ForEach-Object { $_.ToString('x2') })
 }
 
+function ConvertTo-AreJson([object]$Value, [int]$Level = 0) {
+    # The packet's JSON, the same bytes in Windows PowerShell 5.1 and PowerShell 7: ConvertTo-Json indents and
+    # escapes differently in the two editions, so the files, and the hashes the manifest records, would differ.
+    # Two-space indent, keys in the order given, only the escapes JSON requires, dates as UTC yyyy-MM-ddTHH:mm:ssZ.
+    $pad = '  ' * ($Level + 1); $end = '  ' * $Level
+    if ($null -eq $Value) { return 'null' }
+    if ($Value -is [bool]) { return $(if ($Value) { 'true' } else { 'false' }) }
+    if ($Value -is [datetime]) { $Value = $Value.ToUniversalTime().ToString('yyyy-MM-ddTHH:mm:ssZ', [Globalization.CultureInfo]::InvariantCulture) }
+    if ($Value -is [string] -or $Value -is [char] -or $Value -is [enum]) {
+        $sb = New-Object Text.StringBuilder
+        [void]$sb.Append('"')
+        foreach ($c in "$Value".ToCharArray()) {
+            switch ([int]$c) {
+                34 { [void]$sb.Append('\"') } 92 { [void]$sb.Append('\\') } 10 { [void]$sb.Append('\n') } 13 { [void]$sb.Append('\r') } 9 { [void]$sb.Append('\t') }
+                default { if ([int]$c -lt 32) { [void]$sb.Append(('\u{0:x4}' -f [int]$c)) } else { [void]$sb.Append($c) } }
+            }
+        }
+        [void]$sb.Append('"')
+        return $sb.ToString()
+    }
+    if ($Value -is [int] -or $Value -is [long] -or $Value -is [double] -or $Value -is [decimal] -or $Value -is [single]) { return ([IFormattable]$Value).ToString($null, [Globalization.CultureInfo]::InvariantCulture) }
+    if ($Value -is [Collections.IDictionary]) {
+        $pairs = @(foreach ($k in $Value.Keys) { "$pad$(ConvertTo-AreJson "$k"): $(ConvertTo-AreJson $Value[$k] ($Level + 1))" })
+        if (-not $pairs.Count) { return '{}' }
+        return "{`n$($pairs -join ",`n")`n$end}"
+    }
+    if ($Value -is [Collections.IEnumerable]) {
+        $items = @(foreach ($v in $Value) { "$pad$(ConvertTo-AreJson $v ($Level + 1))" })
+        if (-not $items.Count) { return '[]' }
+        return "[`n$($items -join ",`n")`n$end]"
+    }
+    $props = @($Value.PSObject.Properties | Where-Object { $_.MemberType -match 'Property' })
+    $pairs = @(foreach ($p in $props) { "$pad$(ConvertTo-AreJson $p.Name): $(ConvertTo-AreJson $p.Value ($Level + 1))" })
+    if (-not $pairs.Count) { return '{}' }
+    "{`n$($pairs -join ",`n")`n$end}"
+}
+
 function Write-AreJson([object]$Value, [string]$Path) {
-    $json = ConvertTo-Json -InputObject $Value -Depth 8
-    [IO.File]::WriteAllText($Path, (($json -replace "`r`n", "`n") + "`n"), (New-Object Text.UTF8Encoding $false))
+    [IO.File]::WriteAllText($Path, ((ConvertTo-AreJson $Value) + "`n"), (New-Object Text.UTF8Encoding $false))
 }
 
 function Get-AreIslandRegister {
@@ -131,7 +167,7 @@ function Test-AreG5 {
         if (@($keptDcs | ForEach-Object { "$_".ToUpperInvariant() }) -notcontains $h) { & $add 'AD-G5-04' 'Finding' $s.NameTarget 'A DC locator SRV record pointing at a host that is not an island domain controller' }
     }
     $listedTrusts = @($Register.trusts)
-    foreach ($t in $Estate.Trusts) { if ($listedTrusts -notcontains $t.Name) { & $add 'AD-G5-05' 'Finding' $t.Name "A $($t.Direction) trust the register doesn't list" } }
+    foreach ($t in $Estate.Trusts) { if ($listedTrusts -notcontains $t.Name) { & $add 'AD-G5-05' 'Finding' $t.Name "A trust the register doesn't list (direction: $($t.Direction))" } }
     foreach ($s in $Estate.Spns) {
         if ("$($s.ObjectClass)" -eq 'computer') { continue }
         if ($spns -notcontains "$($s.Spn)".ToLowerInvariant() -and $accounts -notcontains "$($s.Account)".ToLowerInvariant().TrimEnd('$')) { & $add 'AD-G5-06' 'Finding' "$($s.Account) $($s.Spn)" 'An SPN on an account the register does not list: a service still depends on Kerberos from the domain' }
@@ -169,6 +205,9 @@ function New-AreEvidencePacket {
     param([Parameter(Mandatory)][string]$Domain, [Parameter(Mandatory)][string]$OutputPath, [string]$FixturePath, [string]$AuthPath,
           [string]$WorkspaceId, [string]$RegisterPath = (Join-Path $script:Root 'config/island-register.json'), [switch]$NoDomain,
           [datetime]$AsOf = (Get-Date).ToUniversalTime())
+    # The date the packet records, in UTC: a local time is converted, a date with no zone (-AsOf 2026-11-27) is taken as UTC,
+    # so the packet is the same on every machine whatever its time zone.
+    $asOfUtc = if ($AsOf.Kind -eq [DateTimeKind]::Local) { $AsOf.ToUniversalTime() } else { [datetime]::SpecifyKind($AsOf, [DateTimeKind]::Utc) }
     $register = Get-AreIslandRegister -Path $RegisterPath
     $estate = Get-AreEstate -Domain $Domain -FixturePath $FixturePath -AuthPath $AuthPath -WorkspaceId $WorkspaceId -NoDomain:$NoDomain
     $findings = @(Test-AreG5 -Estate $estate -Register $register -AsOf $AsOf)
@@ -179,7 +218,7 @@ function New-AreEvidencePacket {
     $real = @($findings | Where-Object { $_.Severity -eq 'Finding' })
     $warn = @($findings | Where-Object { $_.Severity -eq 'Warn' })
     $mode = if (@($register.domainControllers).Count) { "Kerberos island ($(@($register.domainControllers) -join ', '), end of life $($register.endOfLife))" } else { 'Full retirement' }
-    $lines = @("# G5 evidence packet: $Domain, $($AsOf.ToString('yyyy-MM-dd'))", '',
+    $lines = @("# G5 evidence packet: $Domain, $($asOfUtc.ToString('yyyy-MM-dd'))", '',
         "- Mode: $mode",
         "- Domain controllers read: $(@($estate.Dcs).Count); DC locator SRV records: $(@($estate.Srv).Count); trusts: $(@($estate.Trusts).Count)",
         "- Authentication rows read: $(@($estate.Auth).Count) over $($register.authWindowDays) days",
@@ -190,7 +229,7 @@ function New-AreEvidencePacket {
     [IO.File]::WriteAllText((Join-Path $OutputPath 'summary.md'), (($lines -join "`n") + "`n"), (New-Object Text.UTF8Encoding $false))
     $req = (Read-AreJson (Join-Path $script:Root 'config/requirements.json')).steps.'g5-evidence'
     $hashes = foreach ($k in (@($files.Keys) + 'summary.md' | Sort-Object)) { [ordered]@{ path = $k; sha256 = (Get-AreSha256 (Join-Path $OutputPath $k)) } }
-    $manifest = [ordered]@{ step = 'g5-evidence'; mode = 'read'; domain = $Domain; asOfUtc = $AsOf.ToString('yyyy-MM-ddTHH:mm:ssZ'); ready = ($real.Count -eq 0)
+    $manifest = [ordered]@{ step = 'g5-evidence'; mode = 'read'; domain = $Domain; asOfUtc = $asOfUtc.ToString('yyyy-MM-ddTHH:mm:ssZ'); ready = ($real.Count -eq 0)
                             register = [ordered]@{ path = (Split-Path -Leaf $RegisterPath); sha256 = (Get-AreSha256 $RegisterPath) }; controls = $req.controls; ksis = $req.ksis; files = @($hashes) }
     Write-AreJson $manifest (Join-Path $OutputPath 'manifest.json')
     [pscustomobject]@{ Domain = $Domain; Ready = ($real.Count -eq 0); Findings = $real.Count; Warnings = $warn.Count; ManifestSha256 = (Get-AreSha256 (Join-Path $OutputPath 'manifest.json')); OutputPath = $OutputPath }

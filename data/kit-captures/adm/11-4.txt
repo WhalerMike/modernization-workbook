@@ -1,0 +1,16 @@
+PS> Import-Module ./powershell/AdRetirementEvidence/AdRetirementEvidence.psm1
+PS> $m = Get-Content out/g5/manifest.json -Raw | ConvertFrom-Json
+PS> $m.files | ForEach-Object { '{0,-15} {1}' -f $_.path, ($_.sha256 -eq (Get-AreSha256 "out/g5/$($_.path)")) }
+auth.json       True
+computers.json  True
+dcs.json        True
+findings.json   True
+ntds.json       True
+spns.json       True
+srv.json        True
+summary.md      True
+trusts.json     True
+PS> $m.register.sha256 -eq (Get-AreSha256 config/island-register.json)
+True
+PS> "$($m.controls -join ', ') | $($m.ksis -join ', ')"
+CM-8, AC-2, IA-2, AU-6, CA-7, SA-22 | KSI-PIY-GIV, KSI-IAM-AAM, KSI-MLA-EVC

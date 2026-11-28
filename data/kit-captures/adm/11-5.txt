@@ -1,0 +1,3 @@
+PS> Add-Content out/g5/findings.json '[]'
+PS> $m.files | Where-Object { $_.sha256 -ne (Get-AreSha256 "out/g5/$($_.path)") } | ForEach-Object path
+findings.json

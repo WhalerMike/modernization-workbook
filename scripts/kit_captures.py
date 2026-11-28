@@ -59,13 +59,17 @@ WORKBOOKS = {
 # blocks (by k) not to run; "copy" lists repository folders a lab's tests read, copied into the scratch
 # copy beside examples/; "hidden" maps a block k to commands a step gives only in prose, run (unshown)
 # just before it; "local" is the reason a lab can't run in CI (its captures are kept, not checked
-# there); "off" is the reason a lab isn't captured at all.
+# there); "off" is the reason a lab isn't captured at all; "edition": "5.1" runs its PowerShell blocks in
+# Windows PowerShell 5.1, the edition the kit declares (see pwsh_exe).
 CHAPTERS: dict[str, dict] = {
     "adm-03": {"cwd": "."},
     # Invoke-DrLibraryCheck diffs against git HEAD (the scratch copy isn't a repository); a test reads Book 03.
     "adm-04": {"skip": [3, 5], "copy": ["docs/books/b03-hr-identity"]},
     "adm-07": {"off": "needs Windows and three modules saved from the PowerShell Gallery"},
     "adm-08": {"off": "needs a Linux control node with ansible-core and collections from Ansible Galaxy"},
+    # The AD retirement evidence kit declares Windows PowerShell 5.1 (on-premises Active Directory). Its packet is the
+    # same bytes in PowerShell 7, but the console output isn't, so its captures are checked on Windows only.
+    "adm-11": {"edition": "5.1"},
     # Labs whose bash steps work in the drift pipeline.
     "npi-10": {"lang_cwd": {"bash": "examples/drift-pipeline"}},
     "pa-08": {"lang_cwd": {"bash": "examples/drift-pipeline"}},
@@ -315,6 +319,15 @@ def render(lang: str, pairs: list[tuple[str, str]]) -> str:
     return "\n".join(text) + "\n"
 
 
+def pwsh_exe(cfg: dict) -> str | None:
+    """The PowerShell a lab runs in: the edition its kit declares. "edition": "5.1" (an on-premises kit, such as
+    the Active Directory ones) runs in Windows PowerShell, and None where there is none (the Linux runner): the
+    two editions format objects and Pester's summary differently, so a 5.1 capture is checked only on Windows."""
+    if cfg.get("edition") == "5.1":
+        return "powershell" if shutil.which("powershell") else None
+    return "pwsh"
+
+
 def chapter_cfg(wb: str, nn: str) -> dict:
     return CHAPTERS.get(f"{wb}-{nn}", {})
 
@@ -341,7 +354,10 @@ def run_lab(wb: str, nn: str, root: Path) -> list[tuple[int, str, list[tuple[str
                 if k in cfg.get("hidden", {}):
                     mine.append((0, cfg["hidden"][k]))    # block 0's output isn't shown
                 mine.append((k, code))
-        results.update((run_bash if lang == "bash" else run_pwsh)(mine, cwd, root))
+        if lang == "bash":
+            results.update(run_bash(mine, cwd, root))
+        else:
+            results.update(run_pwsh(mine, cwd, root, pwsh_exe(cfg)))
     return [(k, lang, results.get(k, [])) for k, lang, _, _ in cmds]
 
 
@@ -352,6 +368,11 @@ def capture(wb: str, ci: bool = False) -> dict[str, str]:
         nn = page.name[:2]
         cfg = chapter_cfg(wb, nn)
         if cfg.get("off") or (ci and cfg.get("local")) or not commands(page.read_text(encoding="utf-8"), cfg):
+            continue
+        if pwsh_exe(cfg) is None:
+            # Kept, not checked here: the lab runs in Windows PowerShell 5.1, which this machine doesn't have.
+            found.update({f.stem: f.read_bytes().decode("utf-8") for f in sorted((OUT / wb).glob(f"{nn}-*.txt"))})
+            print(f"kit captures: {wb}-{nn} runs in Windows PowerShell 5.1, not on this machine; its captures are kept", file=sys.stderr)
             continue
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
