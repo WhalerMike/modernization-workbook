@@ -18,7 +18,9 @@
     Steps 2 to 4 each run in their own PowerShell 7 process, which signs in to Microsoft Graph
     (and Azure when the step reads it) app-only, with a certificate or a managed identity.
 
-    then writes EstateInventoryManifest.json, Summary.md and SHA256SUMS. A step that fails is
+    then writes EstateInventoryManifest.json, EnvironmentProfile.json (the forest, domains,
+    domain controllers, sites, trusts, tenant, cloud and Azure scopes the kits read, which
+    powershell/FmpEnvironment hands to the labs), Summary.md and SHA256SUMS. A step that fails is
     recorded as Error and the others still run; a failed sign-in fails only its own step.
     Each kit runs its own script unchanged and writes its own manifest of every read.
 
@@ -73,6 +75,15 @@ $session = @($results | Where-Object { $_.Session } | ForEach-Object { [ordered]
 
 $null = Write-EiManifest -Settings $settings -Run $run -Results @($results) -Mode $mode -Session $session
 foreach ($r in $results) { Write-Output ('  {0,-20} {1,-9} {2}' -f $r.Step, $r.Status, $(if ($r.Detail) { $r.Detail } else { $r.Output })) }
-Write-Output "Written to $($run.Path) (EstateInventoryManifest.json, Summary.md, SHA256SUMS)"
-if (@($results | Where-Object Status -In 'Error', 'Partial').Count) { exit 2 }
+$profilePath = Join-Path $run.Path 'EnvironmentProfile.json'
+if (Test-Path -LiteralPath $profilePath) {
+    $envProfile = Get-Content -LiteralPath $profilePath -Raw | ConvertFrom-Json
+    $counts = Get-EiProfileCount -EnvironmentProfile $envProfile
+    Write-Output ('  {0,-20} {1,-9} {2}' -f 'environment-profile', $envProfile.provenance.label, "EnvironmentProfile.json: $($counts.Filled) filled, $($counts.Conflict) in conflict, $($counts.NotCollected) not collected")
+    Write-Output "Written to $($run.Path) (EstateInventoryManifest.json, EnvironmentProfile.json, Summary.md, SHA256SUMS)"
+} else {
+    Write-Output ('  {0,-20} {1,-9} {2}' -f 'environment-profile', 'Error', 'not written; see logs/environment-profile.log')
+    Write-Output "Written to $($run.Path) (EstateInventoryManifest.json, Summary.md, SHA256SUMS)"
+}
+if (@($results | Where-Object Status -In 'Error', 'Partial').Count -or -not (Test-Path -LiteralPath $profilePath)) { exit 2 }
 exit 0

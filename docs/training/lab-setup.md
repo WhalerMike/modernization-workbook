@@ -220,6 +220,77 @@ To bring a clone up to date later, run `git pull` in it.
 
 **Interactive programs.** Git Bash runs in the mintty terminal, and Git for Windows' [FAQ](https://gitforwindows.org/faq.html) says some interactive console programs don't work there; its fix is the `winpty` utility. If `python` with no script name shows no `>>>` prompt, start it with `winpty python`. The labs' commands aren't interactive, so they don't need it.
 
+## Fill Lab 2 placeholders from your environment profile {#environment-profile}
+
+Each Lab 2 runs against a test forest and a test tenant, and lists the values you replace, such as `<tenant-id>`, `<test-domain>` and `<test-dc>`. The estate inventory ([`examples/estate-inventory`](https://github.com/WhalerMike/modernization-workbook/tree/main/examples/estate-inventory)) already reads most of them: the Start Kit reads the forest, and the non-person identity, privileged access and validation kits read the tenant and the Azure scopes. Each run writes them to `EnvironmentProfile.json` in its run folder, each value with the file it came from, and its `FmpEnvironment` module fills the placeholders for you. It reads files only, in Windows PowerShell 5.1 or PowerShell 7, so you can load it in the shell the lab runs in. The kit's [README](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/estate-inventory/README.md#the-environment-profile) describes every field.
+
+**Try it on the fixtures first.** Unzip `estate-inventory-code.zip` as the [Downloads page](../downloads.md#unzip-kits) shows, then, in PowerShell 7, run the estate inventory's Lab 1:
+
+```powershell
+Set-Location C:\FMWLabs\estate-inventory-code\estate-inventory
+./Invoke-EstateInventory.ps1 -SettingsPath config/settings.fixture.json -Fixture
+```
+
+Load the newest run's profile. A fixture run's profile is labelled `fixture`, and the loader takes it only with `-Expect fixture`:
+
+```powershell
+Import-Module ./powershell/FmpEnvironment/FmpEnvironment.psd1
+$run = Get-ChildItem C:\FMWLabs\results\estate-inventory -Directory | Sort-Object Name | Select-Object -Last 1
+Import-FmpEnvironment -Path $run.FullName -Expect fixture
+```
+
+It prints the run, its label, its age in days, `Filled : 18` and `Conflict : {tenantId}`: the kits' fixtures are separate fictional tenants, so the profile won't pick one. List what it fills:
+
+```powershell
+Get-FmpEnvironmentPlaceholder | Format-Table Placeholder, Value, Status
+```
+
+`<test-domain>` shows `contoso.example`, `<test-dc>` shows `dc01.contoso.example`, and the three tenant placeholders show `conflict`. Fill a lab command, then copy what it prints into the lab's shell:
+
+```powershell
+Expand-FmpPlaceholder 'Get-ADDomainController -Filter * -Server <test-domain> | Select-Object Name, Site'
+```
+
+It prints `Get-ADDomainController -Filter * -Server contoso.example | Select-Object Name, Site`. A placeholder it doesn't fill stays in the command, and a warning names it.
+
+**Then your test environment.** Run the estate inventory once against the test forest and the test tenant, as its README's [live run](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/estate-inventory/README.md#a-live-run) shows, with `"environmentLabel": "test"` in its settings. In the shell the lab uses, replace `<test-output-root>` with that settings file's `outputRoot` and load the newest run:
+
+```powershell
+Import-Module C:\FMWLabs\estate-inventory-code\estate-inventory\powershell\FmpEnvironment\FmpEnvironment.psd1
+$run = Get-ChildItem '<test-output-root>' -Directory | Sort-Object Name | Select-Object -Last 1
+Import-FmpEnvironment -Path $run.FullName
+```
+
+Keep a value in a variable for the lab's commands:
+
+```powershell
+$testDomain = Get-FmpEnvironmentValue '<test-domain>'
+$tenantId = Get-FmpEnvironmentValue '<tenant-id>'
+```
+
+Or fill a whole command, pasted between the single quotes:
+
+```powershell
+Expand-FmpPlaceholder 'Connect-MgGraph -Environment Global -TenantId <tenant-id> -NoWelcome'
+```
+
+`Import-FmpEnvironment` stops, and fills nothing, when the profile is more than 8 days old (`-MaxAgeDays` changes that), when the run's `EstateInventoryManifest.json` no longer has the SHA-256 the profile recorded, when the profile changed after the run (`SHA256SUMS`), and when the profile isn't labelled `test`: a production run's profile never fills a Lab 2. `Get-FmpEnvironmentValue` stops when the kits disagree on a value, when no kit collected it, and when a placeholder takes one value and the run read several, such as two subscriptions; list them with `Get-FmpEnvironmentValue azure.subscriptionIds` and pick the lab's.
+
+| Placeholder | Lab 2s that use it | Filled from | Note |
+|---|---|---|---|
+| `<tenant-id>` | 118 | `tenantId` | The tenant every cloud kit read; stops if they disagree |
+| `<test-tenant-id>`, `<graph-tenant-id>` | 4, 6 | `tenantId` | The same |
+| `<subscription-id>`, `<test-subscription-id>` | 30, 14 | `azure.subscriptionIds` | Only when the run read one subscription |
+| `<test-mg-id>`, `<mg-id>`, `<management-group-id>` | 10, 2, 2 | `azure.managementGroupIds` | Only when the run read one management group |
+| `<cloud>` | 4 | `cloud` | `gcc` or `global`, as the kits take `-Cloud` |
+| `<test-domain>`, `<domain-fqdn>` | 27, 1 | `ad.forestRootDomain` | The forest root domain's DNS name; for another domain, list `ad.domains` |
+| `<domain-dn>` | 1 | `ad.rootDomain.distinguishedName` | The forest root domain's distinguished name |
+| `<test-dc>`, `<dc>` | 3, 2 | `ad.rootDomain.pdcEmulator` | The root domain's PDC emulator, a writable domain controller; `ad.domainControllers` lists the others |
+
+: The placeholders the environment profile fills, and how many Lab 2s used each on November 28, 2026 {.striped .hover}
+
+It doesn't fill what no kit reads, or what you choose for the lab: `<test-user-upn>`, `<your-upn>` and `<test-account>` (it holds no users), `<app-id>` and `<thumbprint>` (the lab's own app and certificate), `<tenant>` (no kit reads the tenant's domains), `<resource-group>`, `<workspace-id>` and `<groups-ou>`. It doesn't fill `<domain>`, `<forest>` or `<environment>` either, since Lab 2s use each for more than one thing (a NetBIOS name or a DNS name, a name or a distinguished name, a cloud or a stage).
+
 ## Documentation and training {#learn-more}
 
 | Topic | Documentation | Training |

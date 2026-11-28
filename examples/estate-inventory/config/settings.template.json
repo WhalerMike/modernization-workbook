@@ -1,6 +1,7 @@
 {
-  "_comment": "Copy to the run host (outside the kit's folder), fill in every <placeholder>, and pass it with -SettingsPath. No secret goes here. auth.certificatePath is the reader app's certificate as a .pfx in a credential folder only the run account and the server's administrators can open, as the Provider Notices run keeps its readers' files (WD-179); auth.certificateThumbprint instead finds it in the run account's or the machine's store; auth.method managedIdentity uses the host's managed identity. Paths are absolute or relative to this file. Leave 'kits' out when the four kits sit beside estate-inventory, as they do in the repository and in estate-inventory-code.zip.",
+  "_comment": "Copy to the run host (outside the kit's folder), fill in every <placeholder>, and pass it with -SettingsPath. No secret goes here. auth.certificatePath is the reader app's certificate as a .pfx in a credential folder only the run account and the server's administrators can open, as the Provider Notices run keeps its readers' files (WD-179); auth.certificateThumbprint instead finds it in the run account's or the machine's store; auth.method managedIdentity uses the host's managed identity. Paths are absolute or relative to this file. Leave 'kits' out when the four kits sit beside estate-inventory, as they do in the repository and in estate-inventory-code.zip. environmentLabel (test or production) goes into the run's EnvironmentProfile.json; the labs' loader fills placeholders only from a profile labelled test.",
   "cloud": "gcc",
+  "environmentLabel": "<test-or-production>",
   "tenantId": "<tenant-id>",
   "auth": {
     "method": "certificate",

@@ -1,0 +1,47 @@
+{
+  "AssessmentTimestamp": "2026-11-25T02:00:00.0000000+00:00",
+  "Domain": "contoso.example",
+  "TrustCount": 2,
+  "Trusts": [
+    {
+      "Name": "child.contoso.example",
+      "Source": "DC=contoso,DC=example",
+      "Target": "child.contoso.example",
+      "Direction": "BiDirectional",
+      "TrustType": "Uplevel",
+      "TrustAttributesRaw": 32,
+      "TrustAttributes": [
+        "WithinForest"
+      ],
+      "IntraForest": true,
+      "ForestTransitive": false,
+      "SelectiveAuthentication": false,
+      "SIDFilteringQuarantined": false,
+      "SIDFilteringForestAware": false,
+      "Access": "Users in each domain can reach resources in the other",
+      "Posture": "Intra-forest",
+      "Created": "2015-01-01T00:00:00",
+      "Modified": "2026-01-01T00:00:00"
+    },
+    {
+      "Name": "partner.example",
+      "Source": "DC=contoso,DC=example",
+      "Target": "partner.example",
+      "Direction": "Outbound",
+      "TrustType": "Uplevel",
+      "TrustAttributesRaw": 8,
+      "TrustAttributes": [
+        "ForestTransitive"
+      ],
+      "IntraForest": false,
+      "ForestTransitive": true,
+      "SelectiveAuthentication": false,
+      "SIDFilteringQuarantined": false,
+      "SIDFilteringForestAware": false,
+      "Access": "Users in partner.example can reach resources in contoso.example",
+      "Posture": "Standard",
+      "Created": "2018-01-01T00:00:00",
+      "Modified": "2026-01-01T00:00:00"
+    }
+  ]
+}
