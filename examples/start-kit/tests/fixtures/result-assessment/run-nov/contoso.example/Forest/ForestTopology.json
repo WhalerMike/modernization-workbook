@@ -1,0 +1,188 @@
+{
+  "AssessmentTimestamp": "2026-11-25T02:00:00.0000000+00:00",
+  "Forest": {
+    "Name": "contoso.example",
+    "RootDomain": "contoso.example",
+    "ForestMode": "Windows2016Forest",
+    "SchemaMaster": "dc01.contoso.example",
+    "DomainNamingMaster": "dc01.contoso.example",
+    "Domains": [
+      "contoso.example",
+      "child.contoso.example"
+    ],
+    "Sites": [
+      "HQ",
+      "Branch"
+    ],
+    "GlobalCatalogs": [
+      "dc01.contoso.example",
+      "cdc01.child.contoso.example"
+    ],
+    "UPNSuffixes": "contoso.example",
+    "SPNSuffixes": null
+  },
+  "Domains": [
+    {
+      "DNSRoot": "contoso.example",
+      "NetBIOSName": "CONTOSO",
+      "DomainMode": "Windows2016Domain",
+      "DomainSID": "S-1-5-21-1000-1000-1000",
+      "PDCEmulator": "dc01.contoso.example",
+      "RIDMaster": "dc01.contoso.example",
+      "InfrastructureMaster": "dc02.contoso.example",
+      "DistinguishedName": "DC=contoso,DC=example",
+      "ParentDomain": null,
+      "ChildDomains": "child.contoso.example"
+    },
+    {
+      "DNSRoot": "child.contoso.example",
+      "NetBIOSName": "CHILD",
+      "DomainMode": "Windows2016Domain",
+      "DomainSID": "S-1-5-21-2000-2000-2000",
+      "PDCEmulator": "cdc01.child.contoso.example",
+      "RIDMaster": "cdc01.child.contoso.example",
+      "InfrastructureMaster": "cdc01.child.contoso.example",
+      "DistinguishedName": "DC=child,DC=contoso,DC=example",
+      "ParentDomain": "contoso.example",
+      "ChildDomains": null
+    }
+  ],
+  "DomainControllers": [
+    {
+      "HostName": "dc01.contoso.example",
+      "Domain": "contoso.example",
+      "Site": "HQ",
+      "IPv4Address": "10.0.0.10",
+      "OperatingSystem": "Windows Server 2025 Datacenter",
+      "OperatingSystemVersion": "10.0 (26100)",
+      "IsGlobalCatalog": true,
+      "IsReadOnly": false,
+      "Enabled": true,
+      "OperationMasterRoles": [
+        "SchemaMaster",
+        "DomainNamingMaster",
+        "PDCEmulator",
+        "RIDMaster"
+      ]
+    },
+    {
+      "HostName": "dc02.contoso.example",
+      "Domain": "contoso.example",
+      "Site": "Branch",
+      "IPv4Address": "10.1.0.10",
+      "OperatingSystem": "Windows Server 2019 Standard",
+      "OperatingSystemVersion": "10.0 (17763)",
+      "IsGlobalCatalog": false,
+      "IsReadOnly": false,
+      "Enabled": true,
+      "OperationMasterRoles": "InfrastructureMaster"
+    },
+    {
+      "HostName": "cdc01.child.contoso.example",
+      "Domain": "child.contoso.example",
+      "Site": "HQ",
+      "IPv4Address": "10.0.1.10",
+      "OperatingSystem": "Windows Server 2022 Standard",
+      "OperatingSystemVersion": "10.0 (20348)",
+      "IsGlobalCatalog": true,
+      "IsReadOnly": false,
+      "Enabled": true,
+      "OperationMasterRoles": [
+        "PDCEmulator",
+        "RIDMaster",
+        "InfrastructureMaster"
+      ]
+    }
+  ],
+  "Sites": [
+    {
+      "Name": "HQ",
+      "Description": "Headquarters",
+      "Location": "East",
+      "Subnets": "10.0.0.0/16"
+    },
+    {
+      "Name": "Branch",
+      "Description": "Branch office",
+      "Location": "West",
+      "Subnets": "10.1.0.0/16"
+    }
+  ],
+  "SiteLinks": [
+    {
+      "Name": "HQ-Branch",
+      "Cost": 100,
+      "ReplicationFrequencyInMinutes": 180,
+      "Options": 0,
+      "Description": null,
+      "Sites": [
+        "HQ",
+        "Branch"
+      ]
+    }
+  ],
+  "Subnets": [
+    {
+      "Name": "10.0.0.0/16",
+      "Location": "East",
+      "Description": null,
+      "Site": "HQ"
+    },
+    {
+      "Name": "10.1.0.0/16",
+      "Location": "West",
+      "Description": null,
+      "Site": "Branch"
+    }
+  ],
+  "FSMORoles": [
+    {
+      "Role": "SchemaMaster",
+      "Scope": "Forest",
+      "Domain": "contoso.example",
+      "Holder": "dc01.contoso.example"
+    },
+    {
+      "Role": "DomainNamingMaster",
+      "Scope": "Forest",
+      "Domain": "contoso.example",
+      "Holder": "dc01.contoso.example"
+    },
+    {
+      "Role": "PDCEmulator",
+      "Scope": "Domain",
+      "Domain": "contoso.example",
+      "Holder": "dc01.contoso.example"
+    },
+    {
+      "Role": "RIDMaster",
+      "Scope": "Domain",
+      "Domain": "contoso.example",
+      "Holder": "dc01.contoso.example"
+    },
+    {
+      "Role": "InfrastructureMaster",
+      "Scope": "Domain",
+      "Domain": "contoso.example",
+      "Holder": "dc02.contoso.example"
+    },
+    {
+      "Role": "PDCEmulator",
+      "Scope": "Domain",
+      "Domain": "child.contoso.example",
+      "Holder": "cdc01.child.contoso.example"
+    },
+    {
+      "Role": "RIDMaster",
+      "Scope": "Domain",
+      "Domain": "child.contoso.example",
+      "Holder": "cdc01.child.contoso.example"
+    },
+    {
+      "Role": "InfrastructureMaster",
+      "Scope": "Domain",
+      "Domain": "child.contoso.example",
+      "Holder": "cdc01.child.contoso.example"
+    }
+  ]
+}

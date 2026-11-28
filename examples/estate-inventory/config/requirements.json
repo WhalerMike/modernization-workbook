@@ -55,6 +55,17 @@
       "evidence": "validation-kit/<run>/ValidationManifest.json and its results"
     },
     {
+      "step": "environment-profile",
+      "title": "The environment profile: the forest, domains, domain controllers, sites, trusts, tenant, cloud and Azure scopes the kits read in this run, each with the file it came from, for the labs to fill their placeholders",
+      "controls": [
+        "CM-8"
+      ],
+      "ksi": [
+        "KSI-PIY-GIV"
+      ],
+      "evidence": "EnvironmentProfile.json (its provenance: the run, the manifest's SHA-256, each source file's SHA-256)"
+    },
+    {
       "step": "manifest",
       "title": "One manifest and SHA256SUMS over the whole run",
       "controls": [

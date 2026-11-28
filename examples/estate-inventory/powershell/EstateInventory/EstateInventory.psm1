@@ -10,8 +10,9 @@
 
     Each kit runs its own entry script unchanged and writes its own manifest. This module only
     reads the settings, signs in once (app-only), runs the steps in order, keeps going when one
-    fails, and writes EstateInventoryManifest.json, Summary.md and SHA256SUMS over everything.
-    It changes nothing in Active Directory, Entra ID or Azure.
+    fails, and writes EstateInventoryManifest.json, EnvironmentProfile.json (the environment's
+    names and IDs, taken only from files the kits wrote), Summary.md and SHA256SUMS over
+    everything. It changes nothing in Active Directory, Entra ID or Azure.
 #>
 Set-StrictMode -Version Latest
 
@@ -68,6 +69,9 @@ function Read-EiSettings {
         $problems.Add("The settings still hold placeholders such as $($Matches[0]); fill them in for a live run.")
     }
     if ($s['cloud'] -notin 'gcc', 'global') { $problems.Add("cloud must be gcc or global, not '$($s['cloud'])'.") }
+    if ($s.ContainsKey('environmentLabel') -and $s['environmentLabel'] -notin 'test', 'production') {
+        $problems.Add("environmentLabel must be test or production, not '$($s['environmentLabel'])'.")
+    }
     if (-not $Fixture) {
         if ($s['tenantId'] -notmatch '^[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}$') { $problems.Add('tenantId must be the tenant''s GUID.') }
         $auth = $s['auth']
@@ -470,7 +474,8 @@ function Write-EiManifest {
     .SYNOPSIS
         EstateInventoryManifest.json (the settings' hash, the host, the account, the tenant and
         forest, each step's status and requirement rows, each kit's manifest and its SHA-256),
-        Summary.md, and SHA256SUMS over every file in the run folder.
+        EnvironmentProfile.json (Write-EiEnvironmentProfile), Summary.md, and SHA256SUMS over
+        every file in the run folder.
 
     .EXAMPLE
         Write-EiManifest -Settings $settings -Run $run -Results $results -Mode Fixture
@@ -518,9 +523,23 @@ function Write-EiManifest {
         kits            = $kitHashes
         steps           = @($steps)
         manifest        = [ordered]@{ controls = @($req['manifest'].controls); ksi = @($req['manifest'].ksi) }
+        environmentProfile = [ordered]@{ path = 'EnvironmentProfile.json'; schema = 'fmw-environment-profile/1'; controls = @($req['environment-profile'].controls); ksi = @($req['environment-profile'].ksi) }
         finishedUtc     = [datetime]::UtcNow.ToString('o')
     }
-    $manifest | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath (Join-Path $Run.Path 'EstateInventoryManifest.json') -Encoding utf8
+    $manifestPath = Join-Path $Run.Path 'EstateInventoryManifest.json'
+    $manifest | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath $manifestPath -Encoding utf8
+
+    # The environment profile hashes the manifest, so it comes after it and before SHA256SUMS.
+    # A profile that can't be written is logged and left out; the manifest and SHA256SUMS still are.
+    try {
+        $envProfile = Write-EiEnvironmentProfile -Run $Run -Results $Results -Mode $Mode -Settings $Settings -ManifestSha256 (Get-EiFileHash -Path $manifestPath)
+        $counts = Get-EiProfileCount -EnvironmentProfile $envProfile
+        $profileLine = "Environment profile: EnvironmentProfile.json, labelled $($envProfile.provenance.label): $($counts.Filled) fields filled, $($counts.Conflict) in conflict, $($counts.NotCollected) not collected."
+    } catch {
+        Remove-Item -LiteralPath (Join-Path $Run.Path 'EnvironmentProfile.json') -ErrorAction SilentlyContinue
+        Set-Content -LiteralPath (Join-Path $Run.Path 'logs/environment-profile.log') -Value "ERROR: $($_.Exception.Message)" -Encoding utf8
+        $profileLine = "Environment profile: not written ($($_.Exception.Message)); see logs/environment-profile.log."
+    }
 
     $md = [System.Collections.Generic.List[string]]::new()
     $md.Add("# Estate inventory $($Run.Id)")
@@ -531,6 +550,8 @@ function Write-EiManifest {
     $md.Add('|---|---|---|---|---|---|---|')
     foreach ($s in $steps) { $md.Add("| $($s.step) | $($s.status) | $($s.seconds) | $($s.output) | $(@($s.controls) -join ', ') | $(@($s.ksi) -join ', ') | $($s.detail) |") }
     $md.Add('')
+    $md.Add("$profileLine Controls: $(@($req['environment-profile'].controls) -join ', '). KSIs: $(@($req['environment-profile'].ksi) -join ', ').")
+    $md.Add('')
     $md.Add('Read-only: nothing was written to Active Directory, Entra ID or Azure. Each kit''s own manifest lists every read it made; SHA256SUMS covers every file in this folder.')
     Set-Content -LiteralPath (Join-Path $Run.Path 'Summary.md') -Value $md -Encoding utf8
 
@@ -539,6 +560,208 @@ function Write-EiManifest {
     }
     Set-Content -LiteralPath (Join-Path $Run.Path 'SHA256SUMS') -Value $sums -Encoding utf8
     $manifest
+}
+
+function Get-EiProfileSource {
+    <#
+    .SYNOPSIS
+        The files the environment profile reads, from the steps that finished: the Start Kit's
+        ForestTopology.json and TrustMap.json files, and each cloud kit's own manifest (and the
+        privileged access inventory's scopes). Paths are relative to the run folder, with '/'.
+    .EXAMPLE
+        Get-EiProfileSource -RunPath $run.Path -Results $results
+    #>
+    param([Parameter(Mandatory)][string]$RunPath, [Parameter(Mandatory)][object[]]$Results)
+    $sources = [System.Collections.Generic.List[object]]::new()
+    foreach ($r in $Results) {
+        if ($r.Status -notin 'Pass', 'Recorded', 'Partial') { continue }
+        foreach ($rel in @("$($r.KitManifest)" -split '; ' | Where-Object { $_ })) {
+            if (Test-Path -LiteralPath (Join-Path $RunPath $rel)) { $sources.Add([pscustomobject]@{ Step = $r.Step; Kind = 'manifest'; Path = $rel }) }
+        }
+        if ($r.Step -eq 'start-kit' -and $r.Output) {
+            $skRun = Join-Path $RunPath $r.Output
+            foreach ($d in Get-ChildItem -LiteralPath $skRun -Directory | Sort-Object Name) {
+                foreach ($pair in @(@('topology', 'Forest/ForestTopology.json'), @('trusts', 'Trusts/TrustMap.json'))) {
+                    if (Test-Path -LiteralPath (Join-Path $d.FullName $pair[1])) {
+                        $sources.Add([pscustomobject]@{ Step = 'start-kit'; Kind = $pair[0]; Path = "$($r.Output)/$($d.Name)/$($pair[1])" })
+                    }
+                }
+            }
+        }
+        if ($r.Step -eq 'privileged-access' -and (Test-Path -LiteralPath (Join-Path $RunPath 'privileged-access/inventory.csv'))) {
+            $sources.Add([pscustomobject]@{ Step = 'privileged-access'; Kind = 'scopes'; Path = 'privileged-access/inventory.csv' })
+        }
+    }
+    @($sources)
+}
+
+function Get-EiProfileCount {
+    <# How many of a profile's fields are filled, in conflict and not collected. #>
+    param([Parameter(Mandatory)]$EnvironmentProfile)
+    $fields = if ($EnvironmentProfile -is [System.Collections.IDictionary]) { @($EnvironmentProfile['fields'].Values) } else { @($EnvironmentProfile.fields.PSObject.Properties.Value) }
+    [pscustomobject]@{
+        Filled       = @($fields | Where-Object { $_.status -eq 'ok' }).Count
+        Conflict     = @($fields | Where-Object { $_.status -eq 'conflict' }).Count
+        NotCollected = @($fields | Where-Object { $_.status -eq 'notCollected' }).Count
+    }
+}
+
+function Write-EiEnvironmentProfile {
+    <#
+    .SYNOPSIS
+        EnvironmentProfile.json: the names and IDs the labs ask for (forest and domains, functional
+        levels, domain controllers and sites, trusts, the tenant, the cloud, the subscriptions and
+        management groups the kits read), taken only from files the kits wrote in this run, with
+        the file each value came from. No secret, no user, group or account list. Reads files in
+        the run folder only: it makes no call to Active Directory, Entra ID or Azure.
+
+        A field the sources agree on is "ok". Two sources that disagree make it "conflict", with
+        no value, so a lab can't fill a placeholder from it. A field no kit read is "notCollected".
+        The profile records the run, the SHA-256 of EstateInventoryManifest.json and the time,
+        which the loader (powershell/FmpEnvironment) checks before it hands a value to a lab.
+
+    .EXAMPLE
+        Write-EiEnvironmentProfile -Run $run -Results $results -Mode Fixture -Settings $settings -ManifestSha256 $hash
+    #>
+    param(
+        [Parameter(Mandatory)][pscustomobject]$Run,
+        [Parameter(Mandatory)][object[]]$Results,
+        [Parameter(Mandatory)][string]$Mode,
+        [Parameter(Mandatory)][hashtable]$Settings,
+        [Parameter(Mandatory)][string]$ManifestSha256
+    )
+    $req = Get-EiRequirement
+    $sources = Get-EiProfileSource -RunPath $Run.Path -Results $Results
+    $readJson = { param($rel) Get-Content -LiteralPath (Join-Path $Run.Path $rel) -Raw | ConvertFrom-Json -AsHashtable -NoEnumerate }
+    $fields = [ordered]@{}
+    # One value per field: every source's value is kept; sources that disagree make a conflict.
+    $single = {
+        param([string]$Name, [object[]]$Seen, [string]$Missing)
+        $seen = @($Seen | Where-Object { $null -ne $_.value -and "$($_.value)" -ne '' })
+        $distinct = @($seen | ForEach-Object { "$($_.value)" } | Sort-Object -Unique)
+        $fields[$Name] = if ($distinct.Count -eq 0) { [ordered]@{ status = 'notCollected'; value = $null; sources = @(); reason = $Missing } }
+        elseif ($distinct.Count -eq 1) { [ordered]@{ status = 'ok'; value = $seen[0].value; sources = @($seen) } }
+        else { [ordered]@{ status = 'conflict'; value = $null; sources = @($seen); reason = "The sources disagree: $($distinct -join ', ')." } }
+    }
+    # A list: the union of every source's values.
+    $list = {
+        param([string]$Name, [object[]]$Seen, [string]$Missing)
+        $seen = @($Seen | Where-Object { @($_.value | Where-Object { $null -ne $_ }).Count -gt 0 })
+        $values = @($seen | ForEach-Object { @($_.value) } | Where-Object { $null -ne $_ } |
+                ForEach-Object { if ($_ -is [System.Collections.IDictionary]) { [pscustomobject]$_ } else { $_ } } |
+                Sort-Object -Property { if ($_ -is [string]) { $_ } else { $_ | ConvertTo-Json -Compress -Depth 4 } } -Unique)
+        $fields[$Name] = if ($values.Count -eq 0) { [ordered]@{ status = 'notCollected'; value = $null; sources = @(); reason = $Missing } }
+        else { [ordered]@{ status = 'ok'; value = @($values); sources = @($seen | ForEach-Object { [ordered]@{ step = $_.step; file = $_.file; key = $_.key } }) } }
+    }
+    $src = { param($s, [string]$Key, $Value) [ordered]@{ step = $s.Step; file = $s.Path; key = $Key; value = $Value } }
+
+    # The forest: the Start Kit's ForestTopology.json (written under the forest root domain's folder).
+    $noForest = 'The Start Kit wrote no Forest/ForestTopology.json in this run (the step was off, failed, or its run had no topology).'
+    $topo = @($sources | Where-Object Kind -EQ 'topology' | ForEach-Object { [pscustomobject]@{ Source = $_; Doc = & $readJson $_.Path } })
+    $forestSeen = @{ name = @(); root = @(); mode = @(); domains = @(); upn = @(); sites = @(); dcs = @(); details = @()
+        netbios = @(); dn = @(); dmode = @(); pdc = @() }
+    foreach ($t in $topo) {
+        $f = $t.Doc['Forest']
+        $s = $t.Source
+        $forestSeen.name += & $src $s 'Forest.Name' $f['Name']
+        $forestSeen.root += & $src $s 'Forest.RootDomain' $f['RootDomain']
+        $forestSeen.mode += & $src $s 'Forest.ForestMode' $f['ForestMode']
+        $forestSeen.domains += & $src $s 'Forest.Domains' @($f['Domains'] | Where-Object { $_ })
+        $forestSeen.upn += & $src $s 'Forest.UPNSuffixes' @($f['UPNSuffixes'] | Where-Object { $_ })
+        $forestSeen.sites += & $src $s 'Forest.Sites' @($f['Sites'] | Where-Object { $_ })
+        $forestSeen.dcs += & $src $s 'DomainControllers' @(@($t.Doc['DomainControllers']) | Where-Object { $_ } | ForEach-Object {
+                [ordered]@{ hostName = $_['HostName']; domain = $_['Domain']; site = $_['Site']; operatingSystem = $_['OperatingSystem']
+                    isGlobalCatalog = [bool]$_['IsGlobalCatalog']; isReadOnly = [bool]$_['IsReadOnly'] } })
+        $forestSeen.details += & $src $s 'Domains' @(@($t.Doc['Domains']) | Where-Object { $_ } | ForEach-Object {
+                [ordered]@{ dnsRoot = $_['DNSRoot']; netBiosName = $_['NetBIOSName']; domainMode = $_['DomainMode']
+                    distinguishedName = $_['DistinguishedName']; parentDomain = $_['ParentDomain']; pdcEmulator = $_['PDCEmulator'] } })
+        $rootRow = @(@($t.Doc['Domains']) | Where-Object { $_ -and $_['DNSRoot'] -eq $f['RootDomain'] }) | Select-Object -First 1
+        if ($rootRow) {
+            $forestSeen.netbios += & $src $s "Domains[$($f['RootDomain'])].NetBIOSName" $rootRow['NetBIOSName']
+            $forestSeen.dn += & $src $s "Domains[$($f['RootDomain'])].DistinguishedName" $rootRow['DistinguishedName']
+            $forestSeen.dmode += & $src $s "Domains[$($f['RootDomain'])].DomainMode" $rootRow['DomainMode']
+            $forestSeen.pdc += & $src $s "Domains[$($f['RootDomain'])].PDCEmulator" $rootRow['PDCEmulator']
+        }
+    }
+    & $single 'ad.forestName' $forestSeen.name $noForest
+    & $single 'ad.forestRootDomain' $forestSeen.root $noForest
+    & $single 'ad.forestMode' $forestSeen.mode $noForest
+    & $list 'ad.domains' $forestSeen.domains $noForest
+    & $list 'ad.domainDetails' $forestSeen.details $noForest
+    & $single 'ad.rootDomain.netBiosName' $forestSeen.netbios $noForest
+    & $single 'ad.rootDomain.distinguishedName' $forestSeen.dn $noForest
+    & $single 'ad.rootDomain.domainMode' $forestSeen.dmode $noForest
+    & $single 'ad.rootDomain.pdcEmulator' $forestSeen.pdc $noForest
+    & $list 'ad.domainControllers' $forestSeen.dcs $noForest
+    & $list 'ad.sites' $forestSeen.sites $noForest
+    & $list 'ad.upnSuffixes' $forestSeen.upn $noForest
+
+    # Trusts: each domain's Trusts/TrustMap.json.
+    $trustSeen = @(foreach ($s in @($sources | Where-Object Kind -EQ 'trusts')) {
+            $doc = & $readJson $s.Path
+            & $src $s 'Trusts' @(@($doc['Trusts']) | Where-Object { $_ } | ForEach-Object {
+                    [ordered]@{ domain = $doc['Domain']; name = $_['Name']; direction = $_['Direction']; trustType = $_['TrustType']
+                        intraForest = [bool]$_['IntraForest']; forestTransitive = [bool]$_['ForestTransitive'] } })
+        })
+    & $list 'ad.trusts' $trustSeen 'The Start Kit wrote no Trusts/TrustMap.json in this run.'
+
+    # The tenant and the cloud: each cloud kit's own manifest.
+    $cloudSeen = @(); $tenantSeen = @(); $subSeen = @(); $mgSeen = @()
+    $subRx = [regex]'(?i)/subscriptions/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})'
+    $mgRx = [regex]'(?i)/providers/Microsoft\.Management/managementGroups/([A-Za-z0-9._()-]+)'
+    $ids = { param([regex]$Rx, [string[]]$Text) @($Text | ForEach-Object { $Rx.Matches("$_") | ForEach-Object { $_.Groups[1].Value } } | Sort-Object -Unique) }
+    foreach ($s in @($sources | Where-Object Kind -EQ 'manifest')) {
+        if ($s.Step -eq 'start-kit') { continue }
+        $m = & $readJson $s.Path
+        $cloudKey = @('cloud', 'Cloud' | Where-Object { $m.ContainsKey($_) })[0]
+        $tenantKey = @('tenantId', 'TenantId' | Where-Object { $m.ContainsKey($_) })[0]
+        if ($cloudKey) { $cloudSeen += & $src $s $cloudKey $m[$cloudKey] }
+        if ($tenantKey) { $tenantSeen += & $src $s $tenantKey $m[$tenantKey] }
+        $targets = @(@($m['requests']) | Where-Object { $_ } | ForEach-Object { if ($_['uri']) { $_['uri'] } else { $_['target'] } } | Where-Object { $_ -match 'management\.azure\.com' })
+        if ($targets.Count) {
+            $subSeen += & $src $s 'requests (Azure Resource Manager)' (@(& $ids $subRx $targets) | ForEach-Object ToLowerInvariant)
+            $mgSeen += & $src $s 'requests (Azure Resource Manager)' (& $ids $mgRx $targets)
+        }
+    }
+    foreach ($s in @($sources | Where-Object Kind -EQ 'scopes')) {
+        $scopes = @(Import-Csv -LiteralPath (Join-Path $Run.Path $s.Path) | Where-Object { $_.Plane -eq 'Azure' } | ForEach-Object Scope)
+        $subSeen += & $src $s 'Scope (Plane Azure)' (@(& $ids $subRx $scopes) | ForEach-Object ToLowerInvariant)
+        $mgSeen += & $src $s 'Scope (Plane Azure)' (& $ids $mgRx $scopes)
+    }
+    $noCloud = 'No cloud kit finished in this run.'
+    & $single 'cloud' $cloudSeen $noCloud
+    & $single 'tenantId' $tenantSeen $noCloud
+    & $list 'azure.subscriptionIds' $subSeen 'No kit read Azure Resource Manager in this run.'
+    & $list 'azure.managementGroupIds' $mgSeen 'No kit read a management group in this run.'
+
+    # The sign-in environments follow from the cloud: Microsoft 365 GCC (Moderate) uses the global
+    # Graph endpoint and commercial Azure, as the estate inventory itself signs in.
+    $c = $fields['cloud']
+    foreach ($pair in @(@('graphEnvironment', 'Global'), @('azureEnvironment', 'AzureCloud'))) {
+        $fields[$pair[0]] = if ($c.status -eq 'ok') {
+            [ordered]@{ status = 'ok'; value = $pair[1]; sources = @([ordered]@{ step = 'estate-inventory'; derivedFrom = 'cloud'; value = $c.value; rule = 'gcc and global both sign in to Global (Microsoft Graph) and AzureCloud (Azure)' }) }
+        } else { [ordered]@{ status = $c.status; value = $null; sources = @(); reason = "Follows from cloud, which is $($c.status)." } }
+    }
+
+    $label = if ($Mode -eq 'Fixture') { 'fixture' } elseif ($Settings['environmentLabel']) { $Settings['environmentLabel'] } else { 'unlabelled' }
+    $doc = [ordered]@{
+        schema     = 'fmw-environment-profile/1'
+        provenance = [ordered]@{
+            runId          = $Run.Id
+            mode           = $Mode
+            label          = $label
+            generatedUtc   = [datetime]::UtcNow.ToString('yyyy-MM-ddTHH:mm:ssZ')
+            manifest       = 'EstateInventoryManifest.json'
+            manifestSha256 = $ManifestSha256
+            sources        = @($sources | ForEach-Object { [ordered]@{ step = $_.Step; file = $_.Path; sha256 = Get-EiFileHash -Path (Join-Path $Run.Path $_.Path) } })
+            readOnly       = $true
+            controls       = @($req['environment-profile'].controls)
+            ksi            = @($req['environment-profile'].ksi)
+        }
+        fields     = $fields
+    }
+    $doc | ConvertTo-Json -Depth 10 | Set-Content -LiteralPath (Join-Path $Run.Path 'EnvironmentProfile.json') -Encoding utf8
+    $doc
 }
 
 function Test-EiRun {
@@ -569,4 +792,4 @@ function Test-EiRun {
 
 Export-ModuleMember -Function Read-EiSettings, Test-EiStepEnabled, New-EiRunFolder, Get-EiCertificate, Connect-EiCloud, Invoke-EiStep,
     Invoke-EiStartKit, Test-EiNeedsAzure, Get-EiKitPlan, Complete-EiKitStep, Invoke-EiKitProcess, Write-EiManifest, Test-EiRun,
-    Get-EiRequirement, Find-EiStartKitRun
+    Get-EiRequirement, Find-EiStartKitRun, Get-EiProfileSource, Get-EiProfileCount, Write-EiEnvironmentProfile
