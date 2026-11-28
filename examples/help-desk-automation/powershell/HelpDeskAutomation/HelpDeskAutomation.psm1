@@ -6,6 +6,8 @@ Set-StrictMode -Version Latest
 
 $script:Root = (Resolve-Path (Join-Path $PSScriptRoot '../..')).Path
 $script:GraphBase = 'https://graph.microsoft.com'
+# WD-184: extra entropy for the pipeline's DPAPI-protected secret files, so another program's DPAPI blob isn't taken for one.
+$script:SecretEntropy = [Text.Encoding]::UTF8.GetBytes('FMW help desk request pipeline (WD-184)')
 
 function Get-HtConfig {
     <#
@@ -521,26 +523,103 @@ function Test-HtLogForwarding {
 }
 
 
+function Test-HtSecretFileAccess {
+    <#
+    .SYNOPSIS
+        WD-184: the identities, other than the ones allowed, that an access rule lets read a pipeline secret file.
+    .DESCRIPTION
+        Takes the file's access rules as rows (Identity, Rights, Type), so the rule is tested without a host.
+        Allowed are the account the pipeline runs as, SYSTEM, the local Administrators and the settings'
+        credentialAdmins group. A Deny rule never counts. Returns the identities that shouldn't read the file.
+    #>
+    param([Parameter(Mandatory)][AllowEmptyCollection()][object[]]$Rules, [Parameter(Mandatory)][AllowEmptyCollection()][string[]]$Allowed)
+    $ok = @(@($Allowed) + 'NT AUTHORITY\SYSTEM', 'BUILTIN\Administrators' | Where-Object { $_ } | ForEach-Object { $_.ToLowerInvariant() })
+    @($Rules | Where-Object { "$($_.Type)" -ne 'Deny' -and "$($_.Rights)" -match 'Read|FullControl|Modify' -and "$($_.Identity)".ToLowerInvariant() -notin $ok } |
+        ForEach-Object { "$($_.Identity)" } | Sort-Object -Unique)
+}
+
+function Protect-HtSecretFile {
+    <#
+    .SYNOPSIS
+        WD-184: writes a secret to a file with DPAPI in the current user's scope, so only this account on this host can decrypt it.
+    .DESCRIPTION
+        On the platform host the account is the pipeline's gMSA, through deploy/Protect-HtPipelineSecret.ps1;
+        in a lab it is you. Windows only: DPAPI keeps its key in the user's profile.
+    .EXAMPLE
+        Protect-HtSecretFile -Path out/servicenow.secret -Secret (Read-Host -AsSecureString 'ServiceNow client secret')
+    #>
+    [CmdletBinding()]
+    param([Parameter(Mandatory)][string]$Path, [Parameter(Mandatory)][securestring]$Secret)
+    if (-not $IsWindows) { throw 'A DPAPI-protected secret file needs Windows (WD-184).' }
+    $plain = [Text.Encoding]::UTF8.GetBytes([Net.NetworkCredential]::new('', $Secret).Password)
+    try {
+        $blob = [Security.Cryptography.ProtectedData]::Protect($plain, $script:SecretEntropy, [Security.Cryptography.DataProtectionScope]::CurrentUser)
+    } finally { [Array]::Clear($plain, 0, $plain.Length) }
+    $full = Resolve-HtPath $Path
+    $dir = Split-Path -Parent $full
+    if ($dir) { New-Item -ItemType Directory -Force $dir | Out-Null }
+    [IO.File]::WriteAllBytes($full, $blob)
+    [pscustomobject]@{ Path = $Path; Protection = 'DPAPI, current user'; Account = [Security.Principal.WindowsIdentity]::GetCurrent().Name }
+}
+
+function Read-HtSecretFile {
+    # WD-184: a secret file is read only if no one beyond the allowed identities can read it, and only by the
+    # account that protected it (DPAPI, current user's scope). Never logged, never written back out.
+    param([Parameter(Mandatory)][string]$Path, [string[]]$Allowed = @())
+    if (-not $IsWindows) { throw 'A DPAPI-protected secret file needs Windows (WD-184).' }
+    $full = Resolve-HtPath $Path
+    if (-not (Test-Path -LiteralPath $full -PathType Leaf)) { throw "HT-RQ-06: no secret file at $Path; protect it first (deploy/Protect-HtPipelineSecret.ps1, WD-184)." }
+    $me = [Security.Principal.WindowsIdentity]::GetCurrent().Name
+    $rules = @((Get-Acl -LiteralPath $full).Access | ForEach-Object { [pscustomobject]@{ Identity = $_.IdentityReference.Value; Rights = "$($_.FileSystemRights)"; Type = "$($_.AccessControlType)" } })
+    $others = @(Test-HtSecretFileAccess -Rules $rules -Allowed (@($me) + @($Allowed)))
+    if ($others) { throw "HT-RQ-06: $Path is readable by $($others -join ', '); only the pipeline's account, SYSTEM, Administrators and the credential administrators may read it (WD-184)." }
+    $plain = [Security.Cryptography.ProtectedData]::Unprotect([IO.File]::ReadAllBytes($full), $script:SecretEntropy, [Security.Cryptography.DataProtectionScope]::CurrentUser)
+    try { [Text.Encoding]::UTF8.GetString($plain) } finally { [Array]::Clear($plain, 0, $plain.Length) }
+}
+
 function Connect-HtRequestSystems {
     <#
     .SYNOPSIS
-        Signs the request pipeline in to ServiceNow and SailPoint Identity Security Cloud with OAuth client credentials whose secrets are in the environment variables the settings name.
+        Signs the request pipeline in to ServiceNow and SailPoint Identity Security Cloud, with secrets from DPAPI-protected files only its gMSA can decrypt, and proves the SailPoint token can read the access request status.
     .DESCRIPTION
-        WD-182: the pipeline's ServiceNow integration user and its SailPoint API client. Each secret stays in an
-        environment variable set for the scheduled task's account, never in the settings file. Microsoft Graph
-        is signed in separately, as the request worker app with its certificate (Connect-MgGraph -Certificate).
+        WD-182 as amended by WD-184. Each secret is a file the settings name (serviceNowSecretFile,
+        iscSecretFile), protected with DPAPI in the gMSA's own scope and readable only by it, SYSTEM,
+        Administrators and the credentialAdmins group; never an environment variable or the settings file.
+        SailPoint signs in with the client-credentials grant either way: iscCredential is 'api-client' (an
+        API client, no user context) or 'personal-access-token' (the PAT of the pipeline's dedicated SailPoint
+        identity; SailPoint gives PATs the client-credentials grant). Then one status read
+        (GET /v3/access-request-status?limit=1) proves the token: a 403 stops the run with HT-RQ-06 and says
+        what to change, instead of refusing every item with HT-RQ-02. Microsoft Graph is signed in separately,
+        as the request worker app with its certificate (Connect-MgGraph -Certificate).
     .EXAMPLE
         Connect-HtRequestSystems -Settings (Get-Content D:\HelpDeskRequests\settings.json -Raw | ConvertFrom-Json -AsHashtable)
     #>
     [CmdletBinding()]
     param([Parameter(Mandatory)][hashtable]$Settings)
+    $kind = $Settings.iscCredential
+    if ($kind -notin 'api-client', 'personal-access-token') { throw "iscCredential must be 'api-client' or 'personal-access-token' (WD-184), not '$kind'." }
+    $admins = @($Settings.credentialAdmins | Where-Object { $_ })
     $script:Systems = @{}
     $sn = Invoke-RestMethod -Method POST -Uri "$($Settings.serviceNowUrl)/oauth_token.do" -ContentType 'application/x-www-form-urlencoded' -Body @{
-        grant_type = 'client_credentials'; client_id = $Settings.serviceNowClientId; client_secret = [Environment]::GetEnvironmentVariable($Settings.serviceNowSecretEnv) }
+        grant_type = 'client_credentials'; client_id = $Settings.serviceNowClientId; client_secret = (Read-HtSecretFile -Path $Settings.serviceNowSecretFile -Allowed $admins) }
     $script:Systems.servicenow = @{ Base = $Settings.serviceNowUrl; Headers = @{ Authorization = "Bearer $($sn.access_token)"; Accept = 'application/json' } }
     $isc = Invoke-RestMethod -Method POST -Uri "$($Settings.iscApiUrl)/oauth/token" -ContentType 'application/x-www-form-urlencoded' -Body @{
-        grant_type = 'client_credentials'; client_id = $Settings.iscClientId; client_secret = [Environment]::GetEnvironmentVariable($Settings.iscSecretEnv) }
+        grant_type = 'client_credentials'; client_id = $Settings.iscClientId; client_secret = (Read-HtSecretFile -Path $Settings.iscSecretFile -Allowed $admins) }
     $script:Systems.isc = @{ Base = $Settings.iscApiUrl; Headers = @{ Authorization = "Bearer $($isc.access_token)"; Accept = 'application/json' } }
+    try {
+        Invoke-HtGraph -Task request-queue -CallId isc-access-request-status -Method GET -Uri '/v3/access-request-status?limit=1' | Out-Null
+    } catch {
+        $code = 0
+        $resp = $_.Exception.PSObject.Properties['Response']
+        if ($resp -and $resp.Value) { $code = [int]$resp.Value.StatusCode }
+        if ($code -ne 403) { throw }
+        $script:Systems.Remove('isc')
+        if ($kind -eq 'api-client') {
+            throw "HT-RQ-06: SailPoint refused the access request status (403) to the API client's token, which has no user context. Use the personal access token of the pipeline's dedicated SailPoint identity, scoped to idn:access-request-status:read, and set iscCredential to personal-access-token (WD-184)."
+        }
+        throw "HT-RQ-06: SailPoint refused the access request status (403) to the personal access token. Check that the token holds idn:access-request-status:read and its identity's user level; SailPoint's specification names ORG_ADMIN for other users' requests (WD-184)."
+    }
+    [pscustomobject]@{ ServiceNow = 'signed in'; SailPoint = $kind; StatusRead = 'allowed' }
 }
 
 function New-HtOneTimeSecret {
@@ -721,4 +800,5 @@ function Invoke-HtRequestQueue {
 }
 
 Export-ModuleMember -Function Get-HtConfig, Get-HtRequiredPermission, Get-HtSha256, New-HtFixtureStore,
-    New-HtTypedChangePlan, Invoke-HtTypedChange, Get-HtPendingConsentRequest, Invoke-HtSyncCheck, Invoke-HtRoleReview, Test-HtLogForwarding, Connect-HtRequestSystems, Invoke-HtRequestQueue
+    New-HtTypedChangePlan, Invoke-HtTypedChange, Get-HtPendingConsentRequest, Invoke-HtSyncCheck, Invoke-HtRoleReview, Test-HtLogForwarding, Connect-HtRequestSystems, Invoke-HtRequestQueue,
+    Test-HtSecretFileAccess, Protect-HtSecretFile

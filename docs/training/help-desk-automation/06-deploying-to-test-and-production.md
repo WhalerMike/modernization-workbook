@@ -14,7 +14,7 @@ review-status: pending
 
 ## Introduction (3 minutes)
 
-The other modules each prove one part. The runbook puts all of it on the platform host, under the identities [WD-181](../../about/decision-register.md#wd-181) and [WD-182](../../about/decision-register.md#wd-182) name, with [WD-183](../../about/decision-register.md#wd-183)'s exception covering the two gMSAs, and rehearses taking it off again. It runs the same commands twice, test then production; only the settings files change.
+The other modules each prove one part. The runbook puts all of it on the platform host, under the identities [WD-181](../../about/decision-register.md#wd-181) and [WD-182](../../about/decision-register.md#wd-182) name, with [WD-183](../../about/decision-register.md#wd-183)'s exception covering the two gMSAs, and rehearses taking it off again. [WD-184](../../about/decision-register.md#wd-184), a draft amendment to WD-182 awaiting approval, sets the pipeline's two secrets as files only its gMSA can decrypt, and has the test stage prove its SailPoint token before the pipeline changes anything. It runs the same commands twice, test then production; only the settings files change.
 
 **The federal requirement.**
 
@@ -264,8 +264,13 @@ icacls D:\HelpDeskAutomation\runs /grant '<domain>\gmsa-fmpassess$:(OI)(CI)M'
 icacls D:\HelpDeskRequests\credentials /inheritance:r /grant:r '<tier0-admins>:(OI)(CI)F' '<domain>\gmsa-fmphelpdesk$:(OI)(CI)R'
 icacls D:\HelpDeskRequests /grant '<domain>\gmsa-fmphelpdesk$:(OI)(CI)RX'
 icacls D:\HelpDeskRequests\runs /grant '<domain>\gmsa-fmphelpdesk$:(OI)(CI)M'
+icacls D:\HelpDeskRequests\credentials\staging /grant '<domain>\gmsa-fmphelpdesk$:(OI)(CI)M'
 
-'HDA_SN_CLIENT_SECRET', 'HDA_ISC_CLIENT_SECRET' | ForEach-Object { "$_ at machine level: " + [bool][Environment]::GetEnvironmentVariable($_, 'Machine') }
+foreach ($sys in 'servicenow', 'sailpoint') { & D:\HelpDeskRequests\help-desk-automation\deploy\Protect-HtPipelineSecret.ps1 -SettingsPath D:\HelpDeskRequests\settings.json -System $sys | Format-List System, SecretFile, ProtectedFor, Applied }
+& D:\HelpDeskRequests\help-desk-automation\deploy\Protect-HtPipelineSecret.ps1 -SettingsPath D:\HelpDeskRequests\settings.json -System servicenow -Apply | Format-List System, SecretFile, ProtectedFor, Applied, TaskResult
+& D:\HelpDeskRequests\help-desk-automation\deploy\Protect-HtPipelineSecret.ps1 -SettingsPath D:\HelpDeskRequests\settings.json -System sailpoint -Apply | Format-List System, SecretFile, ProtectedFor, Applied, TaskResult
+Get-ChildItem D:\HelpDeskRequests\credentials -Recurse -Name
+icacls D:\HelpDeskRequests\credentials\servicenow.secret
 
 foreach ($j in 'sync', 'consent', 'roles', 'logs') { & D:\HelpDeskAutomation\help-desk-automation\deploy\Invoke-HtScheduledRun.ps1 -Job $j -SettingsPath D:\HelpDeskAutomation\settings.json | Out-Host; "$j exit code: $LASTEXITCODE" }
 Get-ChildItem D:\HelpDeskAutomation\runs -Directory -Recurse -Name
@@ -281,8 +286,14 @@ New-AzResourceGroupDeployment -ResourceGroupName <rg> -TemplateFile D:\HelpDeskA
 Start-ScheduledTask -TaskPath '\FMW\' -TaskName 'FMW Help Desk - Consent requests'
 Get-ScheduledTask -TaskPath '\FMW\' | Where-Object TaskName -like 'FMW Help Desk - *' | Get-ScheduledTaskInfo | Format-Table TaskName, LastRunTime, LastTaskResult, NextRunTime -AutoSize | Out-String -Width 200
 
-& D:\HelpDeskRequests\help-desk-automation\deploy\Invoke-HtRequestPipeline.ps1 -SettingsPath D:\HelpDeskRequests\settings.json -DryRun
-& D:\HelpDeskRequests\help-desk-automation\deploy\Register-HtRequestPipeline.ps1 -SettingsPath D:\HelpDeskRequests\settings.json
+& D:\HelpDeskRequests\help-desk-automation\deploy\Register-HtRequestPipeline.ps1 -SettingsPath D:\HelpDeskRequests\settings.json -PipelineDryRun
+& D:\HelpDeskRequests\help-desk-automation\deploy\Register-HtRequestPipeline.ps1 -SettingsPath D:\HelpDeskRequests\settings.json -Apply -PipelineDryRun
+Start-ScheduledTask -TaskPath '\FMW\' -TaskName 'FMW Help Desk - Request pipeline'
+do { Start-Sleep -Seconds 5 } while ((Get-ScheduledTask -TaskPath '\FMW\' -TaskName 'FMW Help Desk - Request pipeline').State -eq 'Running')
+$run = Get-ChildItem D:\HelpDeskRequests\runs -Directory | Sort-Object Name | Select-Object -Last 1
+Get-ChildItem $run.FullName -Name
+if (Test-Path (Join-Path $run.FullName 'signin.json')) { Get-Content (Join-Path $run.FullName 'signin.json') }
+
 & D:\HelpDeskRequests\help-desk-automation\deploy\Register-HtRequestPipeline.ps1 -SettingsPath D:\HelpDeskRequests\settings.json -Apply
 Get-ScheduledTask -TaskPath '\FMW\' -TaskName 'FMW Help Desk - Request pipeline' | Get-ScheduledTaskInfo | Format-List LastRunTime, LastTaskResult, NextRunTime
 
@@ -301,7 +312,7 @@ Remove-AzDataCollectionRule -Name dcr-windows-events-identity-servers -ResourceG
 <!-- labs:end -->
 
 - **You need:** the platform host's test stage, a test tenant synchronizing a test forest, an Azure test subscription with two Arc-enabled test servers, a ServiceNow instance and a SailPoint sandbox, and the approvals the chapter lists.
-- **What you do:** Steps 1.1 to 1.9: the gMSAs, the apps, the folders, the secrets' check, each job by hand, the rule, the four tasks, the pipeline and a smoke test.
+- **What you do:** Steps 1.1 to 1.9: the gMSAs, the apps, the folders, the two secrets protected for the pipeline's gMSA, each job by hand, the rule, the four tasks, the pipeline as a dry run and then on, and a smoke test.
 - **Back-out:** Step 1.10 unregisters every task and removes the rule's associations and the rule.
 
 ## Knowledge check (5 minutes)
@@ -311,11 +322,11 @@ Remove-AzDataCollectionRule -Name dcr-windows-events-identity-servers -ResourceG
     b. `gmsa-fmpassess$` for the jobs; the pipeline's own gMSA, such as `gmsa-fmphelpdesk$`
     c. The operator's account
     d. The host's computer account
-2. Why does the runbook check that the client secrets aren't machine variables?
-    a. Machine variables are slower
-    b. Every process on the host could read them
-    c. The pipeline reads only machine variables
-    d. Task Scheduler clears them
+2. Why are the pipeline's secrets DPAPI-protected files for its gMSA, not machine variables or Azure Key Vault behind the host's Arc identity?
+    a. Files are faster to read
+    b. A machine variable reaches every process on the host, and any member of Hybrid agent extension applications, the Gitea service account among them, can get the Arc identity's token; only the gMSA can decrypt its own DPAPI files
+    c. Task Scheduler can't read variables
+    d. The pipeline can't reach Azure
 3. In production, why are the catalog items turned on one at a time?
     a. ServiceNow allows one item per week
     b. So a fault reaches one task, not every task, in its first week
