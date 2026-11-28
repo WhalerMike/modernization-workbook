@@ -417,6 +417,8 @@ Get-Content out/cloud-workload-test/findings.json -Raw | ConvertFrom-Json | Sort
 Remove-Item -Recurse -Force out
 ```
 
+To run this read-only assessment for real, outside the lab, see [Assessments you can run against production](../../../reference/permissions-by-run.md#production-assessments).
+
 ## Verified facts
 
 | Fact | Source |

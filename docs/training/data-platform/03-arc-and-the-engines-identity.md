@@ -319,6 +319,8 @@ Remove-Item -Recurse -Force lab2/arc.json, lab2/arc-confirmed.json, lab2/arc-che
 - **You need:** a commercial Azure (`AzureCloud`) test subscription in the test tenant, which is where a Microsoft 365 GCC (Moderate) tenant's Arc resources live, with at least one Arc-enabled test server running SQL Server, never production; PowerShell 7 with the `Az.Accounts` and `Az.ResourceGraph` modules; a person who holds Reader on the subscription and nothing more for the lab; and Module 2's Lab 2 snapshot, `lab2/audit.json`, from the same instances.
 - **Back it out:** step 6 signs out and deletes the snapshot, the confirmed copy and both check folders.
 
+To run this read-only assessment for real, outside the lab, see [Assessments you can run against production](../../reference/permissions-by-run.md#production-assessments).
+
 ## Unit 6: Knowledge check
 
 *5 minutes*

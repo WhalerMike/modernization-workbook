@@ -448,6 +448,8 @@ Remove-Item -Recurse -Force out/client-test, out/check-client-test
    Remove-Item -Recurse -Force out/client-test, out/check-client-test
    ```
 
+To run this read-only assessment for real, outside the lab, see [Assessments you can run against production](../../../reference/permissions-by-run.md#production-assessments).
+
 ## Verified facts
 
 | Item | Value | GCC | Stage | Source |

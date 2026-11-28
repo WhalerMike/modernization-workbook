@@ -559,6 +559,8 @@ Remove-Item -Recurse -Force out/ring-test, out/check-telemetry-test, out/metrics
    Remove-Item -Recurse -Force out/ring-test, out/check-telemetry-test, out/metrics-test, out/rollback-test
    ```
 
+To run this read-only assessment for real, outside the lab, see [Assessments you can run against production](../../../reference/permissions-by-run.md#production-assessments).
+
 ## Verified facts
 
 | Item | Value | GCC | Stage | Source |

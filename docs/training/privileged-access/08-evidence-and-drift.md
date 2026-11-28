@@ -592,6 +592,8 @@ rm -rf out/test-day1 out/test-day2 out/test-evidence
 - **Permissions:** the nine read permissions from step 2, with admin consent, and Reader on the test subscription. Nothing else.
 - **Back-out:** step 7 ends the test activation and eligibility, removes the permissions, the Reader assignment and the app, and deletes `out/runs-test` and the packages, which hold the tenant's privileged holders.
 
+To run this read-only assessment for real, outside the lab, see [Assessments you can run against production](../../reference/permissions-by-run.md#production-assessments).
+
 ## Knowledge check (5 minutes)
 
 1. Why does the audit read refuse a window that starts more than 30 days before the run?

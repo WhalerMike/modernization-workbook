@@ -451,6 +451,8 @@ Remove-Item -Recurse -Force out
 
 <!-- labs:end -->
 
+To run this read-only assessment for real, outside the lab, see [Assessments you can run against production](../../reference/permissions-by-run.md#production-assessments).
+
 ## Knowledge check (5 minutes)
 
 1. An IAM user has three access keys. Which file shows all three?

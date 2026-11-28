@@ -385,6 +385,8 @@ You measure ring 1's exit criteria on the pilot, take the evidence export, then 
 
     The GET no longer lists `gsa-network-telemetry`. Keep `<lab-folder>`: it is the path's evidence package, with both exports and their manifests.
 
+To run this read-only assessment for real, outside the lab, see [Assessments you can run against production](../../reference/permissions-by-run.md#production-assessments).
+
 ## Knowledge check (5 minutes) {#gsa-m6-check}
 
 1. When is the VPN route for a migrated application removed?

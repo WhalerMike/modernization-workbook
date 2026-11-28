@@ -320,6 +320,8 @@ You read the tenant's licenses and onboarding state, take the first configuratio
 
     The guide's Validate is that each category has rows within an hour of pilot traffic. There is no pilot traffic yet, so expect few or no rows now; run the query again after Module 2's lab, and keep both results.
 
+To run this read-only assessment for real, outside the lab, see [Assessments you can run against production](../../reference/permissions-by-run.md#production-assessments).
+
 ## Knowledge check (5 minutes) {#gsa-m1-check}
 
 1. Why does the guide run Step 12's logging before Step 3?

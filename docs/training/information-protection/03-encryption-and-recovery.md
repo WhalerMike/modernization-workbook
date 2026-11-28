@@ -169,6 +169,8 @@ You read the Rights Management state, the message encryption configuration and c
     Disconnect-ExchangeOnline -Confirm:$false
     ```
 
+To run this read-only assessment for real, outside the lab, see [Assessments you can run against production](../../reference/permissions-by-run.md#production-assessments).
+
 ## Knowledge check (5 minutes) {#ip-m3-knowledge-check}
 
 1. A recovery is finished. Which state should the export show?

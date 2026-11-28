@@ -378,6 +378,8 @@ Remove-Item <output-folder>/devices/*.json
    Remove-Item <output-folder>/devices/*.json
    ```
 
+To run this read-only assessment for real, outside the lab, see [Assessments you can run against production](../../../reference/permissions-by-run.md#production-assessments).
+
 ## Verified facts
 
 | Item | Value | Source |

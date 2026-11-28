@@ -282,6 +282,8 @@ unset SN_INSTANCE SN_ACCESS_TOKEN
    unset SN_INSTANCE SN_ACCESS_TOKEN
    ```
 
+To run this read-only assessment for real, outside the lab, see [Assessments you can run against production](../../../reference/permissions-by-run.md#production-assessments).
+
 ## The verified facts
 
 | Item | Value | Source |

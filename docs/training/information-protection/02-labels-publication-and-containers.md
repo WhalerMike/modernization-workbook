@@ -162,6 +162,8 @@ You export the labels and policies and find the labeled sample in the audit log,
     Disconnect-ExchangeOnline -Confirm:$false
     ```
 
+To run this read-only assessment for real, outside the lab, see [Assessments you can run against production](../../reference/permissions-by-run.md#production-assessments).
+
 ## Knowledge check (5 minutes) {#ip-m2-knowledge-check}
 
 1. A data owner asks for their own account to be added to a CUI Specified label's rights "just for this project". What does the program do?

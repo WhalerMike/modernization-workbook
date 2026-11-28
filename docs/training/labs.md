@@ -336,3 +336,5 @@ Each Lab 2 names its environment and its prerequisites in its first paragraph. U
 - **A test Active Directory domain** on a Windows Server 2019 or later virtual machine you can checkpoint and throw away, with the DNS Server and DHCP Server roles, for the DNS, DHCP and IPAM labs. [Module 1](dns-dhcp-ipam/01-read-the-naming-plane.md#ddi-m1-lab-2) builds it. Module 4's Lab 2 reads an Azure test subscription, an AWS GovCloud (US) account and an OCI tenancy that aren't production instead.
 - **A Catalyst SD-WAN test fabric**: a Manager in a lab overlay or a vendor sandbox, with a read-only Manager account, for the SD-WAN governor path.
 
+Labs never touch production. Running a read-only assessment against production is operational work, not a lab: [Assessments you can run against production](../reference/permissions-by-run.md#production-assessments) lists each one with the read-only identity that runs it.
+

@@ -65,6 +65,27 @@ class PermissionsPage(unittest.TestCase):
         for target in re.findall(r"\]\((\.\./[^)#]+)", section):
             self.assertTrue((bp.PAGE.parent / target).resolve().exists(), target)
 
+    def test_only_read_only_labs_point_to_production(self):
+        """A Lab 2 links the production assessments section only when every run its chapter teaches only
+        reads, and a module's only when every chapter it teaches is such a chapter."""
+        import generate_labs as gl
+        labs = bp.read_only_labs()
+        allowed = {p for p, s in labs.items() if s == "read-only"}
+        gl.read_workbooks()
+        for wb in gl.WORKBOOKS:
+            for m in gl.modules(wb):
+                chs = [c["path"] for c in wb.chapters if c["nn"] in m["chapters"]]
+                if chs and all(labs.get(c) == "read-only" for c in chs):
+                    allowed.add(m["path"])
+        wrong = []
+        for page in sorted((ROOT / "docs").rglob("*.md")):
+            md = page.read_text(encoding="utf-8")
+            rel = page.relative_to(ROOT).as_posix()
+            for a, b in bp.lab2_sections(md):
+                if "permissions-by-run.md#production-assessments" in md[a:b] and rel not in allowed:
+                    wrong.append(f"{rel}: {labs.get(rel, 'not read-only')}")
+        self.assertEqual(wrong, [], "a Lab 2 that changes something links the production assessments")
+
 
 if __name__ == "__main__":
     unittest.main()

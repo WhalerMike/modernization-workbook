@@ -248,6 +248,8 @@ You run the guide's Step 7 and Step 8 checks in a test subscription where someon
 
 10. **Back it out.** Both `az logout` commands signed out of the test VM; nothing in Azure changed.
 
+To run this read-only assessment for real, outside the lab, see [Assessments you can run against production](../../reference/permissions-by-run.md#production-assessments).
+
 ## Knowledge check (5 minutes) {#azs-m4-check}
 
 1. A private endpoint exists, but clients still reach the vault's public address. Where does the guide say to look first?

@@ -428,6 +428,8 @@ You'll replace: `<tenant-id>`, `<test-mg-id>`, `<test-subscription-id>`, `<works
    az logout
    ```
 
+To run this read-only assessment for real, outside the lab, see [Assessments you can run against production](../../../reference/permissions-by-run.md#production-assessments).
+
 ## Verified facts
 
 | Item | Value | Source |

@@ -345,6 +345,8 @@ Remove-Item -Recurse -Force out/inventory-test
 - **What you do:** register a reader app with a certificate, grant it `Application.Read.All`, `Directory.Read.All` and Reader on one resource group, run the inventory live, and compare the register with the admin center's lists.
 - **Back-out:** step 8 removes the Reader assignment and the two permissions, deletes the app registration and its certificate, and deletes `out/inventory-test`.
 
+To run this read-only assessment for real, outside the lab, see [Assessments you can run against production](../../reference/permissions-by-run.md#production-assessments).
+
 ## Knowledge check (5 minutes)
 
 1. Why does the inventory hold `Directory.Read.All`?

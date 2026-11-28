@@ -342,6 +342,8 @@ Remove-Item -Recurse -Force lab2/audit-run
 - **You need:** a test SQL Server instance, never production; PowerShell 7 with the SqlServer module, signed in to Windows as an account with a login on the instance; and, granted for the lab only, `VIEW SERVER STATE` on SQL Server 2019 and earlier, or `VIEW SERVER PERFORMANCE STATE` and `VIEW SERVER SECURITY STATE` on 2022 and later, plus `VIEW ANY DEFINITION` (`VIEW ANY SECURITY DEFINITION` on 2022 and later) and `CONNECT ANY DATABASE`. Never `sysadmin`.
 - **Back it out:** step 5 deletes the audit run. Keep `lab2/audit.json` if you go on to Module 3's Lab 2; otherwise delete it too. Have the administrator remove the lab's grants.
 
+To run this read-only assessment for real, outside the lab, see [Assessments you can run against production](../../reference/permissions-by-run.md#production-assessments).
+
 ## Unit 6: Knowledge check
 
 *5 minutes*

@@ -410,6 +410,8 @@ rm -rf exports/ch01 out/ch01-test
    rm -rf exports/ch01 out/ch01-test
    ```
 
+To run this read-only assessment for real, outside the lab, see [Assessments you can run against production](../../../reference/permissions-by-run.md#production-assessments).
+
 ## Verified facts
 
 | Item | Value | Stage | Source |

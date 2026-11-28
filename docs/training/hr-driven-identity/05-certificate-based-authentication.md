@@ -289,6 +289,8 @@ rm -rf exports out my-crl-urls.txt my-cba-expected.json
 - **Permissions:** a reader app with a certificate holding the three application permissions from step 1, with admin consent, and nothing else.
 - **Back-out:** remove the permissions, delete the reader app and its certificate, reissue the test user's certificate if you need it, and delete the export and output folders.
 
+To run this read-only assessment for real, outside the lab, see [Assessments you can run against production](../../reference/permissions-by-run.md#production-assessments).
+
 ## Knowledge check (5 minutes)
 
 1. What happens when an issuing CA in the trust store has no CRL configured?

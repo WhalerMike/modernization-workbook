@@ -443,6 +443,8 @@ rm -rf exports out/ch04 out/ch04-vk-before out/ch04-vk-after my-access my-access
    rm -rf exports out/ch04 out/ch04-vk-before out/ch04-vk-after my-access my-access-body.json
    ```
 
+To run this read-only assessment for real, outside the lab, see [Assessments you can run against production](../../../reference/permissions-by-run.md#production-assessments).
+
 ## Verified facts
 
 | Item | Value | Stage | Source |

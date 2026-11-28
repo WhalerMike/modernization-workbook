@@ -83,17 +83,23 @@ RUN_HOST = {
 }
 BY_HAND = "Not scheduled: run by the person or pipeline the kit's chapter names"
 # The chapter of the kit's workbook that teaches a run, for runs whose permission file doesn't give one (or
-# gives a runbook): used by the production assessments section. Read from each kit's chapters and README.
+# gives a runbook): used by the production assessments section and to classify read-only Lab 2s. Read from
+# each kit's chapters, call files and README.
 TAUGHT = {
-    "privileged-access": {"inventory": "01", "emergency-access": "02", "ca-read": "03", "pim-plan": "04",
+    "privileged-access": {"inventory": "01", "emergency-access": "02", "ca-read": "03", "ca-apply": "03",
+                          "pim-plan": "04", "pim-apply": "04", "pim-convert": "04", "pim-groups-apply": "05",
+                          "azure-pim-apply": "06", "access-reviews-apply": "07",
                           "pim-alerts": "04", "pim-groups-read": "05", "azure-pim-read": "06",
                           "access-reviews-plan": "07", "access-reviews-evidence": "07", "pim-audit": "08"},
-    "servicenow-sailpoint": {"drift": "06", "evidence": "07", "writer-check": "08", "deploy-check": "09"},
+    "servicenow-sailpoint": {"workflows": "04", "reread": "05", "drift": "06", "drift-push": "06", "evidence": "07",
+                             "writer-check": "08", "deploy-check": "09", "smoke-raise": "09",
+                             "workflow-enable": "09", "workflow-test": "09"},
     "global-secure-access": {"decision": "01", "baseline": "02", "client": "03", "traffic": "04",
                              "internet-access": "07", "tls": "07", "compliant-network": "05",
-                             "tenant-restrictions": "05", "private-access": "06", "telemetry": "08"},
+                             "tenant-restrictions": "05", "private-access": "06", "telemetry": "08", "plan": "04"},
     "defender-xdr": {"access": "01", "coverage": "02", "prevention": "03", "asr": "04", "exposure": "05",
-                     "incidents": "05", "detections": "06", "signals": "07", "preflight": "09"},
+                     "incidents": "05", "detections": "06", "signals": "07", "preflight": "09",
+                     "publish": "06", "rollback": "09"},
     "azure-security": {"baseline": "01", "exposure": "02", "ddos": "03", "waf": "04", "edge": "05",
                        "firewall": "06", "private": "07", "policy": "08"},
     "information-protection": {"access": "01", "inventory": "03", "labels": "04", "protection": "05",
@@ -262,10 +268,63 @@ def link(path: str, here: str = "docs/reference") -> str:
     return rel.as_posix() + (f"#{anchor}" if anchor else "")
 
 
+def chapter_of(kit: str, r: "Run") -> str:
+    """The two-digit chapter of the kit's workbook that teaches the run, or "" when no file says."""
+    number = TAUGHT.get(kit, {}).get(r.name) or r.chapter
+    return number if number.isdigit() else ""
+
+
+# A Lab 2 that applies a plan changes something, whatever its chapter's runs are.
+APPLIES = re.compile(r"(?<![\w-])(?:-Apply|--apply)(?![\w-])")
+
+
+def lab2_sections(md: str) -> list[tuple[int, int]]:
+    """Each "Lab 2" section of a page as (start, end) character offsets, skipping headings in code."""
+    heads, fence, pos = [], False, 0
+    for line in md.splitlines(keepends=True):
+        if line.lstrip().startswith(("```", "~~~")):
+            fence = not fence
+        elif not fence and re.match(r"#{1,6} ", line):
+            heads.append((pos, len(line) - len(line.lstrip("#")), line))
+        pos += len(line)
+    out = []
+    for i, (start, level, line) in enumerate(heads):
+        if re.match(r"#{1,6} (?:Unit \d+: )?(?:Exercise: )?Lab 2(?!\d)", line):
+            end = next((p for p, lv, _ in heads[i + 1:] if lv <= level), len(md))
+            out.append((start, end))
+    return out
+
+
+def read_only_labs() -> dict[str, str]:
+    """Each developer workbook chapter with a Lab 2, classified from its kit's runs: "read-only" when every
+    run its chapter teaches only reads and the lab applies no plan; otherwise why not."""
+    out = {}
+    for kit, title, guide in KITS:
+        if not guide.endswith("index.md"):
+            continue
+        runs = list(runs_for(kit).values())
+        for page in sorted((ROOT / guide).parent.glob("[0-9][0-9]-*.md")):
+            md = page.read_text(encoding="utf-8")
+            labs = lab2_sections(md)
+            if not labs:
+                continue
+            taught = [r for r in runs if chapter_of(kit, r) == page.name[:2]]
+            rel = page.relative_to(ROOT).as_posix()
+            if not taught:
+                out[rel] = "no run in the kit's files"
+            elif any(r.changes for r in taught):
+                out[rel] = "teaches a Changes run: " + ", ".join(sorted(r.name for r in taught if r.changes))
+            elif any(APPLIES.search(md[a:b]) for a, b in labs):
+                out[rel] = "its Lab 2 applies a plan"
+            else:
+                out[rel] = "read-only"
+    return out
+
+
 def taught_in(kit: str, guide: str, r: "Run") -> str:
     """A link to the chapter of the kit's workbook that teaches the run, or to the workbook."""
     folder = (ROOT / guide).parent
-    number = TAUGHT.get(kit, {}).get(r.name) or (r.chapter if r.chapter.isdigit() else "")
+    number = chapter_of(kit, r)
     found = sorted(folder.glob(f"{number}-*.md")) if number and guide.endswith("index.md") else []
     if found:
         return f"[Chapter {number}]({link(found[0].relative_to(ROOT).as_posix())})"

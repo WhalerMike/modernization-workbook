@@ -375,6 +375,8 @@ You'll replace the values of [Chapter 01, Lab 2](01-the-landing-zone-baseline.md
    az logout
    ```
 
+To run this read-only assessment for real, outside the lab, see [Assessments you can run against production](../../../reference/permissions-by-run.md#production-assessments).
+
 ## Verified facts
 
 | Item | Value | Source |

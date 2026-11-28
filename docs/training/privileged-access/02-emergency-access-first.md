@@ -358,6 +358,8 @@ Remove-Item -Recurse -Force out/emergency-test
 - **Permissions:** at least Security Administrator for the diagnostic setting; the six read permissions from step 2 for the reader app; at least Monitoring Contributor to deploy the alert.
 - **Back-out:** step 6 deletes the alert rule and the action group, removes the six permissions, deletes the reader app and its certificate, removes the diagnostic setting if the lab created it, and deletes `out/emergency-test`.
 
+To run this read-only assessment for real, outside the lab, see [Assessments you can run against production](../../reference/permissions-by-run.md#production-assessments).
+
 ## Knowledge check (5 minutes)
 
 1. What is the lockout Learn documents?

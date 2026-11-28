@@ -283,6 +283,8 @@ You run the guide's Step 5 and Step 6 checks in a test subscription where someon
 
     Expected result: `Running`.
 
+To run this read-only assessment for real, outside the lab, see [Assessments you can run against production](../../reference/permissions-by-run.md#production-assessments).
+
 ## Knowledge check (5 minutes) {#azs-m3-check}
 
 1. An App Service origin allows traffic from the `AzureFrontDoor.Backend` service tag only. Is it locked to the agency's Front Door?

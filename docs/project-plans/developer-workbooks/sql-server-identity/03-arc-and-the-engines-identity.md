@@ -436,6 +436,8 @@ Remove-Item -Recurse -Force lab2/arc.json, lab2/arc-confirmed.json, lab2/arc-che
    Remove-Item -Recurse -Force lab2/arc.json, lab2/arc-confirmed.json, lab2/arc-check, lab2/arc-check-confirmed
    ```
 
+To run this read-only assessment for real, outside the lab, see [Assessments you can run against production](../../../reference/permissions-by-run.md#production-assessments).
+
 ## Verified facts
 
 | Item | Value | Source |

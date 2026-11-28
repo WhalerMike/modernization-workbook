@@ -310,6 +310,8 @@ Remove-Item -Recurse -Force out/inventory-test
 - **Permissions:** the five Graph application permissions from step 2, with admin consent; Reader on the test subscription.
 - **Back-out:** step 7 removes the Reader assignment, the five permissions, the app registration and its certificate, and deletes `out/inventory-test`, which names the tenant's privileged holders.
 
+To run this read-only assessment for real, outside the lab, see [Assessments you can run against production](../../reference/permissions-by-run.md#production-assessments).
+
 ## Knowledge check (5 minutes)
 
 1. Why doesn't the inventory use Learn's all-roles sample as its read?
