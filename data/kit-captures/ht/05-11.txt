@@ -1,4 +1,6 @@
-PS> Invoke-Pester -Path tests -FullNameFilter 'The approved-request pipeline*', 'The request pipeline on the platform host*' -Output None -PassThru | Select-Object PassedCount, FailedCount
-PassedCount FailedCount
------------ -----------
-         20           0
+PS> ./deploy/Protect-HtPipelineSecret.ps1 -SettingsPath tests/fixtures/requests-settings.fixture.json -System sailpoint | Format-List System, SecretFile, ProtectedFor, Task, Applied
+System       : sailpoint
+SecretFile   : unused/sailpoint.secret
+ProtectedFor : CONTOSO\gmsa-fmphelpdesk$
+Task         : FMW Help Desk - Protect sailpoint secret
+Applied      : False

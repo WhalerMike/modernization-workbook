@@ -1,4 +1,4 @@
 { "tenantId": "c0ffee00-0000-4000-8000-000000000001", "clientId": "f3000000-0000-4000-8000-000000000398", "certificatePath": "unused.pfx",
-  "serviceNowUrl": "https://contoso-example.service-now.com", "serviceNowClientId": "x", "serviceNowSecretEnv": "HDA_SN_CLIENT_SECRET",
-  "iscApiUrl": "https://contoso-example.api.identitynow.com", "iscClientId": "y", "iscSecretEnv": "HDA_ISC_CLIENT_SECRET",
-  "runsPath": "out/request-runs", "configPath": "", "runAs": "CONTOSO\\gmsa-fmphelpdesk$", "kitPath": "." }
+  "serviceNowUrl": "https://contoso-example.service-now.com", "serviceNowClientId": "x", "serviceNowSecretFile": "unused/servicenow.secret",
+  "iscApiUrl": "https://contoso-example.api.identitynow.com", "iscCredential": "api-client", "iscClientId": "y", "iscSecretFile": "unused/sailpoint.secret",
+  "credentialAdmins": "CONTOSO\\Tier0-Admins", "runsPath": "out/request-runs", "configPath": "", "runAs": "CONTOSO\\gmsa-fmphelpdesk$", "kitPath": "." }

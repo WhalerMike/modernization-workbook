@@ -37,7 +37,8 @@ Every command below was written against the kit's code and Microsoft Learn's, Se
 | Dependency | Where it is |
 |---|---|
 | The tasks and their procedure | [Book 15, Chapter 12](../../../books/b15-day2-operations/12-the-day-two-runbook.md) |
-| Where each part runs, and as whom | [WD-181](../../../about/decision-register.md#wd-181) (the read-only jobs), [WD-182](../../../about/decision-register.md#wd-182) (the pipeline) |
+| Where each part runs, and as whom | [WD-181](../../../about/decision-register.md#wd-181) (the read-only jobs), [WD-182](../../../about/decision-register.md#wd-182) (the pipeline), and [WD-184](../../../about/decision-register.md#wd-184), a draft amendment to WD-182 awaiting approval (the pipeline's SailPoint token and where its secrets live) |
+| What the host lists for the help desk jobs and the pipeline | [Book 10, Appendix B](../../../books/b10-cloud-boundary/appendix-b-platform-host-interfaces.md): the tasks, schedules and paths in [D.7](../../../books/b10-cloud-boundary/appendix-b-platform-host-interfaces.md#d.7-help-desk-jobs-and-the-request-pipeline), the identities in [B.4](../../../books/b10-cloud-boundary/appendix-b-platform-host-interfaces.md#b.4-the-hosts-own-identities) and B.6, the folders in E.4 |
 | The host's Active Directory footprint, both gMSAs included | [WD-183](../../../about/decision-register.md#wd-183), one exception to WD-065, cited by the [platform host guide](../../../books/guides/platform-host-implementation.md) and [Book 10, Appendix B](../../../books/b10-cloud-boundary/appendix-b-platform-host-interfaces.md) |
 | How a gMSA is requested, approved and created | The managed service account standard: requested through the agency's system access management tool, approved in SailPoint, created by the program's pipeline ([WD-163](../../../about/decision-register.md#wd-163)) |
 | Every permission each run needs | [Permissions by Run](../../../reference/permissions-by-run.md#help-desk-automation), built from the kit's `config/calls.json` |
@@ -59,7 +60,7 @@ Each step ends with what it supports. The controls and KSIs are the kit's [`conf
 | Identity engineer | Creates the two app registrations and grants admin consent, through PIM against the change | 1.2 |
 | Azure contributor (a person) | A role that can create the rule and its associations, activated for the change | 1.6, 1.10 |
 | ServiceNow administrator | Builds the catalog items, fields, rule, job and roles | Before 1.8 |
-| Identity governance engineer | Builds the access profiles and the pipeline's SailPoint client | Before 1.8 |
+| Identity governance engineer | Builds the access profiles and the pipeline's SailPoint API client; if Step 1.8 needs it, the dedicated identity and its personal access token | Before 1.4, 1.8 |
 | Change manager | Approves the change record and each stage | Before you start, go/no-go |
 | ISSO | Approves promotion; keeps the evidence | Go/no-go |
 
@@ -69,13 +70,12 @@ Each step ends with what it supports. The controls and KSIs are the kit's [`conf
 |---|---|---|---|
 | The change record for the stage | Change advisory board | Step 1.1 | The change record |
 | The two gMSAs | SailPoint, through the managed service account standard | Step 1.1 | SailPoint; WD-183's exception |
-| Book 10, Appendix B lists the help desk jobs, the pipeline, their identities and their paths | The platform lead and the ISSO | Step 1.7 | Appendix B (WD-181 and WD-182 require it before the first run) |
 | Promotion to production | ISSO and the change advisory board | Stage 2 | The go/no-go record |
 | Each catalog item turned on in production | Change manager | Step 2.4 | The change record |
 
 ## The settings files
 
-Two JSON files per stage, outside the kit's folder, holding no secret: [`deploy/settings.template.json`](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/help-desk-automation/deploy/settings.template.json) for the read-only jobs and [`deploy/requests-settings.template.json`](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/help-desk-automation/deploy/requests-settings.template.json) for the pipeline. Both run scripts refuse a secret-like key and an unfilled `<placeholder>`; the template's `_comment` is ignored. The apps sign in with certificate files; the ServiceNow and SailPoint client secrets are in environment variables the pipeline's settings name.
+Two JSON files per stage, outside the kit's folder, holding no secret: [`deploy/settings.template.json`](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/help-desk-automation/deploy/settings.template.json) for the read-only jobs and [`deploy/requests-settings.template.json`](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/help-desk-automation/deploy/requests-settings.template.json) for the pipeline. Both run scripts refuse a secret-like key and an unfilled `<placeholder>`; the template's `_comment` is ignored. The apps sign in with certificate files. The ServiceNow and SailPoint secrets are two files the pipeline's settings name, protected with DPAPI for its gMSA in Step 1.4 (WD-184). The pipeline's settings also name `iscCredential`, `api-client` until Step 1.8 shows otherwise, and `credentialAdmins`, the host's Tier 0 administrators group.
 
 ### Placeholders
 
@@ -95,7 +95,7 @@ These are the only values you replace in this chapter's commands:
 ### Create and check the files
 
 ```powershell
-New-Item -ItemType Directory -Force D:\HelpDeskAutomation\config, D:\HelpDeskAutomation\credentials, D:\HelpDeskAutomation\runs, D:\HelpDeskRequests\config, D:\HelpDeskRequests\credentials, D:\HelpDeskRequests\runs | Out-Null
+New-Item -ItemType Directory -Force D:\HelpDeskAutomation\config, D:\HelpDeskAutomation\credentials, D:\HelpDeskAutomation\runs, D:\HelpDeskRequests\config, D:\HelpDeskRequests\credentials\staging, D:\HelpDeskRequests\runs | Out-Null
 Copy-Item -Recurse <kit-folder> D:\HelpDeskAutomation\help-desk-automation
 Copy-Item -Recurse <kit-folder> D:\HelpDeskRequests\help-desk-automation
 Copy-Item D:\HelpDeskAutomation\help-desk-automation\deploy\settings.template.json D:\HelpDeskAutomation\settings.json
@@ -118,7 +118,8 @@ Select-String -Path D:\HelpDeskAutomation\settings.json, D:\HelpDeskRequests\set
 | `deploy/Register-HtScheduledJobs.ps1` | The four tasks under the assessment gMSA | Without `-Apply` |
 | `deploy/eventlog-dcr.json` | The data collection rule and its associations | `-WhatIf` |
 | `deploy/Invoke-HtRequestPipeline.ps1` | The queue, every five minutes ([Chapter 05](05-the-request-pipeline-and-the-one-time-secret.md)) | `-DryRun` |
-| `deploy/Register-HtRequestPipeline.ps1` | The pipeline's task under its own gMSA; refuses the assessment gMSA | Without `-Apply` |
+| `deploy/Protect-HtPipelineSecret.ps1` | One secret, protected with DPAPI for the pipeline's gMSA through a one-time task (WD-184) | Without `-Apply` |
+| `deploy/Register-HtRequestPipeline.ps1` | The pipeline's task under its own gMSA; refuses the assessment gMSA; `-PipelineDryRun` registers it as a dry run | Without `-Apply` |
 
 ## Illustrative code
 
@@ -193,9 +194,10 @@ icacls D:\HelpDeskAutomation\runs /grant '<domain>\gmsa-fmpassess$:(OI)(CI)M'
 icacls D:\HelpDeskRequests\credentials /inheritance:r /grant:r '<tier0-admins>:(OI)(CI)F' '<domain>\gmsa-fmphelpdesk$:(OI)(CI)R'
 icacls D:\HelpDeskRequests /grant '<domain>\gmsa-fmphelpdesk$:(OI)(CI)RX'
 icacls D:\HelpDeskRequests\runs /grant '<domain>\gmsa-fmphelpdesk$:(OI)(CI)M'
+icacls D:\HelpDeskRequests\credentials\staging /grant '<domain>\gmsa-fmphelpdesk$:(OI)(CI)M'
 ```
 
-Then the identity engineer places `reader.pfx` and `worker.pfx` in the two credential folders. **Expected:** `Successfully processed 1 files` after each `icacls`. The grants are *design guidance*.
+The `staging` folder is where Step 1.4's one-time task, running as the pipeline's gMSA, writes a secret it has protected; the gMSA can write nowhere else in its credential folder. Then the identity engineer places `reader.pfx` and `worker.pfx` in the two credential folders. **Expected:** `Successfully processed 1 files` after each `icacls`. The grants are *design guidance*.
 
 | Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
 |---|---|---|---|
@@ -203,13 +205,23 @@ Then the identity engineer places `reader.pfx` and `worker.pfx` in the two crede
 
 ### Step 1.4: The pipeline's client secrets
 
-The pipeline reads the ServiceNow and SailPoint client secrets from the environment variables its settings name, `HDA_SN_CLIENT_SECRET` and `HDA_ISC_CLIENT_SECRET`, which WD-182 says are set for its gMSA only. Check first that neither is a machine variable, which every process on the host could read:
+The pipeline reads the ServiceNow and SailPoint secrets from two files, protected with DPAPI in the scope of `gmsa-fmphelpdesk$`, so only that account on this host can decrypt them ([WD-184](../../../about/decision-register.md#wd-184), awaiting approval).[^ht06-dpapi] They're never environment variables: a machine variable reaches every process on the host, and a gMSA never signs in to set its own.[^ht06-env] They aren't in Azure Key Vault behind the host's Arc managed identity either: any member of **Hybrid agent extension applications** can get that identity's token, and the Gitea service account is one ([Appendix B, B.4](../../../books/b10-cloud-boundary/appendix-b-platform-host-interfaces.md#b.4-the-hosts-own-identities)).[^ht06-arc-mi]
+
+As the operator, print what each run will do, then run it with `-Apply`. At each prompt the client's owner types its secret: the ServiceNow administrator for the OAuth client, the identity governance engineer for the SailPoint API client. The script stages the secret with DPAPI in the machine's scope, runs a one-time task as the gMSA that protects it again in the gMSA's scope, removes the task and moves the file into place:
 
 ```powershell
-'HDA_SN_CLIENT_SECRET', 'HDA_ISC_CLIENT_SECRET' | ForEach-Object { "$_ at machine level: " + [bool][Environment]::GetEnvironmentVariable($_, 'Machine') }
+foreach ($sys in 'servicenow', 'sailpoint') { & D:\HelpDeskRequests\help-desk-automation\deploy\Protect-HtPipelineSecret.ps1 -SettingsPath D:\HelpDeskRequests\settings.json -System $sys | Format-List System, SecretFile, ProtectedFor, Applied }
+& D:\HelpDeskRequests\help-desk-automation\deploy\Protect-HtPipelineSecret.ps1 -SettingsPath D:\HelpDeskRequests\settings.json -System servicenow -Apply | Format-List System, SecretFile, ProtectedFor, Applied, TaskResult
+& D:\HelpDeskRequests\help-desk-automation\deploy\Protect-HtPipelineSecret.ps1 -SettingsPath D:\HelpDeskRequests\settings.json -System sailpoint -Apply | Format-List System, SecretFile, ProtectedFor, Applied, TaskResult
+Get-ChildItem D:\HelpDeskRequests\credentials -Recurse -Name
+icacls D:\HelpDeskRequests\credentials\servicenow.secret
 ```
 
-**Expected:** `False` for both. *Not yet specified:* how to set a user-level variable for a gMSA, which never signs in interactively. The test stage settles the mechanism and records it in the change record before Step 1.8 runs the pipeline.
+**Expected:** each `-Apply` run prints `Applied` `True` and `TaskResult` `0`; the folder holds `worker.pfx`, `servicenow.secret`, `sailpoint.secret` and an empty `staging`; `icacls` lists only the gMSA and the Tier 0 administrators, both inherited from the folder. If `TaskResult` isn't 0, the task couldn't run as the gMSA or couldn't load its profile, which DPAPI needs: *not yet specified*, as for Step 1.7. The pipeline itself refuses a secret file anyone else can read (HT-RQ-06).
+
+| Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
+|---|---|---|---|
+| IA-5; AC-6 | Each secret decryptable only by the pipeline's gMSA, never in plain text on disk, a variable or a setting | KSI-IAM-ELP | The step's output and `icacls`, with the change record |
 
 ### Step 1.5: Try each read-only job by hand
 
@@ -246,7 +258,7 @@ New-AzResourceGroupDeployment -ResourceGroupName <rg> -TemplateFile D:\HelpDeskA
 
 ### Step 1.7: Register the four jobs
 
-After Book 10, Appendix B lists them:[^ht06-principal] [^ht06-tasks]
+[Book 10, Appendix B, D.7](../../../books/b10-cloud-boundary/appendix-b-platform-host-interfaces.md#d.7-help-desk-jobs-and-the-request-pipeline) lists the four tasks, their schedules, their identity and their paths. Check that it matches the registration's dry run, then register:[^ht06-principal] [^ht06-tasks]
 
 ```powershell
 & D:\HelpDeskAutomation\help-desk-automation\deploy\Register-HtScheduledJobs.ps1 -SettingsPath D:\HelpDeskAutomation\settings.json
@@ -263,20 +275,30 @@ Get-ScheduledTask -TaskPath '\FMW\' | Where-Object TaskName -like 'FMW Help Desk
 
 ### Step 1.8: The request pipeline
 
-With the catalog items, fields, rule and clearing job on the instance, the access profiles and the pipeline's client in the sandbox ([Chapter 04](04-requests-in-servicenow-and-sailpoint.md)), and Step 1.4 settled:
+With the catalog items, fields, rule and clearing job on the instance, the access profiles and the pipeline's API client in the sandbox ([Chapter 04](04-requests-in-servicenow-and-sailpoint.md)), the two secrets protected (Step 1.4), and the task matching [Appendix B, D.7](../../../books/b10-cloud-boundary/appendix-b-platform-host-interfaces.md#d.7-help-desk-jobs-and-the-request-pipeline), register the pipeline first as a dry run. It runs under the gMSA, so it proves the certificate, both secret files and the SailPoint token as the account that will use them, and changes nothing:
 
 ```powershell
-& D:\HelpDeskRequests\help-desk-automation\deploy\Invoke-HtRequestPipeline.ps1 -SettingsPath D:\HelpDeskRequests\settings.json -DryRun
-& D:\HelpDeskRequests\help-desk-automation\deploy\Register-HtRequestPipeline.ps1 -SettingsPath D:\HelpDeskRequests\settings.json
+& D:\HelpDeskRequests\help-desk-automation\deploy\Register-HtRequestPipeline.ps1 -SettingsPath D:\HelpDeskRequests\settings.json -PipelineDryRun
+& D:\HelpDeskRequests\help-desk-automation\deploy\Register-HtRequestPipeline.ps1 -SettingsPath D:\HelpDeskRequests\settings.json -Apply -PipelineDryRun
+Start-ScheduledTask -TaskPath '\FMW\' -TaskName 'FMW Help Desk - Request pipeline'
+do { Start-Sleep -Seconds 5 } while ((Get-ScheduledTask -TaskPath '\FMW\' -TaskName 'FMW Help Desk - Request pipeline').State -eq 'Running')
+$run = Get-ChildItem D:\HelpDeskRequests\runs -Directory | Sort-Object Name | Select-Object -Last 1
+Get-ChildItem $run.FullName -Name
+if (Test-Path (Join-Path $run.FullName 'signin.json')) { Get-Content (Join-Path $run.FullName 'signin.json') }
+```
+
+**Expected:** the newest run folder holds `queue.json` and no `signin.json` (an empty queue is a valid result). This is WD-184's test of the SailPoint token. If `signin.json` says HT-RQ-06 with a 403 for the API client's token, the identity governance engineer creates a dedicated non-human SailPoint identity for the pipeline, requested and approved like any other, and a personal access token for it with only `idn:access-request-status:read`.[^ht06-isc-authz] The operator sets `iscCredential` to `personal-access-token` and `iscClientId` to the token's client id, protects its secret with Step 1.4's `sailpoint` line, and runs this step again. SailPoint's specification names `ORG_ADMIN` as the user level for reading other users' requests,[^ht06-isc-status] so the token's single scope is what keeps it narrow. Record which token worked in the change record. Then turn the pipeline on:
+
+```powershell
 & D:\HelpDeskRequests\help-desk-automation\deploy\Register-HtRequestPipeline.ps1 -SettingsPath D:\HelpDeskRequests\settings.json -Apply
 Get-ScheduledTask -TaskPath '\FMW\' -TaskName 'FMW Help Desk - Request pipeline' | Get-ScheduledTaskInfo | Format-List LastRunTime, LastTaskResult, NextRunTime
 ```
 
-**Expected:** the dry run lists the ready items with no error (an empty queue is a valid result); the task runs every five minutes under `<domain>\gmsa-fmphelpdesk$`. This is also where the SailPoint token question of [Chapter 05](05-the-request-pipeline-and-the-one-time-secret.md#verified-facts) is answered: an HT-RQ-02 on every item, with an approval you can see in SailPoint, means the client-credentials token can't read the status.
+**Expected:** the task runs every five minutes under `<domain>\gmsa-fmphelpdesk$`, and `LastTaskResult` is 0 or 2. A 3 means a sign-in failed: read that run's `signin.json`.
 
 | Requirement | What this step does | KSI it aligns to | Evidence the ISSO keeps |
 |---|---|---|---|
-| AC-6; CM-3 | The pipeline under its own gMSA, apart from the read-only jobs | KSI-IAM-JIT; KSI-CMT-LMC | The dry run's `queue.json`; the task |
+| AC-6; CM-3; IA-5 | The pipeline under its own gMSA, apart from the read-only jobs, with its sign-ins proved before it changes anything | KSI-IAM-JIT; KSI-CMT-LMC | The dry run's folder; which SailPoint token worked; the task |
 
 ### Step 1.9: Smoke test
 
@@ -319,9 +341,9 @@ Remove-AzDataCollectionRule -Name dcr-windows-events-identity-servers -ResourceG
 | Each read-only job ran on schedule for five working days, and each finding became a ticket | The run folders; the tickets |
 | Every listed server forwards its logs, and the share is gone | A clean `logs` run |
 | The four smoke-test requests are `done` with evidence, and no secret appears in any run folder | Step 1.9 |
-| The SailPoint token question and the environment variable question are settled, and recorded | The change record |
+| The change record says which SailPoint token the status read accepted, and both secret files are protected for the pipeline's gMSA only (WD-184) | Steps 1.4 and 1.8 |
 | The rollback was rehearsed | Step 1.10 |
-| Book 10, Appendix B lists both sets | Appendix B |
+| The registered tasks match Book 10, Appendix B, D.7 | Appendix B; the task list |
 
 ## Stage 2: production
 
@@ -352,6 +374,7 @@ Each morning, read the last run's `queue.json` and the four jobs' latest folders
 | The SailPoint approvals of both gMSAs, and WD-183's exception | Step 1.1 |
 | Each app's grants against the kit's declared permissions | Step 1.2 |
 | The folders' access | Step 1.3 |
+| The secret files' access, and which SailPoint token worked | Steps 1.4, 1.8 |
 | Every run folder of the four jobs, with its manifest | Steps 1.5 to 1.7, then daily |
 | The what-if and the rule's deployment | Step 1.6 |
 | Every worked request's `evidence.json`, attached to its ticket | Steps 1.9, 2.4 |
@@ -370,15 +393,19 @@ Each morning, read the last run's `queue.json` and the four jobs' latest folders
 | Deploying the rule | `New-AzResourceGroupDeployment -TemplateParameterObject`, `-WhatIf` | [^ht06-deploy] |
 | Removing the rule | `Remove-AzDataCollectionRuleAssociation -AssociationName -ResourceUri`; `Remove-AzDataCollectionRule -Name -ResourceGroupName` (Learn's example deletes a rule with no association) | [^ht06-dcr] |
 | `icacls` | `/inheritance:r`, `/grant:r` | [^ht06-icacls] |
+| DPAPI | `DataProtectionScope.CurrentUser`: only the same user can decrypt; the key is in the user's profile | [^ht06-dpapi] |
+| Arc managed identity | System-assigned by default; Administrators and Hybrid Agent Extension Applications can get its token | [^ht06-arc-mi] |
+| The SailPoint status read | `userAuth` only; `ORG_ADMIN` for other users' requests | [^ht06-isc-status] |
 
-Not yet specified: setting an environment variable for a gMSA only (Step 1.4); whether the gMSA needs *Log on as a batch job*; registering a task under a gMSA with `-LogonType Password` (Learn shows no example, as *Building Provider Notices*, Chapter 08 records); the Azure role for the rule's deployment; and the SailPoint token question of Chapter 05.
+Not yet specified: whether the one-time task loads the gMSA's profile so DPAPI can protect a secret as it, and whether the gMSA's DPAPI key survives its automatic password change (Step 1.4); whether the gMSA needs *Log on as a batch job*; registering a task under a gMSA with `-LogonType Password` (Learn shows no example, as *Building Provider Notices*, Chapter 08 records); the Azure role for the rule's deployment; and which SailPoint token the agency's tenant accepts (Step 1.8).
 
 ## Dangers
 
 | Danger | What happens | The guard |
 |---|---|---|
 | The pipeline registered under the assessment gMSA | A compromise of a read job can change users | `Register-HtRequestPipeline.ps1` refuses `gmsa-fmpassess$` |
-| A secret in a settings file or a machine variable | Anyone on the host holds the client | The run scripts refuse a secret-like key; Step 1.4 checks the machine scope |
+| A secret in a settings file or a variable | Anyone on the host holds the client | The run scripts refuse a secret-like key; Step 1.4 protects each secret for the gMSA only, and the pipeline refuses a file anyone else can read |
+| An `ORG_ADMIN` personal access token with every scope | A stolen token can do anything an administrator can in SailPoint | Step 1.8: used only after a 403, on a dedicated identity, with one scope |
 | A credential folder others can read | Anyone who reads it signs in as the app | Step 1.3 removes inherited access |
 | The reader app granted more "to save a step" | A read job can write | Step 1.2 compares the grants with the kit's declared permissions |
 | Every catalog item turned on at once | A fault reaches every task the same day | Step 2.4, one item a week |
@@ -389,11 +416,11 @@ Not yet specified: setting an environment variable for a gMSA only (Step 1.4); w
 - [ ] Both gMSAs approved in SailPoint, covered by WD-183, installed and tested on the host.
 - [ ] Each app holds only its kit's permissions; only the worker app holds a directory role, User Administrator.
 - [ ] Both credential folders readable only by their gMSA and Tier 0.
-- [ ] Neither settings file holds a secret or a placeholder; neither client secret is a machine variable.
+- [ ] Neither settings file holds a secret or a placeholder; both secrets are DPAPI-protected files only the pipeline's gMSA can decrypt.
 - [ ] The four jobs and the pipeline are registered, each under its own gMSA, and each has run.
 - [ ] The rule forwards every listed server's logs, and the old share is gone.
 - [ ] The smoke test's four requests are `done` with evidence, and no secret is in any run folder.
-- [ ] The rollback was rehearsed, and Book 10, Appendix B lists both sets.
+- [ ] The rollback was rehearsed, and the registered tasks match Book 10, Appendix B, D.7.
 
 ::: {.callout-tip}
 ## Continue the book
@@ -408,6 +435,11 @@ Not yet specified: setting an environment variable for a gMSA only (Step 1.4); w
 [^ht06-update]: Microsoft Learn, "Update user" (`passwordProfile`: in app-only scenarios the app needs a supported permission and at least the User Administrator role), <https://learn.microsoft.com/graph/api/user-update?view=graph-rest-1.0> (read November 27, 2026).
 [^ht06-deploy]: Microsoft Learn, "New-AzResourceGroupDeployment" (`-TemplateFile`, `-TemplateParameterObject`, `-WhatIf`), <https://learn.microsoft.com/powershell/module/az.resources/new-azresourcegroupdeployment> (read November 27, 2026).
 [^ht06-dcr]: Microsoft Learn, "Remove-AzDataCollectionRuleAssociation," <https://learn.microsoft.com/powershell/module/az.monitor/remove-azdatacollectionruleassociation>, and "Remove-AzDataCollectionRule," <https://learn.microsoft.com/powershell/module/az.monitor/remove-azdatacollectionrule> (read November 27, 2026).
+[^ht06-dpapi]: Microsoft Learn, "ProtectedData Class," <https://learn.microsoft.com/dotnet/api/system.security.cryptography.protecteddata> (read November 28, 2026).
+[^ht06-env]: Microsoft Learn, "about_Environment_Variables" (the Process scope is built from the Machine and User scopes), <https://learn.microsoft.com/powershell/module/microsoft.powershell.core/about/about_environment_variables> (read November 28, 2026).
+[^ht06-arc-mi]: Microsoft Learn, "Access Azure resources with managed identity on Azure Arc-enabled servers," <https://learn.microsoft.com/azure/azure-arc/servers/managed-identity-authentication> (read November 28, 2026).
+[^ht06-isc-status]: SailPoint, Identity Security Cloud API specification v3, `listAccessRequestStatus`, <https://github.com/sailpoint-oss/api-specs/blob/main/idn/v3/paths/access-request-status.yaml> (read November 28, 2026).
+[^ht06-isc-authz]: SailPoint Developer, "Authentication" (personal access tokens) and "Authorization" (a token's scopes inside its user's level), <https://developer.sailpoint.com/docs/api/authentication> and <https://developer.sailpoint.com/docs/api/authorization> (read November 28, 2026).
 [^ht06-icacls]: Microsoft Learn, "icacls," <https://learn.microsoft.com/windows-server/administration/windows-commands/icacls> (carried from *Building Provider Notices*, Chapter 08; the grants are design guidance).
 [^ht06-oscal]: National Institute of Standards and Technology, SP 800-53 Rev. 5 OSCAL catalog, release 5.2.0, <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json> (read November 9, 2026; carried from *Building Provider Notices*).
 [^ht06-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026*, <https://www.fedramp.gov/2026/providers/20x/key-security-indicators/> (read November 9, 2026; carried from *Building Provider Notices*).

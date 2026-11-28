@@ -30,3 +30,7 @@ N1 how to set an environment variable visible only to a gMSA (WD-182 says the se
 ## Overlap search (origin/main, November 27, 2026)
 
 Searched for "platform host", "gmsa-fmpassess", "gmsa-fmphelpdesk", "Register-ScheduledTask", "credential folder", "WD-181", "WD-182", "WD-183". Found: the platform host guide (the host itself; linked), Book 10, Appendix B (the host's interfaces; linked; see the gap above), *Building Provider Notices*, Chapter 08 (the same scheduled-task pattern; facts carried), the estate inventory's README (the same assessment gMSA; consistent). No conflicting fact.
+
+## WD-184 amendment (November 28, 2026)
+
+N1 is answered by WD-184, drafted for the workbook owner's approval: DPAPI-protected files only the pipeline's gMSA can decrypt (Step 1.4). Not machine variables, because every process gets the Machine scope; and not Azure Key Vault behind the host's Arc managed identity, because Learn says Arc-enabled servers use a system-assigned identity by default and any member of Administrators or Hybrid Agent Extension Applications can get its token, and the platform host guide puts the Gitea service account in that group. Step 1.8 registers the pipeline with `-PipelineDryRun` first, so the SailPoint token is proved as the gMSA; a 403 leads to the dedicated identity's personal access token. The Appendix B gap is closed: Book 10, Appendix B, D.7 (with B.4, B.6, E.4 and the egress allowlist) lists the jobs, the pipeline, both gMSAs, both apps and their paths, and the approvals table no longer has a step for a missing entry.

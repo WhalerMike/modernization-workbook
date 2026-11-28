@@ -2,4 +2,4 @@ PS> $s = Get-Content tests/fixtures/requests-settings.fixture.json -Raw | Conver
 PS> $s | Add-Member -NotePropertyName iscClientSecret -NotePropertyValue 'not-here'
 PS> $s | ConvertTo-Json | Set-Content out/secret-settings.json
 PS> try { ./deploy/Invoke-HtRequestPipeline.ps1 -SettingsPath out/secret-settings.json -FixturePath tests/fixtures -DryRun } catch { $_.Exception.Message }
-Settings hold a secret-like key (iscClientSecret); secrets stay in the environment variables the settings name.
+Settings hold a secret-like key (iscClientSecret); secrets stay in the DPAPI-protected files the settings name (WD-184).

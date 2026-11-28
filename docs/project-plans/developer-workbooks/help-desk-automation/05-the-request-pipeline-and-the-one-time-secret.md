@@ -64,7 +64,12 @@ Each row is pinned by a test in `The approved-request pipeline (WD-182)` or `The
 
 ### Signing in
 
-`deploy/Invoke-HtRequestPipeline.ps1 -SettingsPath [-DryRun]` refuses a settings file with a secret-like key, signs in to Graph as the help desk request worker app with its certificate file, and calls `Connect-HtRequestSystems`, which signs in to ServiceNow (`/oauth_token.do`) and SailPoint (`/oauth/token`) with the client credentials whose secrets are in the environment variables the settings name, set for the pipeline's gMSA only. Then it runs `Invoke-HtRequestQueue -Apply` (a dry run with `-DryRun`) into `<runsPath>/<yyyy-MM-ddTHHmmssZ>/`, prints the outcome of each item, and exits 2 if any item failed.
+`deploy/Invoke-HtRequestPipeline.ps1 -SettingsPath [-DryRun]` refuses a settings file with a secret-like key, signs in to Graph as the help desk request worker app with its certificate file, and calls `Connect-HtRequestSystems`, which signs in to ServiceNow (`/oauth_token.do`) and SailPoint (`/oauth/token`) with the client-credentials grant. [WD-184](../../../about/decision-register.md#wd-184), a draft amendment to WD-182 awaiting approval, settles two things WD-182 left open:
+
+- **The secrets.** Each secret is a file the settings name (`serviceNowSecretFile`, `iscSecretFile`), protected with DPAPI in the pipeline gMSA's own scope, so only that account on that host can decrypt it.[^ht05-dpapi] `Read-HtSecretFile` refuses a file that anyone other than the account, SYSTEM, the Administrators and the settings' `credentialAdmins` can read. No secret is an environment variable: Learn says each process's environment is built from the Machine and User scopes, so a machine variable reaches every process on the host,[^ht05-env] and a gMSA never signs in to set its own. [Chapter 06](06-deploying-to-test-and-production.md#step-1.4-the-pipelines-client-secrets) stores them with `deploy/Protect-HtPipelineSecret.ps1`.
+- **The SailPoint token.** `iscCredential` is `api-client` or `personal-access-token`. SailPoint gives a personal access token the client-credentials grant too, so the code is the same for both.[^ht05-isc-auth] After signing in, `Connect-HtRequestSystems` reads the access request status once (`GET /v3/access-request-status?limit=1`, the call the queue already declares). A 403 stops the run with HT-RQ-06, which says what to change. Without that read, every item would fail with HT-RQ-02 and look like a missing approval. SailPoint's specification lists the status read for user-context tokens only,[^ht05-status] so the test stage proves the API client's token first. On a 403 the pipeline uses a personal access token of a dedicated non-human SailPoint identity that exists only for the pipeline, holding only `idn:access-request-status:read`. A token's rights are its scopes, inside its user's level,[^ht05-isc-authz] and the specification names `ORG_ADMIN` as the level for reading other users' requests, so the single scope is what keeps the token narrow.
+
+If a sign-in or the status read fails, the script writes `signin.json` in the dated run folder and exits 3. Otherwise it runs `Invoke-HtRequestQueue -Apply` (a dry run with `-DryRun`) into `<runsPath>/<yyyy-MM-ddTHHmmssZ>/`, prints the outcome of each item, and exits 2 if any item failed.
 
 ### The queue
 
@@ -145,8 +150,11 @@ $s | Add-Member -NotePropertyName iscClientSecret -NotePropertyValue 'not-here'
 $s | ConvertTo-Json | Set-Content out/secret-settings.json
 try { ./deploy/Invoke-HtRequestPipeline.ps1 -SettingsPath out/secret-settings.json -FixturePath tests/fixtures -DryRun } catch { $_.Exception.Message }
 
-# Step 11: Run this chapter's tests
-Invoke-Pester -Path tests -FullNameFilter 'The approved-request pipeline*', 'The request pipeline on the platform host*' -Output None -PassThru | Select-Object PassedCount, FailedCount
+# Step 11: Print where a secret would be protected, and for whom
+./deploy/Protect-HtPipelineSecret.ps1 -SettingsPath tests/fixtures/requests-settings.fixture.json -System sailpoint | Format-List System, SecretFile, ProtectedFor, Task, Applied
+
+# Step 12: Run this chapter's tests
+Invoke-Pester -Path tests -FullNameFilter 'The approved-request pipeline*', 'The request pipeline on the platform host*', 'The pipeline''s sign-in and secrets*' -Output None -PassThru | Select-Object PassedCount, FailedCount
 
 # After the steps
 Remove-Item -Recurse -Force out
@@ -299,33 +307,47 @@ Remove-Item -Recurse -Force out
 
     <!-- capture:end -->
 
-11. **Run this chapter's tests:**
+11. **Print where a secret would be protected, and for whom.** The secret script is a dry run without `-Apply`; on the host it asks for the secret and protects it for the gMSA ([Chapter 06](06-deploying-to-test-and-production.md#step-1.4-the-pipelines-client-secrets)):
 
     ```powershell
-    Invoke-Pester -Path tests -FullNameFilter 'The approved-request pipeline*', 'The request pipeline on the platform host*' -Output None -PassThru | Select-Object PassedCount, FailedCount
+    ./deploy/Protect-HtPipelineSecret.ps1 -SettingsPath tests/fixtures/requests-settings.fixture.json -System sailpoint | Format-List System, SecretFile, ProtectedFor, Task, Applied
     ```
 
     <!-- capture:begin 05-11 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
 
-    ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/ht/05-11.txt))](captures/05-11.png){.lightbox fig-alt="Terminal window showing Invoke-Pester -Path tests -FullNameFilter 'The approved-request pipeline*', '… and what it printed"}
+    ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/ht/05-11.txt))](captures/05-11.png){.lightbox fig-alt="Terminal window showing ./deploy/Protect-HtPipelineSecret.ps1 -SettingsPath tests/fixtures/requests-s… and what it printed"}
 
     <!-- capture:end -->
 
-**Expected result:** `PassedCount` 20 and `FailedCount` 0. Delete `out` when you're done:
+    The secret file the settings name, protected for `CONTOSO\gmsa-fmphelpdesk$`, and `Applied` `False`.
+
+12. **Run this chapter's tests:**
+
+    ```powershell
+    Invoke-Pester -Path tests -FullNameFilter 'The approved-request pipeline*', 'The request pipeline on the platform host*', 'The pipeline''s sign-in and secrets*' -Output None -PassThru | Select-Object PassedCount, FailedCount
+    ```
+
+    <!-- capture:begin 05-12 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+
+    ![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/ht/05-12.txt))](captures/05-12.png){.lightbox fig-alt="Terminal window showing Invoke-Pester -Path tests -FullNameFilter 'The approved-request pipeline*', '… and what it printed"}
+
+    <!-- capture:end -->
+
+**Expected result:** `PassedCount` 31 and `FailedCount` 0. The sign-in tests stand in for ServiceNow and SailPoint, including a 403 from each kind of SailPoint token. Delete `out` when you're done:
 
 ```powershell
 Remove-Item -Recurse -Force out
 ```
 
-<!-- capture:begin 05-12 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
+<!-- capture:begin 05-13 (generated by scripts/kit_captures.py; not part of the reviewed page) -->
 
-![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/ht/05-12.txt))](captures/05-12.png){.lightbox fig-alt="Terminal window showing Remove-Item -Recurse -Force out and what it printed"}
+![What the terminal shows, run on the kit's fixtures ([the same output as text](https://github.com/WhalerMike/modernization-workbook/blob/main/data/kit-captures/ht/05-13.txt))](captures/05-13.png){.lightbox fig-alt="Terminal window showing Remove-Item -Recurse -Force out and what it printed"}
 
 <!-- capture:end -->
 
 ## Lab 2: a test tenant, instance and sandbox
 
-Use a Microsoft Entra test tenant, the ServiceNow developer instance with the catalog items from [Chapter 04, Lab 2](04-requests-in-servicenow-and-sailpoint.md#lab-2-a-sailpoint-sandbox-and-a-servicenow-developer-instance), and a SailPoint sandbox, never production. You need one **Typed user change** requested item for a cloud-only test user that the hand-off (or, in the developer instance, an administrator) has set `ready` with the id of a sandbox access request that an approver other than the requester approved; it must be the only ready item. Work in `examples/help-desk-automation`, in PowerShell 7.1 or later with the Microsoft Graph PowerShell SDK, signed in as a test administrator who holds User Administrator through PIM ([Chapter 01, Lab 2](01-the-typed-change.md#lab-2-a-test-tenant), step 4). Resets and cloud accounts are proved in [Chapter 06](06-deploying-to-test-and-production.md#stage-1-test)'s test stage, under the pipeline's own identities. You'll replace: `<tenant-id>`, `<instance>`, `<sn-client-id>` and `<sn-client-secret>` (the pipeline's ServiceNow OAuth client), `<tenant>`, `<isc-client-id>` and `<isc-client-secret>` (the pipeline's SailPoint client), `<ritm-number>` and `<ritm-sys-id>` (the test item), `<test-user-upn>` and `<old-value>` (the test user, and the department step 3's plan records as `before`), and `<admin-user>` and `<admin-password>` (the developer instance's administrator). The authors haven't run this lab.
+Use a Microsoft Entra test tenant, the ServiceNow developer instance with the catalog items from [Chapter 04, Lab 2](04-requests-in-servicenow-and-sailpoint.md#lab-2-a-sailpoint-sandbox-and-a-servicenow-developer-instance), and a SailPoint sandbox, never production. You need one **Typed user change** requested item for a cloud-only test user that the hand-off (or, in the developer instance, an administrator) has set `ready` with the id of a sandbox access request that an approver other than the requester approved; it must be the only ready item. Work in `examples/help-desk-automation`, in PowerShell 7.1 or later with the Microsoft Graph PowerShell SDK, signed in as a test administrator who holds User Administrator through PIM ([Chapter 01, Lab 2](01-the-typed-change.md#lab-2-a-test-tenant), step 4). Resets and cloud accounts are proved in [Chapter 06](06-deploying-to-test-and-production.md#stage-1-test)'s test stage, under the pipeline's own identities. You'll replace: `<tenant-id>`, `<instance>`, `<sn-client-id>` (the pipeline's ServiceNow OAuth client), `<tenant>`, `<isc-credential>` (`api-client` first; `personal-access-token` if step 2 returns HT-RQ-06) and `<isc-client-id>` (that client's or token's id), `<ritm-number>` and `<ritm-sys-id>` (the test item), `<test-user-upn>` and `<old-value>` (the test user, and the department step 3's plan records as `before`), and `<admin-user>` and `<admin-password>` (the developer instance's administrator). The authors haven't run this lab.
 
 <!-- labs:begin lab-2-commands (generated by scripts/generate_labs.py; not part of the reviewed page) -->
 
@@ -333,16 +355,19 @@ Use a Microsoft Entra test tenant, the ServiceNow developer instance with the ca
 Every command in this lab, in order, from `examples/help-desk-automation`. Each step below says what it does and what to look for.
 
 ```powershell
-# Step 1: Write the lab's settings, and put the secrets in this session's environment only
+# Step 1: Write the lab's settings, and protect the two secrets for yourself
 New-Item -ItemType Directory -Force out | Out-Null
+icacls out /inheritance:r /grant:r "$([Security.Principal.WindowsIdentity]::GetCurrent().Name):(OI)(CI)F" | Out-Null
+Import-Module ./powershell/HelpDeskAutomation/HelpDeskAutomation.psm1 -Force
 $s = Get-Content deploy/requests-settings.template.json -Raw | ConvertFrom-Json -AsHashtable
 $s.Remove('_comment'); $s.tenantId = '<tenant-id>'; $s.serviceNowUrl = 'https://<instance>.service-now.com'; $s.serviceNowClientId = '<sn-client-id>'
-$s.iscApiUrl = 'https://<tenant>.api.identitynow.com'; $s.iscClientId = '<isc-client-id>'; $s.runsPath = 'out/request-runs-test'
+$s.iscApiUrl = 'https://<tenant>.api.identitynow.com'; $s.iscCredential = '<isc-credential>'; $s.iscClientId = '<isc-client-id>'; $s.runsPath = 'out/request-runs-test'
+$s.serviceNowSecretFile = 'out/servicenow.secret'; $s.iscSecretFile = 'out/sailpoint.secret'; $s.credentialAdmins = ''
 $s | ConvertTo-Json | Set-Content out/requests-settings.test.json
-$env:HDA_SN_CLIENT_SECRET = '<sn-client-secret>'; $env:HDA_ISC_CLIENT_SECRET = '<isc-client-secret>'
+Protect-HtSecretFile -Path out/servicenow.secret -Secret (Read-Host -AsSecureString 'ServiceNow client secret')
+Protect-HtSecretFile -Path out/sailpoint.secret -Secret (Read-Host -AsSecureString 'SailPoint client or token secret')
 
-# Step 2: Sign in to the three systems
-Import-Module ./powershell/HelpDeskAutomation/HelpDeskAutomation.psm1 -Force
+# Step 2: Sign in to the three systems, and prove the SailPoint token
 Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes ((Get-HtRequiredPermission -Task request-queue).GraphPermissions + (Get-HtRequiredPermission -Task typed-change-apply).GraphPermissions | Sort-Object -Unique) -NoWelcome
 Connect-HtRequestSystems -Settings (Get-Content out/requests-settings.test.json -Raw | ConvertFrom-Json -AsHashtable)
 
@@ -361,7 +386,6 @@ $b = New-HtTypedChangePlan -RequestId REQ-2026-0603 -User <test-user-upn> -Chang
 Invoke-HtTypedChange -PlanPath $b.PlanPath -ApprovedPlanSha256 $b.PlanSha256 -OutputPath out/backout -Apply | Format-List
 Invoke-RestMethod -Method PATCH -Uri "https://<instance>.service-now.com/api/now/table/sc_req_item/<ritm-sys-id>" -Credential $cred -Authentication Basic -ContentType 'application/json' -Body '{"u_automation_state": "manual"}' | Out-Null
 Disconnect-MgGraph
-Remove-Item Env:HDA_SN_CLIENT_SECRET, Env:HDA_ISC_CLIENT_SECRET
 Remove-Item -Recurse -Force out
 ```
 
@@ -369,24 +393,29 @@ Remove-Item -Recurse -Force out
 
 <!-- labs:end -->
 
-1. **Write the lab's settings, and put the secrets in this session's environment only:**
+1. **Write the lab's settings, and protect the two secrets for yourself.** You type each secret at a prompt; it's written only as a DPAPI-protected file in `out`, which only your account can read:
 
    ```powershell
    New-Item -ItemType Directory -Force out | Out-Null
+   icacls out /inheritance:r /grant:r "$([Security.Principal.WindowsIdentity]::GetCurrent().Name):(OI)(CI)F" | Out-Null
+   Import-Module ./powershell/HelpDeskAutomation/HelpDeskAutomation.psm1 -Force
    $s = Get-Content deploy/requests-settings.template.json -Raw | ConvertFrom-Json -AsHashtable
    $s.Remove('_comment'); $s.tenantId = '<tenant-id>'; $s.serviceNowUrl = 'https://<instance>.service-now.com'; $s.serviceNowClientId = '<sn-client-id>'
-   $s.iscApiUrl = 'https://<tenant>.api.identitynow.com'; $s.iscClientId = '<isc-client-id>'; $s.runsPath = 'out/request-runs-test'
+   $s.iscApiUrl = 'https://<tenant>.api.identitynow.com'; $s.iscCredential = '<isc-credential>'; $s.iscClientId = '<isc-client-id>'; $s.runsPath = 'out/request-runs-test'
+   $s.serviceNowSecretFile = 'out/servicenow.secret'; $s.iscSecretFile = 'out/sailpoint.secret'; $s.credentialAdmins = ''
    $s | ConvertTo-Json | Set-Content out/requests-settings.test.json
-   $env:HDA_SN_CLIENT_SECRET = '<sn-client-secret>'; $env:HDA_ISC_CLIENT_SECRET = '<isc-client-secret>'
+   Protect-HtSecretFile -Path out/servicenow.secret -Secret (Read-Host -AsSecureString 'ServiceNow client secret')
+   Protect-HtSecretFile -Path out/sailpoint.secret -Secret (Read-Host -AsSecureString 'SailPoint client or token secret')
    ```
 
-2. **Sign in to the three systems:**
+2. **Sign in to the three systems, and prove the SailPoint token:**
 
    ```powershell
-   Import-Module ./powershell/HelpDeskAutomation/HelpDeskAutomation.psm1 -Force
    Connect-MgGraph -Environment Global -TenantId <tenant-id> -Scopes ((Get-HtRequiredPermission -Task request-queue).GraphPermissions + (Get-HtRequiredPermission -Task typed-change-apply).GraphPermissions | Sort-Object -Unique) -NoWelcome
    Connect-HtRequestSystems -Settings (Get-Content out/requests-settings.test.json -Raw | ConvertFrom-Json -AsHashtable)
    ```
+
+   `StatusRead` `allowed`. If it throws HT-RQ-06 with a 403 for the API client, the sandbox has answered WD-184's test: create the personal access token of the pipeline's dedicated sandbox identity with only `idn:access-request-status:read`, set `<isc-credential>` to `personal-access-token` and `<isc-client-id>` to the token's client id, and run steps 1 and 2 again. Record which token worked.
 
 3. **Work the queue as a dry run:**
 
@@ -395,7 +424,7 @@ Remove-Item -Recurse -Force out
    Get-Content out/queue-test/plans/<ritm-number>/plan.json
    ```
 
-   One row, `<ritm-number>`, `dry-run`. If it says HT-RQ-02, the SailPoint read failed or the approval isn't complete: see *Not yet specified* below.
+   One row, `<ritm-number>`, `dry-run`. Step 2 has already proved the token, so an HT-RQ-02 here means the approval isn't complete.
 
 4. **Work it for real, and read the ticket back:**
 
@@ -408,14 +437,13 @@ Remove-Item -Recurse -Force out
 
    Expected: `done`, and an attachment `evidence.json`.
 
-5. **Back it out.** Put the user's value back with Chapter 01's functions, close the test item, sign out and clear the secrets:
+5. **Back it out.** Put the user's value back with Chapter 01's functions, close the test item, sign out, and delete `out` with the two secret files:
 
    ```powershell
    $b = New-HtTypedChangePlan -RequestId REQ-2026-0603 -User <test-user-upn> -ChangeId set-department -Value '<old-value>' -OutputPath out/backout
    Invoke-HtTypedChange -PlanPath $b.PlanPath -ApprovedPlanSha256 $b.PlanSha256 -OutputPath out/backout -Apply | Format-List
    Invoke-RestMethod -Method PATCH -Uri "https://<instance>.service-now.com/api/now/table/sc_req_item/<ritm-sys-id>" -Credential $cred -Authentication Basic -ContentType 'application/json' -Body '{"u_automation_state": "manual"}' | Out-Null
    Disconnect-MgGraph
-   Remove-Item Env:HDA_SN_CLIENT_SECRET, Env:HDA_ISC_CLIENT_SECRET
    Remove-Item -Recurse -Force out
    ```
 
@@ -431,10 +459,16 @@ Remove-Item -Recurse -Force out
 | Create user, add members | `User.Create`; `GroupMember.ReadWrite.All` | [^ht05-create] [^ht05-members] |
 | Role assignments | `RoleManagement.Read.Directory` | [^ht05-roles] |
 | Access request status | `state` values; `approvalDetails[].status` values; `requester`, `currentOwner` | [^ht05-status] [^ht05-states] |
+| Which SailPoint tokens can read it | Listed under `userAuth` (a personal access token or the authorization code flow) only; `ORG_ADMIN` for other users' requests | [^ht05-status] |
+| SailPoint tokens | Client-credentials tokens have no user context and often get 403 from admin APIs; personal access tokens use the client-credentials grant, carry their user's access, up to 10 per user | [^ht05-isc-auth] |
+| A personal access token's scopes | Its rights are its scopes, inside its user's level; no scope list means `sp:scopes:all` | [^ht05-isc-authz] |
+| DPAPI | `ProtectedData.Protect` with `DataProtectionScope.CurrentUser`: only the same user can decrypt; the key is in the user's profile, which must be loaded | [^ht05-dpapi] |
+| Environment variables | A process's environment is built from the Machine and User scopes | [^ht05-env] |
 
 Not yet specified:
 
-- **Which SailPoint token the status read needs.** SailPoint's specification lists `listAccessRequestStatus` under `userAuth` with user level `ORG_ADMIN`, and no `applicationAuth`;[^ht05-status] *Building Ticket-to-Machine*, Chapter 03 records that a client-credentials token has no user context and that most admin APIs often return 403 with one.[^ht05-isc-auth] The kit and WD-182 sign the pipeline in with client credentials. Whether that token can read the status, or the pipeline's client needs a personal access token for a user at `ORG_ADMIN`, is proved in the test stage; until then neither is the recommendation.
+- **Whether the API client's token reads the status.** *Building Ticket-to-Machine*, Chapter 03 records that a client-credentials token has no user context and that most admin APIs often return 403 with one.[^ht05-isc-auth] [WD-184](../../../about/decision-register.md#wd-184) decides what happens either way: the pipeline proves the token at every sign-in, and on a 403 uses the dedicated identity's personal access token. Which one the agency's tenant needs is proved in the test stage.
+- **DPAPI under a gMSA.** Whether a one-time scheduled task loads the gMSA's profile, so DPAPI can protect a secret as it, and whether the gMSA's DPAPI key survives its automatic password change, are proved in the test stage.
 - **The pass's write permission.** Learn's table names a read permission as least privileged for creating a pass; the kit declares `UserAuthMethod-TAP.ReadWrite.All` until a test tenant shows otherwise (WD-182).
 - **Which role, if any, an app needs for the method deletes and the pass in app-only use.** Learn's pages name Authentication Administrator and Privileged Authentication Administrator for delegated access only; the pipeline refuses users with a directory role either way.
 
@@ -448,7 +482,7 @@ The controls and KSIs are `config/requirements.json` for `typed-change`, `passwo
 | A password reset forced a change at next sign-in, after recorded verification, and its secret reached only the restricted field (Lab 1, steps 3 to 5) | IA-5; AC-2 | KSI-IAM-JIT | The service desk lead |
 | An authenticator reset removed the old methods and issued a single-use, 60-minute pass, after verification and two approvals (Lab 1, steps 4 to 6) | IA-5; IA-2; IA-12; SI-4 | KSI-IAM-JIT; KSI-IAM-SUS | Security operations, which watches repeated resets |
 | A cloud account was created from an approved profile with its groups only (Lab 1, step 4) | AC-2; AC-6; IA-5 | KSI-IAM-AAM | The identity governance engineer |
-| The pipeline runs under its own gMSA, never the assessment gMSA, with no secret in its settings (Lab 1, steps 8 to 10) | AC-6; IA-5 | KSI-IAM-JIT | The platform lead |
+| The pipeline runs under its own gMSA, never the assessment gMSA, with no secret in its settings, and its secrets protected for that gMSA only (Lab 1, steps 8 to 12) | AC-6; IA-5 | KSI-IAM-JIT | The platform lead |
 
 KSIs are FedRAMP 20x indicators for cloud service providers; the agency lines its evidence up with them and doesn't report them ([Book 00, Appendix B](../../../books/b00-orientation/appendix-b-engagement-archetype.md)). The mapping is the program's *(design guidance)*. The pipeline's records support these controls; the assessor decides them.
 
@@ -462,16 +496,17 @@ KSIs are FedRAMP 20x indicators for cloud service providers; the agency lines it
 | The secret in a log, a work note or an email | Whoever reads the log holds the account | Only `u_one_time_secret`; Lab 1, step 5 and a test check the evidence; cleared after two hours |
 | The pipeline shares the assessment gMSA | A compromise of the read-only jobs can change users | Registration refuses `gmsa-fmpassess$`; separate apps for read and write (WD-181, WD-182) |
 | Two runs overlap | An item is worked twice | The task is registered to ignore a new instance while one runs, and an item leaves `ready` once worked |
-| A secret in the settings file | Anyone who reads the file holds the client | The run refuses a secret-like key; secrets are environment variables for the gMSA only |
+| A secret in the settings file or an environment variable | Anyone who reads the file, or any process on the host, holds the client | The run refuses a secret-like key; secrets are DPAPI-protected files only the gMSA can decrypt, and the pipeline refuses one anyone else can read (WD-184) |
+| An `ORG_ADMIN` personal access token with every scope | A stolen token can do anything an administrator can in SailPoint | The token holds only `idn:access-request-status:read`, belongs to a dedicated identity, and is used only if the API client's token gets a 403 (WD-184) |
 
 ## Checklist
 
 - [ ] The worker app holds only the permissions WD-182 lists, and the User Administrator role, and nothing else.
-- [ ] The pipeline's gMSA isn't `gmsa-fmpassess$`, and only it can read the environment variables and the certificate file.
-- [ ] The SailPoint token question above is answered in the test stage, and the answer recorded in the change record.
+- [ ] The pipeline's gMSA isn't `gmsa-fmpassess$`, and only it and Tier 0 can read the certificate file and the two secret files, which only it can decrypt.
+- [ ] The test stage's status read showed which SailPoint token works (the API client, or the dedicated identity's personal access token with one scope), and the change record says which (WD-184).
 - [ ] The clearing job runs every 15 minutes, with the same limit as `secretClearMinutes`.
 - [ ] Every worked item has its state, a work note with the evidence's SHA-256, and `evidence.json` attached, and no secret appears anywhere else.
-- [ ] Book 10, Appendix B lists the pipeline, its identities and its paths before it runs (WD-182).
+- [ ] [Book 10, Appendix B, D.7](../../../books/b10-cloud-boundary/appendix-b-platform-host-interfaces.md#d.7-help-desk-jobs-and-the-request-pipeline) lists the pipeline, its identities and its paths, and still matches what you deploy (WD-182).
 
 ::: {.callout-tip}
 ## Continue the book
@@ -490,6 +525,9 @@ KSIs are FedRAMP 20x indicators for cloud service providers; the agency lines it
 [^ht05-deployments]: Microsoft Learn, "National cloud deployments," <https://learn.microsoft.com/graph/deployments> (read November 9, 2026; carried from *Building Provider Notices*).
 [^ht05-status]: SailPoint, Identity Security Cloud API specification v3, `listAccessRequestStatus` (`paths/access-request-status.yaml`: `userAuth` scope `idn:access-request-status:read`, user level `ORG_ADMIN`, filter `accessRequestId`; response `RequestedItemStatus`), <https://github.com/sailpoint-oss/api-specs/blob/main/idn/v3/paths/access-request-status.yaml> (read November 27, 2026).
 [^ht05-states]: SailPoint, Identity Security Cloud API specification v3, schemas `RequestedItemStatusRequestState.yaml` (the request's states), `ApprovalStatusDto.yaml` (`status`, `currentOwner`) and `ManualWorkItemState.yaml` (the approval statuses), <https://github.com/sailpoint-oss/api-specs/tree/main/idn/v3/schemas> (read November 27, 2026).
-[^ht05-isc-auth]: SailPoint Developer, "Authentication" (client-credentials limits), <https://developer.sailpoint.com/docs/api/authentication> (read November 1, 2026; carried from *Building Ticket-to-Machine*, Chapter 03).
+[^ht05-isc-auth]: SailPoint Developer, "Authentication" (client-credentials limits; personal access tokens "implicitly granted the `CLIENT_CREDENTIALS` grant type", carrying the access of the user who made them), <https://developer.sailpoint.com/docs/api/authentication> (read November 1, 2026, carried from *Building Ticket-to-Machine*, Chapter 03; read again November 28, 2026).
+[^ht05-isc-authz]: SailPoint Developer, "Authorization" (user levels and a token's scopes), <https://developer.sailpoint.com/docs/api/authorization> (read November 28, 2026).
+[^ht05-dpapi]: Microsoft Learn, "ProtectedData Class," <https://learn.microsoft.com/dotnet/api/system.security.cryptography.protecteddata> (read November 28, 2026).
+[^ht05-env]: Microsoft Learn, "about_Environment_Variables," <https://learn.microsoft.com/powershell/module/microsoft.powershell.core/about/about_environment_variables> (read November 28, 2026).
 [^ht05-oscal]: National Institute of Standards and Technology, SP 800-53 Rev. 5 OSCAL catalog, release 5.2.0, <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json> (read November 9, 2026; carried from *Building Provider Notices*).
 [^ht05-ksi]: FedRAMP, "Key Security Indicators," *FedRAMP Consolidated Rules for 2026*, <https://www.fedramp.gov/2026/providers/20x/key-security-indicators/> (read November 9, 2026; carried from *Building Provider Notices*).

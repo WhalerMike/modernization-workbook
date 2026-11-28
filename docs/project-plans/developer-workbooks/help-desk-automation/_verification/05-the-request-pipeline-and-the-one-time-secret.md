@@ -36,3 +36,18 @@ Five rows, using only `config/requirements.json`'s controls and KSIs for `typed-
 ## Overlap search (origin/main, November 27, 2026)
 
 Searched for "Temporary Access Pass", "temporaryAccessPass", "passwordProfile", "one-time secret", "separate channel", "re-read", "gmsa-fmphelpdesk", "request worker". Found: Book 15, Chapter 12, tasks 1, 2 and 4 (the separate channel rule; linked), Book 15, Chapter 04 (TAP and re-registration, high-risk tasks; not repeated), *Building Ticket-to-Machine*, Chapter 05 (the re-read rule for results; linked), Permissions by Run (generated from the same file; it lists `UserAuthenticationMethod.Read.All` for `authenticator-reset` from the list call's row, which WD-182's app list covers with the ReadWrite permission). Book 15, Chapter 12 says the operator holds no standing role; WD-182 gives the worker app the User Administrator role, which is the decision the chapter follows (the app, not a person, holds it). No conflicting fact beyond the SailPoint token question.
+
+## WD-184 amendment (November 28, 2026)
+
+Drafted for the workbook owner's approval; WD-182 stands until he approves it. Code: `Connect-HtRequestSystems` (reads each secret from a DPAPI-protected file, then one status read; a 403 is HT-RQ-06), `Read-HtSecretFile`, `Protect-HtSecretFile`, `Test-HtSecretFileAccess`, `deploy/Protect-HtPipelineSecret.ps1`, `deploy/Register-HtRequestPipeline.ps1 -PipelineDryRun`, `deploy/Invoke-HtRequestPipeline.ps1` (`signin.json`, exit 3). Thirteen tests added (77 in the kit; two need Windows and are skipped elsewhere). Lab 1 gained step 11, and its tests step now counts 31.
+
+| # | Claim (short) | Verdict | Source |
+|---|---|---|---|
+| W1 | `listAccessRequestStatus` lists `security: userAuth [idn:access-request-status:read]` and `x-sailpoint-userLevels: ORG_ADMIN`; "A user with ORG_ADMIN is required to call this API to get a list of statuses for other users"; the `accessRequestId` filter supports `eq` | verified Nov 28 (spec file read) | `ht05-status` |
+| W2 | The v3 specification's `userAuth` is a PAT or the authorization code flow, tied to a user's level; `applicationAuth` is client credentials, "not associated with a user" | verified Nov 28 | `idn/sailpoint-api.v3.yaml`, securitySchemes |
+| W3 | PATs are "implicitly granted the `CLIENT_CREDENTIALS` grant type" and carry the creating user's access; 10 per user; client credentials have no user context; admin APIs often return 403 | verified Nov 28 | `ht05-isc-auth` |
+| W4 | A PAT's rights are its scopes inside its user's level; no scope list grants `sp:scopes:all` | verified Nov 28 | `ht05-isc-authz` |
+| W5 | DPAPI `CurrentUser`: only the same user decrypts; the key is in the user's profile, which must be loaded | verified Nov 28 | `ht05-dpapi` |
+| W6 | The Process scope is built from the Machine and User scopes | verified Nov 28 | `ht05-env` |
+
+Not verified: whether SailPoint allows a lower user level than `ORG_ADMIN` for this read (the specification lists none); whether a gMSA's DPAPI key survives its automatic password change.

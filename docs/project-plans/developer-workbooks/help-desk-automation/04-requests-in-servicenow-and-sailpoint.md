@@ -70,7 +70,7 @@ It adds five fields to the requested item: `u_automation_state` (`awaiting-appro
 
 ### The access profiles
 
-[`sailpoint/access-profiles.json`](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/help-desk-automation/sailpoint/access-profiles.json) holds the four requestable profiles in SailPoint's v3 shape, with placeholders for the owner, source and entitlement the agency models a help desk task with. Approving a profile approves that one task for that one person; it grants nothing standing. It also names the pipeline's API client: `idn:access-request-status:read` only, read only.
+[`sailpoint/access-profiles.json`](https://github.com/WhalerMike/modernization-workbook/blob/main/examples/help-desk-automation/sailpoint/access-profiles.json) holds the four requestable profiles in SailPoint's v3 shape, with placeholders for the owner, source and entitlement the agency models a help desk task with. Approving a profile approves that one task for that one person; it grants nothing standing. It also names the pipeline's API client: `idn:access-request-status:read` only, read only. SailPoint's specification lists that read for user-context tokens only, with `ORG_ADMIN` for other users' requests, and a client-credentials token has no user context. So [WD-184](../../../about/decision-register.md#wd-184), a draft amendment to WD-182 awaiting approval, has the test stage prove the API client's token first. If it gets a 403, the pipeline uses the personal access token of a dedicated non-human SailPoint identity, holding only that scope ([Chapter 05](05-the-request-pipeline-and-the-one-time-secret.md#signing-in)).
 
 ### The tie to the code
 
@@ -194,7 +194,7 @@ Invoke-Pester -Path tests -FullNameFilter '*templates parse*' -Output None -Pass
 
    <!-- capture:end -->
 
-   Every profile but the password reset has two steps; the pipeline's client reads status and nothing else.
+   Every profile but the password reset has two steps; the pipeline's client reads status and nothing else, and the note says which token it falls back to.
 
 6. **Read the fixture queue as SailPoint would report it.** One state and the approvals' statuses for each access request:
 
@@ -350,7 +350,7 @@ KSIs are FedRAMP 20x indicators for cloud service providers; the agency lines it
 - [ ] The four catalog items exist with exactly the template's variables, and none is free text beyond the typed change's value, which its change's pattern checks.
 - [ ] Only the hand-off writes `u_isc_access_request_id`; only agents write the verification fields; only the pipeline writes the secret field.
 - [ ] Each access profile is requestable, with the scheme the governance office approved, and grants nothing standing.
-- [ ] The pipeline's SailPoint client holds `idn:access-request-status:read` and nothing else.
+- [ ] The pipeline's SailPoint client, or the dedicated identity's personal access token if the test stage needed it (WD-184), holds `idn:access-request-status:read` and nothing else.
 - [ ] `config/request-items.json` matches the instance's names.
 
 ::: {.callout-tip}

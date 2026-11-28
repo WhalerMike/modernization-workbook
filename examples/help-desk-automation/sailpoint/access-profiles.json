@@ -129,6 +129,6 @@
       "idn:access-request-status:read"
     ],
     "userLevel": "ORG_ADMIN (SailPoint requires it to read other users' request status)",
-    "note": "Read only; the pipeline never approves or submits"
+    "note": "Read only; the pipeline never approves or submits. An API client first; if its token gets 403 on the status read, the personal access token of a dedicated non-human identity holding only this scope (WD-184)"
   }
 }

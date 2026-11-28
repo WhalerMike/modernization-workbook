@@ -136,7 +136,7 @@ Run these on the platform host as a host administrator, in a test tenant and tes
    ./deploy/Register-HtScheduledJobs.ps1 -SettingsPath D:\HelpDeskAutomation\settings.json -Apply
    ```
 
-7. **Book 10, Appendix B.** List the jobs, the gMSA, the reader app and the paths (outbound HTTPS to `login.microsoftonline.com`, `graph.microsoft.com`, `management.azure.com` and `api.loganalytics.io`) before the first scheduled run, as WD-181 requires.
+7. **Book 10, Appendix B.** [D.7](../../docs/books/b10-cloud-boundary/appendix-b-platform-host-interfaces.md#d.7-help-desk-jobs-and-the-request-pipeline) lists the jobs, the gMSA, the reader app and the paths (outbound HTTPS to `login.microsoftonline.com`, `graph.microsoft.com`, `management.azure.com` and `api.loganalytics.io`), as WD-181 requires before the first scheduled run. Check that it still matches your copy before you register.
 
 ### Forward the event logs instead of writing them to a share
 
@@ -194,17 +194,19 @@ Of the eleven fictional items, ten are ready: four run, one waits for a pending 
 ### What each system needs
 
 - **ServiceNow** ([`servicenow/`](servicenow/)): the four catalog items and the fields on the requested item ([`catalog-items.json`](servicenow/catalog-items.json)); the hand-off business rule ([`business-rule-hand-off-to-access-management.js`](servicenow/business-rule-hand-off-to-access-management.js)); the job that clears the one-time secret ([`scheduled-job-clear-one-time-secret.js`](servicenow/scheduled-job-clear-one-time-secret.js)); and the roles ([`acl.md`](servicenow/acl.md)).
-- **SailPoint** ([`sailpoint/access-profiles.json`](sailpoint/access-profiles.json)): one requestable access profile per task, with its approval scheme in SailPoint's own shape (`accessRequestConfig.approvalSchemes`), and the pipeline's API client, `idn:access-request-status:read` only.
-- **The platform host:** the pipeline's own gMSA, requested and approved like any managed service account (an example name is `gmsa-fmphelpdesk$`); the request worker app with its certificate and the permissions above; and the ServiceNow and SailPoint client secrets in environment variables for that gMSA. Then:
+- **SailPoint** ([`sailpoint/access-profiles.json`](sailpoint/access-profiles.json)): one requestable access profile per task, with its approval scheme in SailPoint's own shape (`accessRequestConfig.approvalSchemes`), and the pipeline's API client, `idn:access-request-status:read` only. SailPoint's specification lists the status read for user-context tokens only, so if the test stage's read returns 403 the pipeline uses instead a personal access token of a dedicated non-human SailPoint identity, with that one scope ([WD-184](../../docs/about/decision-register.md#wd-184), a draft amendment to WD-182 awaiting approval). The specification names `ORG_ADMIN` as the user level for reading other users' requests, so the token's single scope is what keeps it narrow.
+- **The platform host:** the pipeline's own gMSA, requested and approved like any managed service account (an example name is `gmsa-fmphelpdesk$`); the request worker app with its certificate and the permissions above; and the ServiceNow and SailPoint secrets as files in `D:\HelpDeskRequests\credentials\`, protected with DPAPI for that gMSA only (WD-184). An environment variable can't be limited to one account: a machine variable reaches every process on the host. A Tier 0 administrator stores each secret once; the script runs a one-time task as the gMSA, which alone can then decrypt it. Then the pipeline runs as a dry run under its gMSA, to prove the sign-ins and the SailPoint status read, before it's turned on:
 
   ```powershell
-  ./deploy/Invoke-HtRequestPipeline.ps1 -SettingsPath D:\HelpDeskRequests\settings.json -DryRun
-  ./deploy/Register-HtRequestPipeline.ps1 -SettingsPath D:\HelpDeskRequests\settings.json
+  ./deploy/Protect-HtPipelineSecret.ps1 -SettingsPath D:\HelpDeskRequests\settings.json -System servicenow -Apply
+  ./deploy/Protect-HtPipelineSecret.ps1 -SettingsPath D:\HelpDeskRequests\settings.json -System sailpoint -Apply
+  ./deploy/Register-HtRequestPipeline.ps1 -SettingsPath D:\HelpDeskRequests\settings.json -Apply -PipelineDryRun
+  Start-ScheduledTask -TaskPath '\FMW\' -TaskName 'FMW Help Desk - Request pipeline'
   ./deploy/Register-HtRequestPipeline.ps1 -SettingsPath D:\HelpDeskRequests\settings.json -Apply
   ```
 
-  Settings: [`deploy/requests-settings.template.json`](deploy/requests-settings.template.json). Registration refuses a run-as account that isn't a gMSA, or that is the assessment gMSA.
+  Settings: [`deploy/requests-settings.template.json`](deploy/requests-settings.template.json). Before the last line, let the dry-run task finish and check that the newest run folder has no `signin.json` ([Chapter 06, Step 1.8](../../docs/project-plans/developer-workbooks/help-desk-automation/06-deploying-to-test-and-production.md#step-1.8-the-request-pipeline)). Registration and the secret script refuse a run-as account that isn't a gMSA, or that is the assessment gMSA. The pipeline refuses a secret file anyone else can read. If a sign-in or the status read fails (HT-RQ-06, with a 403 naming the personal access token), it writes `signin.json` in the dated run folder and exits 3.
 
 ## Not yet proved
 
-Nothing here has run against a live tenant, ServiceNow instance or SailPoint tenant. In a test stage, prove: each app's certificate sign-in; the worker app's permissions (Learn's table for the Temporary Access Pass names a read permission as least privileged for the whole page, so the create is declared with the write permission until a test tenant shows otherwise); the hand-off through the access management tool; and the clearing job.
+Nothing here has run against a live tenant, ServiceNow instance or SailPoint tenant. In a test stage, prove: each app's certificate sign-in; the worker app's permissions (Learn's table for the Temporary Access Pass names a read permission as least privileged for the whole page, so the create is declared with the write permission until a test tenant shows otherwise); the hand-off through the access management tool; the clearing job; whether the SailPoint API client's token can read the access request status, or the personal access token is needed (WD-184); and that the one-time task can protect a secret as the gMSA and that the gMSA's DPAPI key survives its automatic password change.

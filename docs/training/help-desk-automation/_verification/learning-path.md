@@ -12,7 +12,7 @@ Each module's Lab 1 commands were run on November 27, 2026 on Windows 11, PowerS
 | 2 | Chapter 02, steps 1, 3 to 6 and 9 | 5 passed |
 | 3 | Chapter 03, steps 1 to 3, 5, 6, 8 (one job) and 10 | 22 passed |
 | 4 | Chapter 04, steps 1 to 3, 5 to 7 | 1 passed |
-| 5 | Chapter 05, steps 2 to 6, 9 and 11 | 20 passed |
+| 5 | Chapter 05, steps 2 to 6, 9 and 12 | 31 passed (re-run November 28, 2026, after WD-184's sign-in tests) |
 | 6 | Chapter 06, the dry run on the fixtures | — |
 
 ## Lab 2
