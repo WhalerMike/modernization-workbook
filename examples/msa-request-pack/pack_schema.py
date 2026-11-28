@@ -42,19 +42,30 @@ ACCOUNT_TYPES = ["gMSA", "dMSA"]
 WORKLOADS = {"Service": "svc or sql/agt/rs/is", "IisAppPool": "web", "ScheduledTask": "task"}
 YES_NO = ["yes", "no"]
 
+# RequestKind Change: one change to an existing account (Chapter 06's change plan). An owner or
+# sponsor change is form 03; a retirement is form 04.
+CHANGE_TYPES = {
+    "AddHost": "Add a host to the account's retriever group (a dMSA: to its retrievers)",
+    "RemoveHost": "Remove a host from the account's retriever group (a dMSA: from its retrievers)",
+    "AddSpn": "Register an SPN on the account with setspn -S",
+    "RemoveSpn": "Remove an SPN from the account with setspn -D",
+    "Tier": "Change the risk tier: the account's tags are rewritten and its certification cadence follows",
+    "EndDate": "Change the end date of an account that stays on Kerberos: its tags name the change, and Chapter 03 records the date",
+}
+
 # One row per request in request_template.csv: (column, required, allowed values or "", what to enter).
 COLUMNS = [
     ("RequestId", True, "", "Your request's number in the access management tool, for example REQ-2026-0201"),
     ("RequestedOn", True, "", "The date you submit it, yyyy-mm-dd"),
-    ("RequestKind", True, "New|Migrate", "New: a new account for a new workload. Migrate: replace an existing service account"),
+    ("RequestKind", True, "New|Migrate|Change", "New: a new account for a new workload. Migrate: replace an existing service account. Change: one change to an existing account (ChangeType)"),
     ("SystemId", True, "", "The system's ID in the system inventory"),
     ("AppShortName", True, "", "The short name on the system's record: lowercase letters and digits, starting with a letter. Use the same short name the system will use in Entra and Azure"),
     ("AccountType", True, "gMSA|dMSA", "gMSA, or dMSA where every host runs Windows Server 2025 and the decision path says so"),
     ("Role", False, "|".join(ROLES), "Only where the system needs more than one account; leave blank otherwise"),
-    ("Hosts", True, "", "The servers that run the workload, separated by semicolons"),
+    ("Hosts", True, "", "The servers that run the workload, separated by semicolons; for a Change, the hosts after the change"),
     ("Workload", True, "|".join(WORKLOADS), "What runs as the account"),
     ("NeedsSpn", True, "yes|no", "yes if clients connect to the workload with Kerberos (a web site, SQL Server, a file share)"),
-    ("Spns", False, "", "Each SPN, <service-class>/<host>[:<port>], separated by semicolons; blank when NeedsSpn is no"),
+    ("Spns", False, "", "Each SPN, <service-class>/<host>[:<port>], separated by semicolons; blank when NeedsSpn is no; for a Change, the SPNs after the change"),
     ("OutboundOnlyReason", False, "", "Only for a gMSA with no SPN that can't be outbound-only: why"),
     ("Owner1", True, "", "First technical owner's user principal name (a person, never a service account)"),
     ("Owner2", True, "", "Second technical owner's user principal name"),
@@ -66,6 +77,8 @@ COLUMNS = [
     ("EndDate", False, "", "Only for an account that stays on Kerberos: the end date the authorizing official accepts, yyyy-mm-dd"),
     ("Supersedes", False, "", "Migrate only: the sAMAccountName of the account it replaces"),
     ("RunByPerson", False, "yes|no", "dMSA only: yes (a Domain Admin runs the dMSA steps)"),
+    ("ChangeType", False, "|".join(CHANGE_TYPES), "Change only: the one change. The row's other columns are the account as it will be after the change"),
+    ("ChangeItems", False, "", "AddHost, RemoveHost: the hosts added or removed. AddSpn, RemoveSpn: the SPNs. Blank for Tier and EndDate, whose new value goes in RiskTier or EndDate"),
 ]
 
 # Fictional worked examples (contoso.example). Each one passes the checker.
@@ -103,6 +116,30 @@ EXAMPLES = [
      "Sponsor": "finance.sponsor@contoso.example", "SponsorIsFederalEmployee": "yes", "RiskTier": "R2",
      "Environment": "prod", "EntraTarget": "Undecided", "EndDate": "", "Supersedes": "svc-billing",
      "RunByPerson": "yes"},
+]
+
+
+
+def _change(base_id: str, request_id: str, change_type: str, items: str, **after) -> dict:
+    """A RequestKind Change row: the account as it is after the change, from the example that created it."""
+    row = dict(next(e for e in EXAMPLES if e["RequestId"] == base_id))
+    row.update({"RequestId": request_id, "RequestKind": "Change", "Supersedes": row["Supersedes"],
+                "ChangeType": change_type, "ChangeItems": items}, **after)
+    return row
+
+
+# One fictional change of each type, to the accounts the examples above create (the Non-Person
+# Identity kit's Chapter 06 change fixtures, tests/fixtures/ch06/change, hold the same requests as approved).
+_PAYROLL_SPNS = "HTTP/payroll.corp.contoso.example;HTTP/payroll-old.corp.contoso.example"
+EXAMPLES += [
+    _change("REQ-2026-0402", "REQ-2026-0406", "AddHost", "PAY03", Hosts="PAY01;PAY02;PAY03", Spns=_PAYROLL_SPNS),
+    _change("REQ-2026-0402", "REQ-2026-0407", "RemoveHost", "PAY02", Hosts="PAY01", Spns=_PAYROLL_SPNS),
+    _change("REQ-2026-0402", "REQ-2026-0408", "AddSpn", "HTTP/payroll-api.corp.contoso.example",
+            Spns=_PAYROLL_SPNS + ";HTTP/payroll-api.corp.contoso.example"),
+    _change("REQ-2026-0402", "REQ-2026-0409", "RemoveSpn", "HTTP/payroll-old.corp.contoso.example"),
+    _change("REQ-2026-0402", "REQ-2026-0410", "Tier", "", RiskTier="R1", Spns=_PAYROLL_SPNS),
+    _change("REQ-2026-0403", "REQ-2026-0411", "EndDate", "", EndDate="2028-03-31"),
+    _change("REQ-2026-0405", "REQ-2026-0412", "AddHost", "BILL02", Hosts="BILL01;BILL02"),
 ]
 
 # The Word forms: (file, title, purpose, [(field, what to enter)], closing notes).
@@ -179,4 +216,22 @@ FORMS = [
       ("Plan", "The Chapter 06 plan's SHA-256, attached by the pipeline"),
       ("Re-read", "Chapter 12's re-read of AD and SailPoint, attached before the task closes")],
      ["A data policy keeps these fields mandatory for imports and web-service writes too."]),
+    ("07-change-request.docx", "Request: change an existing managed service account",
+     "For one change to an account that already exists: a host, an SPN, the risk tier or the end date. "
+     "SailPoint approves it; ServiceNow records the change; Chapter 06 plans it, and a reviewer approves the plan by its hash.",
+     [("Request number", "From the access management tool"),
+      ("Account", "The managed service account's name, gmsa-<app>[-<role>]$ or dmsa-<app>[-<role>]$"),
+      ("Change type", "One of: " + "; ".join(f"{k}: {v}" for k, v in CHANGE_TYPES.items())),
+      ("Hosts added or removed", "AddHost or RemoveHost: each host, and the full host list after the change"),
+      ("SPNs added or removed", "AddSpn or RemoveSpn: each SPN as <service-class>/<host>[:<port>], and the full SPN list after the change"),
+      ("New risk tier", "Tier: R1, R2 or R3 (tag Tier): R1 is certified every 3 months, R2 every 6, R3 every 12"),
+      ("New end date", "EndDate: the end date the authorizing official accepts, yyyy-mm-dd, never later than program G5 or the island's end of life"),
+      ("Why", "What changed in the workload: a new or retired server, a new name clients use, a new risk assessment")],
+     ["One change per request. An owner or sponsor change uses form 03; a retirement uses form 04.",
+      "A host change is a change to the account's retriever group, DL-gMSA-<app>-Hosts (a dMSA's retrievers are its hosts). "
+      "After it, a person installs the account on an added host or uninstalls it from a removed one.",
+      "An SPN is added with setspn -S, which checks for a duplicate first, and removed with setspn -D.",
+      "A tier or end date change rewrites the account's tags in AD, naming this request and change.",
+      "Until the program decides WD-184 (a draft), a person signed in with the right runs each change's write; "
+      "the pipeline doesn't hold those rights yet."]),
 ]

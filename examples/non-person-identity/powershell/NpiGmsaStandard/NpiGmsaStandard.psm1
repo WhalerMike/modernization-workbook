@@ -45,6 +45,7 @@ $script:TagValues = @{
     EntraTarget = @('ManagedIdentity', 'AppRegistrationFederated', 'AppRegistrationCertificate', 'GmsaPlusAppRegistration', 'KeepKerberos', 'Retire', 'Undecided')
 }
 $script:AccountTypes = @('gMSA', 'dMSA')
+$script:ChangeTypes = @('AddHost', 'RemoveHost', 'AddSpn', 'RemoveSpn', 'Tier', 'EndDate')   # the request pack's RequestKind Change
 $script:Workloads = @('Service', 'IisAppPool', 'ScheduledTask')
 $script:RiskTiers = [ordered]@{ R1 = 3; R2 = 6; R3 = 12 }   # WD-166: months between certifications
 $script:DueSoonDays = 30
@@ -225,12 +226,14 @@ function Test-NpiStdRequest {
     <#
     .SYNOPSIS
         Checks approved requests against the standard and returns @{ Findings; Results; Replatform;
-        Retrievers; RetrieverRequests }. Findings NPI-STD-01 to NPI-STD-09, keyed by request ID. A
+        Retrievers; RetrieverRequests; Changes }. Findings NPI-STD-01 to NPI-STD-09, keyed by request ID. A
         request with no Finding-severity result passes and gets one kerberos-replatform.csv row
         (Chapter 06's columns, with OutboundOnlyReason, RequestId and ChangeRecord); a passing gMSA
         also gets a password-retrievers.json entry naming its DL-gMSA-<app>-Hosts group and the
         SailPoint request that approved it and the ServiceNow change that records it (Chapter 06's
-        'requests' section; ServiceNow never approves, WD-162).
+        'requests' section; ServiceNow never approves, WD-162). A passing change request (requestKind
+        Change: one change to an existing account) gets no row: it's listed in Changes, and Chapter 06's
+        New-NpiKrbChangePlan plans it from the request itself.
     .EXAMPLE
         $in = Import-NpiStdInput -InputPath tests/fixtures/ch12/inputs
         $std = Import-NpiStdStandard -Path tests/fixtures/ch12/standard.json
@@ -244,8 +247,10 @@ function Test-NpiStdRequest {
     $rows = [Collections.Generic.List[object]]::new()
     $retrievers = [ordered]@{}
     $retrieverRequests = [ordered]@{}
+    $changes = [Collections.Generic.List[object]]::new()
     $names = @{}
-    foreach ($w in $Requests) { $n = "$(Get-NpiStdProp $w.Request 'proposedName' '')".ToLowerInvariant(); if ($n) { $names[$n] = 1 + $(if ($names.ContainsKey($n)) { $names[$n] } else { 0 }) } }
+    # Two requests that create the same account clash; a change request names an account that already exists, so it isn't counted.
+    foreach ($w in $Requests) { $n = "$(Get-NpiStdProp $w.Request 'proposedName' '')".ToLowerInvariant(); if ("$(Get-NpiStdProp $w.Request 'requestKind' '')" -eq 'Change') { continue }; if ($n) { $names[$n] = 1 + $(if ($names.ContainsKey($n)) { $names[$n] } else { 0 }) } }
 
     foreach ($w in $Requests) {
         $q = $w.Request
@@ -277,7 +282,7 @@ function Test-NpiStdRequest {
         if ($app -and $bare -notmatch "^(?i)$prefix-$([regex]::Escape($app))(-[a-z0-9]+)?$") { $why.Add("expected $prefix-$app (with a role suffix only where the system needs more than one account)") }
         elseif ($bare -cnotmatch '^[a-z0-9-]+$') { $why.Add('lowercase letters, digits and hyphens only (WD-173)') }
         elseif ($bare -match "^(?i)$prefix-$([regex]::Escape($app))-(.+)$" -and $Matches[1] -notmatch "^($roles)$") { $why.Add("role suffix '-$($Matches[1])' isn't one of $(($script:RoleSuffixes | ForEach-Object { "-$_" }) -join ', ') (WD-173)") }
-        if ($names.ContainsKey($name.ToLowerInvariant()) -and $names[$name.ToLowerInvariant()] -gt 1) { $why.Add('another request names the same account') }
+        if ("$(Get-NpiStdProp $q 'requestKind' '')" -ne 'Change' -and $names.ContainsKey($name.ToLowerInvariant()) -and $names[$name.ToLowerInvariant()] -gt 1) { $why.Add('another request names the same account') }
         if ($why.Count) { & $add 'NPI-STD-03' 'Finding' "Name '$name' isn't to the standard (WD-159): $($why -join '; ')" }
 
         # NPI-STD-04 and 05: two owners and a federal-employee sponsor who isn't one of them (WD-164).
@@ -324,12 +329,23 @@ function Test-NpiStdRequest {
         if ("$(Get-NpiStdProp $q 'entraTarget' '')" -cnotin $script:TagValues.EntraTarget) { $v.Add("entraTarget '$(Get-NpiStdProp $q 'entraTarget' '')' isn't one of $($script:TagValues.EntraTarget -join ', ') (WD-175)") }
         $end = "$(Get-NpiStdProp $q 'endDate' '')"
         if ($end) { try { if ((ConvertTo-NpiStdDate $end) -le $AsOf) { $v.Add("endDate $end is already past") } } catch { $v.Add("endDate '$end' isn't a date") } }
+        # A change to an existing account (the request pack's RequestKind Change): its type, and what it names.
+        $kind = "$(Get-NpiStdProp $q 'requestKind' '')"
+        if ($kind -eq 'Change') {
+            $ct = "$(Get-NpiStdProp $q 'changeType' '')"; $ci = @(Get-NpiStdProp $q 'changeItems' @() | Where-Object { $_ })
+            if ($ct -notin $script:ChangeTypes) { $v.Add("changeType '$ct' isn't one of $($script:ChangeTypes -join ', ') (an owner or sponsor change and a retirement have their own forms)") }
+            elseif ($ct -in 'AddHost', 'RemoveHost', 'AddSpn', 'RemoveSpn' -and -not $ci.Count) { $v.Add("$ct names nothing in changeItems") }
+            elseif ($ct -in 'Tier', 'EndDate' -and $ci.Count) { $v.Add("$ct takes its value from riskTier or endDate, not changeItems") }
+            elseif ($ct -eq 'EndDate' -and (-not $end -or "$(Get-NpiStdProp $q 'entraTarget' '')" -ne 'KeepKerberos')) { $v.Add('an EndDate change needs an endDate on an account whose entraTarget is KeepKerberos (WD-165)') }
+        }
         if ($v.Count) { & $add 'NPI-STD-09' 'Finding' ($v -join '; ') }
 
         foreach ($x in $mine) { $f.Add($x) }
         $passed = -not @($mine | Where-Object Severity -EQ 'Finding').Count
         $results.Add([pscustomobject][ordered]@{ RequestId = $id; File = $w.File; ProposedName = $name; AccountType = $type; Passed = $passed; Rules = @($mine | ForEach-Object Rule | Sort-Object -Unique) })
         if (-not $passed) { continue }
+        # A change goes to Chapter 06's New-NpiKrbChangePlan as the request itself: it creates nothing, so it gets no row.
+        if ($kind -eq 'Change') { $changes.Add([pscustomobject][ordered]@{ RequestId = $id; File = $w.File; Account = $name; ChangeType = "$(Get-NpiStdProp $q 'changeType' '')" }); continue }
         $super = "$(Get-NpiStdProp $q 'supersedes' '')"
         $rows.Add([pscustomobject][ordered]@{
                 SamAccountName     = $(if ($super) { $super } else { $name })
@@ -361,6 +377,7 @@ function Test-NpiStdRequest {
         Replatform = @($rows | Sort-Object NewAccount)
         Retrievers = $retrievers
         RetrieverRequests = $retrieverRequests
+        Changes    = @($changes | Sort-Object RequestId)
     }
 }
 

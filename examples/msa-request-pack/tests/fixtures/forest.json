@@ -1,0 +1,8 @@
+{
+  "_comment": "What Get-MsaNameSuggestion.ps1 -CheckForest finds in the fictional forest corp.contoso.example: the accounts and groups already there and the SPNs they hold. The same read-only lookups run against Active Directory without -ForestFixturePath. Invented names.",
+  "objects": [
+    { "samAccountName": "gmsa-payroll$", "name": "gmsa-payroll", "objectClass": "msDS-GroupManagedServiceAccount", "distinguishedName": "CN=gmsa-payroll,OU=Service Accounts,DC=corp,DC=contoso,DC=example", "servicePrincipalName": ["HTTP/payroll.corp.contoso.example"] },
+    { "samAccountName": "DL-gMSA-payroll-Hosts", "name": "DL-gMSA-payroll-Hosts", "objectClass": "group", "distinguishedName": "CN=DL-gMSA-payroll-Hosts,OU=Groups,DC=corp,DC=contoso,DC=example", "servicePrincipalName": [] },
+    { "samAccountName": "svc-reports", "name": "svc-reports", "objectClass": "user", "distinguishedName": "CN=svc-reports,OU=Service Accounts,DC=corp,DC=contoso,DC=example", "servicePrincipalName": ["HTTP/reports.corp.contoso.example"] }
+  ]
+}

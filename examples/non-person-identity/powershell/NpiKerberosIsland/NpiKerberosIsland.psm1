@@ -17,7 +17,9 @@
     or resets, and the old account is never deleted: it is disabled and moved to the holding OU.
     Each write call says who sends it (runBy): the pipeline's own gMSA for gMSA creation, retrievers,
     disables and moves; a person for the dMSA steps (WD-163). New gMSAs follow the reviewed AD
-    standard in ad-standard.json: their OU, password interval, name and retriever group.
+    standard in ad-standard.json: their OU, password interval, name and retriever group. A change to
+    an existing account (New-NpiKrbChangePlan: a host, an SPN, the tier or the end date) is planned
+    the same way, one approved change request at a time, and sent by a person while WD-184 is a draft.
 
     Illustrative: tested against fixtures and a fake Active Directory, not a production domain.
 #>
@@ -824,6 +826,224 @@ function New-NpiKrbGmsaPlan {
     }
 }
 
+# ----------------------------------------------------------------------------- a change to an existing account
+
+# The request pack's change types (RequestKind Change). An owner or sponsor change is form 03, a retirement form 04.
+$script:ChangeTypes = @('AddHost', 'RemoveHost', 'AddSpn', 'RemoveSpn', 'Tier', 'EndDate')
+# Learn's SPN form, <service-class>/<host>[:<port>] (a SQL Server named instance may name the instance after the colon).
+$script:SpnPattern = '^[A-Za-z][A-Za-z0-9.-]*/[A-Za-z0-9][A-Za-z0-9.-]*(:[A-Za-z0-9$_-]+)?$'
+
+function Get-NpiKrbSpnList {
+    # An account's SPNs, as the fake returns them (ServicePrincipalName) or the live cmdlet does with -Properties servicePrincipalName.
+    param($Account)
+    if ($null -eq $Account) { return @() }
+    $v = if ($Account.PSObject.Properties['ServicePrincipalName']) { $Account.ServicePrincipalName } elseif ($Account.PSObject.Properties['ServicePrincipalNames']) { $Account.ServicePrincipalNames } else { @() }
+    @(@($v) | Where-Object { $_ } | ForEach-Object { "$_" } | Sort-Object)
+}
+
+function Get-NpiKrbGroupMemberList {
+    param($Group)
+    if ($null -eq $Group -or -not $Group.PSObject.Properties['member']) { return @() }
+    @(@($Group.member) | Where-Object { $_ } | ForEach-Object { "$_" } | Sort-Object)
+}
+
+function Test-NpiKrbSameSet {
+    param([object[]]$A, [object[]]$B)
+    ((@($A | ForEach-Object { "$_".ToLowerInvariant() }) | Sort-Object -Unique) -join '|') -eq ((@($B | ForEach-Object { "$_".ToLowerInvariant() }) | Sort-Object -Unique) -join '|')
+}
+
+function New-NpiKrbChangePlan {
+    <#
+    .SYNOPSIS
+        A Chapter 06 plan for one approved change to an existing gMSA or dMSA: a request pack row
+        with RequestKind Change (Chapter 12's request import format, with requestKind, changeType and
+        changeItems), approved in SailPoint and recorded by a ServiceNow change. Same plan format,
+        hash rule and write path as Test-NpiKerberosIsland's. It reads the account, its retriever
+        group and the hosts through -Reader, checks the request against what AD holds now, and plans:
+          AddHost, RemoveHost  a gMSA: Set-ADGroup -Replace @{ member = ... } on its one DL-gMSA-<app>-Hosts
+                               group (SetRetrieverHosts); a dMSA: Set-ADServiceAccount
+                               -PrincipalsAllowedToRetrieveManagedPassword (SetDmsaRetrievers); then the host
+                               step a person does (AwaitHostInstall, AwaitHostUninstall)
+          AddSpn, RemoveSpn    setspn -S or setspn -D, one action per SPN (AddSpn, RemoveSpn)
+          Tier, EndDate        the account's tags rewritten as its description, naming this request and
+                               change (RewriteTags, WD-175); an end date also records RecordEndDate for
+                               Chapter 03's decisions
+        Every write is runBy person while WD-184, the draft that would give gmsa-msapipe these rights,
+        is undecided. Throws instead of planning when any rule fails.
+    .EXAMPLE
+        # Plan adding PAY03 to gmsa-payroll$'s retriever group, from the fixtures.
+        $fake = New-NpiKrbFixtureAdInvoker -EstatePath tests/fixtures/ch06/change/estate.json -KerberosPath tests/fixtures/ch06/change/ad-kerberos.json
+        $plan = New-NpiKrbChangePlan -RequestPath tests/fixtures/ch06/change/requests/REQ-2026-0406.json -AdStandardPath tests/fixtures/ch06/inputs/ad-standard.json -Reader (New-NpiKrbReader -AdInvoke $fake.Invoke) -TenantId c0ffee00-0000-4000-8000-000000000001 -Domain corp.contoso.example -Cloud gcc -AsOf '2026-11-28T12:00:00Z'
+        $plan.actions | Format-Table Action, Account, RunBy
+    #>
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)][string]$RequestPath,
+        [Parameter(Mandatory)][string]$AdStandardPath,
+        [Parameter(Mandatory)]$Reader,
+        [Parameter(Mandatory)][string]$TenantId,
+        [Parameter(Mandatory)][string]$Domain,
+        [Parameter(Mandatory)][string]$Cloud,
+        [Parameter(Mandatory)][datetime]$AsOf,
+        [string]$ProgramDatesPath
+    )
+    foreach ($f in $RequestPath, $AdStandardPath) { if (-not (Test-Path -LiteralPath $f)) { throw "Missing reviewed input $f." } }
+    $std = Get-Content -LiteralPath $AdStandardPath -Raw | ConvertFrom-Json -AsHashtable
+    foreach ($k in 'serviceAccountOu', 'holdingOu') { if ("$($std[$k])" -notmatch '^OU=.+,DC=') { throw "ad-standard.json: $k must be an OU's distinguished name, not '$($std[$k])'." } }
+    if (-not "$($std.retrieverGroupPattern)") { throw 'ad-standard.json: retrieverGroupPattern is required (WD-160).' }
+    $q = Get-Content -LiteralPath $RequestPath -Raw | ConvertFrom-Json -AsHashtable
+    $get = { param([string]$k, $d = '') if ($q.ContainsKey($k) -and $null -ne $q[$k]) { $q[$k] } else { $d } }
+    $id = "$(& $get 'requestId')"; $chg = "$(& $get 'changeRecord')"; $kind = "$(& $get 'requestKind')"; $type = "$(& $get 'changeType')"
+    $name = "$(& $get 'proposedName')"; $app = "$(& $get 'appShortName')"; $acctType = "$(& $get 'accountType')"
+    $items = @(@(& $get 'changeItems' @()) | Where-Object { $_ } | ForEach-Object { "$_".Trim() })
+
+    # The request: a change, approved in SailPoint (WD-162), recorded in ServiceNow, of a known type, for a name to the standard.
+    if ($kind -ne 'Change') { throw "requestKind '$kind' isn't Change: a new account or a migration is planned by Test-NpiKerberosIsland from Chapter 12's rows." }
+    if (-not $id) { throw 'No requestId: every write carries the SailPoint request that approved it.' }
+    if ("$(& $get 'status')" -ne 'APPROVED' -or -not "$(& $get 'approvedOn')" -or -not @(& $get 'approvers' @()).Count) { throw "$id isn't APPROVED in SailPoint with an approval date and approvers (WD-162)." }
+    if ($chg -notmatch '^CHG\d{7}$') { throw "$id has no ServiceNow change record (CHG and seven digits): '$chg'." }
+    if ($type -notin $script:ChangeTypes) { throw "changeType '$type' isn't one of $($script:ChangeTypes -join ', '): an owner or sponsor change uses form 03, a retirement form 04." }
+    $bad = Test-NpiKrbNameStandard -Name $name -Target $acctType; if ($bad) { throw $bad }
+    if ($name.TrimEnd('$') -notmatch "^(gmsa|dmsa)-$([regex]::Escape($app))(-[a-z0-9]+)?$") { throw "Account '$name' isn't built from appShortName '$app' (WD-159)." }
+    if ($type -in 'AddHost', 'RemoveHost', 'AddSpn', 'RemoveSpn' -and -not $items.Count) { throw "$type names nothing in changeItems." }
+    if ($type -in 'Tier', 'EndDate' -and $items.Count) { throw "$type takes its new value from riskTier or endDate; changeItems must be empty." }
+
+    # What AD holds now.
+    $acct = try { @(Invoke-NpiKrbAdRead -Client $Reader -CallId 'krb-service-accounts' -Params @{ Identity = $name; Properties = @('Description', 'servicePrincipalName', 'PrincipalsAllowedToRetrieveManagedPassword', 'msDS-DelegatedMSAState') })[0] }
+    catch { if ("$_" -match 'Cannot find an object') { $null } else { throw } }
+    if (-not $acct) { throw "$name doesn't exist: a change request changes an existing account; ask for a new one with RequestKind New or Migrate." }
+    $isGmsa = "$($acct.ObjectClass)" -eq 'msDS-GroupManagedServiceAccount'
+    if (($isGmsa -and $acctType -ne 'gMSA') -or (-not $isGmsa -and $acctType -ne 'dMSA')) { throw "$name is a $($acct.ObjectClass) in AD, not the $acctType the request names." }
+
+    $actions = [Collections.Generic.List[object]]::new()
+    $hashes = [ordered]@{ "requests/$(Split-Path -Leaf $RequestPath)" = Get-NpiFileHash -Path $RequestPath; 'ad-standard.json' = Get-NpiFileHash -Path $AdStandardPath }
+    $write = {
+        param([string]$ActionId, [string]$Action, [string]$CallId, $Params, $Before, [string]$Precheck, [string]$Reason)
+        $call = (Get-NpiKrbCall -Id $CallId)[0]
+        $actions.Add([pscustomobject][ordered]@{ ActionId = $ActionId; Account = $name; Type = $acctType; Action = $Action; Write = $true; Call = $CallId; Cmdlet = "$($call.cmdlet)"; RunBy = "$($call.runBy)"
+                Params = $Params; Before = $Before; Precheck = $Precheck; RequestId = $id; ChangeRecord = $chg; Controls = @($call.controls); Ksis = @($call.ksis); Reason = $Reason })
+    }
+    $note = {
+        param([string]$ActionId, [string]$Action, [string]$Reason)
+        $actions.Add([pscustomobject][ordered]@{ ActionId = $ActionId; Account = $name; Type = $acctType; Action = $Action; Write = $false; Call = ''; Cmdlet = ''; RunBy = ''
+                Params = $null; Before = $null; Precheck = ''; RequestId = $id; ChangeRecord = $chg; Controls = @(); Ksis = @(); Reason = $Reason })
+    }
+
+    switch ($type) {
+        { $_ -in 'AddHost', 'RemoveHost' } {
+            $after = @(@(& $get 'hosts' @()) | Where-Object { $_ } | ForEach-Object { "$_".Trim() })
+            if (-not $after.Count) { throw "$id leaves $name with no host: retire the account instead (form 04)." }
+            foreach ($h in $items) {
+                $in = @($after | Where-Object { $_ -ieq $h }).Count
+                if ($type -eq 'AddHost' -and -not $in) { throw "AddHost $h isn't in the request's hosts, the hosts after the change." }
+                if ($type -eq 'RemoveHost' -and $in) { throw "RemoveHost $h is still in the request's hosts, the hosts after the change." }
+            }
+            $dn = @{}
+            foreach ($h in @($after) + @($items)) {
+                $c = try { @(Invoke-NpiKrbAdRead -Client $Reader -CallId 'krb-host-computers' -Params @{ Identity = $h })[0] } catch { if ("$_" -match 'Cannot find an object') { $null } else { throw } }
+                if (-not $c) { throw "Host $h isn't a computer in the domain." }
+                $dn[$h.ToLowerInvariant()] = "$($c.DistinguishedName)"
+            }
+            $itemDn = @($items | ForEach-Object { $dn[$_.ToLowerInvariant()] })
+            $wantDn = @($after | ForEach-Object { $dn[$_.ToLowerInvariant()] } | Sort-Object)
+            if ($isGmsa) {
+                $retr = @(Get-NpiKrbRetrieverList $acct)
+                $badShape = Test-NpiKrbRetrieverShape -Retrievers $retr -Pattern "$($std.retrieverGroupPattern)"; if ($badShape) { throw "$name's retrievers in AD break the retriever rule, so its hosts can't be changed through the group: $badShape. Plan SetRetrievers first (Test-NpiKerberosIsland)." }
+                if ("$($retr[0])" -notmatch "^CN=DL-gMSA-$([regex]::Escape($app))-Hosts,") { throw "$name's retriever group $($retr[0]) isn't DL-gMSA-$app-Hosts (WD-159)." }
+                $group = @(Invoke-NpiKrbAdRead -Client $Reader -CallId 'krb-retriever-group' -Params @{ Identity = "$($retr[0])"; Properties = @('member') })[0]
+                $before = @(Get-NpiKrbGroupMemberList $group)
+            } else {
+                $before = @(Get-NpiKrbRetrieverList $acct)
+            }
+            foreach ($d in $itemDn) {
+                $has = @($before | Where-Object { $_ -ieq $d }).Count
+                if ($type -eq 'AddHost' -and $has) { throw "$d is already a retriever of ${name}: nothing to change." }
+                if ($type -eq 'RemoveHost' -and -not $has) { throw "$d isn't a retriever of ${name}: nothing to remove." }
+            }
+            $computed = if ($type -eq 'AddHost') { @(@($before) + @($itemDn)) } else { @($before | Where-Object { $_ -notin $itemDn }) }
+            if (-not (Test-NpiKrbSameSet $computed $wantDn)) { throw "The request's hosts after the change ($($after -join ', ')) aren't AD's retrievers ($(@($before) -join '; ')) with the change applied: correct the request." }
+            $verb = if ($type -eq 'AddHost') { 'Adds' } else { 'Removes' }
+            $list = $items -join ', '
+            if ($isGmsa) {
+                & $write "SetRetrieverHosts:$name" 'SetRetrieverHosts' 'krb-set-retriever-hosts' ([ordered]@{ Identity = "$($retr[0])"; Replace = [ordered]@{ member = $wantDn } }) $before "krb-retriever-group: $($retr[0]) members still as read" "$verb $list $(if ($type -eq 'AddHost') { 'to' } else { 'from' }) $("$($retr[0])" -replace '^CN=([^,]+),.*$', '$1'), the one retriever group (WD-160): the whole membership after the change"
+            } else {
+                & $write "SetDmsaRetrievers:$name" 'SetDmsaRetrievers' 'krb-set-dmsa-retrievers' ([ordered]@{ Identity = $name; PrincipalsAllowedToRetrieveManagedPassword = $wantDn }) $before "krb-service-accounts: $name retrievers still as read" "$verb $list $(if ($type -eq 'AddHost') { 'to' } else { 'from' }) the dMSA's retrievers, by hand as Learn says an account used on several devices needs (WD-173); a person runs it (WD-163)"
+            }
+            foreach ($h in $items) {
+                if ($type -eq 'AddHost' -and $isGmsa) { & $note "AwaitHostInstall:${name}:$h" 'AwaitHostInstall' "On ${h}: restart it so its new group membership applies, then Install-ADServiceAccount $name and Test-ADServiceAccount $name returns True (Learn); then run the workload on it" }
+                elseif ($type -eq 'AddHost') { & $note "AwaitHostInstall:${name}:$h" 'AwaitHostInstall' "On ${h}: check that Group Policy sets DelegatedMSAEnabled on its OU (WD-173), then run the workload on it as $name (Learn's dMSA set-up)" }
+                else { & $note "AwaitHostUninstall:${name}:$h" 'AwaitHostUninstall' "A person runs Uninstall-ADServiceAccount $name on $h once the workload has left it (WD-163)" }
+            }
+        }
+        { $_ -in 'AddSpn', 'RemoveSpn' } {
+            $after = @(@(& $get 'spns' @()) | Where-Object { $_ } | ForEach-Object { "$_".Trim() })
+            if ($type -eq 'AddSpn' -and (& $get 'needsSpn' $false) -ne $true) { throw "AddSpn on a request whose needsSpn isn't true." }
+            $now = @(Get-NpiKrbSpnList $acct)
+            foreach ($s in $items) {
+                if ($s -notmatch $script:SpnPattern) { throw "SPN '$s' isn't in Learn's <service-class>/<host>[:<port>] form (WD-173)." }
+                $inAfter = @($after | Where-Object { $_ -ieq $s }).Count; $inNow = @($now | Where-Object { $_ -ieq $s }).Count
+                if ($type -eq 'AddSpn' -and -not $inAfter) { throw "AddSpn $s isn't in the request's SPNs, the SPNs after the change." }
+                if ($type -eq 'AddSpn' -and $inNow) { throw "$s is already on ${name}: nothing to add." }
+                if ($type -eq 'RemoveSpn' -and $inAfter) { throw "RemoveSpn $s is still in the request's SPNs, the SPNs after the change." }
+                if ($type -eq 'RemoveSpn' -and -not $inNow) { throw "$s isn't on ${name}: nothing to remove." }
+            }
+            $computed = if ($type -eq 'AddSpn') { @(@($now) + @($items)) } else { @($now | Where-Object { $_ -notin $items }) }
+            if (-not (Test-NpiKrbSameSet $computed $after)) { throw "The request's SPNs after the change ($($after -join ', ')) aren't AD's SPNs ($($now -join ', ')) with the change applied: correct the request." }
+            foreach ($s in ($items | Sort-Object)) {
+                if ($type -eq 'AddSpn') {
+                    & $write "AddSpn:${name}:$s" 'AddSpn' 'krb-add-spn' ([ordered]@{ S = $s; Account = $name }) $now "krb-service-accounts: $s not yet on $name" "setspn -S $s $name, which checks for a duplicate before it adds the SPN (Learn); only the SPNs the request names (WD-173)"
+                } else {
+                    $last = if (-not $after.Count) { '. It leaves no SPN: a gMSA with no SPN is outbound-only unless the register records why (WD-154, NPI-STD-15), and outbound-only is set at creation' } else { '' }
+                    & $write "RemoveSpn:${name}:$s" 'RemoveSpn' 'krb-remove-spn' ([ordered]@{ D = $s; Account = $name }) $now "krb-service-accounts: $s still on $name" "setspn -D $s $name (Learn)$last"
+                }
+            }
+        }
+        { $_ -in 'Tier', 'EndDate' } {
+            $owners = @(@(& $get 'owners' @()) | Where-Object { $_ })
+            $tags = [ordered]@{ SystemId = "$(& $get 'systemId')"; Owner1 = "$(if ($owners.Count -gt 0) { $owners[0] })"; Owner2 = "$(if ($owners.Count -gt 1) { $owners[1] })"; Sponsor = "$(& $get 'sponsor')"
+                Environment = "$(& $get 'environment')"; Tier = "$(& $get 'riskTier')"; EntraTarget = "$(& $get 'entraTarget')"; Request = $id; Change = $chg }
+            if ($tags.Tier -notin 'R1', 'R2', 'R3') { throw "riskTier '$($tags.Tier)' isn't R1, R2 or R3." }
+            $desc = ($script:TagKeys | ForEach-Object { "$_=$($tags[$_])" }) -join '; '
+            $bad = Test-NpiKrbTags -Tags $desc -RequestId $id -ChangeRecord $chg; if ($bad) { throw "Tags: $bad" }
+            $was = "$(if ($acct.PSObject.Properties['Description']) { $acct.Description })"
+            $old = @{}; foreach ($pair in ($was -split ';')) { if ($pair -match '^\s*([A-Za-z0-9]+)=(.*?)\s*$') { $old[$Matches[1]] = $Matches[2] } }
+            if ($old.Count) {
+                # Only the key this change names moves; an owner or sponsor change is form 03 (SailPoint is the source for owners).
+                $keep = @('SystemId', 'Owner1', 'Owner2', 'Sponsor', 'Environment', 'EntraTarget') + @(if ($type -eq 'EndDate') { 'Tier' })
+                $moved = @($keep | Where-Object { "$($old[$_])" -ne "$($tags[$_])" })
+                if ($moved.Count) { throw "The request changes $($moved -join ', ') as well as ${type}: $(if ($moved | Where-Object { $_ -in 'Owner1', 'Owner2', 'Sponsor' }) { 'an owner or sponsor change uses form 03; ' })a change request changes one thing." }
+                if ($type -eq 'Tier' -and "$($old['Tier'])" -eq $tags.Tier) { throw "$name is already $($tags.Tier): nothing to change." }
+            }
+            if ($type -eq 'EndDate') {
+                if ($tags.EntraTarget -ne 'KeepKerberos') { throw "An end date belongs to an account that stays on Kerberos (EntraTarget KeepKerberos, WD-165); $name's is $($tags.EntraTarget)." }
+                if (-not $ProgramDatesPath -or -not (Test-Path -LiteralPath $ProgramDatesPath)) { throw 'An EndDate change needs -ProgramDatesPath: the end date is bounded by G5, or the island''s end of life where D11 keeps one (WD-165).' }
+                $dates = Get-Content -LiteralPath $ProgramDatesPath -Raw | ConvertFrom-Json -AsHashtable
+                $hashes['program-dates.json'] = Get-NpiFileHash -Path $ProgramDatesPath
+                $endText = "$(& $get 'endDate')"
+                $end = try { ConvertTo-NpiKrbDate $endText } catch { $null }
+                if (-not $end) { throw "endDate '$endText' isn't a date." }
+                if ($end -le $AsOf) { throw "endDate $endText is already past." }
+                $boundText = if ("$($dates.d11.decision)" -eq 'KerberosIsland') { "$($dates.d11.islandEndOfLife)" } else { "$($dates.g5AdRetired)" }
+                $bound = ConvertTo-NpiKrbDate $boundText
+                if (-not $bound) { throw 'program-dates.json sets no G5 date, or no island end of life where D11 keeps one.' }
+                if ($end -gt $bound) { throw "endDate $endText is after $(if ("$($dates.d11.decision)" -eq 'KerberosIsland') { "the island's end of life" } else { 'program G5' }) ($boundText) (WD-165)." }
+            }
+            $why = if ($type -eq 'Tier') { "Tier $(if ($old['Tier']) { "$($old['Tier']) to " })$($tags.Tier): the certification cadence follows (WD-166)" } else { "End date $(& $get 'endDate'), accepted by the authorizing official (WD-165)" }
+            & $write "RewriteTags:$name" 'RewriteTags' 'krb-set-tags' ([ordered]@{ Identity = $name; Description = $desc }) $was "krb-service-accounts: $name description still as read" "$why. The tags rewritten as the description, naming this request and change (WD-175)"
+            if ($type -eq 'EndDate') { & $note "RecordEndDate:$name" 'RecordEndDate' "Record EndDate $(& $get 'endDate') for $name in Chapter 03's decisions in a reviewed pull request: NPI-KRB-06 and the island list read it there" }
+        }
+    }
+
+    [pscustomobject][ordered]@{
+        planVersion = 2; task = 'kerberos-apply'; generated = $AsOf.ToUniversalTime().ToString('o'); asOf = $AsOf.ToUniversalTime().ToString('yyyy-MM-dd'); cloud = $Cloud; tenantId = $TenantId; domain = $Domain
+        registerSha256 = ''; inputs = $hashes; kds = ''; migrationWaitDays = $script:MigrationWaitDays; parallelRunDays = $script:ParallelRunDays
+        adStandard = [ordered]@{ serviceAccountOu = "$($std.serviceAccountOu)"; holdingOu = "$($std.holdingOu)"; creatorGroup = "$($std.creatorGroup)"; passwordIntervalDays = [int]$std.passwordIntervalDays; retrieverGroupPattern = "$($std.retrieverGroupPattern)" }
+        pipelineIdentity = "$((Get-NpiKrbTask -Task 'kerberos-apply').pipelineIdentity)"
+        change = [ordered]@{ requestId = $id; changeRecord = $chg; changeType = $type; account = $name; items = @($items) }
+        actions = @($actions | Sort-Object ActionId)
+    }
+}
+
 # ----------------------------------------------------------------------------- the reviewed write path
 
 function New-NpiKrbWriter {
@@ -893,7 +1113,21 @@ function Assert-NpiKrbPlannedWrite {
             if ($p['CreateDelegatedServiceAccount'] -ne $true -or $p['KerberosEncryptionType'] -ne 'AES256') { throw "Action $($Action.ActionId): a dMSA is created with -CreateDelegatedServiceAccount and AES256." }
             & $ou 'Path' $(if ($std) { "$($std.serviceAccountOu)" })
         }
-        'krb-set-retrievers' { if (-not @($p['PrincipalsAllowedToRetrieveManagedPassword'] | Where-Object { $_ }).Count) { throw "Action $($Action.ActionId): refusing an empty retriever list." } }
+        { $_ -in 'krb-set-retrievers', 'krb-set-dmsa-retrievers' } { if (-not @($p['PrincipalsAllowedToRetrieveManagedPassword'] | Where-Object { $_ }).Count) { throw "Action $($Action.ActionId): refusing an empty retriever list." } }
+        'krb-set-retriever-hosts' {
+            $pattern = if ($std -and $std.PSObject.Properties['retrieverGroupPattern'] -and "$($std.retrieverGroupPattern)") { "$($std.retrieverGroupPattern)" } else { '^CN=DL-gMSA-[A-Za-z0-9-]+-Hosts,' }
+            if ("$($p['Identity'])" -notmatch $pattern) { throw "Action $($Action.ActionId): Set-ADGroup writes only a DL-gMSA-<app>-Hosts retriever group (WD-160)." }
+            $r = ConvertTo-NpiKrbHashtable $p['Replace']
+            if (@($r.Keys).Count -ne 1 -or -not $r.Contains('member')) { throw "Action $($Action.ActionId): -Replace sets the group's member attribute and nothing else." }
+            $m = @($r['member'] | Where-Object { $_ })
+            if (-not $m.Count) { throw "Action $($Action.ActionId): refusing an empty retriever group: no host could run the service." }
+            if (@($m | Where-Object { "$_" -notmatch '^CN=.+,DC=' }).Count) { throw "Action $($Action.ActionId): each member is a host's distinguished name." }
+        }
+        { $_ -in 'krb-add-spn', 'krb-remove-spn' } {
+            $k = if ($_ -eq 'krb-add-spn') { 'S' } else { 'D' }
+            if ("$($p[$k])" -notmatch $script:SpnPattern) { throw "Action $($Action.ActionId): -$k must be an SPN in Learn's <service-class>/<host>[:<port>] form." }
+            if ("$($p['Account'])" -cnotmatch '^(gmsa|dmsa)-[a-z0-9-]+\$$') { throw "Action $($Action.ActionId): setspn writes only a managed service account named to the standard." }
+        }
         { $_ -in 'krb-start-migration', 'krb-complete-migration' } { if ("$($p['SupersededAccount'])" -notmatch '^CN=.+,DC=') { throw "Action $($Action.ActionId): -SupersededAccount must be a distinguished name (Learn)." } }
         'krb-disable-superseded' { if ("$($p['Identity'])" -notmatch '^[0-9a-f-]{36}$') { throw "Action $($Action.ActionId): Disable-ADAccount takes the account's objectGUID." } }
         'krb-move-superseded' {
@@ -906,6 +1140,11 @@ function Assert-NpiKrbPlannedWrite {
     if (-not (& $has 'ChangeRecord')) { throw "Action $($Action.ActionId): no change record: every write carries its ServiceNow change (ChangeRecord)." }
     # WD-175: a create carries the account's tags, naming the same request and change.
     if ($call.id -in 'krb-new-gmsa', 'krb-new-dmsa') {
+        $bad = Test-NpiKrbTags -Tags "$($p['Description'])" -RequestId "$($Action.RequestId)" -ChangeRecord "$($Action.ChangeRecord)"
+        if ($bad) { throw "Action $($Action.ActionId): -Description: $bad." }
+    }
+    # A change request's tag rewrite names its own request and change too.
+    if ($call.id -eq 'krb-set-tags') {
         $bad = Test-NpiKrbTags -Tags "$($p['Description'])" -RequestId "$($Action.RequestId)" -ChangeRecord "$($Action.ChangeRecord)"
         if ($bad) { throw "Action $($Action.ActionId): -Description: $bad." }
     }
@@ -924,6 +1163,17 @@ function Get-NpiKrbAccountOrNull {
     param($Writer, [string]$Identity)
     try { @(Invoke-NpiKrbWriterRead $Writer 'krb-service-accounts' @{ Identity = $Identity; Properties = @('PrincipalsAllowedToRetrieveManagedPassword', 'msDS-DelegatedMSAState') })[0] }
     catch { if ("$_" -match 'Cannot find an object') { $null } else { throw } }
+}
+
+function Get-NpiKrbAccountDetail {
+    # The account with its description and SPNs, for a change request's prechecks and re-reads.
+    param($Writer, [string]$Identity)
+    @(Invoke-NpiKrbWriterRead $Writer 'krb-service-accounts' @{ Identity = $Identity; Properties = @('Description', 'servicePrincipalName', 'PrincipalsAllowedToRetrieveManagedPassword') })[0]
+}
+
+function Get-NpiKrbGroupNow {
+    param($Writer, [string]$Identity)
+    @(Get-NpiKrbGroupMemberList @(Invoke-NpiKrbWriterRead $Writer 'krb-retriever-group' @{ Identity = $Identity; Properties = @('member') })[0])
 }
 
 function Get-NpiKrbSupersededObject {
@@ -982,9 +1232,18 @@ function Invoke-NpiKrbPlan {
                     if ($kds.State -ne 'Ready') { $outcome = 'Skipped'; $detail = "KDS root key $($kds.State)" }
                     elseif (Get-NpiKrbAccountOrNull $Writer "$($p['Name'])`$") { $outcome = 'Skipped'; $detail = 'Already exists' }
                 }
-                'krb-set-retrievers' {
+                { $_ -in 'krb-set-retrievers', 'krb-set-dmsa-retrievers' } {
                     $now = @(Get-NpiKrbRetrieverList (Get-NpiKrbAccountOrNull $Writer $p['Identity']))
                     if (($now -join '|').ToLowerInvariant() -ne ((@($a.Before) | Sort-Object) -join '|').ToLowerInvariant()) { $outcome = 'Skipped'; $detail = 'The retrievers changed since the plan was reviewed; build a new plan' }
+                }
+                'krb-set-retriever-hosts' {
+                    if (-not (Test-NpiKrbSameSet @(Get-NpiKrbGroupNow $Writer "$($p['Identity'])") @($a.Before))) { $outcome = 'Skipped'; $detail = 'The group''s members changed since the plan was reviewed; build a new plan' }
+                }
+                'krb-add-spn' { if (@(Get-NpiKrbSpnList (Get-NpiKrbAccountDetail $Writer "$($p['Account'])") | Where-Object { $_ -ieq "$($p['S'])" }).Count) { $outcome = 'Skipped'; $detail = 'Already registered on the account' } }
+                'krb-remove-spn' { if (-not @(Get-NpiKrbSpnList (Get-NpiKrbAccountDetail $Writer "$($p['Account'])") | Where-Object { $_ -ieq "$($p['D'])" }).Count) { $outcome = 'Skipped'; $detail = 'Not registered on the account' } }
+                'krb-set-tags' {
+                    $o = Get-NpiKrbAccountDetail $Writer "$($p['Identity'])"
+                    if ("$(if ($o.PSObject.Properties['Description']) { $o.Description })" -ne "$($a.Before)") { $outcome = 'Skipped'; $detail = 'The description changed since the plan was reviewed; build a new plan' }
                 }
                 'krb-start-migration' { if ((Get-NpiKrbDelegatedState (Get-NpiKrbAccountOrNull $Writer $p['Identity'])) -ne 0) { $outcome = 'Skipped'; $detail = 'The migration has already started' } }
                 'krb-complete-migration' { if ((Get-NpiKrbDelegatedState (Get-NpiKrbAccountOrNull $Writer $p['Identity'])) -ne 1) { $outcome = 'Skipped'; $detail = 'Not in migration (msDS-DelegatedMSAState isn''t 1)' } }
@@ -1003,14 +1262,21 @@ function Invoke-NpiKrbPlan {
         if (-not $outcome) {
             if (-not $Apply) { $outcome = 'WouldSend' }
             else {
-                $Writer.Evidence.Add([pscustomobject]@{ Call = $a.Call; Method = 'WRITE'; Target = "$($a.Cmdlet) $((($p.Keys | ForEach-Object { "-$_ $(@($p[$_]) -join ',')" }) -join ' '))"; At = [DateTime]::UtcNow.ToString('o') })
+                $shown = foreach ($k in $p.Keys) { if ($k -eq 'Replace') { "-Replace member=$(@((ConvertTo-NpiKrbHashtable $p[$k])['member']) -join ',')" } else { "-$k $(@($p[$k]) -join ',')" } }
+                $Writer.Evidence.Add([pscustomobject]@{ Call = $a.Call; Method = 'WRITE'; Target = "$($a.Cmdlet) $(@($shown) -join ' ')"; At = [DateTime]::UtcNow.ToString('o') })
                 $send = [hashtable]@{}; foreach ($k in $p.Keys) { $send[$k] = $p[$k] }
+                # Set-ADGroup -Replace takes a hashtable of LDAP display names; the plan file holds it as an object.
+                if ($send.ContainsKey('Replace')) { $send['Replace'] = @{ member = [string[]]@((ConvertTo-NpiKrbHashtable $send['Replace'])['member']) } }
                 $null = & $Writer.AdInvoke $a.Cmdlet $send
                 # Re-read the target: the change is recorded as verified only when AD shows it.
                 switch ($a.Call) {
                     'krb-new-gmsa' { $o = Get-NpiKrbAccountOrNull $Writer "$($p['Name'])`$"; $verified = [bool]($o -and (Get-NpiKrbParentDn "$($o.DistinguishedName)") -eq "$($p['Path'])") }
                     'krb-new-dmsa' { $o = Get-NpiKrbAccountOrNull $Writer "$($p['Name'])`$"; $verified = [bool]($o -and (Get-NpiKrbParentDn "$($o.DistinguishedName)") -eq "$($p['Path'])") }
-                    'krb-set-retrievers' { $verified = ((@(Get-NpiKrbRetrieverList (Get-NpiKrbAccountOrNull $Writer $p['Identity'])) -join '|').ToLowerInvariant() -eq ((@($p['PrincipalsAllowedToRetrieveManagedPassword']) | Sort-Object) -join '|').ToLowerInvariant()) }
+                    { $_ -in 'krb-set-retrievers', 'krb-set-dmsa-retrievers' } { $verified = ((@(Get-NpiKrbRetrieverList (Get-NpiKrbAccountOrNull $Writer $p['Identity'])) -join '|').ToLowerInvariant() -eq ((@($p['PrincipalsAllowedToRetrieveManagedPassword']) | Sort-Object) -join '|').ToLowerInvariant()) }
+                    'krb-set-retriever-hosts' { $verified = Test-NpiKrbSameSet @(Get-NpiKrbGroupNow $Writer "$($p['Identity'])") @((ConvertTo-NpiKrbHashtable $p['Replace'])['member']) }
+                    'krb-add-spn' { $verified = [bool]@(Get-NpiKrbSpnList (Get-NpiKrbAccountDetail $Writer "$($p['Account'])") | Where-Object { $_ -ieq "$($p['S'])" }).Count }
+                    'krb-remove-spn' { $verified = -not @(Get-NpiKrbSpnList (Get-NpiKrbAccountDetail $Writer "$($p['Account'])") | Where-Object { $_ -ieq "$($p['D'])" }).Count }
+                    'krb-set-tags' { $o = Get-NpiKrbAccountDetail $Writer "$($p['Identity'])"; $verified = "$(if ($o.PSObject.Properties['Description']) { $o.Description })" -ceq "$($p['Description'])" }
                     'krb-start-migration' { $verified = (Get-NpiKrbDelegatedState (Get-NpiKrbAccountOrNull $Writer $p['Identity'])) -eq 1 }
                     'krb-complete-migration' { $verified = (Get-NpiKrbDelegatedState (Get-NpiKrbAccountOrNull $Writer $p['Identity'])) -eq 2 }
                     'krb-disable-superseded' { $verified = -not (Get-NpiKrbSupersededObject $Writer $a $p['Identity']).Enabled }
@@ -1023,6 +1289,8 @@ function Invoke-NpiKrbPlan {
                     'CompleteDmsaMigration' { $detail = 'The old account is disabled and kept; never delete it (Learn)' }
                     'DisableSuperseded' { $detail = 'Disabled, not deleted; it moves to the holding OU next' }
                     'MoveSuperseded' { $detail = "Disabled and in $holding; delete it only through the decommission ticket, 90 days after the disable" }
+                    { $_ -in 'SetRetrieverHosts', 'SetDmsaRetrievers' } { $detail = 'Next: the host step the plan records (install on an added host, uninstall from a removed one)' }
+                    'RewriteTags' { $detail = 'The tags now name this request and change; Chapter 12 compares them with the register (NPI-STD-30)' }
                 }
                 if (-not $verified) { $detail = "Sent, but the re-read doesn't show the change: check AD before anything else. $detail" }
             }
@@ -1087,6 +1355,13 @@ function New-NpiKrbLiveAdInvoker {
     {
         param($Cmdlet, [hashtable]$Params)
         if ($Cmdlet -match $never -or $Cmdlet -notin $allowed) { throw "Refusing $Cmdlet" }
+        if ($Cmdlet -eq 'setspn') {
+            # setspn -S adds an SPN after checking for a duplicate; -D deletes one (Learn). Not a cmdlet: run it and check the result.
+            $op = if ($Params.ContainsKey('S')) { 'S' } elseif ($Params.ContainsKey('D')) { 'D' } else { throw 'setspn needs -S or -D' }
+            $out = & setspn.exe "-$op" "$($Params[$op])" "$($Params['Account'])" 2>&1
+            if ($LASTEXITCODE -ne 0 -or "$out" -match 'Duplicate SPN found') { throw "setspn -$op $($Params[$op]) $($Params['Account']) failed: $(@($out) -join ' ')" }
+            return
+        }
         $p = @{} + $Params; $p.Server = $srv
         & $Cmdlet @p
     }.GetNewClosure()
@@ -1176,7 +1451,12 @@ function Invoke-NpiKrbFakeAd {
         }
         'Get-ADServiceAccount' {
             $pool = @($ad.serviceAccounts)
-            if ($Params.ContainsKey('Identity')) { return ConvertTo-NpiKrbFakeAccount (& $find $pool $Params.Identity) }
+            if ($Params.ContainsKey('Identity')) {
+                $src = & $find $pool $Params.Identity
+                $o = ConvertTo-NpiKrbFakeAccount $src
+                if (@($Params['Properties']) -contains 'Description') { $o | Add-Member -NotePropertyName Description -NotePropertyValue "$(if ($src.ContainsKey('Description')) { $src['Description'] })" }
+                return $o
+            }
             if ($Params.Filter -ne '*') { throw 'The fake Get-ADServiceAccount supports -Filter * or -Identity only' }
             return @($pool | ForEach-Object { ConvertTo-NpiKrbFakeAccount $_ })
         }
@@ -1210,8 +1490,35 @@ function Invoke-NpiKrbFakeAd {
         'Set-ADServiceAccount' {
             & $write
             $o = & $find @($ad.serviceAccounts) $Params.Identity
-            foreach ($k in $Params.Keys) { if ($k -notin 'Identity', 'PrincipalsAllowedToRetrieveManagedPassword') { throw "The fake Set-ADServiceAccount doesn't take -$k" } }
-            $o['PrincipalsAllowedToRetrieveManagedPassword'] = @($Params['PrincipalsAllowedToRetrieveManagedPassword'])
+            foreach ($k in $Params.Keys) { if ($k -notin 'Identity', 'PrincipalsAllowedToRetrieveManagedPassword', 'Description') { throw "The fake Set-ADServiceAccount doesn't take -$k" } }
+            if ($Params.ContainsKey('PrincipalsAllowedToRetrieveManagedPassword')) { $o['PrincipalsAllowedToRetrieveManagedPassword'] = @($Params['PrincipalsAllowedToRetrieveManagedPassword']) }
+            if ($Params.ContainsKey('Description')) { $o['Description'] = "$($Params['Description'])" }
+            return
+        }
+        'Get-ADGroup' {
+            $hit = @(@(if ($x.ContainsKey('groups')) { $x.groups }) | Where-Object { $_.Name -eq $Params.Identity -or $_.DistinguishedName -eq $Params.Identity })
+            if ($hit.Count -ne 1) { throw "Cannot find an object with identity: '$($Params.Identity)'" }
+            return [pscustomobject]@{ Name = $hit[0].Name; DistinguishedName = $hit[0].DistinguishedName; GroupScope = 'DomainLocal'; member = @(@($hit[0].member) | Where-Object { $_ }) }
+        }
+        'Set-ADGroup' {
+            & $write
+            $hit = @(@(if ($x.ContainsKey('groups')) { $x.groups }) | Where-Object { $_.Name -eq $Params.Identity -or $_.DistinguishedName -eq $Params.Identity })
+            if ($hit.Count -ne 1) { throw "Cannot find an object with identity: '$($Params.Identity)'" }
+            foreach ($k in $Params.Keys) { if ($k -notin 'Identity', 'Replace') { throw "The fake Set-ADGroup doesn't take -$k" } }
+            $hit[0]['member'] = @($Params['Replace']['member'])
+            return
+        }
+        'setspn' {
+            & $write
+            $o = & $find @($ad.serviceAccounts) $Params.Account
+            if ($Params.ContainsKey('S')) {
+                # setspn -S checks the domain for the SPN before it adds it (Learn).
+                $all = @(@($ad.serviceAccounts) + @($ad.objects) | ForEach-Object { @($_['ServicePrincipalName']) } | Where-Object { $_ })
+                if (@($all | Where-Object { $_ -ieq "$($Params.S)" }).Count) { throw "Duplicate SPN found, aborting operation! ($($Params.S))" }
+                $o['ServicePrincipalName'] = @(@($o['ServicePrincipalName']) | Where-Object { $_ }) + @("$($Params.S)")
+            } elseif ($Params.ContainsKey('D')) {
+                $o['ServicePrincipalName'] = @(@($o['ServicePrincipalName']) | Where-Object { $_ -and $_ -ine "$($Params.D)" })
+            } else { throw 'The fake setspn takes -S or -D' }
             return
         }
         'Start-ADServiceAccountMigration' {
@@ -1251,5 +1558,5 @@ function Invoke-NpiKrbFakeAd {
 }
 
 Export-ModuleMember -Function Get-NpiKrbCallList, Get-NpiKrbCall, Get-NpiKrbTask, Get-NpiKrbRequiredRight, New-NpiKrbReader, Invoke-NpiKrbAdRead,
-    Import-NpiKrbRegister, Import-NpiKrbMatrixRun, Get-NpiKrbPath, Import-NpiKrbInput, Get-NpiKdsRootKeyState, Get-NpiKrbScope, Read-NpiKrbDomain, Test-NpiKerberosIsland, New-NpiKrbGmsaPlan,
+    Import-NpiKrbRegister, Import-NpiKrbMatrixRun, Get-NpiKrbPath, Import-NpiKrbInput, Get-NpiKdsRootKeyState, Get-NpiKrbScope, Read-NpiKrbDomain, Test-NpiKerberosIsland, New-NpiKrbGmsaPlan, New-NpiKrbChangePlan,
     New-NpiKrbWriter, Assert-NpiKrbPlannedWrite, Invoke-NpiKrbPlan, Export-NpiKrbRun, New-NpiKrbLiveAdInvoker, New-NpiKrbFixtureAdInvoker, Invoke-NpiKrbFakeAd

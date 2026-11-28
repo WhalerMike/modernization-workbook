@@ -1,0 +1,44 @@
+{
+  "requestId": "REQ-2026-0408",
+  "requestedOn": "2026-11-25",
+  "approvedOn": "2026-11-26",
+  "approvers": [
+    "payroll.owner@contoso.example",
+    "iam.approver@contoso.example"
+  ],
+  "status": "APPROVED",
+  "changeRecord": "CHG0041208",
+  "requestKind": "Change",
+  "changeType": "AddSpn",
+  "changeItems": [
+    "HTTP/payroll-api.corp.contoso.example"
+  ],
+  "systemId": "SYS-0412",
+  "appShortName": "payroll",
+  "accountType": "gMSA",
+  "proposedName": "gmsa-payroll$",
+  "workload": "Service",
+  "needsSpn": true,
+  "owners": [
+    "payroll.owner@contoso.example",
+    "payroll.backup@contoso.example"
+  ],
+  "sponsor": "finance.sponsor@contoso.example",
+  "sponsorIsFederalEmployee": true,
+  "riskTier": "R2",
+  "environment": "prod",
+  "entraTarget": "AppRegistrationFederated",
+  "endDate": "",
+  "supersedes": "svc-payroll",
+  "runByPerson": false,
+  "hosts": [
+    "PAY01",
+    "PAY02"
+  ],
+  "spns": [
+    "HTTP/payroll.corp.contoso.example",
+    "HTTP/payroll-old.corp.contoso.example",
+    "HTTP/payroll-api.corp.contoso.example"
+  ],
+  "outboundOnlyReason": ""
+}

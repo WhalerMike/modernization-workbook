@@ -1,0 +1,69 @@
+{
+  "_comment": "Chapter 06's change-request fixture, the additions to estate.json: the KDS root key, the domain controller, the hosts and the two retriever groups with their members. Invented names and dates.",
+  "configurationDn": "CN=Configuration,DC=corp,DC=contoso,DC=example",
+  "kdsRootKeys": [
+    {
+      "Name": "c0ffee00-0000-4000-8000-0000000000d1",
+      "msKds-UseStartTime": "2024-03-01T02:00:00Z",
+      "msKds-CreateTime": "2024-03-01T12:00:00Z"
+    }
+  ],
+  "domainControllers": [
+    {
+      "Name": "DC02",
+      "HostName": "dc02.corp.contoso.example",
+      "OperatingSystem": "Windows Server 2025 Datacenter",
+      "IsReadOnly": false
+    }
+  ],
+  "computers": [
+    {
+      "Name": "PAY01",
+      "DistinguishedName": "CN=PAY01,OU=Servers,DC=corp,DC=contoso,DC=example",
+      "OperatingSystem": "Windows Server 2022 Standard"
+    },
+    {
+      "Name": "PAY02",
+      "DistinguishedName": "CN=PAY02,OU=Servers,DC=corp,DC=contoso,DC=example",
+      "OperatingSystem": "Windows Server 2022 Standard"
+    },
+    {
+      "Name": "PAY03",
+      "DistinguishedName": "CN=PAY03,OU=Servers,DC=corp,DC=contoso,DC=example",
+      "OperatingSystem": "Windows Server 2022 Standard"
+    },
+    {
+      "Name": "HRSQL01",
+      "DistinguishedName": "CN=HRSQL01,OU=Servers,DC=corp,DC=contoso,DC=example",
+      "OperatingSystem": "Windows Server 2022 Standard"
+    },
+    {
+      "Name": "BILL01",
+      "DistinguishedName": "CN=BILL01,OU=Servers,DC=corp,DC=contoso,DC=example",
+      "OperatingSystem": "Windows Server 2025 Standard"
+    },
+    {
+      "Name": "BILL02",
+      "DistinguishedName": "CN=BILL02,OU=Servers,DC=corp,DC=contoso,DC=example",
+      "OperatingSystem": "Windows Server 2025 Standard"
+    }
+  ],
+  "groups": [
+    {
+      "Name": "DL-gMSA-payroll-Hosts",
+      "DistinguishedName": "CN=DL-gMSA-payroll-Hosts,OU=Groups,DC=corp,DC=contoso,DC=example",
+      "member": [
+        "CN=PAY01,OU=Servers,DC=corp,DC=contoso,DC=example",
+        "CN=PAY02,OU=Servers,DC=corp,DC=contoso,DC=example"
+      ]
+    },
+    {
+      "Name": "DL-gMSA-hrdb-Hosts",
+      "DistinguishedName": "CN=DL-gMSA-hrdb-Hosts,OU=Groups,DC=corp,DC=contoso,DC=example",
+      "member": [
+        "CN=HRSQL01,OU=Servers,DC=corp,DC=contoso,DC=example"
+      ]
+    }
+  ],
+  "serviceAccountState": {}
+}

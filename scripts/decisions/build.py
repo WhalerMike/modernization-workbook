@@ -14,7 +14,9 @@ Add a decision by appending an entry to data/decisions.yml with the next WD
 number, then run this script. To change a decision, don't edit the old entry's
 choice: add a new entry and mark the old one `status: superseded` with
 `superseded_by`. A reviewer's challenge sets `status: challenged` and lists the
-issue in `challenges` until the editor settles it.
+issue in `challenges` until the editor settles it. A decision drafted for the
+editor and not yet decided is `status: proposed`; the pages don't follow it until
+it is settled.
 
     python scripts/decisions/build.py           # write the register
     python scripts/decisions/build.py --check   # exit 1 if the register is stale or an entry is invalid
@@ -46,7 +48,7 @@ BASIS = {
     "microsoft-learn": "Microsoft Learn",
     "workbook-design": "Workbook design",
 }
-STATUS = ("settled", "challenged", "superseded")
+STATUS = ("settled", "challenged", "superseded", "proposed")
 FIELDS = ("id", "date", "question", "options", "choice", "rationale", "basis", "sources", "pages", "prs", "status")
 ID = re.compile(r"WD-\d{3}")
 BOOK_REF = re.compile(r"\bBooks? (\d\d)(?:(?:, | and )(\d\d))*")
@@ -180,7 +182,7 @@ def render(entries: list[dict], plans: list[dict], titles: dict[str, str]) -> st
         "an entry and how to tell us you agree or disagree with it. Use the entry's ID when you do.",
         "",
         f"There are **{len(entries)}** workbook decisions: {counts['settled']} settled, {counts['challenged']} "
-        f"challenged and {counts['superseded']} superseded. Below them are the **{plan_count}** decision points "
+        f"challenged, {counts['superseded']} superseded and {counts['proposed']} proposed. Below them are the **{plan_count}** decision points "
         f"the sample project plans leave to the agency that adopts them.",
         "",
         "::: {.callout-note}",
@@ -201,6 +203,8 @@ def render(entries: list[dict], plans: list[dict], titles: dict[str, str]) -> st
         "| **challenged** | A reviewer has disagreed or asked for evidence in an open issue, and the workbook's editor "
         "hasn't ruled yet. The pages still follow the decision until then. |",
         "| **superseded** | Replaced by a later decision, named in the entry. Kept so the history stays readable. |",
+        "| **proposed** | Drafted for the workbook's editor and not yet decided. The pages don't follow it: until it's "
+        "settled, they follow the option the entry's note names. |",
         "",
         ": Decision status {.striped}",
         "",

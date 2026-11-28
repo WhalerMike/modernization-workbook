@@ -198,10 +198,10 @@ endModule(SC);
     "         17           0           0",
     "$ Import-Module ./powershell/NpiKerberosIsland/NpiKerberosIsland.psm1",
     "$ foreach ($t in 'kerberos-island', 'kerberos-apply') { $r = Get-NpiKrbRequiredRight -Task $t; ... }",
-    "kerberos-island : Get-ADComputer, Get-ADDomainController, Get-ADObject, Get-ADServiceAccount, Get-ADUser",
+    "kerberos-island : Get-ADComputer, Get-ADDomainController, Get-ADGroup, Get-ADObject, Get-ADServiceAccount, Get-ADUser",
     "kerberos-apply : Complete-ADServiceAccountMigration, Disable-ADAccount, Get-ADComputer, Get-ADDomainController,",
-    "  Get-ADObject, Get-ADServiceAccount, Get-ADUser, Move-ADObject, New-ADServiceAccount, Set-ADServiceAccount,",
-    "  Start-ADServiceAccountMigration",
+    "  Get-ADGroup, Get-ADObject, Get-ADServiceAccount, Get-ADUser, Move-ADObject, New-ADServiceAccount, Set-ADGroup,",
+    "  Set-ADServiceAccount, setspn, Start-ADServiceAccountMigration",
   ], { label: "TRY IT  ·  LAB 1 OUTPUT, RE-RUN NOVEMBER 20, 2026 (TRIMMED: \"...\" MARKS CUTS; WRAPPED)", pt: 10.5 });
   line(s, "Read", "The read task runs only Get-AD* cmdlets. No cmdlet that removes or undoes is on either list; Move-ADObject moves a disabled account to the holding OU.", c + 0.25, 0.7, 13.5);
   sources(s, "Sources: Module 8, \"Exercise: Lab 1,\" steps 1 to 3; Microsoft Learn's gMSA, dMSA and KDS root key procedures, pinned; examples/non-person-identity.");

@@ -28,13 +28,15 @@ msa-request-pack/
     04-retirement-request.docx        retire an account
     05-approver-checklist.docx        what the SailPoint approver decides
     06-servicenow-change-template.docx the change record's required fields
-  request_template.csv            one row per new or migration request, no rows yet
-  examples.csv                    five fictional requests, all passing
+    07-change-request.docx            one change to an existing account: a host, an SPN, the tier or the end date
+  request_template.csv            one row per request (New, Migrate or Change), no rows yet
+  examples.csv                    twelve fictional requests, all passing: five new or migration, seven changes
   Test-MsaRequest.ps1             the checker (PowerShell 7.1 or later)
+  Get-MsaNameSuggestion.ps1       the name suggester (Windows PowerShell 5.1 or PowerShell 7)
   standard.json                   the domain and OUs the checker reads (fictional; copy and edit at work)
   copilot-prompts.md              prompts for Microsoft 365 Copilot Chat
   pack_schema.py, build_pack.py   the fields, values and forms in one place, and the build (needs python-docx to write the forms)
-  tests/                          Pester and pytest
+  tests/                          Pester and pytest; tests/fixtures/forest.json is what -CheckForest finds in the fictional forest
 non-person-identity/powershell/   the Non-Person Identity kit's Chapter 12 module the checker calls
 ```
 
@@ -57,6 +59,24 @@ It prints one line per request (`Ready` `True` when nothing blocks it) and write
 | MSA-REQ-04 | `EntraTarget` `KeepKerberos` with no end date |
 | MSA-REQ-05 | A new dMSA: a dMSA migrates an existing account |
 | MSA-REQ-06 | A tag that can't be written: a value outside its list, or one with `=` or `;` |
+| MSA-REQ-07 | `Change` with no known `ChangeType`, or a `ChangeType` on a `New` or `Migrate` row |
+| MSA-REQ-08 | Change items that don't fit the row: an added host missing from `Hosts`, a removed one still there, an SPN not in Learn's form or not in `Spns`, items on a `Tier` or `EndDate` change, an end date on an account that isn't kept on Kerberos |
+
+When NPI-STD-03 refuses a name, its finding ends with the name `Get-MsaNameSuggestion.ps1` builds from the same fields (`expected name gmsa-payroll$`).
+
+## Change an existing account
+
+A `Change` row changes one thing: `ChangeType` is `AddHost`, `RemoveHost`, `AddSpn`, `RemoveSpn`, `Tier` or `EndDate`, `ChangeItems` names the hosts or SPNs added or removed, and `Hosts` and `Spns` are the full lists after the change. An owner or sponsor change is form 03, a retirement form 04. The Non-Person Identity kit's Chapter 06 plans the approved change (`Invoke-NpiKerberosChange.ps1`): a host change as a change to `DL-gMSA-<app>-Hosts` (a dMSA's retrievers are its hosts), an SPN change as `setspn -S` or `setspn -D`, a tier or end date change as a rewrite of the tags. A person sends the write while WD-184, a draft that proposes the rights for the pipeline, is undecided.
+
+## Suggest the names
+
+In Windows PowerShell 5.1 or PowerShell 7:
+
+```powershell
+./Get-MsaNameSuggestion.ps1 -SystemId SYS-0233 -AppShortName hrdb -Role sql -AccountType gMSA -Environment prod -Hosts HRSQL01 -ServiceClass MSSQLSvc -Port 1433
+```
+
+It prints the account name (WD-159, WD-173), its DNS host name, the retriever group (WD-160), the SPNs, the managed identity name it will move to (`id-<app>-<env>-<region>-001`) and the seven tags (WD-175), with a finding for anything that breaks a rule. `-CheckForest` adds read-only lookups (`Get-ADObject`; `-Server <dc>:3268` for the whole forest, or `-ForestFixturePath tests/fixtures/forest.json`) and reports a clash without renaming anything.
 
 ## The tags
 

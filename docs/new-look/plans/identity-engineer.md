@@ -33,9 +33,9 @@ review-status: pending
 ## Week 4: non-person identity
 
 - [Non-Person Identity in Microsoft Entra ID](../../training/non-person-identity/index.md) (Learning path, 15 modules, 18 hr 6 min). Fifteen modules: one per chapter of the developer workbook, in the order of the implementation guide's six gates, then the deployment runbook, then one service account migrated by hand, then the managed service account standard, then….
-- [Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities](../../books/guides/service-account-migration.md) (Implementation guide, about 2 hr 16 min). A comparison and migration guide for every kind of service identity, on premises and in the cloud: a user account used as a service, a standalone MSA, a group managed service account (gMSA), a Windows Server 2025 delegated managed….
+- [Service Accounts: From User Accounts to gMSAs to Microsoft Entra Workload Identities](../../books/guides/service-account-migration.md) (Implementation guide, about 2 hr 17 min). A comparison and migration guide for every kind of service identity, on premises and in the cloud: a user account used as a service, a standalone MSA, a group managed service account (gMSA), a Windows Server 2025 delegated managed….
 
-*Milestone 4: about 20 hr 22 min.*
+*Milestone 4: about 20 hr 23 min.*
 
-**Whole plan:** about 53 hr 37 min of reading and video, plus the labs.
+**Whole plan:** about 53 hr 38 min of reading and video, plus the labs.
 

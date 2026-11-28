@@ -1739,6 +1739,7 @@ pages:
   - docs/books/b02-identity/08-assessing-the-forest.md
   - docs/books/b02-identity/appendix-b-forest-assessment-module.md
   - docs/books/b10-cloud-boundary/appendix-b-platform-host-interfaces.md
+  - docs/books/guides/msa-request-pack.md
   - docs/books/guides/non-person-identity-implementation.md
   - docs/books/guides/platform-host-implementation.md
   - docs/books/guides/service-account-migration.md

@@ -1,0 +1,67 @@
+{
+  "_comment": "Chapter 06's change-request fixture: three managed service accounts already created to the standard in the fictional corp.contoso.example, with their tags, SPNs and retrievers, and one user account holding an SPN, so setspn -S's duplicate check has something to refuse. Served with ad-kerberos.json by New-NpiKrbFixtureAdInvoker. Invented names; nothing here is a real domain.",
+  "ad": {
+    "serviceAccounts": [
+      {
+        "SamAccountName": "gmsa-payroll$",
+        "ObjectGUID": "c0ffee00-0000-4000-8000-00000000c601",
+        "ObjectClass": "msDS-GroupManagedServiceAccount",
+        "DistinguishedName": "CN=gmsa-payroll,OU=Service Accounts,DC=corp,DC=contoso,DC=example",
+        "UserAccountControl": 4096,
+        "ServicePrincipalName": [
+          "HTTP/payroll.corp.contoso.example",
+          "HTTP/payroll-old.corp.contoso.example"
+        ],
+        "MemberOf": [],
+        "PrincipalsAllowedToRetrieveManagedPassword": [
+          "CN=DL-gMSA-payroll-Hosts,OU=Groups,DC=corp,DC=contoso,DC=example"
+        ],
+        "Description": "SystemId=SYS-0412; Owner1=payroll.owner@contoso.example; Owner2=payroll.backup@contoso.example; Sponsor=finance.sponsor@contoso.example; Environment=prod; Tier=R2; EntraTarget=AppRegistrationFederated; Request=REQ-2026-0402; Change=CHG0041202"
+      },
+      {
+        "SamAccountName": "gmsa-hrdb-sql$",
+        "ObjectGUID": "c0ffee00-0000-4000-8000-00000000c602",
+        "ObjectClass": "msDS-GroupManagedServiceAccount",
+        "DistinguishedName": "CN=gmsa-hrdb-sql,OU=Service Accounts,DC=corp,DC=contoso,DC=example",
+        "UserAccountControl": 4096,
+        "ServicePrincipalName": [
+          "MSSQLSvc/hrsql01.corp.contoso.example:1433",
+          "MSSQLSvc/hrsql01.corp.contoso.example"
+        ],
+        "MemberOf": [],
+        "PrincipalsAllowedToRetrieveManagedPassword": [
+          "CN=DL-gMSA-hrdb-Hosts,OU=Groups,DC=corp,DC=contoso,DC=example"
+        ],
+        "Description": "SystemId=SYS-0233; Owner1=hrdb.dba@contoso.example; Owner2=hrdb.backup@contoso.example; Sponsor=hr.sponsor@contoso.example; Environment=prod; Tier=R1; EntraTarget=KeepKerberos; Request=REQ-2026-0403; Change=CHG0041203"
+      },
+      {
+        "SamAccountName": "dmsa-billing$",
+        "ObjectGUID": "c0ffee00-0000-4000-8000-00000000c603",
+        "ObjectClass": "msDS-DelegatedManagedServiceAccount",
+        "DistinguishedName": "CN=dmsa-billing,OU=Service Accounts,DC=corp,DC=contoso,DC=example",
+        "UserAccountControl": 4096,
+        "ServicePrincipalName": [
+          "HTTP/billing.corp.contoso.example"
+        ],
+        "MemberOf": [],
+        "PrincipalsAllowedToRetrieveManagedPassword": [
+          "CN=BILL01,OU=Servers,DC=corp,DC=contoso,DC=example"
+        ],
+        "msDS-DelegatedMSAState": 2,
+        "Description": "SystemId=SYS-0388; Owner1=billing.owner@contoso.example; Owner2=billing.backup@contoso.example; Sponsor=finance.sponsor@contoso.example; Environment=prod; Tier=R2; EntraTarget=Undecided; Request=REQ-2026-0405; Change=CHG0041205"
+      }
+    ],
+    "objects": [
+      {
+        "SamAccountName": "svc-reports",
+        "ObjectGUID": "c0ffee00-0000-4000-8000-00000000c611",
+        "ObjectClass": "user",
+        "DistinguishedName": "CN=svc-reports,OU=Service Accounts,DC=corp,DC=contoso,DC=example",
+        "UserAccountControl": 512,
+        "ServicePrincipalName": [
+          "HTTP/reports.corp.contoso.example"
+        ]
+      }
+    ]
+  }
+}

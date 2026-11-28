@@ -18,7 +18,7 @@ BeforeAll {
 AfterAll { Remove-Item -Recurse -Force $script:Tmp -ErrorAction SilentlyContinue }
 
 Describe 'The worked examples' {
-    It 'all five pass, and each gets its request, AD description and Entra attributes' {
+    It 'all twelve pass (five new or migration requests, seven changes), and each gets its request, AD description and Entra attributes' {
         $r = Invoke-Check $script:Examples
         $r.Exit | Should -Be 0
         $r.Findings.Count | Should -Be 0
@@ -84,6 +84,51 @@ Describe 'The pack''s own checks' {
         $b = Copy-Row 1; $b.SystemId = 'SYS-0412;SYS-0413'
         $r = Invoke-Check @($a, $b)
         @($r.Findings | Where-Object Rule -EQ 'MSA-REQ-06').ObjectKey | Sort-Object | Should -Be @('REQ-2026-0401', 'REQ-2026-0402')
+    }
+}
+
+Describe 'Change requests (RequestKind Change)' {
+    It 'writes each change''s type and items into request.json, for Chapter 06''s change plan' {
+        $r = Invoke-Check @($script:Examples | Where-Object RequestKind -EQ 'Change')
+        $r.Exit | Should -Be 0
+        $q = Get-Content (Join-Path $r.Out 'REQ-2026-0406' 'request.json') -Raw | ConvertFrom-Json
+        $q.requestKind | Should -Be 'Change'
+        $q.changeType | Should -Be 'AddHost'
+        @($q.changeItems) | Should -Be @('PAY03')
+        @($q.hosts) | Should -Be @('PAY01', 'PAY02', 'PAY03')
+        Get-Content (Join-Path $r.Out 'REQ-2026-0410' 'ad-description.txt') -Raw | Should -Match 'Tier=R1; EntraTarget=AppRegistrationFederated; Request=REQ-2026-0410; Change=PENDING'
+    }
+    It 'MSA-REQ-07: a Change with no known ChangeType, or a ChangeType on a New row' {
+        $a = Copy-Row 5; $a.ChangeType = 'Owner'
+        $b = Copy-Row 0; $b.ChangeType = 'AddHost'
+        $r = Invoke-Check @($a, $b)
+        @($r.Findings | Where-Object Rule -EQ 'MSA-REQ-07').ObjectKey | Sort-Object | Should -Be @('REQ-2026-0401', 'REQ-2026-0406')
+    }
+    It 'MSA-REQ-08: what a change names has to fit the row: an added host in Hosts, a removed one gone, an SPN in the form, no items for Tier' {
+        $a = Copy-Row 5; $a.Hosts = 'PAY01;PAY02'
+        $b = Copy-Row 6; $b.Hosts = 'PAY01;PAY02'
+        $c = Copy-Row 7; $c.ChangeItems = 'payroll-api'; $c.Spns = 'HTTP/payroll.corp.contoso.example;payroll-api'
+        $d = Copy-Row 9; $d.ChangeItems = 'R1'
+        $e = Copy-Row 10; $e.EntraTarget = 'ManagedIdentity'
+        $r = Invoke-Check @($a, $b, $c, $d, $e)
+        @($r.Findings | Where-Object Rule -EQ 'MSA-REQ-08').ObjectKey | Sort-Object | Should -Be @('REQ-2026-0406', 'REQ-2026-0407', 'REQ-2026-0408', 'REQ-2026-0410', 'REQ-2026-0411')
+    }
+    It 'two changes to the same account aren''t a name clash (NPI-STD-03 counts only requests that create one)' {
+        $r = Invoke-Check @($script:Examples[1], $script:Examples[5], $script:Examples[6])
+        @($r.Findings | Where-Object Rule -EQ 'NPI-STD-03').Count | Should -Be 0
+    }
+}
+
+Describe 'The name suggester in the checker' {
+    It 'a name that breaks the standard is reported with the name it should be' {
+        $a = Copy-Row 1; $a.AppShortName = 'Payroll'
+        $b = Copy-Row 0; $b.Role = 'api'
+        $c = Copy-Row 0; $c.AppShortName = 'visitorbadges'; $c.Role = 'web'; $c.RequestId = 'REQ-2026-0499'
+        $r = Invoke-Check @($a, $b, $c)
+        $i = @{}; foreach ($f in @($r.Findings | Where-Object Rule -EQ 'NPI-STD-03')) { $i[$f.ObjectKey] = $f.Issue }
+        $i['REQ-2026-0402'] | Should -Match 'expected name gmsa-payroll\$ \(Get-MsaNameSuggestion.ps1\)$'
+        $i['REQ-2026-0401'] | Should -Match 'expected name gmsa-visitor\$'
+        $i['REQ-2026-0499'] | Should -Match 'expected name gmsa-visito-web\$ \(Get-MsaNameSuggestion.ps1\): .*can have 6 characters here'
     }
 }
 

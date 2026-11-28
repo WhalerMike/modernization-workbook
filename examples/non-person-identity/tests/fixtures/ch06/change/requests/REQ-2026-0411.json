@@ -1,0 +1,40 @@
+{
+  "requestId": "REQ-2026-0411",
+  "requestedOn": "2026-11-25",
+  "approvedOn": "2026-11-26",
+  "approvers": [
+    "hrdb.dba@contoso.example",
+    "iam.approver@contoso.example"
+  ],
+  "status": "APPROVED",
+  "changeRecord": "CHG0041211",
+  "requestKind": "Change",
+  "changeType": "EndDate",
+  "changeItems": [],
+  "systemId": "SYS-0233",
+  "appShortName": "hrdb",
+  "accountType": "gMSA",
+  "proposedName": "gmsa-hrdb-sql$",
+  "workload": "Service",
+  "needsSpn": true,
+  "owners": [
+    "hrdb.dba@contoso.example",
+    "hrdb.backup@contoso.example"
+  ],
+  "sponsor": "hr.sponsor@contoso.example",
+  "sponsorIsFederalEmployee": true,
+  "riskTier": "R1",
+  "environment": "prod",
+  "entraTarget": "KeepKerberos",
+  "endDate": "2028-03-31",
+  "supersedes": "svc-hrsql",
+  "runByPerson": false,
+  "hosts": [
+    "HRSQL01"
+  ],
+  "spns": [
+    "MSSQLSvc/hrsql01.corp.contoso.example:1433",
+    "MSSQLSvc/hrsql01.corp.contoso.example"
+  ],
+  "outboundOnlyReason": ""
+}
